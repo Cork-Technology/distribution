@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-periphery",
+  "version": "0.1.1",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-periphery",
+    "tag": "v0.1.1",
+    "commit": "dec1bdb74d8f44ea99519ec6a6db5412c4913f41"
+  },
+  "package": null,
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "trustBoundary": "Reference deployment only. The security model requires the integrator to audit, vet and deploy their own copy of the adapter under their own name; this row exists so an integrator can diff their deployment against Cork's reference.",
+  "notices": [
+    "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
+    "Deployed via CREATE2 through the deterministic deployment factory: the address is a function of salt and init code, not of the chain.",
+    "Bound at deployment: the phoenix v1.3.0-rc.1 pool manager and whitelist manager, and the 1inch Limit Order Protocol v4. The adapter binds no market-registry address."
+  ],
+  "knownIssues": [],
+  "contracts": {
+    "CorkForSelfAdapter": {
+      "description": "Receiver-forcing adapter: pool actions plus fillOrderForSelf, no receiver parameter anywhere, approvals to the adapter only — proceeds can only land on the caller.",
+      "version": "0.1.1",
+      "abi": "./abi/CorkForSelfAdapter-0.1.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x5Fc04d188bf5DF6901080Df0F801FFE3d8435771",
+            "implementation": null,
+            "codeHash": "0x27c2266dfbccc731d4e9fc41a61d4c9598e60827283d9e8aa258a8dc194c4211",
+            "deployedCommit": "dec1bdb74d8f44ea99519ec6a6db5412c4913f41",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x5Fc04d188bf5DF6901080Df0F801FFE3d8435771",
+            "implementation": null,
+            "codeHash": "0x27c2266dfbccc731d4e9fc41a61d4c9598e60827283d9e8aa258a8dc194c4211",
+            "deployedCommit": "dec1bdb74d8f44ea99519ec6a6db5412c4913f41",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    }
+  },
+  "supersededBy": null
+}

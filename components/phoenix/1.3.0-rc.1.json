@@ -1,0 +1,388 @@
+{
+  "schemaVersion": 1,
+  "component": "phoenix",
+  "version": "1.3.0-rc.1",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/phoenix",
+    "tag": "v1.3.0-rc.1",
+    "commit": "68ae5837ec008b4c54e1fbc9c6a559bfa16f89e5"
+  },
+  "package": null,
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "notices": [
+    "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version. v1.1.0 on the same repo is the audited baseline; changes since it are unreviewed.",
+    "Deployed bytecode originates from deployment commit c8172892 (2026-08-06, in the private development repository), which predates the v1.3.0-rc.1 source bundle; the v1.3.0-rc.1 release records these addresses as its canonical deployment. Every address and runtime code hash below was re-verified against both chains on 2026-08-10 (scripts/verify.py).",
+    "Proxy rows pin the proxy's own runtime code hash; the proxy-to-implementation binding is verified separately via the EIP-1967 implementation slot (scripts/verify.py).",
+    "Admin and operational timelocks run at a 0-second delay: a documented fact of this partner-preview deployment, not an oversight."
+  ],
+  "contracts": {
+    "ConstraintRateAdapterImplementation": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/ConstraintRateAdapterImplementation-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x5ca7f1Be10AD47490f7c7d0ca3f752Ac8756e3f8",
+            "implementation": null,
+            "codeHash": "0x06a94ff45e4a9936b4529eaa529eb06eac3c8611c76fd26e922b14030dfea94c",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x5ca7f1Be10AD47490f7c7d0ca3f752Ac8756e3f8",
+            "implementation": null,
+            "codeHash": "0x06a94ff45e4a9936b4529eaa529eb06eac3c8611c76fd26e922b14030dfea94c",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ConstraintRateAdapterProxy": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/ConstraintRateAdapterProxy-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xA880bc161F7c738d206E15c788b47a864558d5b7",
+            "implementation": "0x5ca7f1Be10AD47490f7c7d0ca3f752Ac8756e3f8",
+            "codeHash": "0x4965b2c9e05bb63f1781b4b2c1ddd2e73e596f3c4a41ef8012783d7f9eb031b5",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xA880bc161F7c738d206E15c788b47a864558d5b7",
+            "implementation": "0x5ca7f1Be10AD47490f7c7d0ca3f752Ac8756e3f8",
+            "codeHash": "0x4965b2c9e05bb63f1781b4b2c1ddd2e73e596f3c4a41ef8012783d7f9eb031b5",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkAdapter": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/CorkAdapter-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xfa8A94046f0bC16Da683Aa8219bd960FDAF572AD",
+            "implementation": null,
+            "codeHash": "0x097673dfa72affbbf3e6f3858e4a80c88fc9e5c52d1a7a5f3906b213a9da621a",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xfa8A94046f0bC16Da683Aa8219bd960FDAF572AD",
+            "implementation": null,
+            "codeHash": "0x097673dfa72affbbf3e6f3858e4a80c88fc9e5c52d1a7a5f3906b213a9da621a",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkPoolManagerImplementation": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/CorkPoolManagerImplementation-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x4a6D1352C344f6cc97D91E1084E850e70f6355E3",
+            "implementation": null,
+            "codeHash": "0x022800f54942899c71b7bccdb14ded294e500701a3d97e4a1c13f830816ec947",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x4a6D1352C344f6cc97D91E1084E850e70f6355E3",
+            "implementation": null,
+            "codeHash": "0x022800f54942899c71b7bccdb14ded294e500701a3d97e4a1c13f830816ec947",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkPoolManagerProxy": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/CorkPoolManagerProxy-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x02803Bb52D2184f906F45B50C66AA969C2E37263",
+            "implementation": "0x4a6D1352C344f6cc97D91E1084E850e70f6355E3",
+            "codeHash": "0x4965b2c9e05bb63f1781b4b2c1ddd2e73e596f3c4a41ef8012783d7f9eb031b5",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x02803Bb52D2184f906F45B50C66AA969C2E37263",
+            "implementation": "0x4a6D1352C344f6cc97D91E1084E850e70f6355E3",
+            "codeHash": "0x4965b2c9e05bb63f1781b4b2c1ddd2e73e596f3c4a41ef8012783d7f9eb031b5",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "DefaultCorkController": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/DefaultCorkController-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x6b65D663e0B445BAf1870D5af806d57Ebb2C82A1",
+            "implementation": null,
+            "codeHash": "0xbcbaa28e660c00bfb015882b10e42dbfedbaf72991ce922d0849d10c02b20d26",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x6b65D663e0B445BAf1870D5af806d57Ebb2C82A1",
+            "implementation": null,
+            "codeHash": "0xbcbaa28e660c00bfb015882b10e42dbfedbaf72991ce922d0849d10c02b20d26",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "PoolLibrary": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/PoolLibrary-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x779c38c0B7AC8ceB9670c7a3EEE0a6B0bd9e66a3",
+            "implementation": null,
+            "codeHash": "0xcfebcc25a27cc60108511f72976d240bc989bd6622e48832fb8c7b7f8827a032",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x779c38c0B7AC8ceB9670c7a3EEE0a6B0bd9e66a3",
+            "implementation": null,
+            "codeHash": "0xcfebcc25a27cc60108511f72976d240bc989bd6622e48832fb8c7b7f8827a032",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "PoolShareImplementation": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/PoolShareImplementation-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xC1e9a51d69fB2Db713eD6be7969E12C794eF8f7f",
+            "implementation": null,
+            "codeHash": "0xdbac43e724cd411def5eff350b6cd03e387896dd5d693e861c7e61b83081eeb6",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xC1e9a51d69fB2Db713eD6be7969E12C794eF8f7f",
+            "implementation": null,
+            "codeHash": "0xdbac43e724cd411def5eff350b6cd03e387896dd5d693e861c7e61b83081eeb6",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "SharesFactory": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/SharesFactory-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x9996FCFa7b62fb7C5e7870dae06FFB2a7cE63b22",
+            "implementation": null,
+            "codeHash": "0x14a61c47dde7ec7b79b1962899ca05a0e54f2aad6c49c65e017e6db64b3eed94",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x9996FCFa7b62fb7C5e7870dae06FFB2a7cE63b22",
+            "implementation": null,
+            "codeHash": "0x14a61c47dde7ec7b79b1962899ca05a0e54f2aad6c49c65e017e6db64b3eed94",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "TimelockControllerAdmin": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/TimelockControllerAdmin-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xC5604ACb7dFb056863B82a69E3C8dC94152a644c",
+            "implementation": null,
+            "codeHash": "0x948400376630d36ec72e78621810a7af348ca2a0832cb002113c6a567fef49f4",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xC5604ACb7dFb056863B82a69E3C8dC94152a644c",
+            "implementation": null,
+            "codeHash": "0x948400376630d36ec72e78621810a7af348ca2a0832cb002113c6a567fef49f4",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "TimelockOperational": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/TimelockOperational-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xE8Cf9Adf66A6D460C69748ee593BAa84C3c9c8fD",
+            "implementation": null,
+            "codeHash": "0x948400376630d36ec72e78621810a7af348ca2a0832cb002113c6a567fef49f4",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xE8Cf9Adf66A6D460C69748ee593BAa84C3c9c8fD",
+            "implementation": null,
+            "codeHash": "0x948400376630d36ec72e78621810a7af348ca2a0832cb002113c6a567fef49f4",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "TimelockUpgrade": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/TimelockUpgrade-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xbEf3214605d6CdEbA7A86EacB8c89b478Eb466Df",
+            "implementation": null,
+            "codeHash": "0x948400376630d36ec72e78621810a7af348ca2a0832cb002113c6a567fef49f4",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xbEf3214605d6CdEbA7A86EacB8c89b478Eb466Df",
+            "implementation": null,
+            "codeHash": "0x948400376630d36ec72e78621810a7af348ca2a0832cb002113c6a567fef49f4",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "WhitelistManagerImplementation": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/WhitelistManagerImplementation-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x1C83b4b2eF4aCF11B03f1800ca4e836EFe307d84",
+            "implementation": null,
+            "codeHash": "0x538475aa44f636c9446b60cd79513d7b0f655cac2917c58cb3efb9ae89c49d07",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x1C83b4b2eF4aCF11B03f1800ca4e836EFe307d84",
+            "implementation": null,
+            "codeHash": "0x538475aa44f636c9446b60cd79513d7b0f655cac2917c58cb3efb9ae89c49d07",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "WhitelistManagerProxy": {
+      "version": "1.3.0-rc.1",
+      "abi": "./abi/WhitelistManagerProxy-1.3.0-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xEEd30E98abDC4da6d9Ac15c1184C9d046cA0Ccd6",
+            "implementation": "0x1C83b4b2eF4aCF11B03f1800ca4e836EFe307d84",
+            "codeHash": "0x4965b2c9e05bb63f1781b4b2c1ddd2e73e596f3c4a41ef8012783d7f9eb031b5",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xEEd30E98abDC4da6d9Ac15c1184C9d046cA0Ccd6",
+            "implementation": "0x1C83b4b2eF4aCF11B03f1800ca4e836EFe307d84",
+            "codeHash": "0x4965b2c9e05bb63f1781b4b2c1ddd2e73e596f3c4a41ef8012783d7f9eb031b5",
+            "deployedCommit": "c8172892c8137f8c33d96f0573ee9c3796351027",
+            "chainFork": "paris (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    }
+  },
+  "supersededBy": null
+}

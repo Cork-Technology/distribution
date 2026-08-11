@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-api",
+  "version": "0.1.4",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-indexing-api",
+    "tag": "v0.1.4",
+    "commit": "c3ca08a402b821d565dfa3fb2d380f81b4d0f74c",
+    "visibility": "private"
+  },
+  "package": null,
+  "schema": {
+    "openapi": "./schema/openapi-0.1.4.json",
+    "sha256": "46ed106329913645d17d3b4b8fd412e1b8bb6b1c39c8548acf837de3cfeab4f3",
+    "note": "Pinned copy of openapi.json at tag v0.1.4, generated from the live route schemas and committed at the tag. This vendored document is the machine-readable interface that cross-version diffs run on; the living reference is served at /docs."
+  },
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "services": {
+    "baseUrl": "https://api-phoenix.cork.tech",
+    "docs": "https://api-phoenix.cork.tech/docs",
+    "meta": "GET /v1/meta returns the component name, version, status and commit; every response (health and errors included) carries the x-cork-component version header. Which Distribution a component version belongs to is resolved in this repository, not by the service.",
+    "chains": [
+      42161,
+      8453
+    ],
+    "freshness": "The indexer can trail the chain head; the chain wins on any disagreement. RFQ state is venue-only by construction (no on-chain events)."
+  },
+  "notices": [
+    "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
+    "The source repository is private by decision; the full public interface is this component's vendored OpenAPI document plus the live /docs reference. Integrators verify the running version via GET /v1/meta and the x-cork-component header.",
+    "Response fields state their units in the published schema: rates, premiums and fractions follow the documented unit conventions; token amounts are strings in the token's native decimals, never rescaled."
+  ],
+  "knownIssues": [],
+  "contracts": null,
+  "supersededBy": null
+}

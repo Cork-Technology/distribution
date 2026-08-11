@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-cli",
+  "version": "0.1.0-rc.3",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-cli",
+    "tag": "v0.1.0-rc.3",
+    "commit": "7986702974a656ee853fbcdb7e523e6577c8d9a8"
+  },
+  "package": "GitHub Release assets on the tag: one self-contained `ch` binary (CLI + MCP server) per platform, 7 platforms, each carrying SLSA build provenance (`gh attestation verify`) and published only after two independent builds of the same commit proved byte-identical.",
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "config": {
+    "note": "cork-defaults.json is a versioned surface of this component. Installs runtime-fetch it from the main branch (TTL-cached) as the living-field channel; the content at this tag is pinned here by digest.",
+    "snapshot": "cork-defaults.json at tag v0.1.0-rc.3",
+    "snapshotSha256": "731a26e150440b820f9678f761e750f307402bb3cbd30811f4e356c14fbe82de"
+  },
+  "docs": [
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.1.0-rc.3/docs/zyfai-quickstart.md",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.1.0-rc.3/docs/cli.md",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.1.0-rc.3/CHANGELOG.md"
+  ],
+  "notices": [
+    "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
+    "This version pins the market-registry 0.3.3 and phoenix v1.3.0-rc.1 addresses on both chains.",
+    "Command taxonomy: cork-pool / market / trading-pair replaced the older overloaded 'market' commands in this version; removed names answer with structured 'was renamed to …' errors, and the README carries the synonym table."
+  ],
+  "knownIssues": [],
+  "contracts": null,
+  "supersededBy": null
+}

@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "component": "market-registry",
+  "version": "0.3.3",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/market-registry",
+    "tag": "0.3.3",
+    "commit": "7f216cec9f03ba12100f2220e9b864698b5ab9a6"
+  },
+  "package": null,
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "notices": [
+    "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
+    "Full redeployment of the registry stack (2026-08-10): every contract deployed at the same address on both chains via one AtomicDeployer batch (guarded CREATE2). 0.3.3 supersedes all earlier registry deployments; no markets were ever created through the 0.3.2 deployment.",
+    "deployedCommit is the release commit in the development repository; the public source at tag 0.3.3 is a byte-identical export of the contract sources at that commit.",
+    "All three recipes are approved on-chain (isRecipe = true) on both chains, and the CorkLimitOrderAdapter holds POOL_CREATOR_ROLE and FEE_MANAGER_ROLE on the phoenix controller on both chains — verified on-chain 2026-08-10."
+  ],
+  "contracts": {
+    "MarketRegistry": {
+      "version": "0.3.3",
+      "abi": "./abi/MarketRegistry-0.3.3.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xa78d8137B01058dD23e545b6557209eBBc9611F1",
+            "implementation": null,
+            "codeHash": "0xcd625f21c50005aa8b8e0a6f72ebd3385d062bc975f32f90f6d5fc914ed9b284",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xa78d8137B01058dD23e545b6557209eBBc9611F1",
+            "implementation": null,
+            "codeHash": "0xcd625f21c50005aa8b8e0a6f72ebd3385d062bc975f32f90f6d5fc914ed9b284",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkLimitOrderAdapter": {
+      "version": "0.3.3",
+      "abi": "./abi/CorkLimitOrderAdapter-0.3.3.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x8902a88912a334263fe3d731d03c267715b9374f",
+            "implementation": null,
+            "codeHash": "0x5b6c36ca1be5a6187bd76ba759b0c6514bc1519af4d15030b90d16f884650320",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x8902a88912a334263fe3d731d03c267715b9374f",
+            "implementation": null,
+            "codeHash": "0x5b6c36ca1be5a6187bd76ba759b0c6514bc1519af4d15030b90d16f884650320",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "WrapperRateConsumerFactory": {
+      "version": "0.3.3",
+      "abi": "./abi/WrapperRateConsumerFactory-0.3.3.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xD488B245EF2c168fFb284a79ef9304DaC803CEC6",
+            "implementation": null,
+            "codeHash": "0x88d5bb53e6ecb872876598346deb549e8ebbb79123df3011cfca005ba83a3ae0",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xD488B245EF2c168fFb284a79ef9304DaC803CEC6",
+            "implementation": null,
+            "codeHash": "0x88d5bb53e6ecb872876598346deb549e8ebbb79123df3011cfca005ba83a3ae0",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "FixedRateOracleFactory": {
+      "version": "0.3.3",
+      "abi": "./abi/FixedRateOracleFactory-0.3.3.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x36f5DDb60695B09E5f41CA94eB551994F5541085",
+            "implementation": null,
+            "codeHash": "0x0339de8b4fd71e5b643e9e348b5ac3177b8acc3d92625f821618c96b40c6e351",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x36f5DDb60695B09E5f41CA94eB551994F5541085",
+            "implementation": null,
+            "codeHash": "0x0339de8b4fd71e5b643e9e348b5ac3177b8acc3d92625f821618c96b40c6e351",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "AggregatorV2V3AdapterFactory": {
+      "version": "0.3.3",
+      "abi": "./abi/AggregatorV2V3AdapterFactory-0.3.3.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x3A5073aFc49e36f886fA55b5Db09BF485Eb65677",
+            "implementation": null,
+            "codeHash": "0x8e32b36aab4264cc2b49daf682f16c0cf1bd46c16326e9e584106a425e400918",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x3A5073aFc49e36f886fA55b5Db09BF485Eb65677",
+            "implementation": null,
+            "codeHash": "0x8e32b36aab4264cc2b49daf682f16c0cf1bd46c16326e9e584106a425e400918",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "AtomicDeployer": {
+      "version": "0.3.3",
+      "abi": "./abi/AtomicDeployer-0.3.3.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x56366DEed49735CdD8A6CbE72Db187b9A7958884",
+            "implementation": null,
+            "codeHash": "0x66cc826955f65866277e509300abda73b1e4e482f501c99db771946445f25222",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x56366DEed49735CdD8A6CbE72Db187b9A7958884",
+            "implementation": null,
+            "codeHash": "0x66cc826955f65866277e509300abda73b1e4e482f501c99db771946445f25222",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "LiquidityPriceRecipe": {
+      "version": "0.3.3",
+      "abi": "./abi/LiquidityPriceRecipe-0.3.3.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xb881DB48ad6DA84a8F0D1cE4150Caf7Ae016Dc55",
+            "implementation": null,
+            "codeHash": "0x745827583523efb47fede2e48326e7bb030c3fd5a123cae28a8a066e21898fb2",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xb881DB48ad6DA84a8F0D1cE4150Caf7Ae016Dc55",
+            "implementation": null,
+            "codeHash": "0x745827583523efb47fede2e48326e7bb030c3fd5a123cae28a8a066e21898fb2",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "LiquidityNavRecipe": {
+      "version": "0.3.3",
+      "abi": "./abi/LiquidityNavRecipe-0.3.3.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xAeD3D0e3C86A994d88741C285657c3e78550f66d",
+            "implementation": null,
+            "codeHash": "0x2cbdeb396e822ca78b9a53e1707c23debce8ced3ea5c873c5f47c235ce972877",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xAeD3D0e3C86A994d88741C285657c3e78550f66d",
+            "implementation": null,
+            "codeHash": "0x2cbdeb396e822ca78b9a53e1707c23debce8ced3ea5c873c5f47c235ce972877",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "FixedRateRecipe": {
+      "version": "0.3.3",
+      "abi": "./abi/FixedRateRecipe-0.3.3.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x133ac0fA9e3d44A34B8cE4E4B8D468758fd165C1",
+            "implementation": null,
+            "codeHash": "0xa013f1e84dca9cb167a55fe3daff0fadc958e231e8e59650156aafb10732e9b2",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 493163720",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x133ac0fA9e3d44A34B8cE4E4B8D468758fd165C1",
+            "implementation": null,
+            "codeHash": "0xa013f1e84dca9cb167a55fe3daff0fadc958e231e8e59650156aafb10732e9b2",
+            "deployedCommit": "3be2ab90480901a8c8d764fef2357d52d436783b",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-10 @ block 49798474",
+            "status": "active"
+          }
+        ]
+      }
+    }
+  },
+  "supersededBy": null
+}

@@ -1,0 +1,26 @@
+name: verify
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    # Daily drift check: catches silent redeploys, service version bumps,
+    # and tag moves — the manifests claim living facts, so they get re-checked
+    # even when nobody is editing.
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run verify
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
