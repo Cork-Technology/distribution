@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-cli",
+  "version": "0.2.0-rc.2",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-cli",
+    "tag": "v0.2.0-rc.2",
+    "commit": "585dc445e555761ebed4c1e6fc511f51b57d3683"
+  },
+  "package": "GitHub Release assets on the tag: one self-contained `ch` binary (CLI + MCP server) per platform, 7 platforms plus checksums.txt, each binary carrying SLSA build provenance (`gh attestation verify`) and published only after two independent builds of the same commit proved byte-identical.",
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "config": {
+    "note": "cork-defaults.json is a versioned surface of this component. Installs runtime-fetch it from the main branch (TTL-cached) as the living-field channel; the content at this tag is pinned here by digest.",
+    "snapshot": "cork-defaults.json at tag v0.2.0-rc.2",
+    "snapshotSha256": "9652956cbba803cdd114ad281a575194969c926fb7959dca55e2d397ee91220e"
+  },
+  "docs": [
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.2.0-rc.2/docs/zyfai-quickstart.md",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.2.0-rc.2/docs/cli.md",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.2.0-rc.2/CHANGELOG.md"
+  ],
+  "notices": [
+    "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
+    "This version pins the market-registry 0.3.3 and phoenix v1.3.0-rc.1 addresses on both chains; the quickstart names market-registry 0.3.3 throughout (the 0.1.0-rc.3 quickstart's 0.3.2 misstatement is fixed at this tag).",
+    "Venue premium migration: this version reads and writes `premium_annualized` on the order-book surface; the legacy percent `premium` field it replaces is removed from cork-api on 2026-08-17 (documented in the CHANGELOG with the removal date).",
+    "Distribution channel: the pinned integration channel is the GitHub Release binaries above. The OCI/apk package channels are not yet part of any pin."
+  ],
+  "knownIssues": [],
+  "contracts": null,
+  "supersededBy": null
+}

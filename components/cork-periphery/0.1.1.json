@@ -21,7 +21,7 @@
   "knownIssues": [],
   "contracts": {
     "CorkForSelfAdapter": {
-      "description": "Receiver-forcing adapter: pool actions plus fillOrderForSelf, no receiver parameter anywhere, approvals to the adapter only — proceeds can only land on the caller.",
+      "description": "Receiver-forcing adapter: pool actions plus fillOrderForSelf, no receiver parameter anywhere, approvals to the adapter only \u2014 proceeds can only land on the caller.",
       "version": "0.1.1",
       "abi": "./abi/CorkForSelfAdapter-0.1.1.json",
       "deployments": {
@@ -48,5 +48,5 @@
       }
     }
   },
-  "supersededBy": null
+  "supersededBy": "0.1.3-rc.1"
 }

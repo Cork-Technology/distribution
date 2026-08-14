@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-periphery",
+  "version": "0.1.3-rc.1",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-periphery",
+    "tag": "v0.1.3-rc.1",
+    "commit": "4c923c9aeda7650755be211fc72f6bf445d0dcbe"
+  },
+  "package": null,
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "trustBoundary": "The ForSelf adapter row is a reference deployment only: the security model requires the integrator to audit, vet and deploy their own copy under their own name; the row exists so an integrator can diff their deployment against Cork's reference. The CorkMarketCreator row is a Cork-operated deployment.",
+  "notices": [
+    "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
+    "Deployed via CREATE2 through the deterministic deployment factory: addresses are a function of salt and init code, not of the chain.",
+    "CorkForSelfAdapter is unchanged from 0.1.1: same address, same runtime codehash (re-verified on-chain 2026-08-14), bound to the phoenix v1.3.0-rc.1 pool manager and whitelist manager and the 1inch Limit Order Protocol v4; it binds no market-registry address.",
+    "CorkMarketCreator pre-creates a Cork pool with the exact derivation and checks of the LOP adapter's JIT path, so a smart-account bundle can replace the ERC-2612 permit leg (createNewPool -> approve -> fillOrderArgs with empty permits); a second call on an existing pool is an idempotent lookup.",
+    "CorkMarketCreator wiring, read from the contract on both chains 2026-08-14: POOL_MANAGER 0x02803Bb52D2184f906F45B50C66AA969C2E37263, CONTROLLER 0x6b65D663e0B445BAf1870D5af806d57Ebb2C82A1, MARKET_REGISTRY 0xa78d8137B01058dD23e545b6557209eBBc9611F1 — identical to this Distribution's phoenix and market-registry pins.",
+    "CorkMarketCreator holds POOL_CREATOR_ROLE and FEE_MANAGER_ROLE on the controller — verified on-chain on both chains 2026-08-14 via hasRole; the creation path is live."
+  ],
+  "knownIssues": [
+    "CorkMarketCreator's on-chain version() returns \"0.1.0\", not the repo version it was born in (0.1.3-rc.1) — an R2 deviation in the deployed artifact, recorded here rather than papered over. The codehash rows below, not the version string, identify the build."
+  ],
+  "contracts": {
+    "CorkForSelfAdapter": {
+      "description": "Receiver-forcing adapter: pool actions plus fillOrderForSelf, no receiver parameter anywhere, approvals to the adapter only — proceeds can only land on the caller.",
+      "version": "0.1.1",
+      "abi": "./abi/CorkForSelfAdapter-0.1.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x5Fc04d188bf5DF6901080Df0F801FFE3d8435771",
+            "implementation": null,
+            "codeHash": "0x27c2266dfbccc731d4e9fc41a61d4c9598e60827283d9e8aa258a8dc194c4211",
+            "deployedCommit": "dec1bdb74d8f44ea99519ec6a6db5412c4913f41",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-14 @ block 494429991",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x5Fc04d188bf5DF6901080Df0F801FFE3d8435771",
+            "implementation": null,
+            "codeHash": "0x27c2266dfbccc731d4e9fc41a61d4c9598e60827283d9e8aa258a8dc194c4211",
+            "deployedCommit": "dec1bdb74d8f44ea99519ec6a6db5412c4913f41",
+            "chainFork": "cancun (solc 0.8.30); on-chain verification 2026-08-14 @ block 49957687",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkMarketCreator": {
+      "description": "Pool pre-creation with the JIT path's exact derivation and checks (recipe membership -> oracle deploy -> constraint verify -> fee/expiry bounds); returns (poolId, cst, cpt); idempotent on an existing pool.",
+      "version": "0.1.3-rc.1",
+      "abi": "./abi/CorkMarketCreator-0.1.3-rc.1.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x0aCccE0ef90da8b8d95DBFeE2ADaaED9b566586C",
+            "implementation": null,
+            "codeHash": "0x2f7dd61e18e4d3ca5d432771ee2eeb7000b3e609f26c151eb57dc147e5310287",
+            "deployedCommit": "57f67701bc6853b3f0d86ca07b01a361e82e007e",
+            "chainFork": "on-chain verification 2026-08-14 @ block 494429991; deployed from cork-periphery-private PR #1 (histories unrelated by policy; this tag carries the same sources)",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x0aCccE0ef90da8b8d95DBFeE2ADaaED9b566586C",
+            "implementation": null,
+            "codeHash": "0x2f7dd61e18e4d3ca5d432771ee2eeb7000b3e609f26c151eb57dc147e5310287",
+            "deployedCommit": "57f67701bc6853b3f0d86ca07b01a361e82e007e",
+            "chainFork": "on-chain verification 2026-08-14 @ block 49957687; deployed from cork-periphery-private PR #1 (histories unrelated by policy; this tag carries the same sources)",
+            "status": "active"
+          }
+        ]
+      }
+    }
+  },
+  "supersededBy": null
+}
