@@ -12,7 +12,8 @@
  *    covered route family in services.routeMajors must still be served at
  *    its pinned major, and the live OpenAPI document must show no breaking
  *    drift against the vendored snapshot on the covered paths (a removed
- *    path/method, or a newly-required parameter). A hosted service with one
+ *    path/method, or a newly-required parameter or body field). A hosted
+ *    service with one
  *    live deployment keeps shipping non-breaking releases after the cut by
  *    rule (R10), so equality with the served version is never asserted;
  *  - pure-artifact components against their public tag: it must resolve to
@@ -32,7 +33,7 @@
  * Usage: npm run verify
  * RPC overrides via env: RPC_42161, RPC_8453 (defaults are public endpoints).
  */
-import { readdirSync, readFileSync } from "node:fs";
+import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import sha3 from "js-sha3";
@@ -125,7 +126,10 @@ async function verifyRow(
 
 /**
  * Compare two semver-ish versions (x.y.z with an optional -rc.N suffix).
- * Returns <0, 0, >0. A release candidate sorts below its final version.
+ * Returns <0, 0, >0 — or NaN when either version is unparseable (missing,
+ * garbage, or a stray v-prefix). NaN compares false against everything, so
+ * callers must assert the passing condition (`>= 0`), never the failing one:
+ * an unparseable version has to fail closed.
  */
 function compareVersions(a: string, b: string): number {
   const parse = (v: string) => {
@@ -135,6 +139,7 @@ function compareVersions(a: string, b: string): number {
     return { nums, preNum }; // Infinity = no prerelease = sorts above any rc
   };
   const pa = parse(a), pb = parse(b);
+  if (pa.nums.some(Number.isNaN) || pb.nums.some(Number.isNaN)) return NaN;
   for (let i = 0; i < 3; i++) {
     const d = (pa.nums[i] ?? 0) - (pb.nums[i] ?? 0);
     if (d !== 0) return d;
@@ -151,9 +156,12 @@ function routeFamily(path: string): { module: string; major: number } | null {
 /**
  * Breaking-drift check of the live OpenAPI against the vendored snapshot,
  * scoped to the covered route families. Breaking means: a covered
- * path+method disappeared, or an operation gained a required parameter the
- * snapshot did not have. Additive drift (new paths, new optional fields)
- * passes — that is the point of the availability model.
+ * path+method disappeared, or an operation gained a required parameter or a
+ * required JSON body field the snapshot did not have. Additive drift (new
+ * paths, new optional fields) passes — that is the point of the availability
+ * model. Body comparison reads the inline application/json schema's top-level
+ * required list — every covered body is an inline schema today; a $ref here
+ * would compare as an empty set, so keep the vendored snapshot inlined.
  */
 function breakingDrift(
   pinned: Record<string, any>,
@@ -183,6 +191,15 @@ function breakingDrift(
         if (!pinnedReq.has(param))
           problems.push(`new required parameter on ${method.toUpperCase()} ${path}: ${param}`);
       }
+      const requiredBodyFields = (o: any) =>
+        new Set<string>(o?.requestBody?.content?.["application/json"]?.schema?.required ?? []);
+      const pinnedBody = requiredBodyFields(op);
+      for (const field of requiredBodyFields(liveOp)) {
+        if (!pinnedBody.has(field))
+          problems.push(`new required body field on ${method.toUpperCase()} ${path}: ${field}`);
+      }
+      if (liveOp.requestBody?.required && !op.requestBody?.required)
+        problems.push(`request body became required on ${method.toUpperCase()} ${path}`);
     }
   }
   return problems;
@@ -204,8 +221,8 @@ async function verifyService(doc: Record<string, any>): Promise<Result[] | null>
   if (meta.component !== doc.component)
     return [["FAIL", label, `component mismatch: service says ${JSON.stringify(meta.component)}, manifest ${JSON.stringify(doc.component)}`]];
   const served = String(meta.version ?? "");
-  if (compareVersions(served, String(doc.version)) < 0)
-    return [["FAIL", label, `served version ${served} is below the pin ${doc.version}: a rollback nobody recorded`]];
+  if (!(compareVersions(served, String(doc.version)) >= 0))
+    return [["FAIL", label, `served version ${JSON.stringify(served)} does not verify as >= the pin ${doc.version}: a rollback, or a version nobody can parse`]];
   const results: Result[] = [
     ["PASS", label, `serves ${meta.component} ${served} >= pinned ${doc.version} (commit ${meta.commit ?? "?"})`],
   ];
@@ -218,11 +235,17 @@ async function verifyService(doc: Record<string, any>): Promise<Result[] | null>
 
   // Every covered route family must still be served at its pinned major:
   // probe one static GET path per family from the vendored snapshot.
-  // Anything but 404 counts as served (auth/validation errors prove the route).
+  // Auth and validation errors (401/403/422) prove the route exists, so they
+  // count as served. A 404 means the family is gone; a 5xx means whatever is
+  // answering is not serving it.
   let pinnedSpec: Record<string, any> | null = null;
   if (doc.schema?.openapi) {
     const specPath = join(dirname(join(ROOT, "components", doc.component, "x")), doc.schema.openapi);
-    pinnedSpec = JSON.parse(readFileSync(specPath, "utf8"));
+    try {
+      pinnedSpec = JSON.parse(readFileSync(specPath, "utf8"));
+    } catch (exc) {
+      results.push(["FAIL", `${doc.component} ${doc.version} pinned schema`, `vendored snapshot unreadable at ${doc.schema.openapi}: ${exc}`]);
+    }
   }
   for (const [module, major] of Object.entries(majors)) {
     const familyLabel = `${doc.component}/${module}/v${major} @ ${base}`;
@@ -236,6 +259,8 @@ async function verifyService(doc: Record<string, any>): Promise<Result[] | null>
       const resp = await fetch(`${base}${probe}`, { signal: AbortSignal.timeout(15000) });
       if (resp.status === 404) {
         results.push(["FAIL", familyLabel, `covered route family no longer served: GET ${probe} -> 404`]);
+      } else if (resp.status >= 500) {
+        results.push(["FAIL", familyLabel, `covered route family erroring: GET ${probe} -> ${resp.status}`]);
       } else {
         results.push(["PASS", familyLabel, `served (GET ${probe} -> ${resp.status})`]);
       }
@@ -299,8 +324,14 @@ async function verifyRelease(doc: Record<string, any>): Promise<Result> {
  *  1. Coverage (FAIL): every pinned deployment whose type the indexer
  *     declares must be on the watch-list for its chain.
  *  2. Decode safety (FAIL): every topic0 the indexer consumes for a pinned
- *     type must exist in the events of the pinned ABI — catches
- *     wrong-ABI-generation decoding at cut time, named per event.
+ *     type must exist in the events of the pinned ABIs — the type's own
+ *     contract first, then any contract in the component. The component-wide
+ *     fallback exists because the indexer declares OpenZeppelin lifecycle
+ *     events (Initialized, Upgraded) on types whose own contract never emits
+ *     them; topic0 is derived from the signature alone, so a shared event
+ *     resolves identically from any contract. Each component-wide resolution
+ *     is named in the PASS row. Catches wrong-ABI-generation decoding at cut
+ *     time, named per event.
  *  3. Release label (WARN, never FAIL): the watch-list's contracts_version
  *     label vs the pin — the label comes from the same release notes the pin
  *     does, so a mismatch is a flag, not proof.
@@ -379,24 +410,25 @@ async function verifyIndexing(
             const abiRef = doc.contracts[name]?.abi;
             if (!abiRef) continue;
             const abi = JSON.parse(readFileSync(join(ROOT, "components", doc.component, abiRef), "utf8"));
-            for (const item of abi) if (item.type === "event") topics.set(eventTopic0(item), item.name);
+            for (const item of abi) if (item.type === "event") topics.set(eventTopic0(item), `${name}.${item.name}`);
           }
           return topics;
         };
         const pinnedTopics = loadTopics(abiNames);
         const componentTopics = loadTopics(Object.keys(doc.contracts));
         const missing: string[] = [];
-        let borrowed = 0;
+        const borrowed: string[] = [];
         for (const ev of declared.events ?? []) {
           if (pinnedTopics.has(ev.topic0)) continue;
-          if (componentTopics.has(ev.topic0)) { borrowed++; continue; }
+          const lender = componentTopics.get(ev.topic0);
+          if (lender) { borrowed.push(`${ev.name} from ${lender}`); continue; }
           missing.push(`${ev.name} (${ev.topic0.slice(0, 10)}…)`);
         }
         const decodeLabel = `indexing/decode ${mapping.type} vs ${doc.component}@${doc.version}`;
         if (missing.length > 0) {
           results.push(["FAIL", decodeLabel, `indexer consumes events absent from the pinned ABI: ${missing.join(", ")}`]);
         } else {
-          results.push(["PASS", decodeLabel, `all ${(declared.events ?? []).length} consumed topics exist in the pinned ABIs${borrowed ? ` (${borrowed} resolved component-wide)` : ""}`]);
+          results.push(["PASS", decodeLabel, `all ${(declared.events ?? []).length} consumed topics exist in the pinned ABIs${borrowed.length ? ` (resolved component-wide: ${borrowed.join(", ")})` : ""}`]);
         }
       }
     }
@@ -425,6 +457,7 @@ async function main(): Promise<number> {
   const componentsDir = join(ROOT, "components");
   const manifests: string[] = [];
   for (const comp of readdirSync(componentsDir)) {
+    if (!statSync(join(componentsDir, comp)).isDirectory()) continue;
     for (const f of readdirSync(join(componentsDir, comp))) {
       if (f.endsWith(".json") && !f.startsWith("_")) manifests.push(join(componentsDir, comp, f));
     }
@@ -474,6 +507,7 @@ async function main(): Promise<number> {
   // Distribution files: every pinned component version must exist as a file.
   const distDir = join(ROOT, "distributions");
   for (const line of readdirSync(distDir)) {
+    if (!statSync(join(distDir, line)).isDirectory()) continue;
     for (const f of readdirSync(join(distDir, line))) {
       if (!f.endsWith(".json")) continue;
       const dist = JSON.parse(readFileSync(join(distDir, line, f), "utf8"));
