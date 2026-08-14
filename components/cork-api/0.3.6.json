@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-api",
+  "version": "0.3.6",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-indexing-api",
+    "tag": "v0.3.6",
+    "commit": "e5702a0349229500043ed44c9edaa9839eca14ad",
+    "visibility": "private"
+  },
+  "package": null,
+  "schema": {
+    "openapi": "./schema/openapi-0.3.6.json",
+    "sha256": "ac72e33b5085dbf2b6f3a078747e7a151cb85249a4f41a772d19b5f274eb1828",
+    "note": "Pinned copy of openapi.json at tag v0.3.6, generated from the live route schemas and committed at the tag. This vendored document is the certified snapshot: the machine-readable interface that cross-version diffs run on, and the reference the availability verify diffs the live document against. The living reference is served at /docs."
+  },
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "services": {
+    "baseUrl": "https://api-phoenix.cork.tech",
+    "docs": "https://api-phoenix.cork.tech/docs",
+    "liveSpec": "/docs/json",
+    "indexingStatus": "/indexing/v1/status",
+    "meta": "GET /v1/meta returns the component name, version, status and commit; every response (health and errors included) carries the x-cork-component version header. Which Distribution a component version belongs to is resolved in this repository, not by the service.",
+    "chains": [
+      42161,
+      8453
+    ],
+    "freshness": "The indexer can trail the chain head; the chain wins on any disagreement. RFQ state is venue-only by construction (no on-chain events).",
+    "verifyModel": "availability",
+    "verifyModelNote": "This service has exactly one live deployment, updated in place; non-breaking releases keep flowing after the cut by rule (R10: z bumps are non-breaking, y is reserved for breaks). The verify therefore asserts availability, not equality: the served version must be >= the pinned version (a lower version is a rollback nobody recorded), every covered route family below must still be served at its pinned major, and the live OpenAPI document must show no breaking drift against the vendored snapshot on the covered paths (removed path/method, or a new required parameter). The frozen fields of this pin never change: source.tag and the vendored schema remain the certified snapshot.",
+    "routeMajors": {
+      "_note": "The covered route families and the major each is certified at. URLs carry route majors only; minors are non-breaking by rule. A family listed here is a covered surface (R11): removing it, or breaking it in place at this major, breaks the Distribution. The rollover family exists in the pinned schema but is deliberately NOT listed: rollover is not part of this Distribution, so its routes carry no promise.",
+      "meta": 1,
+      "rfqs": 1,
+      "limit-orders": 1,
+      "pools": 1,
+      "flows": 1,
+      "registry": 1,
+      "indexing": 1
+    }
+  },
+  "notices": [
+    "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
+    "The source repository is private by decision; the full public interface is this component's vendored OpenAPI document plus the live /docs reference. Integrators verify the running version via GET /v1/meta and the x-cork-component header.",
+    "Canonical path form is /<module>/v<n> (e.g. /rfqs/v1, /limit-orders/v1/orderbook). The legacy /v1/<module> paths of cork-api 0.1.4 are still served live through a rewrite bridge tagged `Deprecation: true` + `x-cork-canonical-path`; the bridge is a migration aid, not part of this pin's covered surface, and its removal will follow the notice rule (R16).",
+    "Premium convention: order book rows and POSTs carry `premium_annualized` (annualized decimal fraction string; \"0.041\" = 4.1%, same field name and unit as the RFQ surface). The legacy percent-number `premium` field is removed on 2026-08-17; every limit-orders response announces this in `warnings[]` until then. The removal is pre-announced and R16-noticed; it lands inside this pin's lifetime and is recorded here so the cut is never surprised by it.",
+    "Versioning: from 0.3.4 onward this component bumps z for features and fixes and reserves y for breaking changes on a covered surface (R10), so served versions above the pin within the same y are non-breaking by rule.",
+    "Response fields state their units in the published schema: rates, premiums and fractions follow the documented unit conventions; token amounts are strings in the token's native decimals, never rescaled."
+  ],
+  "knownIssues": [],
+  "contracts": null,
+  "supersededBy": null
+}

@@ -6,10 +6,24 @@
  *    address, keccak256 of the runtime code must equal the row's codeHash,
  *    and a proxy's EIP-1967 implementation slot must resolve to the row's
  *    implementation;
- *  - service components live against GET /v1/meta: the running component
- *    name and version must match the pin;
+ *  - service components live under the availability model: the running
+ *    component name must match the pin, the served version must be >= the
+ *    pinned version (a lower version is a rollback nobody recorded), every
+ *    covered route family in services.routeMajors must still be served at
+ *    its pinned major, and the live OpenAPI document must show no breaking
+ *    drift against the vendored snapshot on the covered paths (a removed
+ *    path/method, or a newly-required parameter). A hosted service with one
+ *    live deployment keeps shipping non-breaking releases after the cut by
+ *    rule (R10), so equality with the served version is never asserted;
  *  - pure-artifact components against their public tag: it must resolve to
  *    the pinned commit.
+ *
+ * A component pin with supersededBy set is a historical record: its live
+ * service assertions are skipped (the endpoint has moved on with the newer
+ * pin), while its immutable checks (tags, on-chain rows) keep running.
+ *
+ * Distribution files are checked structurally: every component version a
+ * distribution pins must exist as a component file in this repository.
  *
  * Rows containing TODO placeholders report as SKIP, never PASS.
  * deployedCommit is recorded provenance, not on-chain verifiable — it is
@@ -34,7 +48,38 @@ const RPCS: Record<string, string> = {
 const EIP1967_IMPL_SLOT =
   "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc";
 
-type Result = ["PASS" | "FAIL" | "SKIP" | "NULL", string, string];
+type Result = ["PASS" | "FAIL" | "SKIP" | "NULL" | "WARN" | "INFO", string, string];
+
+/**
+ * Component-name -> indexer contract-type mapping (the one piece of static
+ * glue the indexing checks need; it lives here because component names exist
+ * only in this repository). `contract` is the row whose address the indexer
+ * watches; `abiContract` is where its events live when the watched address
+ * is a proxy. A pinned contract absent from this map is not indexed — the
+ * indexing checks report it as INFO, never FAIL.
+ */
+const INDEXED_CONTRACTS: Array<{
+  type: string;
+  component: string;
+  contract: string;
+  abiContract?: string;
+}> = [
+  { type: "CORK_ADAPTER", component: "phoenix", contract: "CorkAdapter" },
+  { type: "CORK_CONSTRAINT_RATE_ADAPTER", component: "phoenix", contract: "ConstraintRateAdapterProxy", abiContract: "ConstraintRateAdapterImplementation" },
+  { type: "CORK_CONTROLLER", component: "phoenix", contract: "DefaultCorkController" },
+  { type: "CORK_POOL_MANAGER", component: "phoenix", contract: "CorkPoolManagerProxy", abiContract: "CorkPoolManagerImplementation" },
+  { type: "CORK_SHARES_FACTORY", component: "phoenix", contract: "SharesFactory" },
+  { type: "CORK_WHITELIST_MANAGER", component: "phoenix", contract: "WhitelistManagerProxy", abiContract: "WhitelistManagerImplementation" },
+];
+
+/** Canonical event signature (tuples flattened) -> topic0. */
+function eventTopic0(ev: { name: string; inputs?: any[] }): string {
+  const flat = (input: any): string =>
+    input.type.startsWith("tuple")
+      ? `(${(input.components ?? []).map(flat).join(",")})${input.type.slice(5)}`
+      : input.type;
+  return "0x" + keccak_256(`${ev.name}(${(ev.inputs ?? []).map(flat).join(",")})`);
+}
 
 const isTodo = (v: unknown): boolean =>
   typeof v === "string" && v.includes("TODO");
@@ -78,22 +123,148 @@ async function verifyRow(
   return ["PASS", label, `code ${code.length / 2 - 1} bytes, commit ${commit}`];
 }
 
-async function verifyService(doc: Record<string, any>): Promise<Result | null> {
+/**
+ * Compare two semver-ish versions (x.y.z with an optional -rc.N suffix).
+ * Returns <0, 0, >0. A release candidate sorts below its final version.
+ */
+function compareVersions(a: string, b: string): number {
+  const parse = (v: string) => {
+    const [core, pre] = v.split("-", 2);
+    const nums = core.split(".").map((n) => parseInt(n, 10));
+    const preNum = pre ? parseInt(pre.replace(/[^0-9]/g, "") || "0", 10) : Infinity;
+    return { nums, preNum }; // Infinity = no prerelease = sorts above any rc
+  };
+  const pa = parse(a), pb = parse(b);
+  for (let i = 0; i < 3; i++) {
+    const d = (pa.nums[i] ?? 0) - (pb.nums[i] ?? 0);
+    if (d !== 0) return d;
+  }
+  return pa.preNum === pb.preNum ? 0 : pa.preNum < pb.preNum ? -1 : 1;
+}
+
+/** The route family of an OpenAPI path under the canonical /<module>/v<n> form, or null. */
+function routeFamily(path: string): { module: string; major: number } | null {
+  const m = path.match(/^\/([^/]+)\/v(\d+)(\/|$)/);
+  return m ? { module: m[1], major: parseInt(m[2], 10) } : null;
+}
+
+/**
+ * Breaking-drift check of the live OpenAPI against the vendored snapshot,
+ * scoped to the covered route families. Breaking means: a covered
+ * path+method disappeared, or an operation gained a required parameter the
+ * snapshot did not have. Additive drift (new paths, new optional fields)
+ * passes — that is the point of the availability model.
+ */
+function breakingDrift(
+  pinned: Record<string, any>,
+  live: Record<string, any>,
+  covered: Record<string, number>,
+): string[] {
+  const problems: string[] = [];
+  for (const [path, ops] of Object.entries<any>(pinned.paths ?? {})) {
+    const fam = routeFamily(path);
+    if (!fam || covered[fam.module] !== fam.major) continue;
+    const liveOps = live.paths?.[path];
+    if (!liveOps) {
+      problems.push(`covered path removed: ${path}`);
+      continue;
+    }
+    for (const [method, op] of Object.entries<any>(ops)) {
+      if (!["get", "post", "put", "patch", "delete"].includes(method)) continue;
+      const liveOp = liveOps[method];
+      if (!liveOp) {
+        problems.push(`covered operation removed: ${method.toUpperCase()} ${path}`);
+        continue;
+      }
+      const requiredParams = (params: any[] | undefined) =>
+        new Set((params ?? []).filter((p) => p.required).map((p) => `${p.in}:${p.name}`));
+      const pinnedReq = requiredParams(op.parameters);
+      for (const param of requiredParams(liveOp.parameters)) {
+        if (!pinnedReq.has(param))
+          problems.push(`new required parameter on ${method.toUpperCase()} ${path}: ${param}`);
+      }
+    }
+  }
+  return problems;
+}
+
+async function verifyService(doc: Record<string, any>): Promise<Result[] | null> {
   const base: string | undefined = doc.services?.baseUrl;
   if (!base || isTodo(base)) return null;
-  const label = `${doc.component} @ ${base}`;
+  const label = `${doc.component} ${doc.version} @ ${base}`;
+  if (doc.supersededBy)
+    return [["SKIP", label, `superseded by ${doc.supersededBy}: historical pin, live service no longer asserted`]];
   let meta: Record<string, unknown>;
   try {
     const resp = await fetch(`${base}/v1/meta`, { signal: AbortSignal.timeout(15000) });
     meta = (await resp.json()) as Record<string, unknown>;
   } catch (exc) {
-    return ["FAIL", label, `/v1/meta unreachable: ${exc}`];
+    return [["FAIL", label, `/v1/meta unreachable: ${exc}`]];
   }
   if (meta.component !== doc.component)
-    return ["FAIL", label, `component mismatch: service says ${JSON.stringify(meta.component)}, manifest ${JSON.stringify(doc.component)}`];
-  if (meta.version !== doc.version)
-    return ["FAIL", label, `version mismatch: service serves ${JSON.stringify(meta.version)}, manifest pins ${JSON.stringify(doc.version)}`];
-  return ["PASS", label, `/v1/meta serves ${meta.component} ${meta.version} (commit ${meta.commit ?? "?"})`];
+    return [["FAIL", label, `component mismatch: service says ${JSON.stringify(meta.component)}, manifest ${JSON.stringify(doc.component)}`]];
+  const served = String(meta.version ?? "");
+  if (compareVersions(served, String(doc.version)) < 0)
+    return [["FAIL", label, `served version ${served} is below the pin ${doc.version}: a rollback nobody recorded`]];
+  const results: Result[] = [
+    ["PASS", label, `serves ${meta.component} ${served} >= pinned ${doc.version} (commit ${meta.commit ?? "?"})`],
+  ];
+
+  const covered: Record<string, number> | undefined = doc.services?.routeMajors;
+  if (!covered) return results;
+  const majors = Object.fromEntries(
+    Object.entries(covered).filter(([k]) => !k.startsWith("_")),
+  ) as Record<string, number>;
+
+  // Every covered route family must still be served at its pinned major:
+  // probe one static GET path per family from the vendored snapshot.
+  // Anything but 404 counts as served (auth/validation errors prove the route).
+  let pinnedSpec: Record<string, any> | null = null;
+  if (doc.schema?.openapi) {
+    const specPath = join(dirname(join(ROOT, "components", doc.component, "x")), doc.schema.openapi);
+    pinnedSpec = JSON.parse(readFileSync(specPath, "utf8"));
+  }
+  for (const [module, major] of Object.entries(majors)) {
+    const familyLabel = `${doc.component}/${module}/v${major} @ ${base}`;
+    const candidates = Object.keys(pinnedSpec?.paths ?? {}).filter((p) => {
+      const fam = routeFamily(p);
+      return fam && fam.module === module && fam.major === major && !p.includes("{") &&
+        Boolean(pinnedSpec?.paths[p]?.get);
+    });
+    const probe = candidates[0] ?? `/${module}/v${major}/`;
+    try {
+      const resp = await fetch(`${base}${probe}`, { signal: AbortSignal.timeout(15000) });
+      if (resp.status === 404) {
+        results.push(["FAIL", familyLabel, `covered route family no longer served: GET ${probe} -> 404`]);
+      } else {
+        results.push(["PASS", familyLabel, `served (GET ${probe} -> ${resp.status})`]);
+      }
+    } catch (exc) {
+      results.push(["FAIL", familyLabel, `probe GET ${probe} unreachable: ${exc}`]);
+    }
+  }
+
+  // The live OpenAPI document must show no breaking drift on covered paths.
+  if (pinnedSpec && doc.services?.liveSpec) {
+    const driftLabel = `${doc.component} schema drift @ ${base}${doc.services.liveSpec}`;
+    try {
+      const resp = await fetch(`${base}${doc.services.liveSpec}`, { signal: AbortSignal.timeout(15000) });
+      const liveSpec = (await resp.json()) as Record<string, any>;
+      const problems = breakingDrift(pinnedSpec, liveSpec, majors);
+      if (problems.length > 0) {
+        results.push(["FAIL", driftLabel, `breaking drift on covered surface: ${problems.slice(0, 5).join("; ")}${problems.length > 5 ? ` (+${problems.length - 5} more)` : ""}`]);
+      } else {
+        const coveredPaths = Object.keys(pinnedSpec.paths ?? {}).filter((p) => {
+          const fam = routeFamily(p);
+          return fam && majors[fam.module] === fam.major;
+        }).length;
+        results.push(["PASS", driftLabel, `live spec (${liveSpec.info?.version ?? "?"}) carries all ${coveredPaths} covered pinned paths, no breaking drift`]);
+      }
+    } catch (exc) {
+      results.push(["FAIL", driftLabel, `live spec unreadable: ${exc}`]);
+    }
+  }
+  return results;
 }
 
 async function verifyRelease(doc: Record<string, any>): Promise<Result> {
@@ -122,6 +293,134 @@ async function verifyRelease(doc: Record<string, any>): Promise<Result> {
   }
 }
 
+/**
+ * Indexing checks against the live watch-list the indexer declares
+ * (services.indexingStatus on the current cork-api pin). Four checks:
+ *  1. Coverage (FAIL): every pinned deployment whose type the indexer
+ *     declares must be on the watch-list for its chain.
+ *  2. Decode safety (FAIL): every topic0 the indexer consumes for a pinned
+ *     type must exist in the events of the pinned ABI — catches
+ *     wrong-ABI-generation decoding at cut time, named per event.
+ *  3. Release label (WARN, never FAIL): the watch-list's contracts_version
+ *     label vs the pin — the label comes from the same release notes the pin
+ *     does, so a mismatch is a flag, not proof.
+ *  4. Freshness (WARN): the indexer's own watchdog verdicts per pinned chain,
+ *     plus the decoder-spec publication stamp as INFO.
+ * Chains outside the pinned set (mainnet oracles, testnets) are out of scope.
+ */
+async function verifyIndexing(
+  apiDoc: Record<string, any>,
+  manifests: Record<string, any>[],
+  pinnedChains: string[],
+): Promise<Result[]> {
+  const results: Result[] = [];
+  const statusPath: string | undefined = apiDoc.services?.indexingStatus;
+  const base: string | undefined = apiDoc.services?.baseUrl;
+  if (!statusPath || !base) return results;
+  const label = `indexing @ ${base}${statusPath}`;
+  let status: Record<string, any>;
+  try {
+    const resp = await fetch(`${base}${statusPath}`, { signal: AbortSignal.timeout(15000) });
+    status = (await resp.json()) as Record<string, any>;
+  } catch (exc) {
+    return [["FAIL", label, `indexing status unreachable: ${exc}`]];
+  }
+
+  const watching: any[] = status.watching ?? [];
+  const declaredTypes = new Set<string>(
+    (status.decoders?.contract_types ?? []).map((ct: any) => ct.contract_type ?? ct.type),
+  );
+  const watchKey = (chain: string | number, addr: string) => `${chain}:${addr.toLowerCase()}`;
+  const watchSet = new Map<string, any>(
+    watching.map((w) => [watchKey(w.chain_id, w.address), w]),
+  );
+
+  for (const doc of manifests) {
+    if (doc.supersededBy || !doc.contracts) continue;
+    const notIndexed: string[] = [];
+    for (const [contract, entry] of Object.entries<any>(doc.contracts)) {
+      const mapping = INDEXED_CONTRACTS.find(
+        (m) => m.component === doc.component && m.contract === contract,
+      );
+      if (!mapping || !declaredTypes.has(mapping.type)) {
+        notIndexed.push(contract);
+        continue;
+      }
+      // 1. Coverage + 3. Release label, per pinned chain.
+      for (const chainId of pinnedChains) {
+        const rows = entry.deployments?.[chainId];
+        if (!rows) continue;
+        for (const row of rows) {
+          if (isTodo(row.address)) continue;
+          const rowLabel = `indexing/${doc.component}/${contract} @ ${chainId}`;
+          const w = watchSet.get(watchKey(chainId, String(row.address)));
+          if (!w) {
+            results.push(["FAIL", rowLabel, `pinned deployment not on the indexer watch-list (type ${mapping.type})`]);
+            continue;
+          }
+          results.push(["PASS", rowLabel, `watched as ${mapping.type}, last confirmed block ${w.last_block_confirmed ?? "?"}`]);
+          const expectedLabel = `${doc.component}@${doc.version}`;
+          if (w.contracts_version == null) {
+            results.push(["WARN", rowLabel, `watch-list carries no contracts_version label (expected ${expectedLabel})`]);
+          } else if (w.contracts_version !== expectedLabel) {
+            results.push(["WARN", rowLabel, `watch-list labels ${w.contracts_version}, pin is ${expectedLabel} — label is informational, not proof`]);
+          }
+        }
+      }
+      // 2. Decode safety: consumed topics must exist in the pinned ABI.
+      const declared = (status.decoders?.contract_types ?? []).find(
+        (ct: any) => (ct.contract_type ?? ct.type) === mapping.type,
+      );
+      if (declared) {
+        const abiNames = [...new Set([mapping.abiContract ?? contract, contract])];
+        const loadTopics = (names: string[]): Map<string, string> => {
+          const topics = new Map<string, string>();
+          for (const name of names) {
+            const abiRef = doc.contracts[name]?.abi;
+            if (!abiRef) continue;
+            const abi = JSON.parse(readFileSync(join(ROOT, "components", doc.component, abiRef), "utf8"));
+            for (const item of abi) if (item.type === "event") topics.set(eventTopic0(item), item.name);
+          }
+          return topics;
+        };
+        const pinnedTopics = loadTopics(abiNames);
+        const componentTopics = loadTopics(Object.keys(doc.contracts));
+        const missing: string[] = [];
+        let borrowed = 0;
+        for (const ev of declared.events ?? []) {
+          if (pinnedTopics.has(ev.topic0)) continue;
+          if (componentTopics.has(ev.topic0)) { borrowed++; continue; }
+          missing.push(`${ev.name} (${ev.topic0.slice(0, 10)}…)`);
+        }
+        const decodeLabel = `indexing/decode ${mapping.type} vs ${doc.component}@${doc.version}`;
+        if (missing.length > 0) {
+          results.push(["FAIL", decodeLabel, `indexer consumes events absent from the pinned ABI: ${missing.join(", ")}`]);
+        } else {
+          results.push(["PASS", decodeLabel, `all ${(declared.events ?? []).length} consumed topics exist in the pinned ABIs${borrowed ? ` (${borrowed} resolved component-wide)` : ""}`]);
+        }
+      }
+    }
+    if (notIndexed.length > 0)
+      results.push(["INFO", `indexing/${doc.component}`, `no declared decoder type — out of the indexer's scope: ${notIndexed.join(", ")}`]);
+  }
+
+  // 4. Freshness: the indexer's own watchdog verdicts, pinned chains only.
+  for (const chain of status.chains ?? []) {
+    const chainId = String(chain.chain_id);
+    if (!pinnedChains.includes(chainId)) continue;
+    const stale = chain.verdicts?.progress?.is_stale || chain.verdicts?.consumption?.is_stale;
+    const freshLabel = `indexing/watchdog @ ${chainId}`;
+    if (chain.status === "ok" && !stale) {
+      results.push(["PASS", freshLabel, `ok, last confirmed block ${chain.facts?.last_block_confirmed ?? "?"}`]);
+    } else {
+      results.push(["WARN", freshLabel, `watchdog reports status=${chain.status}, stale=${Boolean(stale)} — indexer lag, not an address-pin failure`]);
+    }
+  }
+  const pub = status.decoders?.published_at;
+  results.push(["INFO", "indexing/decoders", `spec published_at ${pub ?? "?"}${pub ? ` (${Math.round((Date.now() / 1000 - pub) / 60)}m ago)` : ""}, worker_commit ${status.decoders?.worker_commit ?? "?"}`]);
+  return results;
+}
+
 async function main(): Promise<number> {
   const componentsDir = join(ROOT, "components");
   const manifests: string[] = [];
@@ -137,13 +436,15 @@ async function main(): Promise<number> {
   }
 
   const results: Result[] = [];
+  const docs: Record<string, any>[] = [];
   for (const path of manifests) {
     const doc = JSON.parse(readFileSync(path, "utf8"));
-    const serviceResult = await verifyService(doc);
-    if (serviceResult) results.push(serviceResult);
+    docs.push(doc);
+    const serviceResults = await verifyService(doc);
+    if (serviceResults) results.push(...serviceResults);
     const contracts = doc.contracts;
     if (!contracts || typeof contracts !== "object") {
-      if (!serviceResult) results.push(await verifyRelease(doc));
+      if (!serviceResults) results.push(await verifyRelease(doc));
       continue;
     }
     for (const [contract, entry] of Object.entries<any>(contracts)) {
@@ -158,6 +459,32 @@ async function main(): Promise<number> {
           } catch (exc) {
             results.push(["FAIL", `${doc.component}/${contract} @ ${chainId}`, String(exc)]);
           }
+        }
+      }
+    }
+  }
+
+  // Indexing checks: driven by the current (non-superseded) cork-api pin.
+  const apiDoc = docs.find((d) => d.component === "cork-api" && !d.supersededBy && d.services?.indexingStatus);
+  if (apiDoc) {
+    const pinnedChains = (apiDoc.services?.chains ?? []).map(String);
+    results.push(...(await verifyIndexing(apiDoc, docs, pinnedChains)));
+  }
+
+  // Distribution files: every pinned component version must exist as a file.
+  const distDir = join(ROOT, "distributions");
+  for (const line of readdirSync(distDir)) {
+    for (const f of readdirSync(join(distDir, line))) {
+      if (!f.endsWith(".json")) continue;
+      const dist = JSON.parse(readFileSync(join(distDir, line, f), "utf8"));
+      for (const [comp, version] of Object.entries<string>(dist.components ?? {})) {
+        const pinPath = join(componentsDir, comp, `${version}.json`);
+        const label = `${dist.distribution} pins ${comp}@${version}`;
+        try {
+          readFileSync(pinPath, "utf8");
+          results.push(["PASS", label, "component pin file exists"]);
+        } catch {
+          results.push(["FAIL", label, `no component file at components/${comp}/${version}.json`]);
         }
       }
     }

@@ -25,9 +25,9 @@
   "notices": [
     "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
     "This version pins the market-registry 0.3.3 and phoenix v1.3.0-rc.1 addresses on both chains.",
-    "Command taxonomy: cork-pool / market / trading-pair replaced the older overloaded 'market' commands in this version; removed names answer with structured 'was renamed to …' errors, and the README carries the synonym table."
+    "Command taxonomy: cork-pool / market / trading-pair replaced the older overloaded 'market' commands in this version; removed names answer with structured 'was renamed to \u2026' errors, and the README carries the synonym table."
   ],
   "knownIssues": [],
   "contracts": null,
-  "supersededBy": null
+  "supersededBy": "0.2.0-rc.2"
 }
