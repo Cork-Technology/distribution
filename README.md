@@ -57,7 +57,9 @@ live under the availability model (`GET /v1/meta` must name the pinned component
 a version at or above the pin — a hosted service keeps shipping non-breaking releases
 after the cut by rule, so equality is never asserted; every covered route family in the
 pin's `routeMajors` must still be served at its pinned major; and the live OpenAPI
-document must show no breaking drift against the vendored snapshot on covered paths);
+document must show no breaking drift against the vendored snapshot on covered paths —
+a removed path or method, a newly-required parameter, or a newly-required JSON body
+field);
 pure-artifact components against their public tag (it must resolve to the pinned commit).
 A pin with `supersededBy` set is a historical record: its live-service assertions are
 skipped, its immutable checks keep running. Distribution files are checked structurally:
@@ -65,7 +67,10 @@ every component version they pin must exist as a component file here.
 The indexing layer is checked against the watch-list the indexer itself declares
 (`/indexing/v1/status`): every pinned deployment of an indexed contract type must be on
 the watch-list (FAIL), every event topic the indexer consumes for that type must exist in
-the pinned ABI (FAIL — catches wrong-ABI-generation decoding at cut time), the watch-list's
+the component's pinned ABIs — the type's own contract first, with a component-wide
+fallback for shared lifecycle events the indexer declares on types that never emit them;
+a fallback resolution is named in the PASS row (FAIL when a topic exists in no pinned
+ABI — catches wrong-ABI-generation decoding at cut time), the watch-list's
 version labels are compared as WARN (a label is a flag, not proof), and the indexer's own
 watchdog verdicts report per pinned chain.
 Rows holding `TODO` placeholders report as SKIP, never PASS. Non-zero exit on any mismatch.
