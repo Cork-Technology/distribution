@@ -1,0 +1,932 @@
+[
+  {
+    "type": "function",
+    "name": "decodeAsyncPremiumPayload",
+    "inputs": [
+      {
+        "name": "fillerData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "payload",
+        "type": "tuple",
+        "internalType": "struct FillerPayload",
+        "components": [
+          {
+            "name": "phaseU8",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "fillAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "premium",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "destination",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "premiumFor",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "intent",
+            "type": "tuple",
+            "internalType": "struct RolloverTypes.RolloverIntent",
+            "components": [
+              {
+                "name": "rolloverContract",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "orderDigest",
+                "type": "bytes32",
+                "internalType": "bytes32"
+              },
+              {
+                "name": "deadline",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "nonce",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "preRolloverHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              },
+              {
+                "name": "midRolloverHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              },
+              {
+                "name": "postRolloverHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              },
+              {
+                "name": "premiumHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "minDstPerSrc",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "fillerAuthSig",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "subFiller",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "cptHolderSig",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "decodeAsyncRolloverPayload",
+    "inputs": [
+      {
+        "name": "fillerData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "payload",
+        "type": "tuple",
+        "internalType": "struct FillerPayload",
+        "components": [
+          {
+            "name": "phaseU8",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "fillAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "premium",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "destination",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "premiumFor",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "intent",
+            "type": "tuple",
+            "internalType": "struct RolloverTypes.RolloverIntent",
+            "components": [
+              {
+                "name": "rolloverContract",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "orderDigest",
+                "type": "bytes32",
+                "internalType": "bytes32"
+              },
+              {
+                "name": "deadline",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "nonce",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "preRolloverHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              },
+              {
+                "name": "midRolloverHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              },
+              {
+                "name": "postRolloverHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              },
+              {
+                "name": "premiumHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "minDstPerSrc",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "fillerAuthSig",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "subFiller",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "cptHolderSig",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "decodeAtomicPayloads",
+    "inputs": [
+      {
+        "name": "fillerData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "rolloverPayload",
+        "type": "tuple",
+        "internalType": "struct FillerPayload",
+        "components": [
+          {
+            "name": "phaseU8",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "fillAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "premium",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "destination",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "premiumFor",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "intent",
+            "type": "tuple",
+            "internalType": "struct RolloverTypes.RolloverIntent",
+            "components": [
+              {
+                "name": "rolloverContract",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "orderDigest",
+                "type": "bytes32",
+                "internalType": "bytes32"
+              },
+              {
+                "name": "deadline",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "nonce",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "preRolloverHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              },
+              {
+                "name": "midRolloverHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              },
+              {
+                "name": "postRolloverHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              },
+              {
+                "name": "premiumHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "minDstPerSrc",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "fillerAuthSig",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "subFiller",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "cptHolderSig",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      },
+      {
+        "name": "premiumCap",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "cptHolderSig",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "decodePayloadRaw",
+    "inputs": [
+      {
+        "name": "fillerData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "payload",
+        "type": "tuple",
+        "internalType": "struct FillerPayload",
+        "components": [
+          {
+            "name": "phaseU8",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "fillAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "premium",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "destination",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "premiumFor",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "intent",
+            "type": "tuple",
+            "internalType": "struct RolloverTypes.RolloverIntent",
+            "components": [
+              {
+                "name": "rolloverContract",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "orderDigest",
+                "type": "bytes32",
+                "internalType": "bytes32"
+              },
+              {
+                "name": "deadline",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "nonce",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "preRolloverHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              },
+              {
+                "name": "midRolloverHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              },
+              {
+                "name": "postRolloverHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              },
+              {
+                "name": "premiumHooks",
+                "type": "tuple[]",
+                "internalType": "struct RolloverTypes.Call[]",
+                "components": [
+                  {
+                    "name": "target",
+                    "type": "address",
+                    "internalType": "address"
+                  },
+                  {
+                    "name": "value",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "callData",
+                    "type": "bytes",
+                    "internalType": "bytes"
+                  },
+                  {
+                    "name": "allowFailure",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "isDelegateCall",
+                    "type": "bool",
+                    "internalType": "bool"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "minDstPerSrc",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "fillerAuthSig",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "subFiller",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "cptHolderSig",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "error",
+    "name": "FillerPayload__AtomicTagRequired",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "FillerPayload__InvalidPhase",
+    "inputs": [
+      {
+        "name": "expected",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "actual",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "FillerPayload__InvalidRolloverShape",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Settler__PremiumForOnlyPremiumPhase",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Settler__UnknownPhase",
+    "inputs": []
+  }
+]
