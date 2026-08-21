@@ -25,7 +25,7 @@
   "integrationSuite": {
     "waived": true,
     "decision": "No reusable two-chain cross-component integration runner existed for either previous cut. The Distribution owner authorized an explicit exception for phoenix/v0.3-rc.1 on 2026-08-21 in COR-172, overriding v0.2-rc.1's statement that its waiver was final. No passing suite or end-to-end rollover run is claimed. A separate runner is being developed after this cut PR and this waiver must not be copied silently into another cut.",
-    "nearestEvidence": "cork-cli v0.4.1 shipped from signed commit 723573f57e8c9ef3773b5235f15951684f49252f through two byte-identical builds, release checksum and attestation gates, four-host binary/MCP/HyperSync smokes, and public GitHub Release publication. cork-api v0.4.0 pins the live version stamp at commit 89f6636ce2462959a6bb013e912aa5f9bccd8ccd with OpenAPI bytes identical to 0.3.16 after staging smoke and production promotion. rollover 0.1.0-rc.2 pins the reviewed paired deployment vector from private source commit 5af1048eb9896582115c3615bdc5a4a9166cbbf6. Distribution verification separately checks live contract, API and indexer surfaces. None of these evidence sources is represented as a cross-component run.",
+    "nearestEvidence": "cork-cli v0.4.1 shipped from signed commit 723573f57e8c9ef3773b5235f15951684f49252f through two byte-identical builds, release checksum and attestation gates, four-host binary/MCP/HyperSync smokes, and public GitHub Release publication. cork-api v0.4.0 pins the live version stamp at commit 89f6636ce2462959a6bb013e912aa5f9bccd8ccd with OpenAPI bytes identical to 0.3.16 after staging smoke and production promotion. rollover 0.1.0-rc.2 pins public release commit cd8999a17e6ea679ad958c59fec584eaf29cfd25; its release body and tag-specific manifest disclose the deployed private build commit 5af1048eb9896582115c3615bdc5a4a9166cbbf6 and the reviewed paired deployment vector. Distribution verification separately checks live contract, API and indexer surfaces. None of these evidence sources is represented as a cross-component run.",
     "chains": [
       42161,
       8453
@@ -50,16 +50,17 @@
   "docs": {
     "quickstart": "https://github.com/Cork-Technology/cork-cli/blob/v0.4.1/docs/zyfai-quickstart.md",
     "commandReference": "https://github.com/Cork-Technology/cork-cli/blob/v0.4.1/docs/cli.md",
-    "apiReference": "https://api-phoenix.cork.tech/docs"
+    "apiReference": "https://api-phoenix.cork.tech/docs",
+    "rolloverRelease": "https://github.com/Cork-Technology/rollover/releases/tag/v0.1.0-rc.2"
   },
-  "announcements": "GitHub Releases on each public pinned repository are the notice channel for cuts, deprecations and removals. cork-api 0.4.0 is a version-stamp-only promotion with OpenAPI bytes identical to 0.3.16. The legacy percent `premium` field left cork-api on 2026-08-17; cork-cli 0.4.1 refuses that field locally and `premiumAnnualized` is the one CLI listing field. The covered `centralized` to `hybrid` migration is recorded in the pinned cork-cli CHANGELOG. Cork-Technology/rollover is still private; this pin records its exact deployed commit and publication remains pending.",
+  "announcements": "GitHub Releases on each public pinned repository are the notice channel for cuts, deprecations and removals. cork-api 0.4.0 is a version-stamp-only promotion with OpenAPI bytes identical to 0.3.16. The legacy percent `premium` field left cork-api on 2026-08-17; cork-cli 0.4.1 refuses that field locally and `premiumAnnualized` is the one CLI listing field. The covered `centralized` to `hybrid` migration is recorded in the pinned cork-cli CHANGELOG. Cork-Technology/rollover v0.1.0-rc.2 is public; its GitHub Release body is the frozen G10 deployment-address record and links the tag-specific manifest.",
   "security": {
     "contact": "security@cork.tech",
     "reviewLevel": "unreviewed",
     "audits": []
   },
   "knownIssues": [
-    "Rollover 0.1.0-rc.2 is pinned from private source commit 5af1048eb9896582115c3615bdc5a4a9166cbbf6; Cork-Technology/rollover is not public yet, its API route family remains outside cork-api's covered route list, and no end-to-end rollover integration run is claimed.",
+    "Rollover 0.1.0-rc.2 pins public release commit cd8999a17e6ea679ad958c59fec584eaf29cfd25 and separately records deployed private build commit 5af1048eb9896582115c3615bdc5a4a9166cbbf6; its API route family remains outside cork-api's covered route list, and no end-to-end rollover integration run is claimed.",
     "Admin and operational timelocks run at a 0-second delay — a documented fact of this partner-preview deployment.",
     "CorkMarketCreator's on-chain version() reads \"0.1.0\" instead of its repo version — recorded in the cork-periphery pin; the codehash identifies the build."
   ],

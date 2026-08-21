@@ -4,10 +4,10 @@
   "version": "0.1.0-rc.2",
   "source": {
     "repo": "https://github.com/Cork-Technology/rollover",
-    "tag": null,
-    "commit": "5af1048eb9896582115c3615bdc5a4a9166cbbf6",
-    "visibility": "private",
-    "note": "The intended public repository is not public yet. This pin resolves to the exact private deployed-source commit; tag is null because the existing internal v0.1.0-rc.2 tag does not resolve to the deployed commit."
+    "tag": "v0.1.0-rc.2",
+    "commit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+    "visibility": "public",
+    "note": "Public curated release snapshot. The deployed bytecode was compiled from private source commit 5af1048eb9896582115c3615bdc5a4a9166cbbf6; the public release body and tag-specific deployment manifest disclose and verify that relationship."
   },
   "package": null,
   "schema": null,
@@ -16,8 +16,9 @@
   "badges": [],
   "notices": [
     "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
-    "Source is currently private. The exact deployed commit is 5af1048eb9896582115c3615bdc5a4a9166cbbf6; publication of Cork-Technology/rollover is pending and no public-source verification is claimed.",
-    "The paired Arbitrum/Base deployment vector, artifact digests, addresses and runtime hashes come from reviewed plan source-plan-reviewed.json (plan digest sha256:81b2ae8552100ccec0f7388664ee662e4c656c5315d4f77b279336a0ce76334d) built with solc 0.8.34, Cancun, via-IR and optimizer runs=1.",
+    "Public release: https://github.com/Cork-Technology/rollover/releases/tag/v0.1.0-rc.2. The body is the frozen G10 deployment-address record and links the tag-specific manifest.",
+    "The public source pin is commit cd8999a17e6ea679ad958c59fec584eaf29cfd25; deployed bytecode was compiled from private commit 5af1048eb9896582115c3615bdc5a4a9166cbbf6, which remains recorded in every deployment row.",
+    "The paired Arbitrum/Base deployment vector, artifact digests, addresses and runtime hashes come from the tag-specific deployment manifest and reviewed plan source-plan-reviewed.json (plan digest sha256:81b2ae8552100ccec0f7388664ee662e4c656c5315d4f77b279336a0ce76334d) built with solc 0.8.34, Cancun, via-IR and optimizer runs=1.",
     "ExactSettler and PartialSettler use identical deterministic addresses on both chains but have chain-specific runtime hashes; each chain row pins its own observed runtime.",
     "BaseFiller is included as an operational singleton. EvcRolloverAdapter and per-holder CorkRolloverContract clones remain outside this component pin.",
     "No real two-chain cross-component integration runner exists for this cut; phoenix/v0.3-rc.1 records the explicit owner waiver and makes no passing rollover claim."
