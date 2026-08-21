@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "distribution": "phoenix/v0.3-rc.1",
+  "stage": "partner-preview",
+  "support": "Partner preview: best-effort support, no production commitment. Frozen fields in the pinned component files are the contract; a breaking change to a documented surface opens a new Distribution line, announced in advance.",
+  "promotedFrom": null,
+  "components": {
+    "phoenix": "1.3.0-rc.1",
+    "market-registry": "0.3.3",
+    "cork-cli": "0.4.1",
+    "cork-periphery": "0.1.3-rc.1",
+    "cork-api": "0.3.16"
+  },
+  "chains": [
+    42161,
+    8453
+  ],
+  "surfaces": {
+    "contracts": "unchanged — phoenix 1.3.0-rc.1, market-registry 0.3.3 and cork-periphery 0.1.3-rc.1 are retained; this cut introduces no ABI, address or codehash change.",
+    "cli-mcp": "breaking — 0.2.0-rc.2 -> 0.4.1; the covered input and JSON provenance mode `centralized` became `hybrid`, rollover artifacts moved to the rc.2 `jitMarketHash` wire, and the legacy percent-number `premium` input is refused. Rollover remains excluded from this Distribution. The full record is in the pinned CHANGELOG.",
+    "apis": "breaking — cork-api 0.3.6 -> 0.3.16 pins the deployed interface after the noticed 2026-08-17 legacy `premium` removal; POST /limit-orders/v1/ now requires canonical `premium_annualized`. The covered v1 route families remain served and rollover remains outside the covered route list.",
+    "manifests": "unchanged — schemaVersion 1 field names and semantics are unchanged; this cut adds two component-version rows and one Distribution row."
+  },
+  "integrationSuite": {
+    "waived": true,
+    "decision": "No reusable two-chain cross-component integration runner existed for either previous cut. The Distribution owner authorized an explicit exception for phoenix/v0.3-rc.1 on 2026-08-21 in COR-172, overriding v0.2-rc.1's statement that its waiver was final. No passing suite is claimed. A separate runner is deferred until after this cut PR and this waiver must not be copied silently into another cut.",
+    "nearestEvidence": "cork-cli v0.4.1 shipped from signed commit 723573f57e8c9ef3773b5235f15951684f49252f through two byte-identical builds, release checksum and attestation gates, four-host binary/MCP/HyperSync smokes, and public GitHub Release publication. cork-api v0.3.16 pins the live deployed interface and vendored OpenAPI at signed tag commit e987cce29b4552be045f45bfd048e568cc37f8b8. Distribution verification separately checks the live contract, API and indexer surfaces. None of these evidence sources is represented as a cross-component run.",
+    "chains": [
+      42161,
+      8453
+    ]
+  },
+  "externalDependencies": {
+    "_note": "Third-party contracts the pinned set calls into. Not Cork components, but an integrator's threat model includes them, so the pin records exactly which ones this set was built against.",
+    "1inch-limit-order-protocol": {
+      "version": "v4",
+      "42161": "0x111111125421cA6dc452d289314280a0f8842A65",
+      "8453": "0x111111125421cA6dc452d289314280a0f8842A65"
+    },
+    "bundler3": {
+      "42161": "0x1FA4431bC113D308beE1d46B0e98Cb805FB48C13",
+      "8453": "0x6BFd8137e702540E7A42B74178A4a49Ba43920C4"
+    },
+    "deterministic-deployment-factory": {
+      "note": "CREATE2 address identity across chains depends on this factory.",
+      "allChains": "0x914d7Fec6aaC8cd542e72Bca78B30650d45643d7"
+    }
+  },
+  "docs": {
+    "quickstart": "https://github.com/Cork-Technology/cork-cli/blob/v0.4.1/docs/zyfai-quickstart.md",
+    "commandReference": "https://github.com/Cork-Technology/cork-cli/blob/v0.4.1/docs/cli.md",
+    "apiReference": "https://api-phoenix.cork.tech/docs"
+  },
+  "announcements": "GitHub Releases on each pinned repository are the notice channel for cuts, deprecations and removals. Completed noticed removal: the legacy percent `premium` field left cork-api on 2026-08-17; cork-cli 0.4.1 refuses that field locally and `premiumAnnualized` is the one CLI listing field. The covered `centralized` to `hybrid` migration is recorded in the pinned cork-cli CHANGELOG.",
+  "security": {
+    "contact": "security@cork.tech",
+    "reviewLevel": "unreviewed",
+    "audits": []
+  },
+  "knownIssues": [
+    "Rollover is not part of this Distribution. The API family, configured rc.2 contracts and CLI tooling carry no promise here, and no rollover external dependency is pinned.",
+    "Admin and operational timelocks run at a 0-second delay — a documented fact of this partner-preview deployment.",
+    "CorkMarketCreator's on-chain version() reads \"0.1.0\" instead of its repo version — recorded in the cork-periphery pin; the codehash identifies the build."
+  ],
+  "scopeNotes": [
+    "cork-api is a hosted service with one live deployment updated in place: served versions above the pin within the same y are expected and non-breaking by rule (R10). The pin certifies the snapshot at the tag; the availability verify asserts the covered surface stays served and unbroken.",
+    "Owner exception to R5: despite covered CLI/MCP and API breaking changes that ordinarily require a new Distribution line, the Distribution owner selected the below-1.0 sequential cut phoenix/v0.3-rc.1. This does not make the covered changes non-breaking.",
+    "The tag-pinned quickstart is orientation, not v0.4.1 integration evidence: its captured output names cork-cli v0.2.0-rc.2 and its rollover appendix remains outside this Distribution.",
+    "SDK tarballs, OCI, apk, hosted CVM deployment, rollover and chains other than 42161 and 8453 are outside this Distribution pin.",
+    "COR-173's downstream Zyfai integration-repository pin update is outside this cut."
+  ]
+}

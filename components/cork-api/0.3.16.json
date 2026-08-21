@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-api",
+  "version": "0.3.16",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-indexing-api",
+    "tag": "v0.3.16",
+    "commit": "e987cce29b4552be045f45bfd048e568cc37f8b8",
+    "visibility": "private"
+  },
+  "package": null,
+  "schema": {
+    "openapi": "./schema/openapi-0.3.16.json",
+    "sha256": "e23d479d7fe8b004cb0f3bf697d4e01467dca544671ee56d894cc502070e5968",
+    "note": "Pinned copy of openapi.json at signed tag v0.3.16, generated from the live route schemas and committed at the deployed source revision. This vendored document is the certified snapshot used for cross-version and live availability diffs; the living reference is served at /docs."
+  },
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "services": {
+    "baseUrl": "https://api-phoenix.cork.tech",
+    "docs": "https://api-phoenix.cork.tech/docs",
+    "liveSpec": "/docs/json",
+    "indexingStatus": "/indexing/v1/status",
+    "meta": "GET /v1/meta returns the component name, version, status and commit; every response (health and errors included) carries the x-cork-component version header. Which Distribution a component version belongs to is resolved in this repository, not by the service.",
+    "chains": [
+      42161,
+      8453
+    ],
+    "freshness": "The indexer can trail the chain head; the chain wins on any disagreement. RFQ state is venue-only by construction (no on-chain events).",
+    "verifyModel": "availability",
+    "verifyModelNote": "This service has exactly one live deployment, updated in place; non-breaking releases keep flowing after the cut by rule (R10: z bumps are non-breaking, y is reserved for breaks). The verify asserts availability: the served version must be >= the pinned version, every covered route family below must remain served at its pinned major, and the live OpenAPI document must show no breaking drift against this vendored snapshot on the covered paths.",
+    "routeMajors": {
+      "_note": "The covered route families and the major each is certified at. A family listed here is covered; rollover exists in the schema but is deliberately excluded from this Distribution.",
+      "meta": 1,
+      "rfqs": 1,
+      "limit-orders": 1,
+      "pools": 1,
+      "flows": 1,
+      "registry": 1,
+      "indexing": 1
+    }
+  },
+  "notices": [
+    "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
+    "The source repository is private by decision; the public interface is this component's vendored OpenAPI document plus the live /docs reference. Integrators verify the running version via GET /v1/meta and the x-cork-component header.",
+    "Canonical path form is /<module>/v<n>. The legacy /v1/<module> rewrite bridge is a migration aid, not part of this pin's covered surface.",
+    "Premium convention: POST /limit-orders/v1/ requires `premium_annualized`, an annualized decimal fraction string (for example, `0.041` means 4.1%). The pre-announced legacy percent-number `premium` field was removed on 2026-08-17.",
+    "Versioning: this component bumps z for features and fixes and reserves y for breaking changes on a covered surface (R10).",
+    "Response fields state their units in the published schema: rates, premiums and fractions follow the documented unit conventions; token amounts are strings in the token's native decimals, never rescaled."
+  ],
+  "knownIssues": [],
+  "contracts": null,
+  "supersededBy": null
+}
