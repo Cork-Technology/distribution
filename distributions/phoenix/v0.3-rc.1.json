@@ -19,7 +19,7 @@
   "surfaces": {
     "contracts": "additive — rollover 0.1.0-rc.2 joins with its paired Arbitrum/Base singleton stack and BaseFiller. The phoenix 1.3.0-rc.1, market-registry 0.3.3 and cork-periphery 0.1.3-rc.1 pins are unchanged. Existing indexed contract addresses and ABIs do not move, so the indexer has nothing to re-point.",
     "cli-mcp": "breaking — 0.2.0-rc.2 -> 0.4.1; the covered input and JSON provenance mode `centralized` became `hybrid`, rollover artifacts use the pinned rc.2 `jitMarketHash` wire, and the legacy percent-number `premium` input is refused. The full record is in the pinned CHANGELOG.",
-    "apis": "breaking since the previous Distribution pin — cork-api 0.3.6 -> 0.4.0 includes the noticed 2026-08-17 legacy `premium` removal first pinned at 0.3.16. The promoted 0.4.0 interface is byte-identical to 0.3.16 and changes only the version stamp; no database migration, route or schema changes accompany the promotion. The covered v1 route families remain served, while the rollover API family remains outside cork-api's covered route list.",
+    "apis": "breaking since the previous Distribution pin — cork-api 0.3.6 -> 0.4.0 includes the noticed 2026-08-17 legacy `premium` removal first pinned at 0.3.16. The promoted 0.4.0 interface is identical to 0.3.16 apart from the version stamp; no database migration, route or schema changes accompany the promotion. The covered v1 route families remain served, while the rollover API family remains outside cork-api's covered route list.",
     "manifests": "unchanged — schemaVersion 1 field names and semantics are unchanged; this cut adds four component-version rows and one Distribution row."
   },
   "integrationSuite": {
@@ -53,7 +53,7 @@
     "apiReference": "https://api-phoenix.cork.tech/docs",
     "rolloverRelease": "https://github.com/Cork-Technology/rollover/releases/tag/v0.1.0-rc.2"
   },
-  "announcements": "GitHub Releases on each public pinned repository are the notice channel for cuts, deprecations and removals. cork-api 0.4.0 is a version-stamp-only promotion with OpenAPI bytes identical to 0.3.16. The legacy percent `premium` field left cork-api on 2026-08-17; cork-cli 0.4.1 refuses that field locally and `premiumAnnualized` is the one CLI listing field. The covered `centralized` to `hybrid` migration is recorded in the pinned cork-cli CHANGELOG. Cork-Technology/rollover v0.1.0-rc.2 is public; its GitHub Release body is the frozen G10 deployment-address record and links the tag-specific manifest.",
+  "announcements": "GitHub Releases on each public pinned repository are the notice channel for cuts, deprecations and removals. cork-api 0.4.0 is a version-stamp-only promotion; its OpenAPI is identical to 0.3.16 apart from the version stamp. The legacy percent `premium` field left cork-api on 2026-08-17; cork-cli 0.4.1 refuses that field locally and `premiumAnnualized` is the one CLI listing field. The covered `centralized` to `hybrid` migration is recorded in the pinned cork-cli CHANGELOG. Cork-Technology/rollover v0.1.0-rc.2 is public; its GitHub Release body is the frozen G10 deployment-address record and links the tag-specific manifest.",
   "security": {
     "contact": "security@cork.tech",
     "reviewLevel": "unreviewed",
@@ -65,12 +65,12 @@
     "CorkMarketCreator's on-chain version() reads \"0.1.0\" instead of its repo version — recorded in the cork-periphery pin; the codehash identifies the build."
   ],
   "scopeNotes": [
-    "cork-api is a hosted service with one live deployment updated in place. The 0.4.0 pin records the honest production version; its interface bytes are identical to 0.3.16 and the availability verify asserts the covered surface stays served and unbroken.",
+    "cork-api is a hosted service with one live deployment updated in place. The 0.4.0 pin records the honest production version; its interface is identical to 0.3.16 apart from the version stamp, and the availability verify asserts the covered surface stays served and unbroken.",
     "Owner exception to R5: despite covered CLI/MCP and API breaking changes that ordinarily require a new Distribution line, the Distribution owner selected the below-1.0 sequential cut phoenix/v0.3-rc.1. This does not make the covered changes non-breaking.",
     "The tag-pinned quickstart is orientation, not v0.4.1 integration evidence: its captured output names cork-cli v0.2.0-rc.2. Its rollover appendix is not evidence for the newly pinned rollover component.",
     "The rollover component includes the paired singleton stack and BaseFiller. EvcRolloverAdapter and per-holder CorkRolloverContract clones remain outside the pin.",
     "SDK tarballs, OCI, apk, hosted CVM deployment and chains other than 42161 and 8453 are outside this Distribution pin.",
     "The indexer is unchanged because this follow-up introduces no indexed contract address or ABI change.",
-    "COR-173's downstream Zyfai integration-repository pin update is outside this cut."
+    "The downstream Zyfai integration-repository pin update is outside this cut."
   ]
 }

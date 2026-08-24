@@ -11,8 +11,8 @@
   "package": null,
   "schema": {
     "openapi": "./schema/openapi-0.4.0.json",
-    "sha256": "e23d479d7fe8b004cb0f3bf697d4e01467dca544671ee56d894cc502070e5968",
-    "note": "Pinned copy of openapi.json at signed tag v0.4.0. The interface is byte-identical to the v0.3.16 snapshot: this release changes only the version stamp. The vendored document remains the certified snapshot used for live availability diffs; the living reference is served at /docs."
+    "sha256": "2f103bd37a60181415a283a004b913692527a8cc3515379aae9de75e3e6a0305",
+    "note": "Pinned copy of openapi.json at signed tag v0.4.0. The interface is identical to the v0.3.16 snapshot apart from the version stamp. The vendored document remains the certified snapshot used for live availability diffs; the living reference is served at /docs."
   },
   "stage": "partner-preview",
   "reviewLevel": "unreviewed",
@@ -44,7 +44,7 @@
   "notices": [
     "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
     "The source repository is private by decision; the public interface is this component's vendored OpenAPI document plus the live /docs reference. Integrators verify the running version via GET /v1/meta and the x-cork-component header.",
-    "cork-api 0.4.0 is a version-stamp-only promotion of 0.3.16: the OpenAPI bytes are identical, staging was smoked before promotion, and there are no database migrations, route changes or schema changes.",
+    "cork-api 0.4.0 is a version-stamp-only promotion of 0.3.16: the OpenAPI is identical apart from the version stamp, staging was smoked before promotion, and there are no database migrations, route changes or schema changes.",
     "Canonical path form is /<module>/v<n>. The legacy /v1/<module> rewrite bridge is a migration aid, not part of this pin's covered surface.",
     "Premium convention: POST /limit-orders/v1/ requires `premium_annualized`, an annualized decimal fraction string (for example, `0.041` means 4.1%). The pre-announced legacy percent-number `premium` field was removed on 2026-08-17.",
     "Response fields state their units in the published schema: rates, premiums and fractions follow the documented unit conventions; token amounts are strings in the token's native decimals, never rescaled."
