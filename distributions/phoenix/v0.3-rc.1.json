@@ -25,7 +25,7 @@
   "integrationSuite": {
     "waived": true,
     "decision": "No reusable two-chain cross-component integration runner existed for either previous cut. The Distribution owner authorized an explicit exception for phoenix/v0.3-rc.1 on 2026-08-21 in COR-172, overriding v0.2-rc.1's statement that its waiver was final. No passing suite or end-to-end rollover run is claimed. A separate runner is being developed after this cut PR and this waiver must not be copied silently into another cut.",
-    "nearestEvidence": "cork-cli v0.4.1 shipped from signed commit 723573f57e8c9ef3773b5235f15951684f49252f through two byte-identical builds, release checksum and attestation gates, four-host binary/MCP/HyperSync smokes, and public GitHub Release publication. cork-api v0.4.0 pins the live version stamp at commit 89f6636ce2462959a6bb013e912aa5f9bccd8ccd with OpenAPI bytes identical to 0.3.16 after staging smoke and production promotion. rollover 0.1.0-rc.2 pins public release commit cd8999a17e6ea679ad958c59fec584eaf29cfd25; its release body and tag-specific manifest disclose the deployed private build commit 5af1048eb9896582115c3615bdc5a4a9166cbbf6 and the reviewed paired deployment vector. Distribution verification separately checks live contract, API and indexer surfaces. None of these evidence sources is represented as a cross-component run.",
+    "nearestEvidence": "cork-cli v0.4.1 shipped from signed commit 723573f57e8c9ef3773b5235f15951684f49252f through two byte-identical builds, release checksum and attestation gates, four-host binary/MCP/HyperSync smokes, and public GitHub Release publication. cork-api v0.4.0 pins the live version stamp at commit 89f6636ce2462959a6bb013e912aa5f9bccd8ccd with OpenAPI identical to 0.3.16 apart from the version stamp after staging smoke and production promotion. rollover 0.1.0-rc.2 pins public release commit cd8999a17e6ea679ad958c59fec584eaf29cfd25, whose deploy-profile build is verified byte-identical to the deployed runtime bytecode on both chains (immutable regions excepted), with the reviewed paired deployment vector in the tag-specific manifest. Distribution verification separately checks live contract, API and indexer surfaces. None of these evidence sources is represented as a cross-component run.",
     "chains": [
       42161,
       8453
@@ -60,7 +60,7 @@
     "audits": []
   },
   "knownIssues": [
-    "Rollover 0.1.0-rc.2 pins public release commit cd8999a17e6ea679ad958c59fec584eaf29cfd25 and separately records deployed private build commit 5af1048eb9896582115c3615bdc5a4a9166cbbf6; its API route family remains outside cork-api's covered route list, and no end-to-end rollover integration run is claimed.",
+    "Rollover 0.1.0-rc.2 pins public release commit cd8999a17e6ea679ad958c59fec584eaf29cfd25, verified byte-identical to the deployed runtime bytecode on both chains; its API route family remains outside cork-api's covered route list, and no end-to-end rollover integration run is claimed.",
     "Admin and operational timelocks run at a 0-second delay — a documented fact of this partner-preview deployment.",
     "CorkMarketCreator's on-chain version() reads \"0.1.0\" instead of its repo version — recorded in the cork-periphery pin; the codehash identifies the build."
   ],
