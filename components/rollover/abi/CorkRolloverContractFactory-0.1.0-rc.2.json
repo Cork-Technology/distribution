@@ -1,0 +1,1883 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "rolloverContractImplementation_",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "erc7484Registry_",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "defaultThreshold_",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "defaultAttesters_",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "trustConfigTimelock_",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "ensOwner_",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "factoryAdmin_",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "defaultsManager_",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "settlerApprover_",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "settlerRevoker_",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "DEFAULTS_MANAGER_ROLE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "DEFAULT_ADMIN_ROLE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "DEFAULT_TRUST_THRESHOLD",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "ERC7484_REGISTRY",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_TRUST_ATTESTERS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_TRUST_CONFIG_DELAY",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "ROLLOVER_CONTRACT_IMPLEMENTATION",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "SETTLER_APPROVER_ROLE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "SETTLER_REVOKER_ROLE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "TRUST_CONFIG_DELAY_MANAGER_ROLE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "applyTrustConfig",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "applyTrustConfigDelayUpdate",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "approveSettler",
+    "inputs": [
+      {
+        "name": "settler",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "approvedSettlers",
+    "inputs": [
+      {
+        "name": "settler",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "cancelTrustConfig",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "cancelTrustConfigDelayUpdate",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "defaultAttesters",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "attesters",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "deployRolloverContract",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "executeIntentHooks",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "orderDigest",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "phase",
+        "type": "uint8",
+        "internalType": "enum RolloverTypes.HookPhase"
+      },
+      {
+        "name": "intent",
+        "type": "tuple",
+        "internalType": "struct RolloverTypes.RolloverIntent",
+        "components": [
+          {
+            "name": "rolloverContract",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "orderDigest",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "deadline",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "nonce",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "preRolloverHooks",
+            "type": "tuple[]",
+            "internalType": "struct RolloverTypes.Call[]",
+            "components": [
+              {
+                "name": "target",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "value",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "callData",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "allowFailure",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
+                "name": "isDelegateCall",
+                "type": "bool",
+                "internalType": "bool"
+              }
+            ]
+          },
+          {
+            "name": "midRolloverHooks",
+            "type": "tuple[]",
+            "internalType": "struct RolloverTypes.Call[]",
+            "components": [
+              {
+                "name": "target",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "value",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "callData",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "allowFailure",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
+                "name": "isDelegateCall",
+                "type": "bool",
+                "internalType": "bool"
+              }
+            ]
+          },
+          {
+            "name": "postRolloverHooks",
+            "type": "tuple[]",
+            "internalType": "struct RolloverTypes.Call[]",
+            "components": [
+              {
+                "name": "target",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "value",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "callData",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "allowFailure",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
+                "name": "isDelegateCall",
+                "type": "bool",
+                "internalType": "bool"
+              }
+            ]
+          },
+          {
+            "name": "premiumHooks",
+            "type": "tuple[]",
+            "internalType": "struct RolloverTypes.Call[]",
+            "components": [
+              {
+                "name": "target",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "value",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "callData",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "allowFailure",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
+                "name": "isDelegateCall",
+                "type": "bool",
+                "internalType": "bool"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "cptHolderSig",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "fillContext",
+        "type": "tuple",
+        "internalType": "struct RolloverTypes.FillContext",
+        "components": [
+          {
+            "name": "filler",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "fillAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "rolloverIntentHash",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "fillDeadline",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "allowPartialFills",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "allowUnderfill",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "orderSize",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "originSettler",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "premiumToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "premium",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "subFiller",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          }
+        ]
+      },
+      {
+        "name": "orderData",
+        "type": "tuple",
+        "internalType": "struct RolloverTypes.OrderData",
+        "components": [
+          {
+            "name": "user",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "settler",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "fillerHint",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "exclusiveFiller",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "srcCstToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "dstCstToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "premiumToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "rolloverContract",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "originChainId",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "destinationChainId",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "openDeadline",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "fillDeadline",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "orderSalt",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "orderSize",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minPremiumPerShare",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "allowPartialFills",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "allowUnderfill",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "premiumPaymentMode",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "rolloverIntentHash",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "rolloverParams",
+            "type": "tuple",
+            "internalType": "struct RolloverTypes.RolloverParams",
+            "components": [
+              {
+                "name": "srcCstToken",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "dstCstToken",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "minCaReceived",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "minSharesOut",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "srcPoolId",
+                "type": "bytes32",
+                "internalType": "bytes32"
+              },
+              {
+                "name": "dstPoolId",
+                "type": "bytes32",
+                "internalType": "bytes32"
+              },
+              {
+                "name": "settler",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "jitMarketHash",
+                "type": "bytes32",
+                "internalType": "bytes32"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "dstProduced",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "srcLeftover",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getRoleAdmin",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "grantRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "hasRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isDeployedRolloverContract",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "orderState",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "orderDigest",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "state",
+        "type": "tuple",
+        "internalType": "struct ICorkRolloverContract.RolloverContractOrderState",
+        "components": [
+          {
+            "name": "rolled",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "rolloverTerminal",
+            "type": "bool",
+            "internalType": "bool"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "originatingSettler",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "originSettler",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "owner",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "pendingTrustConfig",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "threshold",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "attesters",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "effectiveAt",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "pendingTrustConfigDelayUpdate",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "queued",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "newDelay",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "effectiveAt",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "predictRolloverContractOf",
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "premiumFiredFor",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "orderDigest",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "filler",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "subFiller",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "queueFactoryDefaultTrustConfig",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "queueTrustConfig",
+    "inputs": [
+      {
+        "name": "threshold",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "attesters",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "queueTrustConfigDelayUpdate",
+    "inputs": [
+      {
+        "name": "newDelay",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "relayTrustConfig",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "salt",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "threshold",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "attesters",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "renounceOwnership",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "renounceRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "callerConfirmation",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "revokeRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "revokeSettler",
+    "inputs": [
+      {
+        "name": "settler",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "rolloverContractConfig",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "config",
+        "type": "tuple",
+        "internalType": "struct IRolloverContractLens.RolloverContractConfig",
+        "components": [
+          {
+            "name": "owner",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "factory",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "erc7484Registry",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "liveTrustThreshold",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "liveTrustAttesters",
+            "type": "address[]",
+            "internalType": "address[]"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "rolloverContractOf",
+    "inputs": [
+      {
+        "name": "owner_",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "setDefaults",
+    "inputs": [
+      {
+        "name": "defaultTrustThreshold",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "defaultTrustAttesters",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "defaultRegistry",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "supportsInterface",
+    "inputs": [
+      {
+        "name": "interfaceId",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "transferOwnership",
+    "inputs": [
+      {
+        "name": "newOwner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "trustConfigTimelock",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "version",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "version_",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "event",
+    "name": "DefaultsSet",
+    "inputs": [
+      {
+        "name": "threshold",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      },
+      {
+        "name": "attesters",
+        "type": "address[]",
+        "indexed": false,
+        "internalType": "address[]"
+      },
+      {
+        "name": "registry",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OwnershipTransferred",
+    "inputs": [
+      {
+        "name": "previousOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "newOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RoleAdminChanged",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "previousAdminRole",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "newAdminRole",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RoleGranted",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "sender",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RoleRevoked",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "sender",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RolloverContractDeployed",
+    "inputs": [
+      {
+        "name": "user",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SettlerApproved",
+    "inputs": [
+      {
+        "name": "settler",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SettlerRevoked",
+    "inputs": [
+      {
+        "name": "settler",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TrustConfigApplied",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "opId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "threshold",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      },
+      {
+        "name": "attesters",
+        "type": "address[]",
+        "indexed": false,
+        "internalType": "address[]"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TrustConfigCanceled",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "opId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "canceler",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TrustConfigDelayUpdateApplied",
+    "inputs": [
+      {
+        "name": "opId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "newDelay",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TrustConfigDelayUpdateCanceled",
+    "inputs": [
+      {
+        "name": "opId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "canceler",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TrustConfigDelayUpdateQueued",
+    "inputs": [
+      {
+        "name": "opId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "newDelay",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "effectiveAt",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TrustConfigQueued",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "opId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "threshold",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      },
+      {
+        "name": "attesters",
+        "type": "address[]",
+        "indexed": false,
+        "internalType": "address[]"
+      },
+      {
+        "name": "effectiveAt",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "AccessControlBadConfirmation",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "AccessControlUnauthorizedAccount",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "neededRole",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CloneArgumentsTooLong",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__AddressHasNoCode",
+    "inputs": [
+      {
+        "name": "target",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__AlreadyDeployed",
+    "inputs": [
+      {
+        "name": "user",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__CallerHasNoRolloverContract",
+    "inputs": [
+      {
+        "name": "caller",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__DuplicateAttester",
+    "inputs": [
+      {
+        "name": "attester",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__EmptyDefaultAttesters",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__InvalidDefaultThreshold",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__InvalidOrderBinding",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__InvalidThreshold",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__InvalidTrustConfigTimelockDelay",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__MismatchedApplyArgs",
+    "inputs": [
+      {
+        "name": "expectedSalt",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__NoQueuedTrustConfig",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__NoQueuedTrustConfigDelayUpdate",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__NotFactoryRolloverContract",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__NotRolloverContractOwner",
+    "inputs": [
+      {
+        "name": "caller",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__NotTimelock",
+    "inputs": [
+      {
+        "name": "caller",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__PhaseNotDispatchable",
+    "inputs": [
+      {
+        "name": "phase",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__SettlerLatchMismatch",
+    "inputs": [
+      {
+        "name": "current",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "caller",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__SettlerNotApproved",
+    "inputs": [
+      {
+        "name": "settler",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__SettlerNotOriginSettler",
+    "inputs": [
+      {
+        "name": "originSettler",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "caller",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__TooManyAttesters",
+    "inputs": [
+      {
+        "name": "supplied",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "max",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__TrustConfigTimelockCannotExecute",
+    "inputs": [
+      {
+        "name": "factory",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__TrustConfigTimelockMissingRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__TrustConfigTimelockOpenExecutor",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__UnexpectedTrustConfigRelay",
+    "inputs": [
+      {
+        "name": "expectedOpId",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "actualOpId",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__UnknownRolloverContract",
+    "inputs": [
+      {
+        "name": "rolloverContract",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__UnsortedAttesters",
+    "inputs": [
+      {
+        "name": "previous",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "current",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CorkRolloverContractFactory__ZeroAddress",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Create2EmptyBytecode",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "FailedDeployment",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InsufficientBalance",
+    "inputs": [
+      {
+        "name": "balance",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "needed",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OwnableInvalidOwner",
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OwnableUnauthorizedAccount",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ReentrancyGuardReentrantCall",
+    "inputs": []
+  }
+]

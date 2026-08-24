@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-cli",
+  "version": "0.4.1",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-cli",
+    "tag": "v0.4.1",
+    "commit": "723573f57e8c9ef3773b5235f15951684f49252f"
+  },
+  "package": "GitHub Release assets on the tag: one self-contained `ch` binary (CLI + MCP server) per platform, 7 platforms plus checksums.txt. Every binary is covered by verified GitHub build provenance and publication followed two independent byte-identical builds of the same commit.",
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "config": {
+    "note": "cork-defaults.json is a versioned surface of this component. Installs runtime-fetch it from the main branch (TTL-cached) as the living-field channel; the content at this tag is pinned here by digest.",
+    "snapshot": "cork-defaults.json at tag v0.4.1",
+    "snapshotSha256": "10aca5cbbcae6d9bc330d341b822ccda10c810fbb71fb8a4a08c4247dcf57996"
+  },
+  "docs": [
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.4.1/docs/zyfai-quickstart.md",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.4.1/docs/cli.md",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.4.1/CHANGELOG.md"
+  ],
+  "notices": [
+    "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
+    "Relative to the prior Distribution pin, the covered CLI/MCP surface is breaking: the input and JSON provenance mode `centralized` became `hybrid`. The covered surface of 0.4.1 itself is unchanged from 0.4.0.",
+    "Rollover artifacts use the deployed rc.2 wire with signed `jitMarketHash`; rollover remains excluded from this Distribution.",
+    "Venue listings accept only fraction-string `premiumAnnualized` (for example, `0.041` means 4.1%); the legacy percent-number `premium` field is refused locally.",
+    "On SIGTERM or SIGINT, the MCP server drains in-flight requests for at most five seconds before exiting cleanly.",
+    "Embedded HyperSync requires writable, executable or mappable temporary storage. Windows x64 and Linux arm64-musl binaries have no embedded Envio binding and cannot provide full-decentralized HyperSync reads.",
+    "This version pins the market-registry 0.3.3 and phoenix v1.3.0-rc.1 addresses on both chains.",
+    "Distribution channel: the pinned integration channel is the GitHub Release binaries above. SDK tarballs, OCI, apk and the hosted CVM deployment are not part of this Distribution pin."
+  ],
+  "knownIssues": [],
+  "contracts": null,
+  "supersededBy": null
+}

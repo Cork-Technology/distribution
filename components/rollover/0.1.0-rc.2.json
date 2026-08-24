@@ -1,0 +1,393 @@
+{
+  "schemaVersion": 1,
+  "component": "rollover",
+  "version": "0.1.0-rc.2",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/rollover",
+    "tag": "v0.1.0-rc.2",
+    "commit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+    "visibility": "public",
+    "note": "Public curated release snapshot. The deployed bytecode is byte-identical to this tag's deploy-profile build on both chains, immutable regions excepted — verified per contract, per chain and recorded in the release body — so the tag is the build source integrators verify the deployment against."
+  },
+  "package": null,
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "notices": [
+    "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
+    "Public release: https://github.com/Cork-Technology/rollover/releases/tag/v0.1.0-rc.2. The body is the frozen G10 deployment-address record and links the tag-specific manifest.",
+    "The public source pin is commit cd8999a17e6ea679ad958c59fec584eaf29cfd25; its deploy-profile build is verified byte-identical to the deployed runtime bytecode on both chains (immutable regions excepted), so every deployment row records the public commit.",
+    "The paired Arbitrum/Base deployment vector, artifact digests, addresses and runtime hashes come from the tag-specific deployment manifest and reviewed plan source-plan-reviewed.json (plan digest sha256:81b2ae8552100ccec0f7388664ee662e4c656c5315d4f77b279336a0ce76334d) built with solc 0.8.34, Cancun, via-IR and optimizer runs=1.",
+    "ExactSettler and PartialSettler use identical deterministic addresses on both chains but have chain-specific runtime hashes; each chain row pins its own observed runtime.",
+    "BaseFiller is included as an operational singleton. EvcRolloverAdapter and per-holder CorkRolloverContract clones remain outside this component pin.",
+    "No real two-chain cross-component integration runner exists for this cut; phoenix/v0.3-rc.1 records the explicit owner waiver and makes no passing rollover claim."
+  ],
+  "contracts": {
+    "RolloverBootstrapDeployer": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/RolloverBootstrapDeployer-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x220E9FB8714ab4aE53Be9c4Fde06A7Bc9EB6220E",
+            "implementation": null,
+            "codeHash": "0x6fbe4ac9797fef97a960de8b5afe25235848e1e8479b1282590e571671fc468e",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x220E9FB8714ab4aE53Be9c4Fde06A7Bc9EB6220E",
+            "implementation": null,
+            "codeHash": "0x6fbe4ac9797fef97a960de8b5afe25235848e1e8479b1282590e571671fc468e",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "RolloverDeploymentBootstrap": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/RolloverDeploymentBootstrap-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x1730D11C8B0daFfB3142B10aeBcB573665836E74",
+            "implementation": null,
+            "codeHash": "0x19022baf56bdf414af7861d1069c636ff98b7e862d6bb855c5a93e9e105c048c",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x1730D11C8B0daFfB3142B10aeBcB573665836E74",
+            "implementation": null,
+            "codeHash": "0x19022baf56bdf414af7861d1069c636ff98b7e862d6bb855c5a93e9e105c048c",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "LibFillerPayloadExternal": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/LibFillerPayloadExternal-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x28445906b01a7a9628eeB220C6723Ebc2A08f4c0",
+            "implementation": null,
+            "codeHash": "0x8c5f372bde2a4041afe61fa3be86b14e19f35ca3a50c4dcf09731048341a94f2",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x28445906b01a7a9628eeB220C6723Ebc2A08f4c0",
+            "implementation": null,
+            "codeHash": "0x8c5f372bde2a4041afe61fa3be86b14e19f35ca3a50c4dcf09731048341a94f2",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkRolloverContractImplementation": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/CorkRolloverContractImplementation-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xDEE3Be5673D20D26E56F0423335c7EDe7ad808AA",
+            "implementation": null,
+            "codeHash": "0x84adb8c3a5505e635e2c605a5b4f6fb8ea6635806129c1cfb27786ac7a924d39",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xDEE3Be5673D20D26E56F0423335c7EDe7ad808AA",
+            "implementation": null,
+            "codeHash": "0x84adb8c3a5505e635e2c605a5b4f6fb8ea6635806129c1cfb27786ac7a924d39",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ExactSettler": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/ExactSettler-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xF4ffd4b3FAedb784b04d1883119840515f224C2f",
+            "implementation": null,
+            "codeHash": "0xdb3ff9721f8023ef7a573fbdf8cd28892ba9fcebde15bc0c96bd1fae39407a14",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xF4ffd4b3FAedb784b04d1883119840515f224C2f",
+            "implementation": null,
+            "codeHash": "0x5f2f885e8b7ce3fecdddb029ec5b1f5f1a3f5765de9d91a4e608854e2435b712",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "PartialSettler": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/PartialSettler-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xC0fbA28687D16e9A94527F7864C7c8D41f1E6B4e",
+            "implementation": null,
+            "codeHash": "0x1c61a8e9d6a55fc799a12e76737bc93f2db66c874339e6a1e22d640e4b33aadd",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xC0fbA28687D16e9A94527F7864C7c8D41f1E6B4e",
+            "implementation": null,
+            "codeHash": "0x51df6734da8fcaaecb4238b26b80c6986533f81de08d2423a9ea8cb5f6a0c9c0",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "TrustTimelock": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/TrustTimelock-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x64DEFBE8E9CB32F7FC7f8B295CA79e67602e0293",
+            "implementation": null,
+            "codeHash": "0x89335e2c1295ff11144df2800fbea85d6c56290553b8e0e1fc7c40a7db7f4b1e",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x64DEFBE8E9CB32F7FC7f8B295CA79e67602e0293",
+            "implementation": null,
+            "codeHash": "0x89335e2c1295ff11144df2800fbea85d6c56290553b8e0e1fc7c40a7db7f4b1e",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkRolloverContractFactory": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/CorkRolloverContractFactory-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x697A6A2d5e09dc1CaBD0AA46678E053567275F82",
+            "implementation": null,
+            "codeHash": "0x9f28381b8a9f344fdc68ba47334d5722c96443b32c01966af0ac003aa1e87745",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x697A6A2d5e09dc1CaBD0AA46678E053567275F82",
+            "implementation": null,
+            "codeHash": "0x9f28381b8a9f344fdc68ba47334d5722c96443b32c01966af0ac003aa1e87745",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ApproveModule": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/ApproveModule-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x10bD45Fcd0ac6F26660F3af7EC3506EF80A9C843",
+            "implementation": null,
+            "codeHash": "0x913fd59b675bec8caa35debb830ed77ebb4f961c2b56890192f9e94674e260d7",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x10bD45Fcd0ac6F26660F3af7EC3506EF80A9C843",
+            "implementation": null,
+            "codeHash": "0x913fd59b675bec8caa35debb830ed77ebb4f961c2b56890192f9e94674e260d7",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "OwnerTokenPullModule": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/OwnerTokenPullModule-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x101729f01789959DF29769cFf9F43Baba07954D9",
+            "implementation": null,
+            "codeHash": "0xcf574a204f1924ddeb6fc0965ec0ba292426a4174a9689ac76f5124ea1ca77d0",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x101729f01789959DF29769cFf9F43Baba07954D9",
+            "implementation": null,
+            "codeHash": "0xcf574a204f1924ddeb6fc0965ec0ba292426a4174a9689ac76f5124ea1ca77d0",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ScopedTransferModule": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/ScopedTransferModule-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xadc4D5853C5Ea129828DA68335BfeBbDf66A37F0",
+            "implementation": null,
+            "codeHash": "0xc33f775f598b4ee391622f553b13cec13fd017fe7355569fea66d3aa0292e25b",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xadc4D5853C5Ea129828DA68335BfeBbDf66A37F0",
+            "implementation": null,
+            "codeHash": "0xc33f775f598b4ee391622f553b13cec13fd017fe7355569fea66d3aa0292e25b",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ScopedSplitModule": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/ScopedSplitModule-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x235C324EC9e8d704dd7A9875b378496Bc35b2F44",
+            "implementation": null,
+            "codeHash": "0xbe15f6b839070eadd821fefe4d3dbcc614d3938b18b3aca7f3cab849f693b7de",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x235C324EC9e8d704dd7A9875b378496Bc35b2F44",
+            "implementation": null,
+            "codeHash": "0xbe15f6b839070eadd821fefe4d3dbcc614d3938b18b3aca7f3cab849f693b7de",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "PostRolloverDstCptTransferModule": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/PostRolloverDstCptTransferModule-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0x06CaC0335760A1ae2A0Ca043b4F9F5AEa60B0179",
+            "implementation": null,
+            "codeHash": "0x9c01c9d5556f22c093918ed575007aec37505a3ceeb44ae004f2fc8f3abedea4",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0x06CaC0335760A1ae2A0Ca043b4F9F5AEa60B0179",
+            "implementation": null,
+            "codeHash": "0x9c01c9d5556f22c093918ed575007aec37505a3ceeb44ae004f2fc8f3abedea4",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "BaseFiller": {
+      "version": "0.1.0-rc.2",
+      "abi": "./abi/BaseFiller-0.1.0-rc.2.json",
+      "deployments": {
+        "42161": [
+          {
+            "address": "0xCdD4D39EBeBD5b8d4153E498220FB2Fe16807B9d",
+            "implementation": null,
+            "codeHash": "0xf06ce4e19e0d667db0feaddea6ce2cf23249c9f79518a36a4b49b2393d8d97fd",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ],
+        "8453": [
+          {
+            "address": "0xCdD4D39EBeBD5b8d4153E498220FB2Fe16807B9d",
+            "implementation": null,
+            "codeHash": "0xf06ce4e19e0d667db0feaddea6ce2cf23249c9f79518a36a4b49b2393d8d97fd",
+            "deployedCommit": "cd8999a17e6ea679ad958c59fec584eaf29cfd25",
+            "chainFork": "cancun (solc 0.8.34 via-ir, optimizer runs=1); reviewed paired deployment plan",
+            "status": "active"
+          }
+        ]
+      }
+    }
+  },
+  "supersededBy": null
+}
