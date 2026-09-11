@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "component": "phoenix",
-  "version": "0.0.0-untagged.TODO",
+  "version": "1.4.0-rc.1",
   "source": {
     "repo": "https://github.com/Cork-Technology/phoenix",
-    "tag": "MOCK(phoenix owner): approve and publish v1.4.0-rc.1 and its GitHub prerelease",
+    "tag": "v1.4.0-rc.1",
     "commit": "0276a097d8a6a0e28183aedf43669ad468172c7a"
   },
   "package": null,
@@ -13,27 +13,29 @@
   "reviewLevel": "unreviewed",
   "badges": [],
   "notices": [
-    "Draft record only; the component identifier is not a published release. The source commit is publicly available on release/v1.4.0, but no release tag or deployment-build equivalence is implied by that branch publication.",
-    "Runtime hashes were read at finalized Base block 51161253 (0x3e64f08c83565f143425f582b81ee653c4c64bbe62b95234e13c263914323b63) and Arbitrum block 503977760 (0x7237a6ee520ad910891cbff459aa1534da46fff57ad706565503d5c4ee25f0b4).",
-    "ABI snapshots were retrieved from the public Base explorer code pages for the listed addresses, not from final release tags. Provider-runtime comparison is unchecked; explorer ABI retrieval on Arbitrum was unavailable. These files are review evidence, not final tag-derived artifacts.",
-    "Contract version fields record successful application-version getter readbacks. Null means no supported application-version getter; UPGRADE_INTERFACE_VERSION is not a component version.",
-    "Active rows identify deployed runtime, not market activation, integration approval or production support. Proxy rows pin proxy runtime and separately verified EIP-1967 implementation bindings."
+    "GitHub prerelease: https://github.com/Cork-Technology/phoenix/releases/tag/v1.4.0-rc.1. This record does not complete or approve the surrounding Distribution cut.",
+    "Runtime equivalence and proxy bindings verified at finalized Base block 51171628 and Arbitrum block 504060971 against the public tagged commit production build: Solidity 0.8.30, optimizer runs 1, viaIR true, Paris EVM, no CBOR metadata. Runtime-affecting immutables and library links were resolved from source before whole-runtime comparison.",
+    "ABIs are exported from compiler artifacts bound to the exact public tagged source and its pinned dependencies. Proxy ABI files describe ERC1967Proxy shells; application callers use the corresponding Implementation ABI.",
+    "Null contract versions mean no supported component-version getter; EIP-712 domain versions and UPGRADE_INTERFACE_VERSION are not release versions.",
+    "No historical constructor transaction, storage-only initialization, governance approval, activation, independent security review or production-support assurance is implied."
   ],
   "knownIssues": [
-    "Final component-owner targets, signed public releases, public-tag build equivalence and tag-derived ABI exports remain publication gates."
+    "ABI-breaking relative to 1.3.0-rc.1 despite the 1.4 version label: expanded Market tuples and MarketCreated, removed fee-management functions and events. Regenerate bindings and update integrations.",
+    "Contracts lack a component version() getter. Release identity is established by the public source tag and verified runtime, not a runtime version string.",
+    "Publication does not establish independent review or complete the remaining Distribution integration and release-process gates."
   ],
   "contracts": {
     "PoolLibrary": {
       "version": null,
-      "abi": "./abi/PoolLibrary-candidate-v0.4-rc.1.json",
+      "abi": "./abi/PoolLibrary-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0xCC9337E7EED182e1343d6EC062273552be240E6A",
             "implementation": null,
             "codeHash": "0xc6ce336eb5260dc1a2e7c2f7e0a10dc897a5f48970635ee8c0da98a79578bc29",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -42,8 +44,8 @@
             "address": "0xCC9337E7EED182e1343d6EC062273552be240E6A",
             "implementation": null,
             "codeHash": "0xc6ce336eb5260dc1a2e7c2f7e0a10dc897a5f48970635ee8c0da98a79578bc29",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -51,15 +53,15 @@
     },
     "TimelockUpgrade": {
       "version": null,
-      "abi": "./abi/TimelockUpgrade-candidate-v0.4-rc.1.json",
+      "abi": "./abi/TimelockUpgrade-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0x0739b6Da7AF605E082701d0990CEF7C78Ba98842",
             "implementation": null,
             "codeHash": "0x948400376630d36ec72e78621810a7af348ca2a0832cb002113c6a567fef49f4",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -68,8 +70,8 @@
             "address": "0x0739b6Da7AF605E082701d0990CEF7C78Ba98842",
             "implementation": null,
             "codeHash": "0x948400376630d36ec72e78621810a7af348ca2a0832cb002113c6a567fef49f4",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -77,15 +79,15 @@
     },
     "TimelockControllerAdmin": {
       "version": null,
-      "abi": "./abi/TimelockControllerAdmin-candidate-v0.4-rc.1.json",
+      "abi": "./abi/TimelockControllerAdmin-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0x2D2E62318e763571000B503c84Dc46895049C325",
             "implementation": null,
             "codeHash": "0x948400376630d36ec72e78621810a7af348ca2a0832cb002113c6a567fef49f4",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -94,8 +96,8 @@
             "address": "0x2D2E62318e763571000B503c84Dc46895049C325",
             "implementation": null,
             "codeHash": "0x948400376630d36ec72e78621810a7af348ca2a0832cb002113c6a567fef49f4",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -103,15 +105,15 @@
     },
     "TimelockOperational": {
       "version": null,
-      "abi": "./abi/TimelockOperational-candidate-v0.4-rc.1.json",
+      "abi": "./abi/TimelockOperational-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0x9fb663359947C55A9E3d7905dDB15708e309b8d4",
             "implementation": null,
             "codeHash": "0x948400376630d36ec72e78621810a7af348ca2a0832cb002113c6a567fef49f4",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -120,8 +122,8 @@
             "address": "0x9fb663359947C55A9E3d7905dDB15708e309b8d4",
             "implementation": null,
             "codeHash": "0x948400376630d36ec72e78621810a7af348ca2a0832cb002113c6a567fef49f4",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -129,15 +131,15 @@
     },
     "ConstraintRateAdapterImplementation": {
       "version": null,
-      "abi": "./abi/ConstraintRateAdapterImplementation-candidate-v0.4-rc.1.json",
+      "abi": "./abi/ConstraintRateAdapterImplementation-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0xB4B5E2aE6d9F7D40911e8A2f60Be2D81a14a2962",
             "implementation": null,
             "codeHash": "0x7f0843d7ce476e51a4f84eabe5183374d4f024c296ff1e88cb10bccecb3ba1b9",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -146,8 +148,8 @@
             "address": "0xB4B5E2aE6d9F7D40911e8A2f60Be2D81a14a2962",
             "implementation": null,
             "codeHash": "0x7f0843d7ce476e51a4f84eabe5183374d4f024c296ff1e88cb10bccecb3ba1b9",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -155,15 +157,15 @@
     },
     "ConstraintRateAdapterProxy": {
       "version": null,
-      "abi": "./abi/ConstraintRateAdapterProxy-candidate-v0.4-rc.1.json",
+      "abi": "./abi/ConstraintRateAdapterProxy-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0x2f9d816191B390A429174902E4A276A019cBf554",
             "implementation": "0xB4B5E2aE6d9F7D40911e8A2f60Be2D81a14a2962",
             "codeHash": "0x4965b2c9e05bb63f1781b4b2c1ddd2e73e596f3c4a41ef8012783d7f9eb031b5",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -172,8 +174,8 @@
             "address": "0x2f9d816191B390A429174902E4A276A019cBf554",
             "implementation": "0xB4B5E2aE6d9F7D40911e8A2f60Be2D81a14a2962",
             "codeHash": "0x4965b2c9e05bb63f1781b4b2c1ddd2e73e596f3c4a41ef8012783d7f9eb031b5",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -181,15 +183,15 @@
     },
     "WhitelistManagerImplementation": {
       "version": null,
-      "abi": "./abi/WhitelistManagerImplementation-candidate-v0.4-rc.1.json",
+      "abi": "./abi/WhitelistManagerImplementation-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0xa5F0E3EB934Bd92aE3c9185FED29ffF78972386C",
             "implementation": null,
             "codeHash": "0xc3757fe479d4a44aa3a3954159ba1281747b6de0dc78a58139390bfd9c2f4cb0",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -198,8 +200,8 @@
             "address": "0xa5F0E3EB934Bd92aE3c9185FED29ffF78972386C",
             "implementation": null,
             "codeHash": "0xc3757fe479d4a44aa3a3954159ba1281747b6de0dc78a58139390bfd9c2f4cb0",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -207,15 +209,15 @@
     },
     "WhitelistManagerProxy": {
       "version": null,
-      "abi": "./abi/WhitelistManagerProxy-candidate-v0.4-rc.1.json",
+      "abi": "./abi/WhitelistManagerProxy-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0x8aF6659d864cB632bcadF0744Fb8B5eE78fBEA51",
             "implementation": "0xa5F0E3EB934Bd92aE3c9185FED29ffF78972386C",
             "codeHash": "0x4965b2c9e05bb63f1781b4b2c1ddd2e73e596f3c4a41ef8012783d7f9eb031b5",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -224,8 +226,8 @@
             "address": "0x8aF6659d864cB632bcadF0744Fb8B5eE78fBEA51",
             "implementation": "0xa5F0E3EB934Bd92aE3c9185FED29ffF78972386C",
             "codeHash": "0x4965b2c9e05bb63f1781b4b2c1ddd2e73e596f3c4a41ef8012783d7f9eb031b5",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -233,15 +235,15 @@
     },
     "DefaultCorkController": {
       "version": null,
-      "abi": "./abi/DefaultCorkController-candidate-v0.4-rc.1.json",
+      "abi": "./abi/DefaultCorkController-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0x66025095Ab3a7E60BA9C2b15e203822d5d3647b5",
             "implementation": null,
             "codeHash": "0xa3055e759dafed690123293daed6e88f776a5e9141c8c11c9bc51b74667d272e",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -250,8 +252,8 @@
             "address": "0x66025095Ab3a7E60BA9C2b15e203822d5d3647b5",
             "implementation": null,
             "codeHash": "0xa3055e759dafed690123293daed6e88f776a5e9141c8c11c9bc51b74667d272e",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -259,15 +261,15 @@
     },
     "CorkPoolManagerImplementation": {
       "version": null,
-      "abi": "./abi/CorkPoolManagerImplementation-candidate-v0.4-rc.1.json",
+      "abi": "./abi/CorkPoolManagerImplementation-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0x819a556cfbb7f5bbeb470E87874F4d71830e9501",
             "implementation": null,
             "codeHash": "0xfb0335d4b7a52721dbc9f492f5005c2201c91a73c506dff6ee0e59366d37441a",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -276,8 +278,8 @@
             "address": "0x819a556cfbb7f5bbeb470E87874F4d71830e9501",
             "implementation": null,
             "codeHash": "0xfb0335d4b7a52721dbc9f492f5005c2201c91a73c506dff6ee0e59366d37441a",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -285,15 +287,15 @@
     },
     "CorkPoolManagerProxy": {
       "version": null,
-      "abi": "./abi/CorkPoolManagerProxy-candidate-v0.4-rc.1.json",
+      "abi": "./abi/CorkPoolManagerProxy-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0xcC17224A8710fa23BdA40c2CB563b85CeDDb0C2D",
             "implementation": "0x819a556cfbb7f5bbeb470E87874F4d71830e9501",
             "codeHash": "0x4965b2c9e05bb63f1781b4b2c1ddd2e73e596f3c4a41ef8012783d7f9eb031b5",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -302,8 +304,8 @@
             "address": "0xcC17224A8710fa23BdA40c2CB563b85CeDDb0C2D",
             "implementation": "0x819a556cfbb7f5bbeb470E87874F4d71830e9501",
             "codeHash": "0x4965b2c9e05bb63f1781b4b2c1ddd2e73e596f3c4a41ef8012783d7f9eb031b5",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -311,15 +313,15 @@
     },
     "SharesFactory": {
       "version": null,
-      "abi": "./abi/SharesFactory-candidate-v0.4-rc.1.json",
+      "abi": "./abi/SharesFactory-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0xFaB92464AF516DC17020Fd39886BB2f8346BAe1e",
             "implementation": null,
             "codeHash": "0xe78710c28f6346d74fc59d7836007f10fade67b958d81be7b5c589f83560285c",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -328,8 +330,8 @@
             "address": "0xFaB92464AF516DC17020Fd39886BB2f8346BAe1e",
             "implementation": null,
             "codeHash": "0xe78710c28f6346d74fc59d7836007f10fade67b958d81be7b5c589f83560285c",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -337,15 +339,15 @@
     },
     "PoolShareImplementation": {
       "version": null,
-      "abi": "./abi/PoolShareImplementation-candidate-v0.4-rc.1.json",
+      "abi": "./abi/PoolShareImplementation-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0x060307Da28cE39d4C5951edA7a40F5733DA82C6F",
             "implementation": null,
             "codeHash": "0xe8b66ee810f3b9f7d828f672e742703d1a81ae6ed89a1d1a493d4563f49a90ff",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -354,8 +356,8 @@
             "address": "0x060307Da28cE39d4C5951edA7a40F5733DA82C6F",
             "implementation": null,
             "codeHash": "0xe8b66ee810f3b9f7d828f672e742703d1a81ae6ed89a1d1a493d4563f49a90ff",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
@@ -363,15 +365,15 @@
     },
     "CorkAdapter": {
       "version": null,
-      "abi": "./abi/CorkAdapter-candidate-v0.4-rc.1.json",
+      "abi": "./abi/CorkAdapter-1.4.0-rc.1.json",
       "deployments": {
         "8453": [
           {
             "address": "0x71eB628c3A40FB3896613804847840426f9284A7",
             "implementation": null,
             "codeHash": "0xc8c05b7eb9f80d0207025ecb09beefaf046965e4ee81c8476513109be47b81f6",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ],
@@ -380,8 +382,8 @@
             "address": "0x71eB628c3A40FB3896613804847840426f9284A7",
             "implementation": null,
             "codeHash": "0xc8c05b7eb9f80d0207025ecb09beefaf046965e4ee81c8476513109be47b81f6",
-            "deployedCommit": "MOCK(phoenix owner): public release commit with deployment equivalence",
-            "chainFork": "MOCK(phoenix owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "deployedCommit": "0276a097d8a6a0e28183aedf43669ad468172c7a",
+            "chainFork": "paris",
             "status": "active"
           }
         ]
