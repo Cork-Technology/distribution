@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "distribution": "phoenix/v0.4-rc.1",
+  "stage": "partner-preview",
+  "support": "Draft only: no published integration pin or production support commitment. Unresolved component releases and verification gates block publication.",
+  "promotedFrom": null,
+  "components": {
+    "phoenix": "0.0.0-untagged.TODO",
+    "market-registry": "0.0.0-untagged.TODO",
+    "cork-cli": "0.0.0-untagged.TODO",
+    "rollover": "0.0.0-untagged.TODO",
+    "cork-periphery": "0.0.0-untagged.TODO",
+    "cork-api": "0.0.0-untagged.TODO"
+  },
+  "chains": [
+    42161,
+    8453
+  ],
+  "surfaces": {
+    "contracts": "Changed: new Phoenix core, ForSelf, Market Registry and Rollover deployments on both chains. Existing deployment records remain unchanged. Final tag-to-tag ABI compatibility assessment is pending.",
+    "cli-mcp": "Changed: address and ABI adoption for the new contract set. Final released artifact, schema compatibility and consumer integration verification are pending.",
+    "apis": "Changed: Registry v2 interface and new deployment/decoder configuration. Final tagged interface snapshot and live availability verification are pending.",
+    "manifests": "Existing schemaVersion 1 component and Distribution record layout; six unresolved candidate component records. Draft identifiers must be replaced before publication."
+  },
+  "integrationSuite": {
+    "passed": false,
+    "waived": false,
+    "decision": "MOCK(distribution owner): complete the final pinned-set integration run on both chains or explicitly accept a documented deviation; no earlier waiver is inherited",
+    "nearestEvidence": "Retained finalized reconciliation records 63 deployment/governance transactions per chain. Fresh readback confirms all 80 runtime identities, six proxy bindings and supported getter results at the recorded finalized blocks. This is not a passing cross-component integration suite or public-tag build-equivalence result.",
+    "chains": [
+      42161,
+      8453
+    ]
+  },
+  "deviations": [],
+  "externalDependencies": {
+    "_note": "Runtime dependency getters were read at finalized Base block 51161253 and Arbitrum block 503977760. These are external contracts, not Cork component releases or security attestations.",
+    "1inch-limit-order-protocol": {
+      "8453": "0x111111125421cA6dc452d289314280a0f8842A65",
+      "42161": "0x111111125421cA6dc452d289314280a0f8842A65"
+    },
+    "bundler3": {
+      "8453": "0x6BFd8137e702540E7A42B74178A4a49Ba43920C4",
+      "42161": "0x1FA4431bC113D308beE1d46B0e98Cb805FB48C13"
+    },
+    "permit2": {
+      "8453": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+      "42161": "0x000000000022D473030F116dDEE9F6B43aC78BA3"
+    }
+  },
+  "docs": {
+    "apiReference": "https://api-phoenix.cork.tech/docs"
+  },
+  "security": {
+    "contact": "security@cork.tech",
+    "reviewLevel": "unreviewed",
+    "audits": []
+  },
+  "knownIssues": [
+    "Public component release tags, deployment-build equivalence and tag-derived ABI/schema evidence are unresolved.",
+    "CLI Rollover factory/settler binding alignment, hosted Registry v2 availability, candidate address intake and Phoenix decoder alignment remain unresolved.",
+    "Explorer SimilarMatch is not exact full-build or constructor-argument evidence. Earlier checks found source-closure differences for RolloverBootstrapDeployer, RolloverDeploymentBootstrap and LibFillerPayloadExternal on both chains; final release equivalence must resolve them.",
+    "The draft does not establish hosted-service activation, order migration, market activation or security-review approval."
+  ],
+  "scopeNotes": [
+    "The six component references are deliberately unresolved draft identifiers, not installable versions. Verification must not treat their existence as release readiness.",
+    "Existing component records, Distribution records and discovery pointers are unchanged. No old signing address is retired by this draft.",
+    "Registry governance tooling remains on its existing registry; the dashboard/API migration does not authorize a governance migration.",
+    "The proposed Distribution name still requires surface compatibility, signing-domain migration and disposability assessment before publication.",
+    "SDK tarballs, OCI images, APK packages, hosted CVM deployment and chains other than 42161 and 8453 are not covered by this draft."
+  ]
+}

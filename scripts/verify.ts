@@ -26,9 +26,9 @@
  * Distribution files are checked structurally: every component version a
  * distribution pins must exist as a component file in this repository.
  *
- * Rows containing TODO placeholders report as SKIP, never PASS.
+ * Draft sentinels report as SKIP, never PASS, and block a successful cut check.
  * deployedCommit is recorded provenance, not on-chain verifiable — it is
- * echoed, not checked. Exit code is non-zero on any FAIL.
+ * echoed, not checked. Exit code is non-zero on any FAIL or unresolved record.
  *
  * Usage: npm run verify
  * RPC overrides via env: RPC_42161, RPC_8453 (defaults are public endpoints).
@@ -82,8 +82,15 @@ function eventTopic0(ev: { name: string; inputs?: any[] }): string {
   return "0x" + keccak_256(`${ev.name}(${(ev.inputs ?? []).map(flat).join(",")})`);
 }
 
-const isTodo = (v: unknown): boolean =>
-  typeof v === "string" && v.includes("TODO");
+const isUnresolved = (v: unknown): boolean =>
+  typeof v === "string" && (v.includes("TODO") || v.startsWith("MOCK(") || /^0\.0\.0-untagged(?:[.-]|$)/.test(v));
+
+function unresolvedPaths(value: unknown, path = ""): string[] {
+  if (isUnresolved(value)) return [path];
+  if (!value || typeof value !== "object") return [];
+  return Object.entries(value).flatMap(([key, child]) =>
+    unresolvedPaths(child, path ? `${path}.${key}` : key));
+}
 
 async function rpc(url: string, method: string, params: unknown[]): Promise<string> {
   const resp = await fetch(url, {
@@ -103,7 +110,7 @@ async function verifyRow(
   row: Record<string, unknown>,
 ): Promise<Result> {
   const label = `${component}/${contract} @ ${chainId}`;
-  if (isTodo(row.address) || isTodo(row.codeHash))
+  if (isUnresolved(row.address) || isUnresolved(row.codeHash))
     return ["SKIP", label, "row holds TODO placeholders"];
   const url = RPCS[chainId];
   if (!url) return ["FAIL", label, `no RPC configured for chain ${chainId}`];
@@ -114,12 +121,14 @@ async function verifyRow(
   if (got.toLowerCase() !== String(row.codeHash).toLowerCase())
     return ["FAIL", label, `codehash mismatch: chain ${got}, manifest ${row.codeHash}`];
   const impl = row.implementation as string | null;
-  if (impl && !isTodo(impl)) {
+  if (impl && !isUnresolved(impl)) {
     const slot = await rpc(url, "eth_getStorageAt", [row.address, EIP1967_IMPL_SLOT, "latest"]);
     const onchain = "0x" + slot.slice(-40);
     if (onchain.toLowerCase() !== impl.toLowerCase())
       return ["FAIL", label, `EIP-1967 impl mismatch: chain ${onchain}, manifest ${impl}`];
   }
+  const pending = unresolvedPaths(row);
+  if (pending.length) return ["SKIP", label, `runtime hash matches; unresolved ${pending.join(", ")}`];
   const commit = String(row.deployedCommit ?? "?").slice(0, 8);
   return ["PASS", label, `code ${code.length / 2 - 1} bytes, commit ${commit}`];
 }
@@ -207,7 +216,7 @@ function breakingDrift(
 
 async function verifyService(doc: Record<string, any>): Promise<Result[] | null> {
   const base: string | undefined = doc.services?.baseUrl;
-  if (!base || isTodo(base)) return null;
+  if (!base || isUnresolved(base)) return null;
   const label = `${doc.component} ${doc.version} @ ${base}`;
   if (doc.supersededBy)
     return [["SKIP", label, `superseded by ${doc.supersededBy}: historical pin, live service no longer asserted`]];
@@ -297,7 +306,7 @@ async function verifyRelease(doc: Record<string, any>): Promise<Result> {
   const tag: string | undefined = doc.source?.tag;
   const commit: string | undefined = doc.source?.commit;
   const label = `${doc.component} @ ${tag}`;
-  if (!repo.startsWith("https://github.com/") || !tag || isTodo(tag))
+  if (!repo.startsWith("https://github.com/") || !tag || isUnresolved(tag))
     return ["SKIP", doc.component ?? "?", "no verifiable source pin"];
   const api = repo.replace("https://github.com/", "https://api.github.com/repos/");
   const headers: Record<string, string> = { "user-agent": "distribution-verify" };
@@ -382,7 +391,7 @@ async function verifyIndexing(
         const rows = entry.deployments?.[chainId];
         if (!rows) continue;
         for (const row of rows) {
-          if (isTodo(row.address)) continue;
+          if (isUnresolved(row.address)) continue;
           const rowLabel = `indexing/${doc.component}/${contract} @ ${chainId}`;
           const w = watchSet.get(watchKey(chainId, String(row.address)));
           if (!w) {
@@ -402,7 +411,9 @@ async function verifyIndexing(
       const declared = (status.decoders?.contract_types ?? []).find(
         (ct: any) => (ct.contract_type ?? ct.type) === mapping.type,
       );
-      if (declared) {
+      if (declared && Object.values<any>(doc.contracts).some((entry) => isUnresolved(entry.abi))) {
+        results.push(["SKIP", `indexing/decode ${mapping.type} vs ${doc.component}@${doc.version}`, "release ABI unresolved"]);
+      } else if (declared) {
         const abiNames = [...new Set([mapping.abiContract ?? contract, contract])];
         const loadTopics = (names: string[]): Map<string, string> => {
           const topics = new Map<string, string>();
@@ -469,15 +480,21 @@ async function main(): Promise<number> {
   }
 
   const results: Result[] = [];
+  let unresolvedRecords = 0;
   const docs: Record<string, any>[] = [];
   for (const path of manifests) {
     const doc = JSON.parse(readFileSync(path, "utf8"));
     docs.push(doc);
-    const serviceResults = await verifyService(doc);
+    const pending = unresolvedPaths(doc);
+    if (pending.length) {
+      unresolvedRecords++;
+      results.push(["SKIP", `${doc.component}@${doc.version} release evidence`, `unresolved ${pending.slice(0, 8).join(", ")}${pending.length > 8 ? ` (+${pending.length - 8} fields)` : ""}`]);
+    }
+    const serviceResults = pending.length ? null : await verifyService(doc);
     if (serviceResults) results.push(...serviceResults);
     const contracts = doc.contracts;
     if (!contracts || typeof contracts !== "object") {
-      if (!serviceResults) results.push(await verifyRelease(doc));
+      if (!serviceResults && pending.length === 0) results.push(await verifyRelease(doc));
       continue;
     }
     for (const [contract, entry] of Object.entries<any>(contracts)) {
@@ -498,7 +515,7 @@ async function main(): Promise<number> {
   }
 
   // Indexing checks: driven by the current (non-superseded) cork-api pin.
-  const apiDoc = docs.find((d) => d.component === "cork-api" && !d.supersededBy && d.services?.indexingStatus);
+  const apiDoc = docs.find((d) => d.component === "cork-api" && !isUnresolved(d.version) && !d.supersededBy && d.services?.indexingStatus);
   if (apiDoc) {
     const pinnedChains = (apiDoc.services?.chains ?? []).map(String);
     results.push(...(await verifyIndexing(apiDoc, docs, pinnedChains)));
@@ -511,14 +528,25 @@ async function main(): Promise<number> {
     for (const f of readdirSync(join(distDir, line))) {
       if (!f.endsWith(".json")) continue;
       const dist = JSON.parse(readFileSync(join(distDir, line, f), "utf8"));
+      const pending = unresolvedPaths(dist);
+      if (pending.length) {
+        unresolvedRecords++;
+        results.push(["SKIP", `${dist.distribution} cut evidence`, `unresolved ${pending.join(", ")}`]);
+      }
       for (const [comp, version] of Object.entries<string>(dist.components ?? {})) {
         const pinPath = join(componentsDir, comp, `${version}.json`);
         const label = `${dist.distribution} pins ${comp}@${version}`;
         try {
-          readFileSync(pinPath, "utf8");
-          results.push(["PASS", label, "component pin file exists"]);
-        } catch {
-          results.push(["FAIL", label, `no component file at components/${comp}/${version}.json`]);
+          const pin = JSON.parse(readFileSync(pinPath, "utf8"));
+          if (pin.component !== comp || pin.version !== version) {
+            results.push(["FAIL", label, "component file identity differs from the requested pin"]);
+          } else if (unresolvedPaths(pin).length) {
+            results.push(["SKIP", label, "component file exists but release evidence is unresolved"]);
+          } else {
+            results.push(["PASS", label, "component pin file exists and identity matches"]);
+          }
+        } catch (exc) {
+          results.push(["FAIL", label, `component file unreadable at components/${comp}/${version}.json: ${exc}`]);
         }
       }
     }
@@ -531,7 +559,8 @@ async function main(): Promise<number> {
     console.log(`${status.padEnd(5)} ${label.padEnd(width)}  ${note}`);
   }
   console.log("\n" + Object.entries(counts).sort().map(([k, v]) => `${k}=${v}`).join(", "));
-  return counts.FAIL ? 1 : 0;
+  if (unresolvedRecords) console.log(`CUT BLOCKED: ${unresolvedRecords} unresolved records; SKIP is not release approval.`);
+  return counts.FAIL || unresolvedRecords ? 1 : 0;
 }
 
 main().then((code) => process.exit(code));

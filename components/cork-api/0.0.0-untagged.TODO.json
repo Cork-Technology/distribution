@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-api",
+  "version": "0.0.0-untagged.TODO",
+  "source": {
+    "repo": "MOCK(cork-api owner): publication-approved source reference",
+    "tag": "MOCK(cork-api owner): final signed release tag",
+    "commit": "MOCK(cork-api owner): publication-approved release identity"
+  },
+  "package": null,
+  "schema": {
+    "openapi": "MOCK(cork-api owner): final tag-derived OpenAPI snapshot",
+    "sha256": "MOCK(cork-api owner): SHA-256 of the final interface snapshot",
+    "note": "No existing Registry v1 snapshot is relabeled as the proposed Registry v2 interface."
+  },
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "services": {
+    "baseUrl": "https://api-phoenix.cork.tech",
+    "docs": "https://api-phoenix.cork.tech/docs",
+    "liveSpec": "/docs/json",
+    "indexingStatus": "/indexing/v1/status",
+    "meta": "GET /v1/meta and x-cork-component report the running component identity; this draft does not assert that it is serving the candidate.",
+    "chains": [
+      42161,
+      8453
+    ],
+    "freshness": "Chain state wins on disagreement. Candidate address intake and decoder coverage must be demonstrated separately from endpoint availability.",
+    "verifyModel": "availability",
+    "verifyModelNote": "The final pinned interface must remain available on the hosted service. The proposed route families below are not certified by this draft.",
+    "routeMajors": {
+      "_note": "Proposed coverage only. Registry v2 activation and final covered-family approval remain release gates; the Rollover API family is not silently added.",
+      "meta": 1,
+      "rfqs": 1,
+      "limit-orders": 1,
+      "pools": 1,
+      "flows": 1,
+      "registry": 2,
+      "indexing": 1
+    }
+  },
+  "notices": [
+    "Draft record only; the version is an unresolved identifier, not a running-service claim.",
+    "The public integration surface is the final vendored OpenAPI document and live documentation. No private source SHA is published by this draft."
+  ],
+  "knownIssues": [
+    "Registry v2 was not served by the checked hosted deployment.",
+    "Candidate deployment address intake and exact Phoenix event decoder alignment remain unresolved.",
+    "The checked decoder specification also contains three ExactSettler signatures absent from the candidate ABI. Final Rollover indexing coverage must be explicitly selected and verified; this is not silently added to the covered route list.",
+    "Final release identity, tag-derived interface snapshot and live availability/compatibility verification remain open."
+  ],
+  "contracts": null,
+  "supersededBy": null
+}

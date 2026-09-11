@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "component": "market-registry",
+  "version": "0.0.0-untagged.TODO",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/market-registry",
+    "tag": "MOCK(market-registry owner): final signed public release tag",
+    "commit": "MOCK(market-registry owner): public commit with deployment-build equivalence"
+  },
+  "package": null,
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "notices": [
+    "Draft record only; the component identifier is not a published release.",
+    "Runtime hashes were read at finalized Base block 51161253 (0x3e64f08c83565f143425f582b81ee653c4c64bbe62b95234e13c263914323b63) and Arbitrum block 503977760 (0x7237a6ee520ad910891cbff459aa1534da46fff57ad706565503d5c4ee25f0b4).",
+    "ABI snapshots were retrieved from the public Base explorer code pages for the listed addresses, not from final release tags. Provider-runtime comparison is unchecked; explorer ABI retrieval on Arbitrum was unavailable. These files are review evidence, not final tag-derived artifacts.",
+    "Contract version fields record successful application-version getter readbacks. Null means no supported application-version getter; UPGRADE_INTERFACE_VERSION is not a component version.",
+    "Active rows identify deployed runtime, not market activation, integration approval or production support. Proxy rows pin proxy runtime and separately verified EIP-1967 implementation bindings."
+  ],
+  "knownIssues": [
+    "Final component-owner targets, signed public releases, public-tag build equivalence and tag-derived ABI exports remain publication gates."
+  ],
+  "contracts": {
+    "AtomicDeployer": {
+      "version": null,
+      "abi": "./abi/AtomicDeployer-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x24DEae9D392265F3bb5E494F9BcdF870781Ab2dA",
+            "implementation": null,
+            "codeHash": "0x3bbce7a9ca6ee988c716eae96275af8dd0b541ab9ef6abd6113d0265646ed4c6",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x24DEae9D392265F3bb5E494F9BcdF870781Ab2dA",
+            "implementation": null,
+            "codeHash": "0x3bbce7a9ca6ee988c716eae96275af8dd0b541ab9ef6abd6113d0265646ed4c6",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "WrapperRateConsumerFactory": {
+      "version": "0.3.1",
+      "abi": "./abi/WrapperRateConsumerFactory-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x942F2da75E6941D726EaB197E10735B7B6a3C867",
+            "implementation": null,
+            "codeHash": "0x6b673cc8a84653da90fb7c59342179f894629a6238c9f8f678ba7d7feb2825af",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x942F2da75E6941D726EaB197E10735B7B6a3C867",
+            "implementation": null,
+            "codeHash": "0x6b673cc8a84653da90fb7c59342179f894629a6238c9f8f678ba7d7feb2825af",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "FixedRateOracleFactory": {
+      "version": "0.1.0",
+      "abi": "./abi/FixedRateOracleFactory-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x8e7331da266458C87E3870fe01969f4b421b306B",
+            "implementation": null,
+            "codeHash": "0x4ae0fce05959a16a6d660d41b9641863ddc2f39a3cfca9f41eab60334ff94229",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x8e7331da266458C87E3870fe01969f4b421b306B",
+            "implementation": null,
+            "codeHash": "0x4ae0fce05959a16a6d660d41b9641863ddc2f39a3cfca9f41eab60334ff94229",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "MarketRegistry": {
+      "version": "0.5.0",
+      "abi": "./abi/MarketRegistry-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0xe1f569f152bDB6eBB2d49cFd9d4aB98ECEe955c5",
+            "implementation": null,
+            "codeHash": "0x455b91170500a48e745346e799831271e709da030ef3a05016b33d3200106a26",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0xe1f569f152bDB6eBB2d49cFd9d4aB98ECEe955c5",
+            "implementation": null,
+            "codeHash": "0x455b91170500a48e745346e799831271e709da030ef3a05016b33d3200106a26",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkMarketCreator": {
+      "version": "0.1.0",
+      "abi": "./abi/CorkMarketCreator-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x1A074F17647504D1c50B436074a74d051D502dEa",
+            "implementation": null,
+            "codeHash": "0x2fde0d65ebd999c5bb7202f80a8dd1f8b0bc86b405237c93ea4a096e88c08766",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x1A074F17647504D1c50B436074a74d051D502dEa",
+            "implementation": null,
+            "codeHash": "0x2fde0d65ebd999c5bb7202f80a8dd1f8b0bc86b405237c93ea4a096e88c08766",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkLimitOrderAdapter": {
+      "version": "0.4.0",
+      "abi": "./abi/CorkLimitOrderAdapter-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x3E01C558fc0854e92e6ef2a84c19D6Bf9D82B104",
+            "implementation": null,
+            "codeHash": "0x2fe70bacb5c81095f8ba03bdb1eeb4f6d1969787d82e140f5c8642f77f52d35a",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x3E01C558fc0854e92e6ef2a84c19D6Bf9D82B104",
+            "implementation": null,
+            "codeHash": "0x2fe70bacb5c81095f8ba03bdb1eeb4f6d1969787d82e140f5c8642f77f52d35a",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "AggregatorV2V3AdapterFactory": {
+      "version": "0.3.0",
+      "abi": "./abi/AggregatorV2V3AdapterFactory-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0xFE9a3bEc21f095EeeC1B62F76A5c241a2C5517A2",
+            "implementation": null,
+            "codeHash": "0x14973a981a6cdacbafa106606e3d1cb068db775ba1244721b486fcab3189caad",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0xFE9a3bEc21f095EeeC1B62F76A5c241a2C5517A2",
+            "implementation": null,
+            "codeHash": "0x14973a981a6cdacbafa106606e3d1cb068db775ba1244721b486fcab3189caad",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "LiquidityPriceRecipe": {
+      "version": "0.1.0",
+      "abi": "./abi/LiquidityPriceRecipe-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x679Cbd016587c423f342e5Ba31e58356228c964d",
+            "implementation": null,
+            "codeHash": "0xdf1638a668d307ccc410cda2d840b5c37bc6276a64b1f6df6f1e907b2e7c469f",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x679Cbd016587c423f342e5Ba31e58356228c964d",
+            "implementation": null,
+            "codeHash": "0xdf1638a668d307ccc410cda2d840b5c37bc6276a64b1f6df6f1e907b2e7c469f",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "LiquidityNavRecipe": {
+      "version": "0.1.0",
+      "abi": "./abi/LiquidityNavRecipe-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0xed6A6b0448B89F35889Aaf6Df1bdEF27f83787e3",
+            "implementation": null,
+            "codeHash": "0xd8266314edf4def5a85df9669a3277950dd16d14f14d4ba25541058ea1435bf0",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0xed6A6b0448B89F35889Aaf6Df1bdEF27f83787e3",
+            "implementation": null,
+            "codeHash": "0xd8266314edf4def5a85df9669a3277950dd16d14f14d4ba25541058ea1435bf0",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "FixedRateRecipe": {
+      "version": "0.1.0",
+      "abi": "./abi/FixedRateRecipe-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0xEC26bb7d911aFe374721Ecd963543f7e52468C49",
+            "implementation": null,
+            "codeHash": "0x77556922853999d6566bcbb3611d175a3503eb4b90fe92aa913cd9fb3b4da8c6",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0xEC26bb7d911aFe374721Ecd963543f7e52468C49",
+            "implementation": null,
+            "codeHash": "0x77556922853999d6566bcbb3611d175a3503eb4b90fe92aa913cd9fb3b4da8c6",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ApySpreadImpairmentRecipe": {
+      "version": "0.1.0",
+      "abi": "./abi/ApySpreadImpairmentRecipe-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0xd5e8F76AafA20aA9A8983A35B71Ad3A793070Ed9",
+            "implementation": null,
+            "codeHash": "0x4f7fa7444b8bbd11fbf14deb512d9e0989a51d1428545fd4cdf6c027ad24c8c5",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0xd5e8F76AafA20aA9A8983A35B71Ad3A793070Ed9",
+            "implementation": null,
+            "codeHash": "0x4f7fa7444b8bbd11fbf14deb512d9e0989a51d1428545fd4cdf6c027ad24c8c5",
+            "deployedCommit": "MOCK(market-registry owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(market-registry owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    }
+  },
+  "supersededBy": null
+}
