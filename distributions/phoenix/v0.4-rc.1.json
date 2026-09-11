@@ -58,7 +58,7 @@
   },
   "knownIssues": [
     "Public component release tags, deployment-build equivalence and tag-derived ABI/schema evidence are unresolved.",
-    "CLI Rollover factory/settler binding alignment, hosted Registry v2 availability, candidate address intake and Phoenix decoder alignment remain unresolved.",
+    "CLI Rollover factory/settler binding alignment and hosted Registry v2 availability remain unresolved. Current address coverage and decoder-union checks pass across the available non-superseded ABI generations; final release-derived evidence is still required.",
     "Explorer SimilarMatch is not exact full-build or constructor-argument evidence. Earlier checks found source-closure differences for RolloverBootstrapDeployer, RolloverDeploymentBootstrap and LibFillerPayloadExternal on both chains; final release equivalence must resolve them.",
     "The draft does not establish hosted-service activation, order migration, market activation or security-review approval."
   ],

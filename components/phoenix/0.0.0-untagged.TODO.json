@@ -4,8 +4,8 @@
   "version": "0.0.0-untagged.TODO",
   "source": {
     "repo": "https://github.com/Cork-Technology/phoenix",
-    "tag": "MOCK(phoenix owner): final signed public release tag",
-    "commit": "MOCK(phoenix owner): public commit with deployment-build equivalence"
+    "tag": "MOCK(phoenix owner): approve and publish v1.4.0-rc.1 and its GitHub prerelease",
+    "commit": "0276a097d8a6a0e28183aedf43669ad468172c7a"
   },
   "package": null,
   "schema": null,
@@ -13,7 +13,7 @@
   "reviewLevel": "unreviewed",
   "badges": [],
   "notices": [
-    "Draft record only; the component identifier is not a published release.",
+    "Draft record only; the component identifier is not a published release. The source commit is publicly available on release/v1.4.0, but no release tag or deployment-build equivalence is implied by that branch publication.",
     "Runtime hashes were read at finalized Base block 51161253 (0x3e64f08c83565f143425f582b81ee653c4c64bbe62b95234e13c263914323b63) and Arbitrum block 503977760 (0x7237a6ee520ad910891cbff459aa1534da46fff57ad706565503d5c4ee25f0b4).",
     "ABI snapshots were retrieved from the public Base explorer code pages for the listed addresses, not from final release tags. Provider-runtime comparison is unchecked; explorer ABI retrieval on Arbitrum was unavailable. These files are review evidence, not final tag-derived artifacts.",
     "Contract version fields record successful application-version getter readbacks. Null means no supported application-version getter; UPGRADE_INTERFACE_VERSION is not a component version.",
