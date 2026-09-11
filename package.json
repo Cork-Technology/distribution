@@ -4,6 +4,7 @@
   "description": "Cork's distribution registry — verification tooling",
   "type": "module",
   "scripts": {
+    "test": "node --import tsx --test scripts/*.test.ts",
     "verify": "tsx scripts/verify.ts"
   },
   "devDependencies": {
