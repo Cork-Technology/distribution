@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-periphery",
+  "version": "0.2.0-rc.1",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-periphery",
+    "tag": "v0.2.0-rc.1",
+    "commit": "258a5e51b950f55cfbb12375bd56ace054dd280f"
+  },
+  "package": null,
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "notices": [
+    "GitHub prerelease: https://github.com/Cork-Technology/cork-periphery/releases/tag/v0.2.0-rc.1. This record does not complete or approve the surrounding Distribution cut.",
+    "Runtime equivalence verified at finalized Base block 51172961 (0xff7e0e5703d5c038bfb24e5d31f3757181bc3d44d7719538c39ff50365851121) and Arbitrum block 504074671 (0x7764b5c42acd5be4ae554bd08c7e3ac6033a80f8109f41b945f2e5ace9b394d7) against the public tagged build: Solidity 0.8.30, optimizer runs 200, Cancun EVM, no CBOR metadata. Every source-resolved immutable was substituted before whole-runtime comparison; no masking was used.",
+    "The ABI is exported from a fresh credential-free recursive clone and build of the public tag, not from an explorer.",
+    "Immutable pool-manager and whitelist-manager bindings match the Phoenix 1.4.0-rc.1 proxy addresses on both chains; LOP matches the Distribution external dependency.",
+    "Active identifies deployed runtime, not market activation or production support. No historical constructor transaction, governance approval, account-policy coverage, cross-component integration or independent security review is certified."
+  ],
+  "knownIssues": [
+    "Breaking package removal relative to 0.1.3-rc.1: CorkMarketCreator and six associated interfaces are removed. The retained ForSelf implementation, entrypoints and constructors are unchanged.",
+    "The contract has no component version() getter. Null records that absence; release identity comes from the public tag and verified runtime.",
+    "Independent non-author review, removal notice and usage assessment, and complete organization-wide deny-list confirmation were not established by publication. The draft Distribution records the publication exceptions; integration approval is not waived."
+  ],
+  "contracts": {
+    "CorkForSelfAdapter": {
+      "version": null,
+      "abi": "./abi/CorkForSelfAdapter-0.2.0-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x3864902695DC930Df406ef5dEB74c4DC249e23f1",
+            "implementation": null,
+            "codeHash": "0xc1f8dbd80e43d0a67f90a1f62b9b95bbef456c22a61e93d51c10e97fdb01c43c",
+            "deployedCommit": "258a5e51b950f55cfbb12375bd56ace054dd280f",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x3864902695DC930Df406ef5dEB74c4DC249e23f1",
+            "implementation": null,
+            "codeHash": "0xc1f8dbd80e43d0a67f90a1f62b9b95bbef456c22a61e93d51c10e97fdb01c43c",
+            "deployedCommit": "258a5e51b950f55cfbb12375bd56ace054dd280f",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    }
+  },
+  "supersededBy": null
+}
