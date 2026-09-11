@@ -6,7 +6,7 @@
   "promotedFrom": null,
   "components": {
     "phoenix": "1.4.0-rc.1",
-    "market-registry": "0.0.0-untagged.TODO",
+    "market-registry": "0.5.0",
     "cork-cli": "0.0.0-untagged.TODO",
     "rollover": "0.0.0-untagged.TODO",
     "cork-periphery": "0.2.0-rc.1",
@@ -20,7 +20,7 @@
     "contracts": "Changed: new Phoenix core, ForSelf, Market Registry and Rollover deployments on both chains. Existing deployment records remain unchanged. Final tag-to-tag ABI compatibility assessment is pending.",
     "cli-mcp": "Changed: address and ABI adoption for the new contract set. Final released artifact, schema compatibility and consumer integration verification are pending.",
     "apis": "Changed: Registry v2 interface and new deployment/decoder configuration. Final tagged interface snapshot and live availability verification are pending.",
-    "manifests": "Existing schemaVersion 1 layout; Phoenix 1.4.0-rc.1 and cork-periphery 0.2.0-rc.1 are published, four other component releases remain unresolved. Draft identifiers must be replaced before publication."
+    "manifests": "Existing schemaVersion 1 layout; Phoenix 1.4.0-rc.1 and cork-periphery 0.2.0-rc.1 are published, three other component releases remain unresolved. Draft identifiers must be replaced before publication."
   },
   "integrationSuite": {
     "passed": false,
@@ -62,13 +62,13 @@
     "audits": []
   },
   "knownIssues": [
-    "Phoenix 1.4.0-rc.1 and cork-periphery 0.2.0-rc.1 are published with verified runtime equivalence and tag-source ABIs. The four remaining component releases, their deployment-build equivalence and final ABI/schema evidence are unresolved.",
+    "Phoenix 1.4.0-rc.1 and cork-periphery 0.2.0-rc.1 are published with verified runtime equivalence and tag-source ABIs. The three remaining component releases, their deployment-build equivalence and final ABI/schema evidence are unresolved.",
     "CLI Rollover factory/settler binding alignment and hosted Registry v2 availability remain unresolved. Current address coverage and decoder-union checks pass across the available non-superseded ABI generations; final release-derived evidence is still required.",
     "Explorer SimilarMatch is not exact full-build or constructor-argument evidence. Earlier checks found source-closure differences for RolloverBootstrapDeployer, RolloverDeploymentBootstrap and LibFillerPayloadExternal on both chains; final release equivalence must resolve them.",
     "The draft does not establish hosted-service activation, order migration, market activation or security-review approval."
   ],
   "scopeNotes": [
-    "Phoenix resolves to published 1.4.0-rc.1 and cork-periphery to published 0.2.0-rc.1. The other four component references remain unresolved draft identifiers, not installable versions. Verification must not treat their existence as release readiness.",
+    "Phoenix resolves to published 1.4.0-rc.1 and cork-periphery to published 0.2.0-rc.1. The other three component references remain unresolved draft identifiers, not installable versions. Verification must not treat their existence as release readiness.",
     "Existing component records, Distribution records and discovery pointers are unchanged. No old signing address is retired by this draft.",
     "Registry governance tooling remains on its existing registry; the dashboard/API migration does not authorize a governance migration.",
     "The proposed Distribution name still requires surface compatibility, signing-domain migration and disposability assessment before publication.",
