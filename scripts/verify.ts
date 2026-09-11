@@ -407,44 +407,72 @@ async function verifyIndexing(
           }
         }
       }
-      // 2. Decode safety: consumed topics must exist in the pinned ABI.
-      const declared = (status.decoders?.contract_types ?? []).find(
-        (ct: any) => (ct.contract_type ?? ct.type) === mapping.type,
-      );
-      if (declared && Object.values<any>(doc.contracts).some((entry) => isUnresolved(entry.abi))) {
-        results.push(["SKIP", `indexing/decode ${mapping.type} vs ${doc.component}@${doc.version}`, "release ABI unresolved"]);
-      } else if (declared) {
-        const abiNames = [...new Set([mapping.abiContract ?? contract, contract])];
-        const loadTopics = (names: string[]): Map<string, string> => {
-          const topics = new Map<string, string>();
-          for (const name of names) {
-            const abiRef = doc.contracts[name]?.abi;
-            if (!abiRef) continue;
-            const abi = JSON.parse(readFileSync(join(ROOT, "components", doc.component, abiRef), "utf8"));
-            for (const item of abi) if (item.type === "event") topics.set(eventTopic0(item), `${name}.${item.name}`);
-          }
-          return topics;
-        };
-        const pinnedTopics = loadTopics(abiNames);
-        const componentTopics = loadTopics(Object.keys(doc.contracts));
-        const missing: string[] = [];
-        const borrowed: string[] = [];
-        for (const ev of declared.events ?? []) {
-          if (pinnedTopics.has(ev.topic0)) continue;
-          const lender = componentTopics.get(ev.topic0);
-          if (lender) { borrowed.push(`${ev.name} from ${lender}`); continue; }
-          missing.push(`${ev.name} (${ev.topic0.slice(0, 10)}…)`);
-        }
-        const decodeLabel = `indexing/decode ${mapping.type} vs ${doc.component}@${doc.version}`;
-        if (missing.length > 0) {
-          results.push(["FAIL", decodeLabel, `indexer consumes events absent from the pinned ABI: ${missing.join(", ")}`]);
-        } else {
-          results.push(["PASS", decodeLabel, `all ${(declared.events ?? []).length} consumed topics exist in the pinned ABIs${borrowed.length ? ` (resolved component-wide: ${borrowed.join(", ")})` : ""}`]);
-        }
-      }
+      // 2. Decode safety is checked once per (component, decoder type) across
+      //    every non-superseded pin of that component — see below the loop.
     }
     if (notIndexed.length > 0)
       results.push(["INFO", `indexing/${doc.component}`, `no declared decoder type — out of the indexer's scope: ${notIndexed.join(", ")}`]);
+  }
+
+  // 2. Decode safety: every topic0 the indexer consumes for a declared type
+  //    must exist in the union of the ABIs of all non-superseded pins of the
+  //    component that carries that type. One decoder type serves several ABI
+  //    generations while two pins are live (an old Distribution still
+  //    consumed, a new one just published), so no single pin has to carry
+  //    every topic — but the indexer must not consume a topic that no live
+  //    pin emits. Resolution order per topic: the type's own contract in any
+  //    live pin, then any contract in any live pin (shared OZ lifecycle
+  //    events); the lender pin@contract is named in the PASS row.
+  const live = manifests.filter((d) => !d.supersededBy && d.contracts);
+  for (const mapping of INDEXED_CONTRACTS) {
+    if (!declaredTypes.has(mapping.type)) continue;
+    const pins = live.filter((d) => d.component === mapping.component && d.contracts[mapping.contract]);
+    if (pins.length === 0) continue;
+    const declared = (status.decoders?.contract_types ?? []).find(
+      (ct: any) => (ct.contract_type ?? ct.type) === mapping.type,
+    );
+    if (!declared) continue;
+    // An unresolved ABI reference is a placeholder, and a placeholder never
+    // contributes to a PASS: the pin is counted, and if every pin's own ABI
+    // is a placeholder the row is SKIP.
+    const todoPins: string[] = [];
+    const loadTopics = (doc: Record<string, any>, names: string[]): Map<string, string> => {
+      const topics = new Map<string, string>();
+      for (const name of names) {
+        const abiRef = doc.contracts[name]?.abi;
+        if (!abiRef || isUnresolved(abiRef)) continue;
+        const parsed = JSON.parse(readFileSync(join(ROOT, "components", doc.component, abiRef), "utf8"));
+        const abi: any[] = Array.isArray(parsed) ? parsed : parsed?.abi ?? [];
+        for (const item of abi) if (item.type === "event") topics.set(eventTopic0(item), `${doc.version}/${name}.${item.name}`);
+      }
+      return topics;
+    };
+    const own = new Map<string, string>();
+    const any = new Map<string, string>();
+    for (const doc of pins) {
+      const abiNames = [...new Set([mapping.abiContract ?? mapping.contract, mapping.contract])];
+      if (abiNames.every((n) => !doc.contracts[n]?.abi || isUnresolved(doc.contracts[n].abi))) todoPins.push(doc.version);
+      for (const [t, l] of loadTopics(doc, abiNames)) if (!own.has(t)) own.set(t, l);
+      for (const [t, l] of loadTopics(doc, Object.keys(doc.contracts))) if (!any.has(t)) any.set(t, l);
+    }
+    const missing: string[] = [];
+    const borrowed: string[] = [];
+    for (const ev of declared.events ?? []) {
+      if (own.has(ev.topic0)) continue;
+      const lender = any.get(ev.topic0);
+      if (lender) { borrowed.push(`${ev.name} from ${lender}`); continue; }
+      missing.push(`${ev.name} (${ev.topic0.slice(0, 10)}…)`);
+    }
+    const versions = pins.map((d) => d.version).join("+");
+    const decodeLabel = `indexing/decode ${mapping.type} vs ${mapping.component}@{${versions}}`;
+    if (todoPins.length === pins.length) {
+      results.push(["SKIP", decodeLabel, `no resolved ABI for ${mapping.contract} in any live pin (${todoPins.join(", ")}): decode safety not asserted`]);
+    } else if (missing.length > 0) {
+      results.push(["FAIL", decodeLabel, `indexer consumes events absent from every live pinned ABI: ${missing.join(", ")}`]);
+    } else {
+      const skipped = todoPins.length ? ` (unresolved ABI skipped: ${todoPins.join(", ")})` : "";
+      results.push(["PASS", decodeLabel, `all ${(declared.events ?? []).length} consumed topics exist in the live pinned ABIs${borrowed.length ? ` (resolved component-wide: ${borrowed.join(", ")})` : ""}${skipped}`]);
+    }
   }
 
   // 4. Freshness: the indexer's own watchdog verdicts, pinned chains only.

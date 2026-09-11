@@ -67,10 +67,10 @@ each referenced component file must parse and declare the requested component an
 The indexing layer is checked against the watch-list the indexer itself declares
 (`/indexing/v1/status`): every pinned deployment of an indexed contract type must be on
 the watch-list (FAIL), every event topic the indexer consumes for that type must exist in
-the component's pinned ABIs — the type's own contract first, with a component-wide
-fallback for shared lifecycle events the indexer declares on types that never emit them;
-a fallback resolution is named in the PASS row (FAIL when a topic exists in no pinned
-ABI — catches wrong-ABI-generation decoding at cut time), the watch-list's
+the union of the component’s non-superseded pinned ABIs — the type’s own contract
+first, with a component-wide fallback for shared lifecycle events. Each fallback
+names its lender pin and contract; a topic absent from every live pin is FAIL.
+The watch-list’s
 version labels are compared as WARN (a label is a flag, not proof), and the indexer's own
 watchdog verdicts report per pinned chain.
 Draft records may use `0.0.0-untagged.*`, `MOCK(owner): ...`, or legacy `TODO` sentinels.
