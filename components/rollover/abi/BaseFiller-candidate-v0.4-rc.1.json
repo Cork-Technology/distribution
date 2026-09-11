@@ -1,0 +1,1003 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "contract ISettler",
+        "name": "exactSettler_",
+        "type": "address"
+      },
+      {
+        "internalType": "contract ISettler",
+        "name": "partialSettler_",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IPoolManager",
+        "name": "poolManager_",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IDefaultCorkController",
+        "name": "controller_",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IMarketRegistry",
+        "name": "marketRegistry_",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "expiryTimestamp",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "currentTimestamp",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maxExpiryDuration",
+        "type": "uint256"
+      }
+    ],
+    "name": "BaseFiller__ExpiryExceedsMaxDuration",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "expected",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "actual",
+        "type": "bytes32"
+      }
+    ],
+    "name": "BaseFiller__JitMarketHashMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "BaseFiller__JitNotConfigured",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "expected",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "derived",
+        "type": "bytes32"
+      }
+    ],
+    "name": "BaseFiller__JitPoolMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "BaseFiller__MaxExpiryDurationUnavailable",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "BaseFiller__RateUnavailable",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "recipe",
+        "type": "address"
+      }
+    ],
+    "name": "BaseFiller__RecipeRejectedConstraint",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "expected",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "actual",
+        "type": "address"
+      }
+    ],
+    "name": "BaseFiller__SettlerMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "recipe",
+        "type": "address"
+      }
+    ],
+    "name": "BaseFiller__UnexpectedRateOverride",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "BaseFiller__UnknownSettler",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "BaseFiller__ZeroMaxExpiryDuration",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "BaseFiller__ZeroSettler",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "EntryNotFound",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "LibRolloverOrder__BadOrderType",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "LibRolloverOrder__NonCanonicalOrderData",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "recipe",
+        "type": "address"
+      }
+    ],
+    "name": "RecipeNotRegistered",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ReentrancyGuardReentrantCall",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "SafeERC20FailedOperation",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "rateOracle",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "recipe",
+        "type": "address"
+      }
+    ],
+    "name": "JITMarketCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "orderDigest",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "filler",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "premiumToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "PremiumRefunded",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "CONTROLLER",
+    "outputs": [
+      {
+        "internalType": "contract IDefaultCorkController",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "EXACT_SETTLER",
+    "outputs": [
+      {
+        "internalType": "contract ISettler",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MARKET_REGISTRY",
+    "outputs": [
+      {
+        "internalType": "contract IMarketRegistry",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "PARTIAL_SETTLER",
+    "outputs": [
+      {
+        "internalType": "contract ISettler",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "POOL_MANAGER",
+    "outputs": [
+      {
+        "internalType": "contract IPoolManager",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "contract ISettler",
+            "name": "settler",
+            "type": "address"
+          },
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "originSettler",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "originChainId",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint32",
+                "name": "openDeadline",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "fillDeadline",
+                "type": "uint32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "orderDataType",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes",
+                "name": "orderData",
+                "type": "bytes"
+              }
+            ],
+            "internalType": "struct ERC7683Types.GaslessCrossChainOrder",
+            "name": "order",
+            "type": "tuple"
+          },
+          {
+            "internalType": "bytes",
+            "name": "userSig",
+            "type": "bytes"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "srcCst",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "premiumToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "fillerSrcCst",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "rolloverContract",
+                "type": "address"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "orderDigest",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "deadline",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint64",
+                "name": "nonce",
+                "type": "uint64"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "address",
+                    "name": "target",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "value",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "bytes",
+                    "name": "callData",
+                    "type": "bytes"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "allowFailure",
+                    "type": "bool"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "isDelegateCall",
+                    "type": "bool"
+                  }
+                ],
+                "internalType": "struct RolloverTypes.Call[]",
+                "name": "preRolloverHooks",
+                "type": "tuple[]"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "address",
+                    "name": "target",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "value",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "bytes",
+                    "name": "callData",
+                    "type": "bytes"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "allowFailure",
+                    "type": "bool"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "isDelegateCall",
+                    "type": "bool"
+                  }
+                ],
+                "internalType": "struct RolloverTypes.Call[]",
+                "name": "midRolloverHooks",
+                "type": "tuple[]"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "address",
+                    "name": "target",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "value",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "bytes",
+                    "name": "callData",
+                    "type": "bytes"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "allowFailure",
+                    "type": "bool"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "isDelegateCall",
+                    "type": "bool"
+                  }
+                ],
+                "internalType": "struct RolloverTypes.Call[]",
+                "name": "postRolloverHooks",
+                "type": "tuple[]"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "address",
+                    "name": "target",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "value",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "bytes",
+                    "name": "callData",
+                    "type": "bytes"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "allowFailure",
+                    "type": "bool"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "isDelegateCall",
+                    "type": "bool"
+                  }
+                ],
+                "internalType": "struct RolloverTypes.Call[]",
+                "name": "premiumHooks",
+                "type": "tuple[]"
+              }
+            ],
+            "internalType": "struct RolloverTypes.RolloverIntent",
+            "name": "intent",
+            "type": "tuple"
+          },
+          {
+            "internalType": "uint256",
+            "name": "premiumCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minDstPerSrc",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes",
+            "name": "fillerAuthSig",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct BaseFiller.FillerJob",
+        "name": "job",
+        "type": "tuple"
+      }
+    ],
+    "name": "execute",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "contract ISettler",
+            "name": "settler",
+            "type": "address"
+          },
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "originSettler",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "originChainId",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint32",
+                "name": "openDeadline",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "fillDeadline",
+                "type": "uint32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "orderDataType",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes",
+                "name": "orderData",
+                "type": "bytes"
+              }
+            ],
+            "internalType": "struct ERC7683Types.GaslessCrossChainOrder",
+            "name": "order",
+            "type": "tuple"
+          },
+          {
+            "internalType": "bytes",
+            "name": "userSig",
+            "type": "bytes"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "srcCst",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "premiumToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "fillerSrcCst",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "rolloverContract",
+                "type": "address"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "orderDigest",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "deadline",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint64",
+                "name": "nonce",
+                "type": "uint64"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "address",
+                    "name": "target",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "value",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "bytes",
+                    "name": "callData",
+                    "type": "bytes"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "allowFailure",
+                    "type": "bool"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "isDelegateCall",
+                    "type": "bool"
+                  }
+                ],
+                "internalType": "struct RolloverTypes.Call[]",
+                "name": "preRolloverHooks",
+                "type": "tuple[]"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "address",
+                    "name": "target",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "value",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "bytes",
+                    "name": "callData",
+                    "type": "bytes"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "allowFailure",
+                    "type": "bool"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "isDelegateCall",
+                    "type": "bool"
+                  }
+                ],
+                "internalType": "struct RolloverTypes.Call[]",
+                "name": "midRolloverHooks",
+                "type": "tuple[]"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "address",
+                    "name": "target",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "value",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "bytes",
+                    "name": "callData",
+                    "type": "bytes"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "allowFailure",
+                    "type": "bool"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "isDelegateCall",
+                    "type": "bool"
+                  }
+                ],
+                "internalType": "struct RolloverTypes.Call[]",
+                "name": "postRolloverHooks",
+                "type": "tuple[]"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "address",
+                    "name": "target",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "value",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "bytes",
+                    "name": "callData",
+                    "type": "bytes"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "allowFailure",
+                    "type": "bool"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "isDelegateCall",
+                    "type": "bool"
+                  }
+                ],
+                "internalType": "struct RolloverTypes.Call[]",
+                "name": "premiumHooks",
+                "type": "tuple[]"
+              }
+            ],
+            "internalType": "struct RolloverTypes.RolloverIntent",
+            "name": "intent",
+            "type": "tuple"
+          },
+          {
+            "internalType": "uint256",
+            "name": "premiumCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minDstPerSrc",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes",
+            "name": "fillerAuthSig",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct BaseFiller.FillerJob",
+        "name": "job",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "collateralAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "referenceAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expiryTimestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "recipe",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rateOverride",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "rateMin",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "rateMax",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "rateChangePerDayMax",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "rateChangeCapacityMax",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct IMarketRegistry.ResolvedConstraint",
+            "name": "constraint",
+            "type": "tuple"
+          },
+          {
+            "internalType": "bytes",
+            "name": "additionalData",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "oracleSalt",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "swapFeePercentage",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "unwindSwapFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct BaseFiller.JITMarketParams",
+        "name": "jitMarket",
+        "type": "tuple"
+      }
+    ],
+    "name": "executeWithMarket",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "collateralAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "referenceAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expiryTimestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "recipe",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rateOverride",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "rateMin",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "rateMax",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "rateChangePerDayMax",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "rateChangeCapacityMax",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct IMarketRegistry.ResolvedConstraint",
+            "name": "constraint",
+            "type": "tuple"
+          },
+          {
+            "internalType": "bytes",
+            "name": "additionalData",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "oracleSalt",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "swapFeePercentage",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "unwindSwapFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct BaseFiller.JITMarketParams",
+        "name": "params",
+        "type": "tuple"
+      }
+    ],
+    "name": "hashJITMarketParams",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "commitment",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  }
+]

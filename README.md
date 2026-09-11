@@ -63,17 +63,23 @@ field);
 pure-artifact components against their public tag (it must resolve to the pinned commit).
 A pin with `supersededBy` set is a historical record: its live-service assertions are
 skipped, its immutable checks keep running. Distribution files are checked structurally:
-every component version they pin must exist as a component file here.
+each referenced component file must parse and declare the requested component and version.
 The indexing layer is checked against the watch-list the indexer itself declares
 (`/indexing/v1/status`): every pinned deployment of an indexed contract type must be on
 the watch-list (FAIL), every event topic the indexer consumes for that type must exist in
-the component's pinned ABIs — the type's own contract first, with a component-wide
-fallback for shared lifecycle events the indexer declares on types that never emit them;
-a fallback resolution is named in the PASS row (FAIL when a topic exists in no pinned
-ABI — catches wrong-ABI-generation decoding at cut time), the watch-list's
+the union of the component’s non-superseded pinned ABIs — the type’s own contract
+first, with a component-wide fallback for shared lifecycle events. Each fallback
+names its lender pin and contract; a topic absent from every live pin is FAIL.
+The watch-list’s
 version labels are compared as WARN (a label is a flag, not proof), and the indexer's own
 watchdog verdicts report per pinned chain.
-Rows holding `TODO` placeholders report as SKIP, never PASS. Non-zero exit on any mismatch.
+Draft records may use `0.0.0-untagged.*`, `MOCK(owner): ...`, or legacy `TODO` sentinels.
+Unresolved fields report as SKIP, never PASS; any sentinel-bearing record blocks a successful
+verification exit. Known contract addresses and runtime hashes are still checked, and indexer
+coverage failures remain FAIL. Release-dependent service and ABI checks stay unresolved until
+their inputs exist. Historical service SKIPs alone do not block verification.
+Run `npm test` for offline negative tests of these gates.
+No sentinel-bearing draft is a published Distribution or a supported integration pin.
 
 These files are hand-written for now and verified against the chain at every cut. Once a
 manifest generator exists, it becomes the only writer.

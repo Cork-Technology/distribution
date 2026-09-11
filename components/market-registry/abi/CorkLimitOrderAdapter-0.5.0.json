@@ -1,0 +1,636 @@
+[
+  {
+    "type": "function",
+    "name": "LIMIT_ORDER_PROTOCOL",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MARKET_CREATOR",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract ICorkMarketCreator"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "POOL_MANAGER",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IPoolManager"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "decodeExtraData",
+    "inputs": [
+      {
+        "name": "extraData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "market",
+        "type": "tuple",
+        "internalType": "struct CorkLimitOrderAdapter.JITMarketParams",
+        "components": [
+          {
+            "name": "market",
+            "type": "tuple",
+            "internalType": "struct ICorkMarketCreator.MarketParams",
+            "components": [
+              {
+                "name": "collateralAsset",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "referenceAsset",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "expiryTimestamp",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "recipe",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "rateOverride",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "constraint",
+                "type": "tuple",
+                "internalType": "struct IMarketRegistry.ResolvedConstraint",
+                "components": [
+                  {
+                    "name": "rateMin",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "rateMax",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "rateChangePerDayMax",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "rateChangeCapacityMax",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  }
+                ]
+              },
+              {
+                "name": "extraData",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "oracleSalt",
+                "type": "bytes32",
+                "internalType": "bytes32"
+              },
+              {
+                "name": "swapFeePercentage",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "unwindSwapFeePercentage",
+                "type": "uint256",
+                "internalType": "uint256"
+              }
+            ]
+          },
+          {
+            "name": "enableJitMint",
+            "type": "bool",
+            "internalType": "bool"
+          }
+        ]
+      },
+      {
+        "name": "permits",
+        "type": "tuple[]",
+        "internalType": "struct CorkLimitOrderAdapter.PermitParams[]",
+        "components": [
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "v",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "r",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "s",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "encodeExtraData",
+    "inputs": [
+      {
+        "name": "market",
+        "type": "tuple",
+        "internalType": "struct CorkLimitOrderAdapter.JITMarketParams",
+        "components": [
+          {
+            "name": "market",
+            "type": "tuple",
+            "internalType": "struct ICorkMarketCreator.MarketParams",
+            "components": [
+              {
+                "name": "collateralAsset",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "referenceAsset",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "expiryTimestamp",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "recipe",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "rateOverride",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "constraint",
+                "type": "tuple",
+                "internalType": "struct IMarketRegistry.ResolvedConstraint",
+                "components": [
+                  {
+                    "name": "rateMin",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "rateMax",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "rateChangePerDayMax",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "rateChangeCapacityMax",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  }
+                ]
+              },
+              {
+                "name": "extraData",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "oracleSalt",
+                "type": "bytes32",
+                "internalType": "bytes32"
+              },
+              {
+                "name": "swapFeePercentage",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "unwindSwapFeePercentage",
+                "type": "uint256",
+                "internalType": "uint256"
+              }
+            ]
+          },
+          {
+            "name": "enableJitMint",
+            "type": "bool",
+            "internalType": "bool"
+          }
+        ]
+      },
+      {
+        "name": "permits",
+        "type": "tuple[]",
+        "internalType": "struct CorkLimitOrderAdapter.PermitParams[]",
+        "components": [
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "v",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "r",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "s",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "initialize",
+    "inputs": [
+      {
+        "name": "limitOrderProtocol",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "poolManager",
+        "type": "address",
+        "internalType": "contract IPoolManager"
+      },
+      {
+        "name": "marketCreator",
+        "type": "address",
+        "internalType": "contract ICorkMarketCreator"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "preInteraction",
+    "inputs": [
+      {
+        "name": "order",
+        "type": "tuple",
+        "internalType": "struct IOrderMixin.Order",
+        "components": [
+          {
+            "name": "salt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maker",
+            "type": "uint256",
+            "internalType": "Address"
+          },
+          {
+            "name": "receiver",
+            "type": "uint256",
+            "internalType": "Address"
+          },
+          {
+            "name": "makerAsset",
+            "type": "uint256",
+            "internalType": "Address"
+          },
+          {
+            "name": "takerAsset",
+            "type": "uint256",
+            "internalType": "Address"
+          },
+          {
+            "name": "makingAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "takingAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "makerTraits",
+            "type": "uint256",
+            "internalType": "MakerTraits"
+          }
+        ]
+      },
+      {
+        "name": "",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "makingAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "takingAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "extraData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "takerInteraction",
+    "inputs": [
+      {
+        "name": "order",
+        "type": "tuple",
+        "internalType": "struct IOrderMixin.Order",
+        "components": [
+          {
+            "name": "salt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maker",
+            "type": "uint256",
+            "internalType": "Address"
+          },
+          {
+            "name": "receiver",
+            "type": "uint256",
+            "internalType": "Address"
+          },
+          {
+            "name": "makerAsset",
+            "type": "uint256",
+            "internalType": "Address"
+          },
+          {
+            "name": "takerAsset",
+            "type": "uint256",
+            "internalType": "Address"
+          },
+          {
+            "name": "makingAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "takingAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "makerTraits",
+            "type": "uint256",
+            "internalType": "MakerTraits"
+          }
+        ]
+      },
+      {
+        "name": "",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "taker",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "makingAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "takingAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "extraData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "version",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "event",
+    "name": "Initialized",
+    "inputs": [
+      {
+        "name": "version",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "JITMinted",
+    "inputs": [
+      {
+        "name": "poolId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "MarketId"
+      },
+      {
+        "name": "recipient",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "cstShares",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "collateralIn",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "InvalidInitialization",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "MintAmountDrift",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "MintUnavailable",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotInitializing",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OnlyLimitOrderProtocol",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OrderNotForPool",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ReentrancyGuardReentrantCall",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SafeERC20FailedOperation",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ZeroAddress",
+    "inputs": []
+  }
+]

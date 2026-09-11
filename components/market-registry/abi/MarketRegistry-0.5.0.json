@@ -1,0 +1,1343 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "DEFAULT_MAX_EXPIRY_DURATION",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "FIXED_RATE_ORACLE_FACTORY",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "WRAPPER_FACTORY",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "acceptOwnership",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "addAssets",
+    "inputs": [
+      {
+        "name": "entries",
+        "type": "tuple[]",
+        "internalType": "struct IMarketRegistry.Asset[]",
+        "components": [
+          {
+            "name": "addr",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "kind",
+            "type": "uint8",
+            "internalType": "enum IMarketRegistry.AssetKind"
+          },
+          {
+            "name": "priceSource",
+            "type": "tuple",
+            "internalType": "struct IMarketRegistry.AssetSource",
+            "components": [
+              {
+                "name": "addr",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "sourceType",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceType"
+              },
+              {
+                "name": "sourceInterface",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceInterface"
+              },
+              {
+                "name": "denomination",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          },
+          {
+            "name": "navSource",
+            "type": "tuple",
+            "internalType": "struct IMarketRegistry.AssetSource",
+            "components": [
+              {
+                "name": "addr",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "sourceType",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceType"
+              },
+              {
+                "name": "sourceInterface",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceInterface"
+              },
+              {
+                "name": "denomination",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "addConversionFeeds",
+    "inputs": [
+      {
+        "name": "entries",
+        "type": "tuple[]",
+        "internalType": "struct IMarketRegistry.ConversionFeed[]",
+        "components": [
+          {
+            "name": "base",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "quote",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "aggregatorAddress",
+            "type": "address",
+            "internalType": "address"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "addDenominations",
+    "inputs": [
+      {
+        "name": "units",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "addRecipes",
+    "inputs": [
+      {
+        "name": "recipes",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "deploy",
+    "inputs": [
+      {
+        "name": "ca",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "ref",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "mode",
+        "type": "uint8",
+        "internalType": "enum IMarketRegistry.OracleMode"
+      },
+      {
+        "name": "oracleSalt",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "wrapper",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "deployFixedRateOracle",
+    "inputs": [
+      {
+        "name": "rate",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "oracle",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getAssets",
+    "inputs": [
+      {
+        "name": "offset",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "limit",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "page",
+        "type": "tuple[]",
+        "internalType": "struct IMarketRegistry.Asset[]",
+        "components": [
+          {
+            "name": "addr",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "kind",
+            "type": "uint8",
+            "internalType": "enum IMarketRegistry.AssetKind"
+          },
+          {
+            "name": "priceSource",
+            "type": "tuple",
+            "internalType": "struct IMarketRegistry.AssetSource",
+            "components": [
+              {
+                "name": "addr",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "sourceType",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceType"
+              },
+              {
+                "name": "sourceInterface",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceInterface"
+              },
+              {
+                "name": "denomination",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          },
+          {
+            "name": "navSource",
+            "type": "tuple",
+            "internalType": "struct IMarketRegistry.AssetSource",
+            "components": [
+              {
+                "name": "addr",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "sourceType",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceType"
+              },
+              {
+                "name": "sourceInterface",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceInterface"
+              },
+              {
+                "name": "denomination",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "total",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getConversionFeeds",
+    "inputs": [
+      {
+        "name": "offset",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "limit",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "page",
+        "type": "tuple[]",
+        "internalType": "struct IMarketRegistry.ConversionFeed[]",
+        "components": [
+          {
+            "name": "base",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "quote",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "aggregatorAddress",
+            "type": "address",
+            "internalType": "address"
+          }
+        ]
+      },
+      {
+        "name": "total",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getDenominations",
+    "inputs": [
+      {
+        "name": "offset",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "limit",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "page",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "total",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getRecipes",
+    "inputs": [
+      {
+        "name": "offset",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "limit",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "page",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "total",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "initialize",
+    "inputs": [
+      {
+        "name": "initialOwner",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "wrapperFactory",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "fixedRateOracleFactory",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "isAsset",
+    "inputs": [
+      {
+        "name": "addr",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isDenomination",
+    "inputs": [
+      {
+        "name": "unit",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isRecipe",
+    "inputs": [
+      {
+        "name": "recipe",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "lookupAssetByAddress",
+    "inputs": [
+      {
+        "name": "addr",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "found",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "entry",
+        "type": "tuple",
+        "internalType": "struct IMarketRegistry.Asset",
+        "components": [
+          {
+            "name": "addr",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "kind",
+            "type": "uint8",
+            "internalType": "enum IMarketRegistry.AssetKind"
+          },
+          {
+            "name": "priceSource",
+            "type": "tuple",
+            "internalType": "struct IMarketRegistry.AssetSource",
+            "components": [
+              {
+                "name": "addr",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "sourceType",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceType"
+              },
+              {
+                "name": "sourceInterface",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceInterface"
+              },
+              {
+                "name": "denomination",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          },
+          {
+            "name": "navSource",
+            "type": "tuple",
+            "internalType": "struct IMarketRegistry.AssetSource",
+            "components": [
+              {
+                "name": "addr",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "sourceType",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceType"
+              },
+              {
+                "name": "sourceInterface",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceInterface"
+              },
+              {
+                "name": "denomination",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "lookupAssetByName",
+    "inputs": [
+      {
+        "name": "name",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "found",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "entry",
+        "type": "tuple",
+        "internalType": "struct IMarketRegistry.Asset",
+        "components": [
+          {
+            "name": "addr",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "kind",
+            "type": "uint8",
+            "internalType": "enum IMarketRegistry.AssetKind"
+          },
+          {
+            "name": "priceSource",
+            "type": "tuple",
+            "internalType": "struct IMarketRegistry.AssetSource",
+            "components": [
+              {
+                "name": "addr",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "sourceType",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceType"
+              },
+              {
+                "name": "sourceInterface",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceInterface"
+              },
+              {
+                "name": "denomination",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          },
+          {
+            "name": "navSource",
+            "type": "tuple",
+            "internalType": "struct IMarketRegistry.AssetSource",
+            "components": [
+              {
+                "name": "addr",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "sourceType",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceType"
+              },
+              {
+                "name": "sourceInterface",
+                "type": "uint8",
+                "internalType": "enum IMarketRegistry.SourceInterface"
+              },
+              {
+                "name": "denomination",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "lookupConversionFeed",
+    "inputs": [
+      {
+        "name": "base",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "quote",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "found",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "entry",
+        "type": "tuple",
+        "internalType": "struct IMarketRegistry.ConversionFeed",
+        "components": [
+          {
+            "name": "base",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "quote",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "aggregatorAddress",
+            "type": "address",
+            "internalType": "address"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "lookupWrapper",
+    "inputs": [
+      {
+        "name": "ca",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "ref",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "mode",
+        "type": "uint8",
+        "internalType": "enum IMarketRegistry.OracleMode"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "wrapper",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "maxExpiryDuration",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "owner",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "pendingOwner",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "predictFixedRateOracle",
+    "inputs": [
+      {
+        "name": "rate",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "oracle",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "removeAssets",
+    "inputs": [
+      {
+        "name": "addrs",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "removeConversionFeeds",
+    "inputs": [
+      {
+        "name": "bases",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "quotes",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "removeDenominations",
+    "inputs": [
+      {
+        "name": "units",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "removeRecipes",
+    "inputs": [
+      {
+        "name": "recipes",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "renounceOwnership",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setMaxExpiryDuration",
+    "inputs": [
+      {
+        "name": "newDuration",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "transferOwnership",
+    "inputs": [
+      {
+        "name": "newOwner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "version",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "wrapperKey",
+    "inputs": [
+      {
+        "name": "ca",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "ref",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "mode",
+        "type": "uint8",
+        "internalType": "enum IMarketRegistry.OracleMode"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "EntryAdded",
+    "inputs": [
+      {
+        "name": "namespace",
+        "type": "uint8",
+        "indexed": true,
+        "internalType": "enum IMarketRegistry.Namespace"
+      },
+      {
+        "name": "keyHash",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "entry",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "EntryRemoved",
+    "inputs": [
+      {
+        "name": "namespace",
+        "type": "uint8",
+        "indexed": true,
+        "internalType": "enum IMarketRegistry.Namespace"
+      },
+      {
+        "name": "keyHash",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "key",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FixedRateOracleDeployed",
+    "inputs": [
+      {
+        "name": "rate",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "oracle",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "caller",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Initialized",
+    "inputs": [
+      {
+        "name": "version",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MarketOracleDeployed",
+    "inputs": [
+      {
+        "name": "ca",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "ref",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "wrapper",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "mode",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum IMarketRegistry.OracleMode"
+      },
+      {
+        "name": "caSource",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "refSource",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "caller",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MaxExpiryDurationUpdated",
+    "inputs": [
+      {
+        "name": "previousDuration",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "newDuration",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OwnershipTransferStarted",
+    "inputs": [
+      {
+        "name": "previousOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "newOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OwnershipTransferred",
+    "inputs": [
+      {
+        "name": "previousOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "newOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "ArrayLengthMismatch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EmptyName",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EntryAlreadyExists",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EntryNotFound",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidInitialization",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "MissingSource",
+    "inputs": [
+      {
+        "name": "asset",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "mode",
+        "type": "uint8",
+        "internalType": "enum IMarketRegistry.OracleMode"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NavModeWithoutNavSource",
+    "inputs": [
+      {
+        "name": "ca",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "ref",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NoConversionPathToUsd",
+    "inputs": [
+      {
+        "name": "fromUnit",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "maxHops",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NotInitializing",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OwnableInvalidOwner",
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OwnableUnauthorizedAccount",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "RecipeNotContract",
+    "inputs": [
+      {
+        "name": "recipe",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "RecipeNotRegistered",
+    "inputs": [
+      {
+        "name": "recipe",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "RenounceDisabled",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SourceTypeMismatch",
+    "inputs": [
+      {
+        "name": "expected",
+        "type": "uint8",
+        "internalType": "enum IMarketRegistry.SourceType"
+      },
+      {
+        "name": "provided",
+        "type": "uint8",
+        "internalType": "enum IMarketRegistry.SourceType"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "UnregisteredDenomination",
+    "inputs": [
+      {
+        "name": "unit",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ZeroAddress",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ZeroBound",
+    "inputs": []
+  }
+]

@@ -1,0 +1,2082 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "rolloverContractFactory_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "phoenixPoolManager_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "ensOwner_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "initialAdmin_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "initialPauser_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "initialUnpauser_",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "AccessControlBadConfirmation",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "neededRole",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AccessControlUnauthorizedAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "EnforcedPause",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ExpectedPause",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidShortString",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "value",
+        "type": "uint8"
+      }
+    ],
+    "name": "LibHookPhase__OutOfRange",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "fillAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "quantum",
+        "type": "uint256"
+      }
+    ],
+    "name": "LibPhoenixShareQuantum__FillAmountNotQuantumAligned",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "orderSize",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "quantum",
+        "type": "uint256"
+      }
+    ],
+    "name": "LibPhoenixShareQuantum__OrderSizeNotQuantumAligned",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "residual",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "quantum",
+        "type": "uint256"
+      }
+    ],
+    "name": "LibPhoenixShareQuantum__ResidualNotQuantumAligned",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "decimals",
+        "type": "uint8"
+      }
+    ],
+    "name": "LibPhoenixShareQuantum__UnsupportedCollateralDecimals",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "LibRolloverOrder__BadOrderType",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "LibRolloverOrder__NonCanonicalOrderData",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableInvalidOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableUnauthorizedAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ReentrancyGuardReentrantCall",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "SafeERC20FailedOperation",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__AlreadyFilled",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__AsyncPremiumOptInRequired",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__AtomicFillRequired",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__BadUserSignature",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__DstCstEqualsPremiumToken",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__DstCstNotCanonical",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "reported",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "delivered",
+        "type": "uint256"
+      }
+    ],
+    "name": "Settler__DstProducedNotDelivered",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "orderSize",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fillAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "Settler__ExactFillRequiresFullOrderSize",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "recorded",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "supplied",
+        "type": "address"
+      }
+    ],
+    "name": "Settler__ExactFillerMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "srcLeftover",
+        "type": "uint256"
+      }
+    ],
+    "name": "Settler__ExactNoUnderfillRolloverContractReturnedLeftover",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "recorded",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "supplied",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Settler__ExactSubFillerMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__FillAfterDeadline",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "deadline",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint256",
+        "name": "srcExpiry",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "dstExpiry",
+        "type": "uint256"
+      }
+    ],
+    "name": "Settler__FillDeadlineExceedsPoolExpiry",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__FillDeadlineMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "required",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "actual",
+        "type": "uint256"
+      }
+    ],
+    "name": "Settler__InsufficientMintRate",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__InsufficientRecoverableBalance",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__InvalidPremiumPaymentMode",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__MarkExpiredBeforeFillDeadline",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__NoResidualToReclaim",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__OpenAfterOpenDeadline",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__OpenDeadlineAfterFillDeadline",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__OpenDeadlineMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__OrderHasFills",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__OrderIdMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__OrderInTerminalState",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__OrderNotCancellable",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__OrderNotExpirable",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__OrderNotReclaimable",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__OrderSaltMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__OriginChainIdMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__OriginSettlerMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__PartialFillsNotSupported",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__PremiumAlreadyFired",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__PremiumBeforeRollover",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "expected",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "actual",
+        "type": "uint256"
+      }
+    ],
+    "name": "Settler__PremiumDeliveryMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__PremiumDestinationMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "cap",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "required",
+        "type": "uint256"
+      }
+    ],
+    "name": "Settler__PremiumExceedsCap",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__PremiumForMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__PremiumNotSettled",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__ReclaimBeforeFillDeadline",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "orderSize",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "Settler__RolloverAmountOutOfBounds",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "Settler__RolloverContractNotDeployed",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__RolloverParamsDstCstMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__RolloverParamsSettlerMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__RolloverParamsSrcCstMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__SamePoolId",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__SelfExclusiveFiller",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__SettlerMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__SrcCstEqualsPremiumToken",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__SrcCstNotCanonical",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "reported",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "delivered",
+        "type": "uint256"
+      }
+    ],
+    "name": "Settler__SrcLeftoverDeliveryShortfall",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "reported",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fillAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "Settler__SrcLeftoverExceedsFillAmount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__UnauthorizedCancel",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "exclusiveFiller",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
+      }
+    ],
+    "name": "Settler__UnauthorizedFiller",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__UnderfundedDstCstLiability",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__UserMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "rolloverContract",
+        "type": "address"
+      }
+    ],
+    "name": "Settler__UserNotRolloverContractOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__WrongDestinationChain",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__WrongOriginChain",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__ZeroAddress",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__ZeroAmount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__ZeroDstCstToken",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__ZeroMint",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__ZeroOrderSize",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__ZeroPremiumRate",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__ZeroPremiumToken",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__ZeroRolloverIntentHash",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Settler__ZeroSrcCstToken",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "str",
+        "type": "string"
+      }
+    ],
+    "name": "StringTooLong",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "orderId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "defaulterFiller",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "recipientRolloverContract",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "DefaulterResidualReclaimed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "EIP712DomainChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "orderId",
+        "type": "bytes32"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "originChainId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint32",
+            "name": "openDeadline",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "fillDeadline",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "orderId",
+            "type": "bytes32"
+          },
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "token",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "recipient",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "chainId",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct ERC7683Types.Output[]",
+            "name": "maxSpent",
+            "type": "tuple[]"
+          },
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "token",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "recipient",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "chainId",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct ERC7683Types.Output[]",
+            "name": "minReceived",
+            "type": "tuple[]"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "destinationChainId",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "destinationSettler",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes",
+                "name": "originData",
+                "type": "bytes"
+              }
+            ],
+            "internalType": "struct ERC7683Types.FillInstruction[]",
+            "name": "fillInstructions",
+            "type": "tuple[]"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct ERC7683Types.ResolvedCrossChainOrder",
+        "name": "resolvedOrder",
+        "type": "tuple"
+      }
+    ],
+    "name": "Open",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "orderId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "OrderCancelled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "orderId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "OrderExpired",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "orderId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "OrderSettled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "Paused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "orderDigest",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "premiumPayer",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "rolloverFiller",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "subFiller",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "premium",
+        "type": "uint256"
+      }
+    ],
+    "name": "PremiumLegFilled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "previousAdminRole",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "newAdminRole",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RoleAdminChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "RoleGranted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "RoleRevoked",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "orderDigest",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "filler",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "subFiller",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "srcCstProvided",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "dstCstProduced",
+        "type": "uint256"
+      }
+    ],
+    "name": "RolloverLegFilled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "orderDigest",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "filler",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "subFiller",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "reportedSrcLeftover",
+        "type": "uint256"
+      }
+    ],
+    "name": "SrcCstRefunded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "TokenRecovered",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "Unpaused",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "CORK_POOL_MANAGER",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_ADMIN_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DOMAIN_SEPARATOR",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RECOVERY_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "ROLLOVER_CONTRACT_FACTORY",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "orderId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes",
+        "name": "originData",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "cptHolderSig",
+        "type": "bytes"
+      }
+    ],
+    "name": "cancel",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "dstCstLiabilityOf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "eip712Domain",
+    "outputs": [
+      {
+        "internalType": "bytes1",
+        "name": "fields",
+        "type": "bytes1"
+      },
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "version",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "chainId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "verifyingContract",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "salt",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "extensions",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "orderId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes",
+        "name": "originData",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "fillerData",
+        "type": "bytes"
+      }
+    ],
+    "name": "fill",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "fillerAuthTypehash",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getRoleAdmin",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "grantRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "hasRole",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "orderId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes",
+        "name": "originData",
+        "type": "bytes"
+      }
+    ],
+    "name": "markExpired",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint32",
+            "name": "fillDeadline",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "orderDataType",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes",
+            "name": "orderData",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct ERC7683Types.OnchainCrossChainOrder",
+        "name": "order",
+        "type": "tuple"
+      }
+    ],
+    "name": "open",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "originSettler",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nonce",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "originChainId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint32",
+            "name": "openDeadline",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "fillDeadline",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "orderDataType",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes",
+            "name": "orderData",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct ERC7683Types.GaslessCrossChainOrder",
+        "name": "order",
+        "type": "tuple"
+      },
+      {
+        "internalType": "bytes",
+        "name": "signature",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "name": "openFor",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "orderDigest",
+        "type": "bytes32"
+      }
+    ],
+    "name": "orderStatus",
+    "outputs": [
+      {
+        "internalType": "enum RolloverTypes.OrderStatus",
+        "name": "status",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pause",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "paused",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "orderId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "defaulterFiller",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "subFiller",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes",
+        "name": "originData",
+        "type": "bytes"
+      }
+    ],
+    "name": "reclaim",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "recoverToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "recoverableTokenBalance",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "callerConfirmation",
+        "type": "address"
+      }
+    ],
+    "name": "renounceRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint32",
+            "name": "fillDeadline",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "orderDataType",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes",
+            "name": "orderData",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct ERC7683Types.OnchainCrossChainOrder",
+        "name": "order",
+        "type": "tuple"
+      }
+    ],
+    "name": "resolve",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "originChainId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint32",
+            "name": "openDeadline",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "fillDeadline",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "orderId",
+            "type": "bytes32"
+          },
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "token",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "recipient",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "chainId",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct ERC7683Types.Output[]",
+            "name": "maxSpent",
+            "type": "tuple[]"
+          },
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "token",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "recipient",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "chainId",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct ERC7683Types.Output[]",
+            "name": "minReceived",
+            "type": "tuple[]"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "destinationChainId",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "destinationSettler",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes",
+                "name": "originData",
+                "type": "bytes"
+              }
+            ],
+            "internalType": "struct ERC7683Types.FillInstruction[]",
+            "name": "fillInstructions",
+            "type": "tuple[]"
+          }
+        ],
+        "internalType": "struct ERC7683Types.ResolvedCrossChainOrder",
+        "name": "resolved",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "originSettler",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nonce",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "originChainId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint32",
+            "name": "openDeadline",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "fillDeadline",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "orderDataType",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes",
+            "name": "orderData",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct ERC7683Types.GaslessCrossChainOrder",
+        "name": "order",
+        "type": "tuple"
+      },
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "name": "resolveFor",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "originChainId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint32",
+            "name": "openDeadline",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "fillDeadline",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "orderId",
+            "type": "bytes32"
+          },
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "token",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "recipient",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "chainId",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct ERC7683Types.Output[]",
+            "name": "maxSpent",
+            "type": "tuple[]"
+          },
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "token",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "recipient",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "chainId",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct ERC7683Types.Output[]",
+            "name": "minReceived",
+            "type": "tuple[]"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "destinationChainId",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "destinationSettler",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes",
+                "name": "originData",
+                "type": "bytes"
+              }
+            ],
+            "internalType": "struct ERC7683Types.FillInstruction[]",
+            "name": "fillInstructions",
+            "type": "tuple[]"
+          }
+        ],
+        "internalType": "struct ERC7683Types.ResolvedCrossChainOrder",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "revokeRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "orderDigest",
+        "type": "bytes32"
+      }
+    ],
+    "name": "rolloverAccountingOf",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "filler",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "settlementDestination",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dstCstProduced",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint64",
+            "name": "filledAt",
+            "type": "uint64"
+          },
+          {
+            "internalType": "bool",
+            "name": "premiumFired",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct SettlerTypes.ExactRolloverAccounting",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes4",
+        "name": "interfaceId",
+        "type": "bytes4"
+      }
+    ],
+    "name": "supportsInterface",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "unpause",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "version",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  }
+]

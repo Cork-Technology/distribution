@@ -1,0 +1,393 @@
+{
+  "schemaVersion": 1,
+  "component": "rollover",
+  "version": "0.0.0-untagged.TODO",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/rollover",
+    "tag": "MOCK(rollover owner): final signed public release tag",
+    "commit": "MOCK(rollover owner): public commit with deployment-build equivalence"
+  },
+  "package": null,
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "notices": [
+    "Draft record only; the component identifier is not a published release.",
+    "Runtime hashes were read at finalized Base block 51161253 (0x3e64f08c83565f143425f582b81ee653c4c64bbe62b95234e13c263914323b63) and Arbitrum block 503977760 (0x7237a6ee520ad910891cbff459aa1534da46fff57ad706565503d5c4ee25f0b4).",
+    "ABI snapshots were retrieved from the public Base explorer code pages for the listed addresses, not from final release tags. Provider-runtime comparison is unchecked; explorer ABI retrieval on Arbitrum was unavailable. These files are review evidence, not final tag-derived artifacts.",
+    "Contract version fields record successful application-version getter readbacks. Null means no supported application-version getter; UPGRADE_INTERFACE_VERSION is not a component version.",
+    "Active rows identify deployed runtime, not market activation, integration approval or production support. Proxy rows pin proxy runtime and separately verified EIP-1967 implementation bindings."
+  ],
+  "knownIssues": [
+    "Final component-owner targets, signed public releases, public-tag build equivalence and tag-derived ABI exports remain publication gates.",
+    "SimilarMatch source-closure differences for RolloverBootstrapDeployer, RolloverDeploymentBootstrap and LibFillerPayloadExternal require resolution; an explorer match is not exact constructor/build evidence."
+  ],
+  "contracts": {
+    "RolloverBootstrapDeployer": {
+      "version": null,
+      "abi": "./abi/RolloverBootstrapDeployer-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0xA99fFea11298A1324eEb55EEC31B05D99085d9bA",
+            "implementation": null,
+            "codeHash": "0x6fbe4ac9797fef97a960de8b5afe25235848e1e8479b1282590e571671fc468e",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0xA99fFea11298A1324eEb55EEC31B05D99085d9bA",
+            "implementation": null,
+            "codeHash": "0x6fbe4ac9797fef97a960de8b5afe25235848e1e8479b1282590e571671fc468e",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "RolloverDeploymentBootstrap": {
+      "version": null,
+      "abi": "./abi/RolloverDeploymentBootstrap-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x56A7DD76df24764e1D4f611FAa58dC2187F649ea",
+            "implementation": null,
+            "codeHash": "0x19022baf56bdf414af7861d1069c636ff98b7e862d6bb855c5a93e9e105c048c",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x56A7DD76df24764e1D4f611FAa58dC2187F649ea",
+            "implementation": null,
+            "codeHash": "0x19022baf56bdf414af7861d1069c636ff98b7e862d6bb855c5a93e9e105c048c",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "LibFillerPayloadExternal": {
+      "version": null,
+      "abi": "./abi/LibFillerPayloadExternal-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x6AD815279F2d2e631CFd1558E1DD70cfC82b1b88",
+            "implementation": null,
+            "codeHash": "0x8c5f372bde2a4041afe61fa3be86b14e19f35ca3a50c4dcf09731048341a94f2",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x6AD815279F2d2e631CFd1558E1DD70cfC82b1b88",
+            "implementation": null,
+            "codeHash": "0x8c5f372bde2a4041afe61fa3be86b14e19f35ca3a50c4dcf09731048341a94f2",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkRolloverContractImplementation": {
+      "version": "1.0.0",
+      "abi": "./abi/CorkRolloverContractImplementation-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x232387a35CE5C3f3d956348193541aB8d7553A9e",
+            "implementation": null,
+            "codeHash": "0x6a6adb0de725bae81b89684f0b0b1d30ff993101cad5931117b2378c36c33e74",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x232387a35CE5C3f3d956348193541aB8d7553A9e",
+            "implementation": null,
+            "codeHash": "0x6a6adb0de725bae81b89684f0b0b1d30ff993101cad5931117b2378c36c33e74",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ExactSettler": {
+      "version": "1.0.0",
+      "abi": "./abi/ExactSettler-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x0F2Ce7a5b817865ebFf50c58439B9A27E38f452E",
+            "implementation": null,
+            "codeHash": "0x62e6972722aefedebbbdbecdaedf468a66cf053028c7d553d69b4835cbfa4c54",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x0F2Ce7a5b817865ebFf50c58439B9A27E38f452E",
+            "implementation": null,
+            "codeHash": "0xde5ceb4adef911a4ec77f05c145dfdaae71a413da39b7dab264c7be58d239a4e",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "PartialSettler": {
+      "version": "1.0.0",
+      "abi": "./abi/PartialSettler-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x5E19Be0743fE521d8BF85b5A558356675499bE9e",
+            "implementation": null,
+            "codeHash": "0x6ad0ee0fd6b76b9092632b2dee9fd0df64b8c16fdb90eb7f2a8ee1c032327256",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x5E19Be0743fE521d8BF85b5A558356675499bE9e",
+            "implementation": null,
+            "codeHash": "0x1cef6eee0e389655c8c96ec53852bfb48899e7b551e859f513cc7a5a12f907d3",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "TrustTimelock": {
+      "version": null,
+      "abi": "./abi/TrustTimelock-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x81954908bA5EB09caa9B39b3dD732fdDcbB32Dd7",
+            "implementation": null,
+            "codeHash": "0x89335e2c1295ff11144df2800fbea85d6c56290553b8e0e1fc7c40a7db7f4b1e",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x81954908bA5EB09caa9B39b3dD732fdDcbB32Dd7",
+            "implementation": null,
+            "codeHash": "0x89335e2c1295ff11144df2800fbea85d6c56290553b8e0e1fc7c40a7db7f4b1e",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkRolloverContractFactory": {
+      "version": "1.0.0",
+      "abi": "./abi/CorkRolloverContractFactory-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x99A5C47CbF062D4E6665afAF32aE6496F9f93F65",
+            "implementation": null,
+            "codeHash": "0xb3175553bc39b29414affd2c021bc95bd3c5391c8959127e3ea787f734fe9d64",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x99A5C47CbF062D4E6665afAF32aE6496F9f93F65",
+            "implementation": null,
+            "codeHash": "0xb3175553bc39b29414affd2c021bc95bd3c5391c8959127e3ea787f734fe9d64",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ApproveModule": {
+      "version": null,
+      "abi": "./abi/ApproveModule-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0xfcE570587B98D1FD8776eE864EF7CeA69A870885",
+            "implementation": null,
+            "codeHash": "0x5a761050258a7941cd467c19b6b23f3ac423579e720bad2ac75727f8515fda74",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0xfcE570587B98D1FD8776eE864EF7CeA69A870885",
+            "implementation": null,
+            "codeHash": "0x5a761050258a7941cd467c19b6b23f3ac423579e720bad2ac75727f8515fda74",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "OwnerTokenPullModule": {
+      "version": null,
+      "abi": "./abi/OwnerTokenPullModule-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x9C86e0f05b7Cc99dab3D9C32AA8264aF7DC32990",
+            "implementation": null,
+            "codeHash": "0x5ed5eedf983759463a633edec50144f2c2d1cfcee4b861ce713a822dbf9181fc",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x9C86e0f05b7Cc99dab3D9C32AA8264aF7DC32990",
+            "implementation": null,
+            "codeHash": "0x5ed5eedf983759463a633edec50144f2c2d1cfcee4b861ce713a822dbf9181fc",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ScopedTransferModule": {
+      "version": null,
+      "abi": "./abi/ScopedTransferModule-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x5b7cd7f72DAA99ac6DDED4F42674FF47ebEd7cdc",
+            "implementation": null,
+            "codeHash": "0xdb3fd44ad7a01dc88785248f5d07f705d40be203f03f44696996b9ae855490dc",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x5b7cd7f72DAA99ac6DDED4F42674FF47ebEd7cdc",
+            "implementation": null,
+            "codeHash": "0xdb3fd44ad7a01dc88785248f5d07f705d40be203f03f44696996b9ae855490dc",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ScopedSplitModule": {
+      "version": null,
+      "abi": "./abi/ScopedSplitModule-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0xF593a08bAa52c55ABde386C563AF9b50848DDe13",
+            "implementation": null,
+            "codeHash": "0x35e234be840fdfd3fbe64de1a3a6973d2fd7dcf973d236c166864598489643d6",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0xF593a08bAa52c55ABde386C563AF9b50848DDe13",
+            "implementation": null,
+            "codeHash": "0x35e234be840fdfd3fbe64de1a3a6973d2fd7dcf973d236c166864598489643d6",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "PostRolloverModule": {
+      "version": null,
+      "abi": "./abi/PostRolloverModule-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x84e69211601882091D1a36a5cCdbC1EebB82908F",
+            "implementation": null,
+            "codeHash": "0xa7495d1c09e134ead1682084eb5f58a6b7b3b58dbe603c0d68735a49528c7cb2",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x84e69211601882091D1a36a5cCdbC1EebB82908F",
+            "implementation": null,
+            "codeHash": "0xa7495d1c09e134ead1682084eb5f58a6b7b3b58dbe603c0d68735a49528c7cb2",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "BaseFiller": {
+      "version": null,
+      "abi": "./abi/BaseFiller-candidate-v0.4-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x3D16AD60a2fbD352Cc1108c4144F4093ab2E1224",
+            "implementation": null,
+            "codeHash": "0x163bdf788da8e04521ac9647dd38ef14c1971b83bcdb51383d7194b49bb8f6f5",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 51161253",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x3D16AD60a2fbD352Cc1108c4144F4093ab2E1224",
+            "implementation": null,
+            "codeHash": "0x163bdf788da8e04521ac9647dd38ef14c1971b83bcdb51383d7194b49bb8f6f5",
+            "deployedCommit": "MOCK(rollover owner): public release commit with deployment equivalence",
+            "chainFork": "MOCK(rollover owner): final public-tag compiler/EVM target; runtime readback at finalized block 503977760",
+            "status": "active"
+          }
+        ]
+      }
+    }
+  },
+  "supersededBy": null
+}

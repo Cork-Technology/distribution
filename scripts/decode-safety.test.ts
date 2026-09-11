@@ -158,9 +158,8 @@ test("the shared lifecycle event resolves component-wide and names its lender", 
   assert.match(result.output, /resolved component-wide: Upgraded from 1\.4\.0\/WhitelistManagerProxy\.Upgraded/);
 });
 
-test("a placeholder ABI never contributes to a PASS: the row is SKIP", () => {
+test("an unresolved ABI blocks the cut and never earns a decode PASS", () => {
   const result = verify([{ version: "1.4.0", events: [], todoAbi: true }], [upgraded]);
-  assert.equal(result.status, 0, result.output);
-  assert.match(result.output, /SKIP\s+indexing\/decode CORK_POOL_MANAGER vs phoenix@\{1\.4\.0\}.*no resolved ABI/);
+  assert.equal(result.status, 1, result.output);
   assert.doesNotMatch(result.output, /PASS\s+indexing\/decode/);
 });

@@ -1,0 +1,917 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "cork",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "whitelistManager",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "lop",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "CORK",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract ICorkPoolManagerMinimal"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "LOP",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IOrderMixinMinimal"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "WHITELIST",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IWhitelistManagerMinimal"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "depositForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.DepositForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "collateralAssetsIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minCptAndCstSharesOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cptAndCstSharesOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "exerciseForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.ExerciseForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "cstSharesIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxReferenceAssetsIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minCollateralAssetsOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "collateralAssetsOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "referenceAssetsIn",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "fee",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "exerciseOtherForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.ExerciseOtherForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "referenceAssetsIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxCstSharesIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minCollateralAssetsOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "collateralAssetsOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "cstSharesIn",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "fee",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "fillOrderForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkLopFillForSelfBase.FillOrderForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "order",
+            "type": "tuple",
+            "internalType": "struct IOrderMixinMinimal.Order",
+            "components": [
+              {
+                "name": "salt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "maker",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "receiver",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "makerAsset",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "takerAsset",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "makingAmount",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "takingAmount",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "makerTraits",
+                "type": "uint256",
+                "internalType": "uint256"
+              }
+            ]
+          },
+          {
+            "name": "signature",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "takerTraits",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "extension",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "makingAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "takingAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "orderHash",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "mintForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.MintForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "cptAndCstSharesOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxCollateralAssetsIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "collateralAssetsIn",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "redeemForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.RedeemForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "cptSharesIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minReferenceAssetsOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minCollateralAssetsOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "referenceAssetsOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "collateralAssetsOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "swapForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.SwapForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "collateralAssetsOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxCstSharesIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxReferenceAssetsIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cstSharesIn",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "referenceAssetsIn",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "fee",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "unwindDepositForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.UnwindDepositForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "collateralAssetsOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxCptAndCstSharesIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cptAndCstSharesIn",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "unwindExerciseForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.UnwindExerciseForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "cstSharesOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxCollateralAssetsIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minReferenceAssetsOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "collateralAssetsIn",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "referenceAssetsOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "fee",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "unwindExerciseOtherForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.UnwindExerciseOtherForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "referenceAssetsOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxCollateralAssetsIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minCstSharesOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "collateralAssetsIn",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "cstSharesOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "fee",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "unwindMintForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.UnwindMintForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "cptAndCstSharesIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minCollateralAssetsOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "collateralAssetsOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "unwindSwapForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.UnwindSwapForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "collateralAssetsIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minCstSharesOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minReferenceAssetsOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cstSharesOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "referenceAssetsOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "fee",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "withdrawForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.WithdrawForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "collateralAssetsOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxCptSharesIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cptSharesIn",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "actualCollateralAssetsOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "actualReferenceAssetsOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "withdrawOtherForSelf",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct CorkPoolForSelfBase.WithdrawOtherForSelfParams",
+        "components": [
+          {
+            "name": "poolId",
+            "type": "bytes32",
+            "internalType": "MarketId"
+          },
+          {
+            "name": "referenceAssetsOut",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxCptSharesIn",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cptSharesIn",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "actualCollateralAssetsOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "actualReferenceAssetsOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "error",
+    "name": "CallerNotWhitelisted",
+    "inputs": [
+      {
+        "name": "poolId",
+        "type": "bytes32",
+        "internalType": "MarketId"
+      },
+      {
+        "name": "caller",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "DeadlineExceeded",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ExtensionTooLong",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidSignatureLength",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OrderAssetsNotInMarket",
+    "inputs": [
+      {
+        "name": "makerAsset",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "takerAsset",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ReentrancyGuardReentrantCall",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SafeERC20FailedOperation",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SlippageExceeded",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ThresholdRequired",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "WhitelistManagerMismatch",
+    "inputs": [
+      {
+        "name": "servedPoolManager",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "cork",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ZeroAddress",
+    "inputs": []
+  }
+]

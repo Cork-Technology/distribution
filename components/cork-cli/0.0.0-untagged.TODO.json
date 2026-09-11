@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-cli",
+  "version": "0.0.0-untagged.TODO",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-cli",
+    "tag": "MOCK(cork-cli owner): final signed release tag",
+    "commit": "MOCK(cork-cli owner): public release commit"
+  },
+  "package": "MOCK(cork-cli owner): released CLI/MCP binaries, checksums and verified build provenance for the final tag",
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "config": {
+    "note": "The final cork-defaults.json must bind the same Phoenix, Market Registry and Rollover deployments as this Distribution. A candidate that still targets the previous Rollover factory or settlers is not eligible.",
+    "snapshot": "MOCK(cork-cli owner): final tag-pinned cork-defaults.json",
+    "snapshotSha256": "MOCK(cork-cli owner): SHA-256 of the final tag-pinned configuration"
+  },
+  "docs": [],
+  "notices": [
+    "Draft record only; the version is an unresolved identifier, not an installable release.",
+    "The covered channel is the released CLI/MCP binaries. No SDK, OCI, APK or hosted CVM release is claimed."
+  ],
+  "knownIssues": [
+    "Rollover factory and settler address alignment is still unresolved in the candidate CLI configuration.",
+    "Final component release, schema compatibility review and two-chain consumer integration verification remain open."
+  ],
+  "contracts": null,
+  "supersededBy": null
+}
