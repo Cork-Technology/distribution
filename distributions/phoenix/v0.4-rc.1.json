@@ -8,7 +8,7 @@
     "phoenix": "1.4.0-rc.1",
     "market-registry": "0.5.0",
     "cork-cli": "0.0.0-untagged.TODO",
-    "rollover": "0.0.0-untagged.TODO",
+    "rollover": "0.2.0",
     "cork-periphery": "0.2.0-rc.1",
     "cork-api": "0.0.0-untagged.TODO"
   },
@@ -17,16 +17,16 @@
     8453
   ],
   "surfaces": {
-    "contracts": "Changed: new Phoenix core, ForSelf, Market Registry and Rollover deployments on both chains. Existing deployment records remain unchanged. Final tag-to-tag ABI compatibility assessment is pending.",
+    "contracts": "Changed: new Phoenix core, ForSelf, Market Registry and Rollover deployments on both chains. Existing published deployment records remain unchanged. Rollover 0.2.0 has breaking oracleSalt/JIT commitment, recipe verification and fee-bearing market tuple changes; complete pinned-set compatibility and migration assessment remains a cut gate.",
     "cli-mcp": "Changed: address and ABI adoption for the new contract set. Final released artifact, schema compatibility and consumer integration verification are pending.",
     "apis": "Changed: Registry v2 interface and new deployment/decoder configuration. Final tagged interface snapshot and live availability verification are pending.",
-    "manifests": "Existing schemaVersion 1 layout; Phoenix 1.4.0-rc.1 and cork-periphery 0.2.0-rc.1 are published, three other component releases remain unresolved. Draft identifiers must be replaced before publication."
+    "manifests": "Existing Distribution schemaVersion 1 layout. Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0 are published contract pins. CLI and API release identifiers remain unresolved. Rollover source deployment-bundle consumers must dispatch by its v2 schema despite the historical filename."
   },
   "integrationSuite": {
     "passed": false,
     "waived": false,
     "decision": "MOCK(distribution owner): complete the final pinned-set integration run on both chains or explicitly accept a documented deviation; no earlier waiver is inherited",
-    "nearestEvidence": "Retained finalized reconciliation records 63 deployment/governance transactions per chain. Fresh readback confirms all 80 runtime identities, six proxy bindings and supported getter results at the recorded finalized blocks. This is not a passing cross-component integration suite or public-tag build-equivalence result.",
+    "nearestEvidence": "Retained finalized reconciliation records 63 deployment/governance transactions per chain; component records retain their own observation blocks. Rollover 0.2.0 additionally has a fresh exact-tagged-commit build, 1347 passing tests in each of the default and CI profiles, and 28 exact linked/immutable-resolved runtime and receipt matches plus 126 governance/binding reads at finalized Base block 51291605 and Arbitrum block 505010311. These component checks are not a passing final pinned-set integration suite.",
     "chains": [
       42161,
       8453
@@ -36,7 +36,11 @@
     "D1 — cork-periphery 0.2.0-rc.1; R1/R4: unchanged deployed adapters lack a component version() getter. Publication accepted with explicit disclosure and exact runtime/source identity, not a fabricated runtime version. Owner: component maintainer. Follow-up: establish authoritative version reporting in the next changed contract or obtain a policy amendment before stable release.",
     "D2 — cork-periphery 0.2.0-rc.1; Checklist A4 and G15: non-author review at the exact release commit was not established. The cut owner authorized prerelease publication; reviewLevel remains unreviewed. Owner: component maintainer. Follow-up: obtain and record exact-version non-author review before any review-level promotion.",
     "D3 — cork-periphery 0.2.0-rc.1; R16/Checklist A6: completed removal notice and usage assessment were not established. Publication accepted as a breaking package-only prerelease; existing deployments and consumer pins are not retired or migrated. Owner: component maintainer. Follow-up: complete usage assessment and required notices before retirement or stable rollout.",
-    "D4 — cork-periphery 0.2.0-rc.1; G13: complete organization-wide deployment-address deny-list confirmation was not established. The cut owner cleared this exact public snapshot for publication; this is not a claim of exhaustive organization-wide inventory validation. Owner: release maintainer. Follow-up: establish the authoritative inventory and repeat the structural/deny-list check before stable release."
+    "D4 — cork-periphery 0.2.0-rc.1; G13: complete organization-wide deployment-address deny-list confirmation was not established. The cut owner cleared this exact public snapshot for publication; this is not a claim of exhaustive organization-wide inventory validation. Owner: release maintainer. Follow-up: establish the authoritative inventory and repeat the structural/deny-list check before stable release.",
+    "D5 — rollover 0.2.0; source/getter version agreement: CorkRolloverContract, CorkRolloverContractFactory, ExactSettler and PartialSettler report version() = 1.0.0. Publication accepted with explicit disclosure and exact public source/runtime identity; the getter is not relabeled. Owner: component maintainer. Follow-up: record the getter limitation for integrations and resolve authoritative version reporting in the next changed contracts or a policy amendment; assess recurrence and its structural resolution before Distribution approval.",
+    "D6 — rollover 0.2.0; independent review: publication has release-owner review and authorization, not established exact-version non-author security review. reviewLevel remains unreviewed. Owner: component maintainer. Follow-up: obtain named independent review before review-level promotion; no Distribution integration or merge approval is implied.",
+    "D7 — rollover 0.2.0; verification coverage: fresh full default and CI-profile suites, production size builds, bootstrap/Timelock builds and repository consistency checks passed. Extended ci-deep/audit/mutation profiles, deploy-profile test override smoke and hosted static-analysis checks were not certified by the publication run. Owner: component maintainer. Follow-up: complete required stress/static-analysis evidence before stronger review claims or a Distribution gate that requires it.",
+    "D8 — rollover 0.2.0; source snapshot boundary: legacy public test/formal annotations, generic CI paths and deliberately published deployment evidence/bootstrap constants remain in the reviewed source. Source preparation labels and the dated provisional shadow bundle are not Distribution-readiness certificates; the public Release separately binds source identity and publication. Owner: release maintainer. Follow-up: resolve public reference/documentation hygiene in a reviewed source update and preserve explicit boundary checks for generated evidence."
   ],
   "externalDependencies": {
     "_note": "Runtime dependency getters were read at finalized Base block 51161253 and Arbitrum block 503977760. These are external contracts, not Cork component releases or security attestations.",
@@ -62,13 +66,14 @@
     "audits": []
   },
   "knownIssues": [
-    "Phoenix 1.4.0-rc.1 and cork-periphery 0.2.0-rc.1 are published with verified runtime equivalence and tag-source ABIs. The three remaining component releases, their deployment-build equivalence and final ABI/schema evidence are unresolved.",
-    "CLI Rollover factory/settler binding alignment and hosted Registry v2 availability remain unresolved. Current address coverage and decoder-union checks pass across the available non-superseded ABI generations; final release-derived evidence is still required.",
-    "Explorer SimilarMatch is not exact full-build or constructor-argument evidence. Earlier checks found source-closure differences for RolloverBootstrapDeployer, RolloverDeploymentBootstrap and LibFillerPayloadExternal on both chains; final release equivalence must resolve them.",
+    "Four contract components are pinned to published releases: Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0. CLI and API releases and their tag-derived schema/configuration evidence remain unresolved.",
+    "CLI Rollover factory/settler alignment, hosted Registry v2 availability and explicitly selected Rollover indexing/route coverage remain unresolved. Published contract pins do not certify those service integrations.",
+    "Rollover exact public-tag build equivalence is established for all 14 listed contracts, including both bootstraps and LibFillerPayloadExternal; explorer SimilarMatch is not used as that proof. Source/getter version agreement and publication review/verification exceptions remain disclosed.",
+    "Distribution-owner review, deviation recurrence/structural-resolution assessment, final integration, migration and disposability decisions remain required before approval. No integration waiver is introduced.",
     "The draft does not establish hosted-service activation, order migration, market activation or security-review approval."
   ],
   "scopeNotes": [
-    "Phoenix resolves to published 1.4.0-rc.1 and cork-periphery to published 0.2.0-rc.1. The other three component references remain unresolved draft identifiers, not installable versions. Verification must not treat their existence as release readiness.",
+    "The four contract-component references resolve to published source versions. CLI and API references remain unresolved draft identifiers, not installable versions. Verification must not treat their existence as release readiness.",
     "Existing component records, Distribution records and discovery pointers are unchanged. No old signing address is retired by this draft.",
     "Registry governance tooling remains on its existing registry; the dashboard/API migration does not authorize a governance migration.",
     "The proposed Distribution name still requires surface compatibility, signing-domain migration and disposability assessment before publication.",
