@@ -10,7 +10,7 @@
     "cork-cli": "0.0.0-untagged.TODO",
     "rollover": "0.2.0",
     "cork-periphery": "0.2.0-rc.1",
-    "cork-api": "0.0.0-untagged.TODO"
+    "cork-api": "0.4.3"
   },
   "chains": [
     42161,
@@ -19,8 +19,8 @@
   "surfaces": {
     "contracts": "Changed: new Phoenix core, ForSelf, Market Registry and Rollover deployments on both chains. Existing published deployment records remain unchanged. Rollover 0.2.0 has breaking oracleSalt/JIT commitment, recipe verification and fee-bearing market tuple changes; complete pinned-set compatibility and migration assessment remains a cut gate.",
     "cli-mcp": "Changed: address and ABI adoption for the new contract set. Final released artifact, schema compatibility and consumer integration verification are pending.",
-    "apis": "Changed: Registry v2 interface and new deployment/decoder configuration. Final tagged interface snapshot and live availability verification are pending.",
-    "manifests": "Existing Distribution schemaVersion 1 layout. Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0 are published contract pins. CLI and API release identifiers remain unresolved. Rollover source deployment-bundle consumers must dispatch by its v2 schema despite the historical filename."
+    "apis": "Changed: cork-api 0.4.3 adds the Registry v2 interface (MarketRegistry 0.5.0) and is the tagged, vendored snapshot pinned here; /registry/v1 remains served for the 0.3.3 registry but is outside the covered surface. The rollover route family is not part of cork-api's covered list.",
+    "manifests": "Existing Distribution schemaVersion 1 layout. Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0 are published contract pins. cork-api 0.4.3 is a published service pin (signed tag, vendored OpenAPI). The CLI release identifier remains unresolved. Rollover source deployment-bundle consumers must dispatch by its v2 schema despite the historical filename."
   },
   "integrationSuite": {
     "passed": false,
@@ -66,14 +66,14 @@
     "audits": []
   },
   "knownIssues": [
-    "Four contract components are pinned to published releases: Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0. CLI and API releases and their tag-derived schema/configuration evidence remain unresolved.",
-    "CLI Rollover factory/settler alignment, hosted Registry v2 availability and explicitly selected Rollover indexing/route coverage remain unresolved. Published contract pins do not certify those service integrations.",
+    "Four contract components are pinned to published releases: Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0; cork-api 0.4.3 is pinned to signed tag v0.4.3 with its vendored OpenAPI (sha256 d18e4cde…). The CLI release and its tag-derived configuration evidence remain unresolved.",
+    "CLI Rollover factory/settler alignment remains unresolved. Hosted Registry v2 is live on api-phoenix.cork.tech (verified 2026-09-15, both chains on registry 0.5.0). Rollover indexing/route coverage is deliberately NOT selected for cork-api 0.4.3; the rollover component is pinned on its own.",
     "Rollover exact public-tag build equivalence is established for all 14 listed contracts, including both bootstraps and LibFillerPayloadExternal; explorer SimilarMatch is not used as that proof. Source/getter version agreement and publication review/verification exceptions remain disclosed.",
     "Distribution-owner review, deviation recurrence/structural-resolution assessment, final integration, migration and disposability decisions remain required before approval. No integration waiver is introduced.",
     "The draft does not establish hosted-service activation, order migration, market activation or security-review approval."
   ],
   "scopeNotes": [
-    "The four contract-component references resolve to published source versions. CLI and API references remain unresolved draft identifiers, not installable versions. Verification must not treat their existence as release readiness.",
+    "The four contract-component references and the cork-api reference resolve to published source versions. The CLI reference remains an unresolved draft identifier, not an installable version. Verification must not treat its existence as release readiness.",
     "Existing component records, Distribution records and discovery pointers are unchanged. No old signing address is retired by this draft.",
     "Registry governance tooling remains on its existing registry; the dashboard/API migration does not authorize a governance migration.",
     "The proposed Distribution name still requires surface compatibility, signing-domain migration and disposability assessment before publication.",
