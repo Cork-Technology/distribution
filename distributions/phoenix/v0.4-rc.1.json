@@ -7,7 +7,7 @@
   "components": {
     "phoenix": "1.4.0-rc.1",
     "market-registry": "0.5.0",
-    "cork-cli": "0.6.0-rc.1",
+    "cork-cli": "0.6.0",
     "rollover": "0.2.0",
     "cork-periphery": "0.2.0-rc.1",
     "cork-api": "0.4.3"
@@ -18,9 +18,9 @@
   ],
   "surfaces": {
     "contracts": "Changed: new Phoenix core, ForSelf, Market Registry and Rollover deployments on both chains. Existing published deployment records remain unchanged. Rollover 0.2.0 has breaking oracleSalt/JIT commitment, recipe verification and fee-bearing market tuple changes; complete pinned-set compatibility and migration assessment remains a cut gate.",
-    "cli-mcp": "Changed: cork-cli 0.6.0-rc.1 adds the phoenix/v0.4-rc.1 contract set as the primary generation on both chains (Phoenix 1.4.0-rc.1 10-field pools, Market Registry 0.5.0 nested wire, Rollover 0.2.0 salted JIT commitment, cork-periphery 0.2.0-rc.1 ForSelf adapter) and keeps every older set readable and preparable by explicit generation. The covered CLI/MCP surface is breaking relative to 0.4.1 (see the component record). Consumer integration verification of the final pinned set on both chains remains a cut gate.",
+    "cli-mcp": "Changed: cork-cli 0.6.0 adds the phoenix/v0.4-rc.1 contract set as the primary generation on both chains (Phoenix 1.4.0-rc.1 10-field pools, Market Registry 0.5.0 nested wire, Rollover 0.2.0 salted JIT commitment, cork-periphery 0.2.0-rc.1 ForSelf adapter) and keeps every older set readable and preparable by explicit generation. The covered CLI/MCP surface is breaking relative to 0.4.1 (see the component record). Consumer integration verification of the final pinned set on both chains remains a cut gate.",
     "apis": "Changed: cork-api 0.4.3 adds the Registry v2 interface (MarketRegistry 0.5.0) and is the tagged, vendored snapshot pinned here; /registry/v1 remains served for the 0.3.3 registry but is outside the covered surface. The rollover route family is not part of cork-api's covered list.",
-    "manifests": "Existing Distribution schemaVersion 1 layout. Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0 are published contract pins. cork-api 0.4.3 is a published service pin (signed tag, vendored OpenAPI). cork-cli 0.6.0-rc.1 is a published prerelease pin (signed tag, tag-pinned cork-defaults.v2.json digest). Rollover source deployment-bundle consumers must dispatch by its v2 schema despite the historical filename."
+    "manifests": "Existing Distribution schemaVersion 1 layout. Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0 are published contract pins. cork-api 0.4.3 is a published service pin (signed tag, vendored OpenAPI). cork-cli 0.6.0 is a published stable component pin (GitHub Release flagged pre-release under G9 while no production-stream Distribution exists) (signed tag, tag-pinned cork-defaults.v2.json digest). Rollover source deployment-bundle consumers must dispatch by its v2 schema despite the historical filename."
   },
   "integrationSuite": {
     "passed": false,
@@ -73,7 +73,7 @@
     "The draft does not establish hosted-service activation, order migration, market activation or security-review approval."
   ],
   "scopeNotes": [
-    "The four contract-component references, the cork-api reference and the cork-cli reference resolve to published source versions; cork-cli 0.6.0-rc.1 is a prerelease (stage partner-preview, reviewLevel unreviewed). Verification must not treat any prerelease pin as release readiness.",
+    "The four contract-component references, the cork-api reference and the cork-cli reference resolve to published source versions; cork-cli 0.6.0 is a published stable component version (its GitHub Release stays flagged pre-release under G9 while no production-stream Distribution exists). Verification must not treat any prerelease pin as release readiness.",
     "Existing component records, Distribution records and discovery pointers are unchanged. No old signing address is retired by this draft.",
     "Registry governance tooling remains on its existing registry; the dashboard/API migration does not authorize a governance migration.",
     "The proposed Distribution name still requires surface compatibility, signing-domain migration and disposability assessment before publication.",
