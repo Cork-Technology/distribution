@@ -77,7 +77,7 @@ function verify(pins: Pin[], consumed: object[]) {
     mkdirSync(join(dir, "components", "phoenix", "abi"), { recursive: true });
     mkdirSync(join(dir, "components", "cork-api"), { recursive: true });
     mkdirSync(join(dir, "distributions", "phoenix"), { recursive: true });
-    cpSync(join(root, "scripts", "verify.ts"), join(dir, "scripts", "verify.ts"));
+    cpSync(join(root, "scripts"), join(dir, "scripts"), { recursive: true });
     symlinkSync(join(root, "node_modules"), join(dir, "node_modules"), "dir");
     writeFileSync(join(dir, "package.json"), JSON.stringify({ type: "module" }));
     for (const pin of pins) {

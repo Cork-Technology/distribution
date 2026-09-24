@@ -14,7 +14,7 @@ function verify(component: Record<string, unknown>, distribution: Record<string,
     mkdirSync(join(dir, "scripts"));
     mkdirSync(join(dir, "components", "example"), { recursive: true });
     mkdirSync(join(dir, "distributions", "example"), { recursive: true });
-    cpSync(join(root, "scripts", "verify.ts"), join(dir, "scripts", "verify.ts"));
+    cpSync(join(root, "scripts"), join(dir, "scripts"), { recursive: true });
     symlinkSync(join(root, "node_modules"), join(dir, "node_modules"), "dir");
     writeFileSync(join(dir, "package.json"), JSON.stringify({ type: "module" }));
     writeFileSync(join(dir, "components", "example", `${filename}.json`), JSON.stringify(component));

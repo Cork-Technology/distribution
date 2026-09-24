@@ -37,6 +37,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import sha3 from "js-sha3";
+import { ADDITIONAL_INDEXED_CONTRACTS, verifyAdditionalIndexing } from "./indexing.js";
 const { keccak_256 } = sha3;
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -52,12 +53,11 @@ const EIP1967_IMPL_SLOT =
 type Result = ["PASS" | "FAIL" | "SKIP" | "NULL" | "WARN" | "INFO", string, string];
 
 /**
- * Component-name -> indexer contract-type mapping (the one piece of static
- * glue the indexing checks need; it lives here because component names exist
- * only in this repository). `contract` is the row whose address the indexer
- * watches; `abiContract` is where its events live when the watched address
- * is a proxy. A pinned contract absent from this map is not indexed — the
- * indexing checks report it as INFO, never FAIL.
+ * Legacy Phoenix component -> indexer type mapping. `contract` is the watched
+ * row; `abiContract` supplies implementation events. Registry, Rollover and
+ * external LOP use source-bound checks in indexing.ts. Other rows are helpers,
+ * templates, governance or dynamic contracts rather than pinned-address
+ * requirements; unknown declared decoder types fail in indexing.ts.
  */
 const INDEXED_CONTRACTS: Array<{
   type: string;
@@ -328,24 +328,13 @@ async function verifyRelease(doc: Record<string, any>): Promise<Result> {
 }
 
 /**
- * Indexing checks against the live watch-list the indexer declares
- * (services.indexingStatus on the current cork-api pin). Four checks:
- *  1. Coverage (FAIL): every pinned deployment whose type the indexer
- *     declares must be on the watch-list for its chain.
- *  2. Decode safety (FAIL): every topic0 the indexer consumes for a pinned
- *     type must exist in the events of the pinned ABIs — the type's own
- *     contract first, then any contract in the component. The component-wide
- *     fallback exists because the indexer declares OpenZeppelin lifecycle
- *     events (Initialized, Upgraded) on types whose own contract never emits
- *     them; topic0 is derived from the signature alone, so a shared event
- *     resolves identically from any contract. Each component-wide resolution
- *     is named in the PASS row. Catches wrong-ABI-generation decoding at cut
- *     time, named per event.
- *  3. Release label (WARN, never FAIL): the watch-list's contracts_version
- *     label vs the pin — the label comes from the same release notes the pin
- *     does, so a mismatch is a flag, not proof.
- *  4. Freshness (WARN): the indexer's own watchdog verdicts per pinned chain,
- *     plus the decoder-spec publication stamp as INFO.
+ * Live watch-list checks (services.indexingStatus). Phoenix retains its
+ * historical topic-union check across non-superseded generations; that checks
+ * topic existence, not indexed-layout compatibility. Lifecycle lenders are
+ * named. Coverage validates chain/address/type independently of declarations.
+ * indexing.ts verifies Registry/Rollover/LOP required event layouts from
+ * reviewed worker-source evidence, with explicit shared settler handlers.
+ * Release labels and watchdog verdicts remain informational warnings.
  * Chains outside the pinned set (mainnet oracles, testnets) are out of scope.
  */
 async function verifyIndexing(
@@ -367,9 +356,6 @@ async function verifyIndexing(
   }
 
   const watching: any[] = status.watching ?? [];
-  const declaredTypes = new Set<string>(
-    (status.decoders?.contract_types ?? []).map((ct: any) => ct.contract_type ?? ct.type),
-  );
   const watchKey = (chain: string | number, addr: string) => `${chain}:${addr.toLowerCase()}`;
   const watchSet = new Map<string, any>(
     watching.map((w) => [watchKey(w.chain_id, w.address), w]),
@@ -382,7 +368,8 @@ async function verifyIndexing(
       const mapping = INDEXED_CONTRACTS.find(
         (m) => m.component === doc.component && m.contract === contract,
       );
-      if (!mapping || !declaredTypes.has(mapping.type)) {
+      if (ADDITIONAL_INDEXED_CONTRACTS.some(m => m.component === doc.component && m.contract === contract)) continue;
+      if (!mapping) {
         notIndexed.push(contract);
         continue;
       }
@@ -398,6 +385,10 @@ async function verifyIndexing(
             results.push(["FAIL", rowLabel, `pinned deployment not on the indexer watch-list (type ${mapping.type})`]);
             continue;
           }
+          if (w.contract_type !== mapping.type) {
+            results.push(["FAIL", rowLabel, `expected ${mapping.type}, registered as ${w.contract_type}`]);
+            continue;
+          }
           results.push(["PASS", rowLabel, `watched as ${mapping.type}, last confirmed block ${w.last_block_confirmed ?? "?"}`]);
           const expectedLabel = `${doc.component}@${doc.version}`;
           if (w.contracts_version == null) {
@@ -411,7 +402,7 @@ async function verifyIndexing(
       //    every non-superseded pin of that component — see below the loop.
     }
     if (notIndexed.length > 0)
-      results.push(["INFO", `indexing/${doc.component}`, `no declared decoder type — out of the indexer's scope: ${notIndexed.join(", ")}`]);
+      results.push(["INFO", `indexing/${doc.component}`, `not pinned-address indexing requirements (helpers, templates, governance or dynamic contracts): ${notIndexed.join(", ")}`]);
   }
 
   // 2. Decode safety: every topic0 the indexer consumes for a declared type
@@ -425,13 +416,16 @@ async function verifyIndexing(
   //    events); the lender pin@contract is named in the PASS row.
   const live = manifests.filter((d) => !d.supersededBy && d.contracts);
   for (const mapping of INDEXED_CONTRACTS) {
-    if (!declaredTypes.has(mapping.type)) continue;
     const pins = live.filter((d) => d.component === mapping.component && d.contracts[mapping.contract]);
     if (pins.length === 0) continue;
     const declared = (status.decoders?.contract_types ?? []).find(
       (ct: any) => (ct.contract_type ?? ct.type) === mapping.type,
     );
-    if (!declared) continue;
+    if (!declared && !pins.some(d => Object.values(d.contracts[mapping.contract].deployments ?? {}).some(rows => Array.isArray(rows) && rows.length))) continue;
+    if (!declared || !declared.events?.length) {
+      results.push(["FAIL", `indexing/decode ${mapping.type}`, "missing required decoder evidence"]);
+      continue;
+    }
     // An unresolved ABI reference is a placeholder, and a placeholder never
     // contributes to a PASS: the pin is counted, and if every pin's own ABI
     // is a placeholder the row is SKIP.
@@ -474,6 +468,15 @@ async function verifyIndexing(
       results.push(["PASS", decodeLabel, `all ${(declared.events ?? []).length} consumed topics exist in the live pinned ABIs${borrowed.length ? ` (resolved component-wide: ${borrowed.join(", ")})` : ""}${skipped}`]);
     }
   }
+  const distributions: unknown[] = [];
+  const distDir = join(ROOT, "distributions");
+  for (const line of readdirSync(distDir)) {
+    if (!statSync(join(distDir, line)).isDirectory()) continue;
+    for (const file of readdirSync(join(distDir, line))) {
+      if (file.endsWith(".json")) distributions.push(JSON.parse(readFileSync(join(distDir, line, file), "utf8")));
+    }
+  }
+  results.push(...verifyAdditionalIndexing(ROOT, status, manifests, pinnedChains, distributions));
 
   // 4. Freshness: the indexer's own watchdog verdicts, pinned chains only.
   for (const chain of status.chains ?? []) {

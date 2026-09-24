@@ -66,10 +66,15 @@ skipped, its immutable checks keep running. Distribution files are checked struc
 each referenced component file must parse and declare the requested component and version.
 The indexing layer is checked against the watch-list the indexer itself declares
 (`/indexing/v1/status`): every pinned deployment of an indexed contract type must be on
-the watch-list (FAIL), every event topic the indexer consumes for that type must exist in
+the watch-list with the correct chain/address/type (FAIL). Phoenix event topics must exist in
 the union of the component’s non-superseded pinned ABIs — the type’s own contract
 first, with a component-wide fallback for shared lifecycle events. Each fallback
 names its lender pin and contract; a topic absent from every live pin is FAIL.
+Registry, Rollover and external LOP also check required events and indexed/tuple layouts;
+source provenance and shared decoders are recorded in `scripts/indexing-evidence.json`.
+Missing mappings or required evidence fail. A changed worker can pass event declarations
+but cannot pass live layout verification without reviewed source evidence; the API does not
+pin the worker or publish layouts. Historical coverage gaps remain failures.
 The watch-list’s
 version labels are compared as WARN (a label is a flag, not proof), and the indexer's own
 watchdog verdicts report per pinned chain.
