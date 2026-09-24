@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "distribution": "phoenix/v0.4-rc.1",
   "stage": "partner-preview",
-  "support": "Draft only: no published integration pin or production support commitment. Unresolved component releases and verification gates block publication.",
+  "support": "Draft only: no published integration pin or production support commitment. The final pinned-set integration run and Distribution-owner review remain cut gates.",
   "promotedFrom": null,
   "components": {
     "phoenix": "1.4.0-rc.1",
     "market-registry": "0.5.0",
-    "cork-cli": "0.0.0-untagged.TODO",
+    "cork-cli": "0.6.0-rc.1",
     "rollover": "0.2.0",
     "cork-periphery": "0.2.0-rc.1",
     "cork-api": "0.4.3"
@@ -18,9 +18,9 @@
   ],
   "surfaces": {
     "contracts": "Changed: new Phoenix core, ForSelf, Market Registry and Rollover deployments on both chains. Existing published deployment records remain unchanged. Rollover 0.2.0 has breaking oracleSalt/JIT commitment, recipe verification and fee-bearing market tuple changes; complete pinned-set compatibility and migration assessment remains a cut gate.",
-    "cli-mcp": "Changed: address and ABI adoption for the new contract set. Final released artifact, schema compatibility and consumer integration verification are pending.",
+    "cli-mcp": "Changed: cork-cli 0.6.0-rc.1 adds the phoenix/v0.4-rc.1 contract set as the primary generation on both chains (Phoenix 1.4.0-rc.1 10-field pools, Market Registry 0.5.0 nested wire, Rollover 0.2.0 salted JIT commitment, cork-periphery 0.2.0-rc.1 ForSelf adapter) and keeps every older set readable and preparable by explicit generation. The covered CLI/MCP surface is breaking relative to 0.4.1 (see the component record). Consumer integration verification of the final pinned set on both chains remains a cut gate.",
     "apis": "Changed: cork-api 0.4.3 adds the Registry v2 interface (MarketRegistry 0.5.0) and is the tagged, vendored snapshot pinned here; /registry/v1 remains served for the 0.3.3 registry but is outside the covered surface. The rollover route family is not part of cork-api's covered list.",
-    "manifests": "Existing Distribution schemaVersion 1 layout. Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0 are published contract pins. cork-api 0.4.3 is a published service pin (signed tag, vendored OpenAPI). The CLI release identifier remains unresolved. Rollover source deployment-bundle consumers must dispatch by its v2 schema despite the historical filename."
+    "manifests": "Existing Distribution schemaVersion 1 layout. Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0 are published contract pins. cork-api 0.4.3 is a published service pin (signed tag, vendored OpenAPI). cork-cli 0.6.0-rc.1 is a published prerelease pin (signed tag, tag-pinned cork-defaults.v2.json digest). Rollover source deployment-bundle consumers must dispatch by its v2 schema despite the historical filename."
   },
   "integrationSuite": {
     "passed": false,
@@ -66,14 +66,14 @@
     "audits": []
   },
   "knownIssues": [
-    "Four contract components are pinned to published releases: Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0; cork-api 0.4.3 is pinned to signed tag v0.4.3 with its vendored OpenAPI (sha256 d18e4cde…). The CLI release and its tag-derived configuration evidence remain unresolved.",
-    "CLI Rollover factory/settler alignment remains unresolved. Hosted Registry v2 is live on api-phoenix.cork.tech (verified 2026-09-15, both chains on registry 0.5.0). Rollover indexing/route coverage is deliberately NOT selected for cork-api 0.4.3; the rollover component is pinned on its own.",
+    "Four contract components are pinned to published releases: Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0; cork-api 0.4.3 is pinned to signed tag v0.4.3 with its vendored OpenAPI (sha256 d18e4cde…). cork-cli is pinned to prerelease 0.6.0-rc.1 (signed tag v0.6.0-rc.1, cork-defaults.v2.json sha256 699c342c…).",
+    "CLI Rollover factory/settler alignment is resolved: cork-cli 0.6.0-rc.1 binds Rollover 0.2.0's factory and settlers as the primary generation and keeps the rc.2 set only as the explicitly selectable previous generation. Hosted Registry v2 is live on api-phoenix.cork.tech (verified 2026-09-15, both chains on registry 0.5.0). Rollover indexing/route coverage is deliberately NOT selected for cork-api 0.4.3; the rollover component is pinned on its own.",
     "Rollover exact public-tag build equivalence is established for all 14 listed contracts, including both bootstraps and LibFillerPayloadExternal; explorer SimilarMatch is not used as that proof. Source/getter version agreement and publication review/verification exceptions remain disclosed.",
     "Distribution-owner review, deviation recurrence/structural-resolution assessment, final integration, migration and disposability decisions remain required before approval. No integration waiver is introduced.",
     "The draft does not establish hosted-service activation, order migration, market activation or security-review approval."
   ],
   "scopeNotes": [
-    "The four contract-component references and the cork-api reference resolve to published source versions. The CLI reference remains an unresolved draft identifier, not an installable version. Verification must not treat its existence as release readiness.",
+    "The four contract-component references, the cork-api reference and the cork-cli reference resolve to published source versions; cork-cli 0.6.0-rc.1 is a prerelease (stage partner-preview, reviewLevel unreviewed). Verification must not treat any prerelease pin as release readiness.",
     "Existing component records, Distribution records and discovery pointers are unchanged. No old signing address is retired by this draft.",
     "Registry governance tooling remains on its existing registry; the dashboard/API migration does not authorize a governance migration.",
     "The proposed Distribution name still requires surface compatibility, signing-domain migration and disposability assessment before publication.",
