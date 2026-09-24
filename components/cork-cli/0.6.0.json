@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-cli",
+  "version": "0.6.0",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-cli",
+    "tag": "v0.6.0",
+    "commit": "3250d9a74f96adfbc13c10cc9c7237106813e825"
+  },
+  "package": "GitHub Release assets on the tag: one self-contained `ch` binary (CLI + MCP server) per platform, 7 platforms plus checksums.txt. Every binary is covered by verified GitHub build provenance and publication followed two independent byte-identical builds of the same commit. The stable release also publishes the ghcr image `:v0.6.0` and the signed apk repository channel; those channels and the SDK tarballs are outside this Distribution pin.",
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "config": {
+    "note": "cork-defaults.v2.json (schema 2) is the versioned address surface of this component: per chain a SET of contract generations with one primary. Installs runtime-fetch it from the main branch (TTL-cached) as the living-field channel; the content at this tag is pinned here by digest. The schema-1 file cork-defaults.json is frozen for the 0.5 line and is not read by this version. This configuration binds the same Phoenix 1.4.0-rc.1, Market Registry 0.5.0 and Rollover 0.2.0 deployments this Distribution pins (factory 0x99A5C47CbF062D4E6665afAF32aE6496F9f93F65, ExactSettler 0x0F2Ce7a5b817865ebFf50c58439B9A27E38f452E, PartialSettler 0x5E19Be0743fE521d8BF85b5A558356675499bE9e on both chains); the previous Rollover factory and settlers stay configured as the phoenix/v0.3-rc.1 generation and are never the default target.",
+    "snapshot": "cork-defaults.v2.json at tag v0.6.0 (byte-identical to the file at v0.6.0-rc.1)",
+    "snapshotSha256": "699c342ce62e9f80f4c02f98b6a1736b7af37ba1d65c433f5ab2a82ee8704d99"
+  },
+  "docs": [
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.6.0/docs/zyfai-quickstart.md",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.6.0/docs/cli.md",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.6.0/CHANGELOG.md"
+  ],
+  "notices": [
+    "Stable of the 0.6 line. The covered tool surface is byte-identical to 0.6.0-rc.1 (the tag differs from the candidate only in the version string, the changelog entry and test/evaluation files). The full mutation catalogue on the release tree reads 624 of 624 mutants caught; the offline suite is 1995 tests green; the Layer B agent evaluation is 84 of 84.",
+    "Review level is unreviewed and stage is partner-preview: no production support commitment attaches to this component version.",
+    "The primary generation on Arbitrum One and Base is phoenix/v0.4-rc.1: Phoenix 1.4.0-rc.1, Market Registry 0.5.0 (registry 0xe1f569f152bDB6eBB2d49cFd9d4aB98ECEe955c5, JIT adapter 0x3E01C558fc0854e92e6ef2a84c19D6Bf9D82B104, creator 0x1A074F17647504D1c50B436074a74d051D502dEa), Rollover 0.2.0 (factory 0x99A5C47CbF062D4E6665afAF32aE6496F9f93F65, ExactSettler 0x0F2Ce7a5b817865ebFf50c58439B9A27E38f452E, PartialSettler 0x5E19Be0743fE521d8BF85b5A558356675499bE9e), cork-periphery 0.2.0-rc.1 ForSelf adapter 0x3864902695DC930Df406ef5dEB74c4DC249e23f1. The same addresses on both chains.",
+    "The previous generation (phoenix/v0.3-rc.1: Phoenix v1.3.0-rc.1, Market Registry 0.3.3, Rollover v0.1.0-rc.2) and the older Arbitrum eras stay configured as active or read-only generations: pools on them are read, decoded and attributed by the pool's own generation; prepares against them need the `generation` input.",
+    "Migration between generations: the `generation` input accepts the aliases `previous` and `primary` beside a label, and `cork_query account-state` with `filters.account` and no `filters.poolId` lists the account's cST/cPT positions across every configured generation (pools enumerated from the chain over the caller's RPC by default, the venue's list under mode hybrid; balances always from the caller's RPC; each row carries the expiry as strict ISO-8601 UTC beside unix seconds). `cork_capabilities topic:\"migration\"` holds the recipe. Pool-scoped prepares and reads follow the pool's own generation from the chain.",
+    "Relative to the prior Distribution pin (0.4.1), the covered CLI/MCP surface is breaking: `additionalData` is `extraData` on every jitMarket input (the old name is accepted with a deprecation notice), `oracleSalt` and the two fee percentages join the JIT/derive inputs and the 10-field pool identity, `generation` is an optional input on every chain-backed tool, and the `cork_query orderbook` default order is ranked (0.5.1). The SDK surface changed accordingly (see the CHANGELOG).",
+    "Rollover artifacts against the 0.2.0 settlers commit the salted JITMarketParams (oracleSalt); rc.2 settlers keep the rc.2 commitment. Rollover remains excluded from this Distribution's covered API routes.",
+    "Venue listings accept only fraction-string `premiumAnnualized` (for example, `0.041` means 4.1%).",
+    "On SIGTERM or SIGINT, the MCP server drains in-flight requests for at most five seconds before exiting cleanly.",
+    "Embedded HyperSync requires writable, executable or mappable temporary storage. Windows x64 and Linux arm64-musl binaries have no embedded Envio binding and cannot provide full-decentralized HyperSync reads.",
+    "The Market Registry 0.5.0 holds registered assets on both chains since 2026-09-23 (14 on Base, 17 on Arbitrum; address-keyed denominations with USD conversion feeds). The nested JIT fill path was rehearsed against a fork of that live state on the release tree and passed: oracle deployed in-fill, 10-field pool created at the predicted id, cST at the predicted address.",
+    "Distribution channel: the pinned integration channel is the GitHub Release binaries above. SDK tarballs, the OCI image, the apk repository and the hosted CVM deployment are not part of this Distribution pin."
+  ],
+  "knownIssues": [
+    "No CREATE2 attestation exists for the phoenix/v0.4-rc.1 set: the Distribution component records carry no salt, init code hash or deployer, so `cork_capabilities topic:\"verify\"` re-derives only the phoenix/v0.3-rc.1 and mainnet sets. Addresses of the new set are pinned by the Distribution records and by live code hashes."
+  ],
+  "contracts": null,
+  "supersededBy": null
+}
