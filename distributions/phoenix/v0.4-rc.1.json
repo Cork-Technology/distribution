@@ -67,9 +67,8 @@
     "audits": []
   },
   "knownIssues": [
-    "Four contract components are pinned to published releases: Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0; cork-api 0.4.3 is pinned to signed tag v0.4.3 with its vendored OpenAPI (sha256 d18e4cde…). cork-cli is pinned to prerelease 0.6.0-rc.1 (signed tag v0.6.0-rc.1, cork-defaults.v2.json sha256 699c342c…).",
-    "CLI Rollover factory/settler alignment is resolved: cork-cli 0.6.0-rc.1 binds Rollover 0.2.0's factory and settlers as the primary generation and keeps the rc.2 set only as the explicitly selectable previous generation. Hosted Registry v2 is live on api-phoenix.cork.tech (verified 2026-09-15, both chains on registry 0.5.0). Rollover indexing/route coverage is deliberately NOT selected for cork-api 0.4.3; the rollover component is pinned on its own.",
-    "Rollover exact public-tag build equivalence is established for all 14 listed contracts, including both bootstraps and LibFillerPayloadExternal; explorer SimilarMatch is not used as that proof. Source/getter version agreement and publication review/verification exceptions remain disclosed.",
+    "Rollover indexing and routes are outside the covered API surface; the rollover contract component is pinned separately.",
+    "Source/getter version agreement and publication review/verification exceptions remain disclosed.",
     "Distribution-owner review, deviation recurrence/structural-resolution assessment, final integration, migration and disposability decisions remain required before approval. No integration waiver is introduced.",
     "The draft does not establish hosted-service activation, order migration, market activation or security-review approval."
   ],
