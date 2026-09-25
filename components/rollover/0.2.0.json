@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 1,
+  "component": "rollover",
+  "version": "0.2.0",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/rollover",
+    "tag": "v0.2.0",
+    "commit": "fa2476965230d117b8b51045427687bf2369b4b3"
+  },
+  "package": null,
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "notices": [
+    "GitHub prerelease: https://github.com/Cork-Technology/rollover/releases/tag/v0.2.0. This record does not complete or approve the surrounding Distribution cut.",
+    "Runtime equivalence verified at finalized Base block 51291605 (0x14e3a40e9a48833a4b35816d3d5e0af438ff3bfe980b8bf92bd730f6a7195512) and Arbitrum block 505010311 (0x670add6b48bec127fce8c7876f054a8aa7ef8ad999221cd1a7d4c29f30d26aca). Fresh exact-tagged-commit build: Solidity 0.8.34, optimizer runs 1, via IR, Cancun EVM, no CBOR metadata. Linked libraries and every immutable were resolved before full-runtime comparison; no masking was used.",
+    "All 14 ABI files are exported from the fresh build of the exact public tagged commit, with anonymously initialized recursive public dependencies, rather than from explorer ABI pages. The deployed bootstrap contracts and external filler-payload library are included in the build.",
+    "The public tag contains deployments/rollover-release-v1.json with schema_version rollover-shadow-release-bundle-v2. Its source-content identity is sha256:296670f684d954638e1149d3cea1164dcbb8f52caf167188b2698ba49233b064. The filename is historical; the embedded schema version defines the format. This component record binds the published commit, ABIs and verified deployments separately from the bundle provisional readiness fields.",
+    "Deployment receipts, contract getters and 126 governance/binding calls were rechecked at the stated finalized blocks. Active identifies deployed runtime, not market activation, governance approval, cross-component integration, first-fill readiness or production support.",
+    "Contract version fields record actual supported getter values. Null means no supported component version getter. The CorkSettler/1.0.0 EIP-712 domain is unchanged."
+  ],
+  "knownIssues": [
+    "Source version 0.2.0 differs from version() = 1.0.0 on CorkRolloverContract, CorkRolloverContractFactory, ExactSettler and PartialSettler. The getter alone cannot identify this release; use its public source commit and verified runtime codehash.",
+    "Breaking integration changes relative to 0.1.0-rc.2 include the BaseFiller oracleSalt tuple/selectors and JIT commitment preimage, expiry/creation-aware recipe verification, salted Registry deployment and asset registration, and fee-bearing controller/PoolManager tuples. Regenerate bindings, calldata and commitments together. Source deployment-bundle consumers must adopt its v2 schema.",
+    "Independent non-author review and a completed production audit are not established; reviewLevel remains unreviewed. Publication does not waive Distribution integration or release-owner approval.",
+    "Fresh default and CI-profile suites passed; extended ci-deep/audit/mutation profiles, deploy-profile test override smoke, and hosted static-analysis checks are not certified by this record. Publication exceptions and their follow-ups are recorded in the draft Distribution."
+  ],
+  "contracts": {
+    "RolloverBootstrapDeployer": {
+      "version": null,
+      "abi": "./abi/RolloverBootstrapDeployer-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0xA99fFea11298A1324eEb55EEC31B05D99085d9bA",
+            "implementation": null,
+            "codeHash": "0x6fbe4ac9797fef97a960de8b5afe25235848e1e8479b1282590e571671fc468e",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0xA99fFea11298A1324eEb55EEC31B05D99085d9bA",
+            "implementation": null,
+            "codeHash": "0x6fbe4ac9797fef97a960de8b5afe25235848e1e8479b1282590e571671fc468e",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "RolloverDeploymentBootstrap": {
+      "version": null,
+      "abi": "./abi/RolloverDeploymentBootstrap-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x56A7DD76df24764e1D4f611FAa58dC2187F649ea",
+            "implementation": null,
+            "codeHash": "0x19022baf56bdf414af7861d1069c636ff98b7e862d6bb855c5a93e9e105c048c",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x56A7DD76df24764e1D4f611FAa58dC2187F649ea",
+            "implementation": null,
+            "codeHash": "0x19022baf56bdf414af7861d1069c636ff98b7e862d6bb855c5a93e9e105c048c",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "LibFillerPayloadExternal": {
+      "version": null,
+      "abi": "./abi/LibFillerPayloadExternal-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x6AD815279F2d2e631CFd1558E1DD70cfC82b1b88",
+            "implementation": null,
+            "codeHash": "0x8c5f372bde2a4041afe61fa3be86b14e19f35ca3a50c4dcf09731048341a94f2",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x6AD815279F2d2e631CFd1558E1DD70cfC82b1b88",
+            "implementation": null,
+            "codeHash": "0x8c5f372bde2a4041afe61fa3be86b14e19f35ca3a50c4dcf09731048341a94f2",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkRolloverContract": {
+      "version": "1.0.0",
+      "abi": "./abi/CorkRolloverContract-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x232387a35CE5C3f3d956348193541aB8d7553A9e",
+            "implementation": null,
+            "codeHash": "0x6a6adb0de725bae81b89684f0b0b1d30ff993101cad5931117b2378c36c33e74",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x232387a35CE5C3f3d956348193541aB8d7553A9e",
+            "implementation": null,
+            "codeHash": "0x6a6adb0de725bae81b89684f0b0b1d30ff993101cad5931117b2378c36c33e74",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ExactSettler": {
+      "version": "1.0.0",
+      "abi": "./abi/ExactSettler-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x0F2Ce7a5b817865ebFf50c58439B9A27E38f452E",
+            "implementation": null,
+            "codeHash": "0x62e6972722aefedebbbdbecdaedf468a66cf053028c7d553d69b4835cbfa4c54",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x0F2Ce7a5b817865ebFf50c58439B9A27E38f452E",
+            "implementation": null,
+            "codeHash": "0xde5ceb4adef911a4ec77f05c145dfdaae71a413da39b7dab264c7be58d239a4e",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "PartialSettler": {
+      "version": "1.0.0",
+      "abi": "./abi/PartialSettler-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x5E19Be0743fE521d8BF85b5A558356675499bE9e",
+            "implementation": null,
+            "codeHash": "0x6ad0ee0fd6b76b9092632b2dee9fd0df64b8c16fdb90eb7f2a8ee1c032327256",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x5E19Be0743fE521d8BF85b5A558356675499bE9e",
+            "implementation": null,
+            "codeHash": "0x1cef6eee0e389655c8c96ec53852bfb48899e7b551e859f513cc7a5a12f907d3",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "TimelockController": {
+      "version": null,
+      "abi": "./abi/TimelockController-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x81954908bA5EB09caa9B39b3dD732fdDcbB32Dd7",
+            "implementation": null,
+            "codeHash": "0x89335e2c1295ff11144df2800fbea85d6c56290553b8e0e1fc7c40a7db7f4b1e",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x81954908bA5EB09caa9B39b3dD732fdDcbB32Dd7",
+            "implementation": null,
+            "codeHash": "0x89335e2c1295ff11144df2800fbea85d6c56290553b8e0e1fc7c40a7db7f4b1e",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "CorkRolloverContractFactory": {
+      "version": "1.0.0",
+      "abi": "./abi/CorkRolloverContractFactory-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x99A5C47CbF062D4E6665afAF32aE6496F9f93F65",
+            "implementation": null,
+            "codeHash": "0xb3175553bc39b29414affd2c021bc95bd3c5391c8959127e3ea787f734fe9d64",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x99A5C47CbF062D4E6665afAF32aE6496F9f93F65",
+            "implementation": null,
+            "codeHash": "0xb3175553bc39b29414affd2c021bc95bd3c5391c8959127e3ea787f734fe9d64",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ApproveModule": {
+      "version": null,
+      "abi": "./abi/ApproveModule-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0xfcE570587B98D1FD8776eE864EF7CeA69A870885",
+            "implementation": null,
+            "codeHash": "0x5a761050258a7941cd467c19b6b23f3ac423579e720bad2ac75727f8515fda74",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0xfcE570587B98D1FD8776eE864EF7CeA69A870885",
+            "implementation": null,
+            "codeHash": "0x5a761050258a7941cd467c19b6b23f3ac423579e720bad2ac75727f8515fda74",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "OwnerTokenPullModule": {
+      "version": null,
+      "abi": "./abi/OwnerTokenPullModule-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x9C86e0f05b7Cc99dab3D9C32AA8264aF7DC32990",
+            "implementation": null,
+            "codeHash": "0x5ed5eedf983759463a633edec50144f2c2d1cfcee4b861ce713a822dbf9181fc",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x9C86e0f05b7Cc99dab3D9C32AA8264aF7DC32990",
+            "implementation": null,
+            "codeHash": "0x5ed5eedf983759463a633edec50144f2c2d1cfcee4b861ce713a822dbf9181fc",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ScopedTransferModule": {
+      "version": null,
+      "abi": "./abi/ScopedTransferModule-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x5b7cd7f72DAA99ac6DDED4F42674FF47ebEd7cdc",
+            "implementation": null,
+            "codeHash": "0xdb3fd44ad7a01dc88785248f5d07f705d40be203f03f44696996b9ae855490dc",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x5b7cd7f72DAA99ac6DDED4F42674FF47ebEd7cdc",
+            "implementation": null,
+            "codeHash": "0xdb3fd44ad7a01dc88785248f5d07f705d40be203f03f44696996b9ae855490dc",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "ScopedSplitModule": {
+      "version": null,
+      "abi": "./abi/ScopedSplitModule-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0xF593a08bAa52c55ABde386C563AF9b50848DDe13",
+            "implementation": null,
+            "codeHash": "0x35e234be840fdfd3fbe64de1a3a6973d2fd7dcf973d236c166864598489643d6",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0xF593a08bAa52c55ABde386C563AF9b50848DDe13",
+            "implementation": null,
+            "codeHash": "0x35e234be840fdfd3fbe64de1a3a6973d2fd7dcf973d236c166864598489643d6",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "PostRolloverDstCptTransferModule": {
+      "version": null,
+      "abi": "./abi/PostRolloverDstCptTransferModule-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x84e69211601882091D1a36a5cCdbC1EebB82908F",
+            "implementation": null,
+            "codeHash": "0xa7495d1c09e134ead1682084eb5f58a6b7b3b58dbe603c0d68735a49528c7cb2",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x84e69211601882091D1a36a5cCdbC1EebB82908F",
+            "implementation": null,
+            "codeHash": "0xa7495d1c09e134ead1682084eb5f58a6b7b3b58dbe603c0d68735a49528c7cb2",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    },
+    "BaseFiller": {
+      "version": null,
+      "abi": "./abi/BaseFiller-0.2.0.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0x3D16AD60a2fbD352Cc1108c4144F4093ab2E1224",
+            "implementation": null,
+            "codeHash": "0x163bdf788da8e04521ac9647dd38ef14c1971b83bcdb51383d7194b49bb8f6f5",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0x3D16AD60a2fbD352Cc1108c4144F4093ab2E1224",
+            "implementation": null,
+            "codeHash": "0x163bdf788da8e04521ac9647dd38ef14c1971b83bcdb51383d7194b49bb8f6f5",
+            "deployedCommit": "fa2476965230d117b8b51045427687bf2369b4b3",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    }
+  },
+  "supersededBy": null
+}

@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "distribution": "phoenix/v0.4-rc.1",
+  "stage": "partner-preview",
+  "support": "Draft only: no published integration pin or production support commitment. The integration suite is explicitly waived for this candidate; Distribution-owner review remains a cut gate.",
+  "promotedFrom": null,
+  "components": {
+    "phoenix": "1.4.0-rc.1",
+    "market-registry": "0.5.0",
+    "cork-cli": "0.6.0",
+    "rollover": "0.2.0",
+    "cork-periphery": "0.2.0-rc.1",
+    "cork-api": "0.4.3"
+  },
+  "chains": [
+    42161,
+    8453
+  ],
+  "deployments": {
+    "42161": {
+      "canonical": {
+        "role": "canonical",
+        "phoenix": {
+          "PoolLibrary": "0xCC9337E7EED182e1343d6EC062273552be240E6A",
+          "TimelockUpgrade": "0x0739b6Da7AF605E082701d0990CEF7C78Ba98842",
+          "TimelockControllerAdmin": "0x2D2E62318e763571000B503c84Dc46895049C325",
+          "TimelockOperational": "0x9fb663359947C55A9E3d7905dDB15708e309b8d4",
+          "ConstraintRateAdapterImplementation": "0xB4B5E2aE6d9F7D40911e8A2f60Be2D81a14a2962",
+          "ConstraintRateAdapterProxy": "0x2f9d816191B390A429174902E4A276A019cBf554",
+          "WhitelistManagerImplementation": "0xa5F0E3EB934Bd92aE3c9185FED29ffF78972386C",
+          "WhitelistManagerProxy": "0x8aF6659d864cB632bcadF0744Fb8B5eE78fBEA51",
+          "DefaultCorkController": "0x66025095Ab3a7E60BA9C2b15e203822d5d3647b5",
+          "CorkPoolManagerImplementation": "0x819a556cfbb7f5bbeb470E87874F4d71830e9501",
+          "CorkPoolManagerProxy": "0xcC17224A8710fa23BdA40c2CB563b85CeDDb0C2D",
+          "SharesFactory": "0xFaB92464AF516DC17020Fd39886BB2f8346BAe1e",
+          "PoolShareImplementation": "0x060307Da28cE39d4C5951edA7a40F5733DA82C6F",
+          "CorkAdapter": "0x71eB628c3A40FB3896613804847840426f9284A7"
+        },
+        "market-registry": {
+          "AtomicDeployer": "0x24DEae9D392265F3bb5E494F9BcdF870781Ab2dA",
+          "WrapperRateConsumerFactory": "0x942F2da75E6941D726EaB197E10735B7B6a3C867",
+          "FixedRateOracleFactory": "0x8e7331da266458C87E3870fe01969f4b421b306B",
+          "MarketRegistry": "0xe1f569f152bDB6eBB2d49cFd9d4aB98ECEe955c5",
+          "CorkMarketCreator": "0x1A074F17647504D1c50B436074a74d051D502dEa",
+          "CorkLimitOrderAdapter": "0x3E01C558fc0854e92e6ef2a84c19D6Bf9D82B104",
+          "AggregatorV2V3AdapterFactory": "0xFE9a3bEc21f095EeeC1B62F76A5c241a2C5517A2",
+          "LiquidityPriceRecipe": "0x679Cbd016587c423f342e5Ba31e58356228c964d",
+          "LiquidityNavRecipe": "0xed6A6b0448B89F35889Aaf6Df1bdEF27f83787e3",
+          "FixedRateRecipe": "0xEC26bb7d911aFe374721Ecd963543f7e52468C49",
+          "ApySpreadImpairmentRecipe": "0xd5e8F76AafA20aA9A8983A35B71Ad3A793070Ed9"
+        },
+        "cork-cli": null,
+        "rollover": {
+          "RolloverBootstrapDeployer": "0xA99fFea11298A1324eEb55EEC31B05D99085d9bA",
+          "RolloverDeploymentBootstrap": "0x56A7DD76df24764e1D4f611FAa58dC2187F649ea",
+          "LibFillerPayloadExternal": "0x6AD815279F2d2e631CFd1558E1DD70cfC82b1b88",
+          "CorkRolloverContract": "0x232387a35CE5C3f3d956348193541aB8d7553A9e",
+          "ExactSettler": "0x0F2Ce7a5b817865ebFf50c58439B9A27E38f452E",
+          "PartialSettler": "0x5E19Be0743fE521d8BF85b5A558356675499bE9e",
+          "TimelockController": "0x81954908bA5EB09caa9B39b3dD732fdDcbB32Dd7",
+          "CorkRolloverContractFactory": "0x99A5C47CbF062D4E6665afAF32aE6496F9f93F65",
+          "ApproveModule": "0xfcE570587B98D1FD8776eE864EF7CeA69A870885",
+          "OwnerTokenPullModule": "0x9C86e0f05b7Cc99dab3D9C32AA8264aF7DC32990",
+          "ScopedTransferModule": "0x5b7cd7f72DAA99ac6DDED4F42674FF47ebEd7cdc",
+          "ScopedSplitModule": "0xF593a08bAa52c55ABde386C563AF9b50848DDe13",
+          "PostRolloverDstCptTransferModule": "0x84e69211601882091D1a36a5cCdbC1EebB82908F",
+          "BaseFiller": "0x3D16AD60a2fbD352Cc1108c4144F4093ab2E1224"
+        },
+        "cork-periphery": {
+          "CorkForSelfAdapter": "0x3864902695DC930Df406ef5dEB74c4DC249e23f1"
+        },
+        "cork-api": "https://api-phoenix.cork.tech"
+      }
+    },
+    "8453": {
+      "canonical": {
+        "role": "canonical",
+        "phoenix": {
+          "PoolLibrary": "0xCC9337E7EED182e1343d6EC062273552be240E6A",
+          "TimelockUpgrade": "0x0739b6Da7AF605E082701d0990CEF7C78Ba98842",
+          "TimelockControllerAdmin": "0x2D2E62318e763571000B503c84Dc46895049C325",
+          "TimelockOperational": "0x9fb663359947C55A9E3d7905dDB15708e309b8d4",
+          "ConstraintRateAdapterImplementation": "0xB4B5E2aE6d9F7D40911e8A2f60Be2D81a14a2962",
+          "ConstraintRateAdapterProxy": "0x2f9d816191B390A429174902E4A276A019cBf554",
+          "WhitelistManagerImplementation": "0xa5F0E3EB934Bd92aE3c9185FED29ffF78972386C",
+          "WhitelistManagerProxy": "0x8aF6659d864cB632bcadF0744Fb8B5eE78fBEA51",
+          "DefaultCorkController": "0x66025095Ab3a7E60BA9C2b15e203822d5d3647b5",
+          "CorkPoolManagerImplementation": "0x819a556cfbb7f5bbeb470E87874F4d71830e9501",
+          "CorkPoolManagerProxy": "0xcC17224A8710fa23BdA40c2CB563b85CeDDb0C2D",
+          "SharesFactory": "0xFaB92464AF516DC17020Fd39886BB2f8346BAe1e",
+          "PoolShareImplementation": "0x060307Da28cE39d4C5951edA7a40F5733DA82C6F",
+          "CorkAdapter": "0x71eB628c3A40FB3896613804847840426f9284A7"
+        },
+        "market-registry": {
+          "AtomicDeployer": "0x24DEae9D392265F3bb5E494F9BcdF870781Ab2dA",
+          "WrapperRateConsumerFactory": "0x942F2da75E6941D726EaB197E10735B7B6a3C867",
+          "FixedRateOracleFactory": "0x8e7331da266458C87E3870fe01969f4b421b306B",
+          "MarketRegistry": "0xe1f569f152bDB6eBB2d49cFd9d4aB98ECEe955c5",
+          "CorkMarketCreator": "0x1A074F17647504D1c50B436074a74d051D502dEa",
+          "CorkLimitOrderAdapter": "0x3E01C558fc0854e92e6ef2a84c19D6Bf9D82B104",
+          "AggregatorV2V3AdapterFactory": "0xFE9a3bEc21f095EeeC1B62F76A5c241a2C5517A2",
+          "LiquidityPriceRecipe": "0x679Cbd016587c423f342e5Ba31e58356228c964d",
+          "LiquidityNavRecipe": "0xed6A6b0448B89F35889Aaf6Df1bdEF27f83787e3",
+          "FixedRateRecipe": "0xEC26bb7d911aFe374721Ecd963543f7e52468C49",
+          "ApySpreadImpairmentRecipe": "0xd5e8F76AafA20aA9A8983A35B71Ad3A793070Ed9"
+        },
+        "cork-cli": null,
+        "rollover": {
+          "RolloverBootstrapDeployer": "0xA99fFea11298A1324eEb55EEC31B05D99085d9bA",
+          "RolloverDeploymentBootstrap": "0x56A7DD76df24764e1D4f611FAa58dC2187F649ea",
+          "LibFillerPayloadExternal": "0x6AD815279F2d2e631CFd1558E1DD70cfC82b1b88",
+          "CorkRolloverContract": "0x232387a35CE5C3f3d956348193541aB8d7553A9e",
+          "ExactSettler": "0x0F2Ce7a5b817865ebFf50c58439B9A27E38f452E",
+          "PartialSettler": "0x5E19Be0743fE521d8BF85b5A558356675499bE9e",
+          "TimelockController": "0x81954908bA5EB09caa9B39b3dD732fdDcbB32Dd7",
+          "CorkRolloverContractFactory": "0x99A5C47CbF062D4E6665afAF32aE6496F9f93F65",
+          "ApproveModule": "0xfcE570587B98D1FD8776eE864EF7CeA69A870885",
+          "OwnerTokenPullModule": "0x9C86e0f05b7Cc99dab3D9C32AA8264aF7DC32990",
+          "ScopedTransferModule": "0x5b7cd7f72DAA99ac6DDED4F42674FF47ebEd7cdc",
+          "ScopedSplitModule": "0xF593a08bAa52c55ABde386C563AF9b50848DDe13",
+          "PostRolloverDstCptTransferModule": "0x84e69211601882091D1a36a5cCdbC1EebB82908F",
+          "BaseFiller": "0x3D16AD60a2fbD352Cc1108c4144F4093ab2E1224"
+        },
+        "cork-periphery": {
+          "CorkForSelfAdapter": "0x3864902695DC930Df406ef5dEB74c4DC249e23f1"
+        },
+        "cork-api": "https://api-phoenix.cork.tech"
+      }
+    }
+  },
+  "surfaces": {
+    "contracts": "Changed: new Phoenix core, ForSelf, Market Registry and Rollover deployments on both chains. Existing published deployment records remain unchanged. Rollover 0.2.0 has breaking oracleSalt/JIT commitment, recipe verification and fee-bearing market tuple changes; complete pinned-set compatibility and migration assessment remains a cut gate.",
+    "cli-mcp": "Changed: cork-cli 0.6.0 adds the phoenix/v0.4-rc.1 contract set as the primary generation on both chains (Phoenix 1.4.0-rc.1 10-field pools, Market Registry 0.5.0 nested wire, Rollover 0.2.0 salted JIT commitment, cork-periphery 0.2.0-rc.1 ForSelf adapter) and keeps every older set readable and preparable by explicit generation. The covered CLI/MCP surface is breaking relative to 0.4.1 (see the component record). Consumer integration verification of the final pinned set on both chains remains a cut gate.",
+    "apis": "Changed: cork-api 0.4.3 adds the Registry v2 interface (MarketRegistry 0.5.0) and is the tagged, vendored snapshot pinned here; /registry/v1 remains served for the 0.3.3 registry but is outside the covered surface. The rollover route family is not part of cork-api's covered list.",
+    "manifests": "Existing Distribution schemaVersion 1 layout. Phoenix 1.4.0-rc.1, market-registry 0.5.0, cork-periphery 0.2.0-rc.1 and rollover 0.2.0 are published contract pins. cork-api 0.4.3 is a published service pin (signed tag, vendored OpenAPI). cork-cli 0.6.0 is a published stable component pin (GitHub Release flagged pre-release under G9 while no production-stream Distribution exists) (signed tag, tag-pinned cork-defaults.v2.json digest). Rollover source deployment-bundle consumers must dispatch by its v2 schema despite the historical filename."
+  },
+  "integrationSuite": {
+    "passed": false,
+    "waived": true,
+    "decision": "Waived by the distribution owner on 2026-09-25. No cross-component integration runner exists.",
+    "nearestEvidence": "Retained finalized reconciliation records 63 deployment/governance transactions per chain; component records retain their own observation blocks. Rollover 0.2.0 additionally has a fresh exact-tagged-commit build, 1347 passing tests in each of the default and CI profiles, and 28 exact linked/immutable-resolved runtime and receipt matches plus 126 governance/binding reads at finalized Base block 51291605 and Arbitrum block 505010311. These component checks are not a passing final pinned-set integration suite.",
+    "chains": [
+      42161,
+      8453
+    ]
+  },
+  "deviations": [
+    "D1 — cork-periphery 0.2.0-rc.1; R1/R4: unchanged deployed adapters lack a component version() getter. Publication accepted with explicit disclosure and exact runtime/source identity, not a fabricated runtime version. Owner: component maintainer. Follow-up: establish authoritative version reporting in the next changed contract or obtain a policy amendment before stable release.",
+    "D2 — cork-periphery 0.2.0-rc.1; Checklist A4 and G15: non-author review at the exact release commit was not established. The cut owner authorized prerelease publication; reviewLevel remains unreviewed. Owner: component maintainer. Follow-up: obtain and record exact-version non-author review before any review-level promotion.",
+    "D3 — cork-periphery 0.2.0-rc.1; R16/Checklist A6: completed removal notice and usage assessment were not established. Publication accepted as a breaking package-only prerelease; existing deployments and consumer pins are not retired or migrated. Owner: component maintainer. Follow-up: complete usage assessment and required notices before retirement or stable rollout.",
+    "D4 — cork-periphery 0.2.0-rc.1; G13: complete organization-wide deployment-address deny-list confirmation was not established. The cut owner cleared this exact public snapshot for publication; this is not a claim of exhaustive organization-wide inventory validation. Owner: release maintainer. Follow-up: establish the authoritative inventory and repeat the structural/deny-list check before stable release.",
+    "D5 — rollover 0.2.0; R2/R4 and component Checklist A5: CorkRolloverContract, CorkRolloverContractFactory, ExactSettler and PartialSettler report version() = 1.0.0. Component publication accepted with explicit disclosure and exact public source/runtime identity; the getter alone does not identify this release. Nearest evidence: the pinned rollover 0.2.0 component record and public release disclose the getter values and tagged-build/runtime verification. Recurrence: the source/getter mismatch class is documented in phoenix/v0.2-rc.1 and phoenix/v0.3-rc.1 (CorkMarketCreator = 0.1.0 in knownIssues); this is the third cut in that recorded sequence, recurrence count 2, counted per Distribution rather than per affected contract. Remediation is planned in subsequent component releases: correct component-version reporting for new or changed contracts and enforce getter/release agreement with a release-time check, or adopt an approved policy amendment defining the authoritative identification mechanism. Existing deployments and EIP-712 signing domains are not changed by this cut. Owner: component maintainer; named-owner and calendar-date confirmation remain required for the recurring-exception disposition before Distribution approval. This component-version deviation is separate from the integration-suite waiver recorded in D10.",
+    "D6 — rollover 0.2.0; independent review: publication has release-owner review and authorization, not established exact-version non-author security review. reviewLevel remains unreviewed. Owner: component maintainer. Follow-up: obtain named independent review before review-level promotion; no Distribution integration or merge approval is implied.",
+    "D7 — rollover 0.2.0; verification coverage: fresh full default and CI-profile suites, production size builds, bootstrap/Timelock builds and repository consistency checks passed. Extended ci-deep/audit/mutation profiles, deploy-profile test override smoke and hosted static-analysis checks were not certified by the publication run. Owner: component maintainer. Follow-up: complete required stress/static-analysis evidence before stronger review claims or a Distribution gate that requires it.",
+    "D8 — rollover 0.2.0; source snapshot boundary: legacy public test/formal annotations, generic CI paths and deliberately published deployment evidence/bootstrap constants remain in the reviewed source. Source preparation labels and the dated provisional shadow bundle are not Distribution-readiness certificates; the public Release separately binds source identity and publication. Owner: release maintainer. Follow-up: resolve public reference/documentation hygiene in a reviewed source update and preserve explicit boundary checks for generated evidence.",
+    "D9 — market-registry 0.5.0; R2/R4 and component Checklist A5: the new CorkMarketCreator reports version() = 0.1.0; the changed CorkLimitOrderAdapter reports 0.4.0; the changed LiquidityPriceRecipe, LiquidityNavRecipe, FixedRateRecipe and ApySpreadImpairmentRecipe report 0.1.0. These getter values do not identify the 0.5.0 component release. This finding concerns new or changed contracts: older getter values on unchanged contracts are not automatically deviations. Nearest evidence: components/market-registry/0.5.0.json and the public 0.5.0 release Contract version strings and Compatibility sections. Consumers must use pinned chain/address and runtime identity with the exact source commit; the metadata-exclusion qualification on build comparisons remains unchanged. Recurrence: the source/getter mismatch class is documented in phoenix/v0.2-rc.1 and phoenix/v0.3-rc.1 (CorkMarketCreator = 0.1.0 in knownIssues); this is the third cut in that recorded sequence, recurrence count 2, counted per Distribution rather than per affected contract. Remediation is planned in subsequent component releases: correct component-version reporting for new or changed contracts and enforce getter/release agreement with a release-time check, or adopt an approved policy amendment defining the authoritative identification mechanism. Existing deployments and EIP-712 signing domains are not changed by this cut. Owner: component maintainer; named-owner and calendar-date confirmation remain required for the recurring-exception disposition before Distribution approval. This component-version deviation is separate from the integration-suite waiver recorded in D10.",
+    "D10 — Cross-component integration suite: waived by the distribution owner on 2026-09-25 because no cross-component integration runner exists. This is a fresh acceptance for phoenix/v0.4-rc.1, not an inherited waiver; it explicitly continues without the runner after v0.3-rc.1 required a new decision for any later cut. Fourth consecutive waived cut after v0.1-rc.1, v0.2-rc.1 and v0.3-rc.1; recurrence count 3. Nearest evidence per component: Phoenix 1.4.0-rc.1, Market Registry 0.5.0 and cork-periphery 0.2.0-rc.1 have public source pins and deployment/runtime records in their component JSON files; Rollover 0.2.0 has the tagged-build, test and runtime/binding checks described in integrationSuite.nearestEvidence; cork-api 0.4.3 has its tagged vendored OpenAPI and live service/indexing checks; cork-cli 0.6.0 has its signed source tag and tag-pinned defaults checked against the deployment set. None is a passing whole-set integration suite. Structural precondition: a runnable cross-component integration suite exercising the pinned set on Base and Arbitrum. Follow-up coordination: distribution owner; implementation owner and target date are not yet assigned. This waiver does not resolve those recurring-deviation follow-ups, authorize a final non-candidate name, or establish partner-flow or security-review acceptance."
+  ],
+  "externalDependencies": {
+    "_note": "Runtime dependency getters were read at finalized Base block 51161253 and Arbitrum block 503977760. These are external contracts, not Cork component releases or security attestations.",
+    "1inch-limit-order-protocol": {
+      "8453": "0x111111125421cA6dc452d289314280a0f8842A65",
+      "42161": "0x111111125421cA6dc452d289314280a0f8842A65"
+    },
+    "bundler3": {
+      "8453": "0x6BFd8137e702540E7A42B74178A4a49Ba43920C4",
+      "42161": "0x1FA4431bC113D308beE1d46B0e98Cb805FB48C13"
+    },
+    "permit2": {
+      "8453": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+      "42161": "0x000000000022D473030F116dDEE9F6B43aC78BA3"
+    }
+  },
+  "docs": {
+    "apiReference": "https://api-phoenix.cork.tech/docs"
+  },
+  "security": {
+    "contact": "security@cork.tech",
+    "reviewLevel": "unreviewed",
+    "audits": []
+  },
+  "knownIssues": [
+    "Rollover indexing and routes are outside the covered API surface; the rollover contract component is pinned separately.",
+    "Source/getter version agreement and publication review/verification exceptions remain disclosed.",
+    "Distribution-owner review, deviation recurrence/structural-resolution assessment, migration and disposability decisions remain required before approval. The integration-suite waiver is recorded in integrationSuite and D10; no passing integration run is claimed.",
+    "The draft does not establish hosted-service activation, order migration, market activation or security-review approval."
+  ],
+  "scopeNotes": [
+    "The four contract-component references, the cork-api reference and the cork-cli reference resolve to published source versions; cork-cli 0.6.0 is a published stable component version (its GitHub Release stays flagged pre-release under G9 while no production-stream Distribution exists). Verification must not treat any prerelease pin as release readiness.",
+    "Existing component records, Distribution records and discovery pointers are unchanged. No old signing address is retired by this draft.",
+    "Registry governance tooling remains on its existing registry; the dashboard/API migration does not authorize a governance migration.",
+    "Naming: retain phoenix/v0.4-rc.1 per the September 24 decision (https://github.com/Cork-Technology/planning/issues/21#issuecomment-5813765727). Under policy v0.15 R5, clarified by https://github.com/Cork-Technology/cork-knowledge/pull/108, a v0.y bump signals possible covered breaking changes; this manifest's surfaces report identifies the changes. No naming exception or deviation is required. The candidate suffix remains until the required integration suite passes. Compatibility, signing-domain migration, disposability, verification and review requirements remain unchanged.",
+    "SDK tarballs, OCI images, APK packages, hosted CVM deployment and chains other than 42161 and 8453 are not covered by this draft.",
+    "deployments (policy v0.14, R5b): the Distribution's deployment sets, keyed by chain and then by label. Each set maps every pinned component to where it runs on that chain: a contract component to its contract addresses (the same addresses the component records carry, which stay the home of codehash, commit and chain fork), a service component to the endpoint URL its covered routes are served from, and a component nobody deploys to null. Exactly one set per chain has the role canonical; it is the only set any partner-facing projection reads. This cut has one set per chain. A staging or dark-launch set on the same chain would be a second label beside it."
+  ]
+}
