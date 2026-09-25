@@ -5,13 +5,11 @@
     "path": "src/modules/indexing/v1/schemas/get-status.schema.ts"
   },
   "workerSource": {
-    "repo": "Cork-Technology/cork-indexing-infra",
     "commit": "73feac66b7b1859bd998dd6abfb506a091c57591",
-    "note": "Resolved from live worker_commit 73feac6 on 2026-09-24; not a pre-existing Distribution component pin. Layout evidence is valid only for this worker revision."
+    "note": "Opaque worker build identifier matched to live worker_commit 73feac6 on 2026-09-24; not a Distribution component pin or a public source citation. The recorded event layouts apply only to this worker build; public consumers cannot independently inspect its implementation from this identifier."
   },
   "types": {
     "LOP": {
-      "path": "src/contracts/events/limitorderprotocol.ts",
       "events": [
         {
           "anonymous": false,
@@ -73,7 +71,6 @@
       ]
     },
     "MARKET_REGISTRY": {
-      "path": "src/contracts/events/marketregistry.ts",
       "events": [
         {
           "anonymous": false,
@@ -152,7 +149,6 @@
       ]
     },
     "ROLLOVER_EXACT_SETTLER": {
-      "path": "src/contracts/events/rollover.ts",
       "events": [
         {
           "anonymous": false,
@@ -535,7 +531,6 @@
       ]
     },
     "ROLLOVER_FACTORY": {
-      "path": "src/contracts/events/rollover.ts",
       "events": [
         {
           "anonymous": false,
@@ -652,7 +647,6 @@
       ]
     },
     "ROLLOVER_PARTIAL_SETTLER": {
-      "path": "src/contracts/events/rollover.ts",
       "events": [
         {
           "anonymous": false,

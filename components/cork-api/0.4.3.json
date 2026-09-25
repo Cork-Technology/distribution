@@ -51,8 +51,7 @@
     "Response fields state their units in the published schema: rates, premiums and fractions follow the documented unit conventions; token amounts are strings in the token's native decimals, never rescaled."
   ],
   "knownIssues": [
-    "Registry v2 deployment blocks in the service's vendored manifest (Base 51145041, Arbitrum 503851934) are the first-log blocks of the registries; this repository records readback blocks only, so they are not cross-verified here.",
-    "The registries report no assets, feeds or recipes as of 2026-09-15, so /registry/v2 predict and resolve are contract-verified only until entries exist."
+    "Registry v2 deployment blocks in the service's vendored manifest (Base 51145041, Arbitrum 503851934) are the first-log blocks of the registries; this repository records readback blocks only, so they are not cross-verified here."
   ],
   "contracts": null,
   "supersededBy": null

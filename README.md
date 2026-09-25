@@ -71,10 +71,12 @@ the union of the component’s non-superseded pinned ABIs — the type’s own c
 first, with a component-wide fallback for shared lifecycle events. Each fallback
 names its lender pin and contract; a topic absent from every live pin is FAIL.
 Registry, Rollover and external LOP also check required events and indexed/tuple layouts;
-source provenance and shared decoders are recorded in `scripts/indexing-evidence.json`.
-Missing mappings or required evidence fail. A changed worker can pass event declarations
-but cannot pass live layout verification without reviewed source evidence; the API does not
-pin the worker or publish layouts. Historical coverage gaps remain failures.
+reviewed event layouts and shared decoders are recorded in `scripts/indexing-evidence.json`.
+The worker commit is an opaque build identifier, not a public source citation; its
+implementation cannot be independently inspected from that identifier. Missing mappings
+or required evidence fail. A changed worker cannot pass live layout verification without
+new reviewed layout evidence; the API does not pin the worker or publish layouts.
+Historical coverage gaps remain failures.
 The watch-list’s
 version labels are compared as WARN (a label is a flag, not proof), and the indexer's own
 watchdog verdicts report per pinned chain.
