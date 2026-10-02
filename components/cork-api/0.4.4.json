@@ -3,31 +3,64 @@
   "component": "cork-api",
   "version": "0.4.4",
   "source": {
-    "repo": null,
-    "tag": null,
-    "commit": null
+    "repo": "https://github.com/Cork-Technology/cork-indexing-api",
+    "tag": "v0.4.4",
+    "commit": "c762071fbe8b7ae0e31abed1aaf288f36e4f7bc9",
+    "visibility": "private"
   },
   "package": null,
-  "schema": null,
+  "schema": {
+    "openapi": "./schema/openapi-0.4.4.json",
+    "sha256": "14b19566e82c0a70487e3e23a83fc36789afb24e48f92e1fd9a8d4bac23294eb",
+    "note": "Exact bytes of openapi.json at signed tag v0.4.4. All 45 paths from v0.4.3 remain; fixed_rate request and answer modes and up to three request alternatives are added. This snapshot supplies interface evidence, not full-set integration acceptance."
+  },
   "stage": "partner-preview",
   "reviewLevel": "unreviewed",
   "badges": [],
-  "releaseEvidence": "TODO: Replace this requested API release stub with the component owner's published tag, exact commit, Release link and tag-derived OpenAPI snapshot plus digest. No source pin or certified schema is asserted yet.",
   "services": {
     "baseUrl": "https://api-phoenix.cork.tech",
     "docs": "https://api-phoenix.cork.tech/docs",
+    "liveSpec": "/docs/json",
+    "indexingStatus": "/indexing/v1/status",
+    "meta": "GET /meta/v1 reports component, version, status and commit. The x-cork-component header reports the component version. Distribution membership is resolved by this repository, not self-reported by the service.",
     "chains": [
       42161,
       8453
-    ]
+    ],
+    "freshness": "The indexer can trail the chain head; the chain wins on any disagreement. RFQ state is venue-only by construction (no on-chain events). Registry v2 reads the chain directly (no database) and answers 503 on a chain whose adapter, market creator, pool manager, shares factory and registry do not bind to one deployment.",
+    "verifyModel": "availability",
+    "verifyModelNote": "This service has exactly one live deployment, updated in place; non-breaking releases keep flowing after the cut. The verify asserts availability: the served version must be >= the pinned version, every covered route family below must remain served at its pinned major, and the live OpenAPI document must show no breaking drift against this vendored snapshot on the covered paths.",
+    "routeMajors": {
+      "_note": "Covered route majors retained from the previous API pin. Registry v1 remains served but is outside this covered list; rollover indexing/routes remain outside the covered API surface.",
+      "meta": 1,
+      "rfqs": 1,
+      "limit-orders": 1,
+      "pools": 1,
+      "flows": 1,
+      "registry": 2,
+      "indexing": 1
+    }
   },
   "notices": [
-    "Requested fixed-rate RFQ API target; this stub is not a completed or verified component release record.",
-    "Do not merge a Distribution that references this stub. Preserve the previous API record until this replacement is fully verified."
+    "Stage is partner-preview and review level remains unreviewed; no production support commitment is asserted.",
+    "The source repository and Release are private. Public interface evidence is the vendored OpenAPI snapshot and live /docs reference; this is not publicly resolvable source provenance.",
+    "RFQ requests and answer options accept fixed_rate. Requests may offer up to three unique alternatives. Fixed-rate inline templates require oracle_params.rate_override as a canonical positive uint256 decimal string in absolute WAD units; each answer option carries its own proposed rate.",
+    "Readers can now encounter fixed_rate and three-mode requests. Exhaustive two-mode consumers must update or explicitly handle unsupported alternatives; CLI/MCP support is available in cork-cli v0.6.1-rc.3. Existing modes retain their previous template behavior.",
+    "No new deprecations, automated underwriting pricing/filling, contract deployment changes or RFQ v2 authentication are included.",
+    "The tagged changelog retains an unreleased heading; the published GitHub Release records publication of that exact source."
   ],
   "knownIssues": [
-    "Source/release provenance and vendored schema are pending."
+    "Registry v2 deployment blocks in the service's vendored manifest (Base 51145041, Arbitrum 503851934) are the first-log blocks of the registries; this repository records readback blocks only, so they are not cross-verified here.",
+    "Independent release conformance, private-source disclosure treatment and full-set integration acceptance remain pending for the proposed Distribution."
   ],
   "contracts": null,
-  "supersededBy": null
+  "supersededBy": null,
+  "docs": [
+    "https://api-phoenix.cork.tech/docs"
+  ],
+  "releaseEvidence": {
+    "url": "https://github.com/Cork-Technology/cork-indexing-api/releases/tag/v0.4.4",
+    "prerelease": true,
+    "note": "Published Release and signed annotated tag verified with authenticated repository access. Source and Release are private; the vendored schema is the publicly available interface evidence. Private-source treatment remains a Distribution review gate."
+  }
 }

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "distribution": "phoenix/v0.4-rc.2",
   "stage": "partner-preview",
-  "support": "Draft candidate only: API release evidence and integration acceptance are unresolved. Not a published integration baseline or production-support commitment.",
+  "support": "Draft candidate only: component release records are present, but integration acceptance and independent review remain unresolved. Not a published integration baseline or production-support commitment.",
   "promotedFrom": null,
   "components": {
     "phoenix": "1.4.0-rc.1",
@@ -131,14 +131,14 @@
   "surfaces": {
     "contracts": "Unchanged pins and deployment addresses relative to phoenix/v0.4-rc.1. No redeployment, governance change or signing-domain change is proposed.",
     "cli-mcp": "Proposed pin moves from 0.6.0 to published 0.6.1-rc.3, including fixed-rate RFQ handling and all intervening changes. Full covered-surface compatibility and integration review remain pending.",
-    "apis": "Proposed cork-api 0.4.4 fixed-rate RFQ target. Tagged source and OpenAPI evidence remain unresolved in the component stub; no API certification is asserted.",
+    "apis": "Proposed cork-api 0.4.4 fixed-rate RFQ pin now records the published private-source release and exact tagged OpenAPI snapshot. All 45 paths remain; request/answer modes gain fixed_rate and requests allow three unique alternatives. Exhaustive two-mode readers require updates. Full compatibility and private-source treatment remain review gates.",
     "manifests": "Existing schemaVersion 1 shape. Only CLI and API component versions change; historical manifests, component records and stable pointers remain untouched."
   },
   "integrationSuite": {
     "passed": false,
     "waived": false,
     "decision": "TODO: Record integration results for the complete proposed set on both chains, or obtain an explicit reviewed waiver. The previous candidate's waiver is not carried forward.",
-    "nearestEvidence": "The CLI public tag resolves to the recorded commit and has published release assets. This is component publication evidence, not proof of integration with the proposed API and contract set.",
+    "nearestEvidence": "The CLI public tag resolves to its recorded commit and has published release assets. The API signed private-source tag resolves to its recorded commit, has a published pre-release, and its vendored OpenAPI bytes match the tag. These are component publication checks, not proof of full-set integration.",
     "chains": [
       42161,
       8453
@@ -179,7 +179,7 @@
     "audits": []
   },
   "knownIssues": [
-    "API 0.4.4 is an unresolved release stub; no tagged API schema is vendored by this draft.",
+    "API source and Release are private; the exact tagged OpenAPI snapshot is vendored publicly. Review the private-source disclosure treatment before acceptance; this draft does not assert publicly resolvable API source provenance.",
     "Existing component disclosures are retained for visibility; their applicability and recurring-exception disposition must be reviewed for this candidate. No new waiver has been approved.",
     "No automated fixed-rate underwriting or completed partner trade is certified by these component pins.",
     "Rollover indexing and routes remain outside the covered API surface."
