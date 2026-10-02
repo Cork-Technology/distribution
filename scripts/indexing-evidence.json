@@ -5,8 +5,8 @@
     "path": "src/modules/indexing/v1/schemas/get-status.schema.ts"
   },
   "workerSource": {
-    "commit": "73feac66b7b1859bd998dd6abfb506a091c57591",
-    "note": "Opaque worker build identifier matched to live worker_commit 73feac6 on 2026-09-24; not a Distribution component pin or a public source citation. The recorded event layouts apply only to this worker build; public consumers cannot independently inspect its implementation from this identifier."
+    "commit": "d0baed01b2dc8cc07a30d62bb7d272089a0daa62",
+    "note": "Opaque worker build identifier matched to live worker_commit d0baed0 on 2026-10-02; not a Distribution component pin or a public source citation. The registered decoder ABIs were re-derived from this build: 3 LOP, 2 Market Registry, 4 Rollover Factory and 11 events for each settler type exactly match the recorded full ABI objects, including indexed flags, anonymous flags and nested tuple components. Event definitions, the decode utility, contract-type dispatch and the Registry/Factory/shared-settler registrations are unchanged from the previously reviewed build. LOP fill processing changed, but its subscribed events and decoder ABIs did not. This establishes event-layout compatibility only, not correctness of fill accounting, database behavior, cross-component integration or an independent release audit. Public consumers cannot inspect the private worker implementation from this identifier. The recorded layouts apply only to this worker build."
   },
   "types": {
     "LOP": {

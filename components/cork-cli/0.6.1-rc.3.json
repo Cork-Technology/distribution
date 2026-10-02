@@ -31,7 +31,7 @@
     "Automated underwriting and premium selection are not enabled by this CLI/MCP release."
   ],
   "knownIssues": [
-    "The exact new pinned set still requires integration verification on both listed chains and independent provenance review before this draft can become an integration baseline."
+    "Full-set integration for the proposed Distribution is explicitly waived, not passed; independent provenance review and other acceptance gates remain pending."
   ],
   "contracts": null,
   "supersededBy": null

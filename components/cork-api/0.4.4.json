@@ -51,7 +51,7 @@
   ],
   "knownIssues": [
     "Registry v2 deployment blocks in the service's vendored manifest (Base 51145041, Arbitrum 503851934) are the first-log blocks of the registries; this repository records readback blocks only, so they are not cross-verified here.",
-    "Independent release conformance, private-source disclosure treatment and full-set integration acceptance remain pending for the proposed Distribution."
+    "Independent release conformance and private-source disclosure treatment remain pending for the proposed Distribution. Its full-set integration is explicitly waived, not passed."
   ],
   "contracts": null,
   "supersededBy": null,

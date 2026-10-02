@@ -76,6 +76,12 @@ The worker commit is an opaque build identifier, not a public source citation; i
 implementation cannot be independently inspected from that identifier. Missing mappings
 or required evidence fail. A changed worker cannot pass live layout verification without
 new reviewed layout evidence; the API does not pin the worker or publish layouts.
+Refreshing that evidence requires re-deriving the subscribed event ABIs from the exact
+reported worker build and checking indexed flags, anonymous flags and nested tuple
+components against the pinned contracts. Changing the worker identifier alone is not
+evidence. A layout review does not certify handler accounting, database behavior or
+cross-component integration.
+
 Historical coverage gaps remain failures.
 The watch-list’s
 version labels are compared as WARN (a label is a flag, not proof), and the indexer's own
