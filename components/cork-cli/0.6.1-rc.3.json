@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-cli",
+  "version": "0.6.1-rc.3",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-cli",
+    "tag": "v0.6.1-rc.3",
+    "commit": "fdb139a89974a16c1156c9cf7865e91d3d3625e0"
+  },
+  "package": "GitHub Release binaries: CLI and MCP stdio server through ch mcp, seven platforms plus checksums.txt. SDK tarballs and the OCI image are separate release channels, not certified by this draft binary pin.",
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "config": {
+    "note": "Tagged fallback address snapshot for the 0.6 line. The primary generation remains phoenix/v0.4-rc.1 on Arbitrum One and Base; this component update does not redeploy contracts. Runtime configuration updates are a separate channel and are not frozen by the snapshot digest.",
+    "snapshot": "cork-defaults.v2.json at tag v0.6.1-rc.3",
+    "snapshotSha256": "579e0cd559b125a40856192f335f3da29cdb606ee0f034d3c5ea867ed7fac43b"
+  },
+  "docs": [
+    "https://github.com/Cork-Technology/cork-cli/releases/tag/v0.6.1-rc.3",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.6.1-rc.3/CHANGELOG.md",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.6.1-rc.3/docs/cli.md",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.6.1-rc.3/docs/zyfai-quickstart.md"
+  ],
+  "notices": [
+    "Supports cork-api 0.4.4 fixed_rate RFQs with one to three unique modes and a positive canonical uint256 decimal-string inline oracle_params.rate_override, in absolute WAD units. Earlier binaries reject the new mode.",
+    "Fixed-rate order preparation carries rateOverride and no recipe payload. Recipe resolution, verification, cover inspection and warnings distinguish recipe refusal from unavailable chain reads. API admission alone does not establish fillability.",
+    "The change from the prior Distribution CLI pin 0.6.0 includes all intervening releases: configuration-channel changes, rollover filling and clone deployment, smart-account envelope decoding, ForSelf verification, approval reporting, RFQ preflights and fixed-rate cover handling. Review the full tagged changelog, not only the fixed-rate addition.",
+    "The public release is a pre-release. Source tag verification and asset presence are not a claim that the new Distribution set passed integration or independent provenance review.",
+    "Automated underwriting and premium selection are not enabled by this CLI/MCP release."
+  ],
+  "knownIssues": [
+    "The exact new pinned set still requires integration verification on both listed chains and independent provenance review before this draft can become an integration baseline."
+  ],
+  "contracts": null,
+  "supersededBy": null
+}

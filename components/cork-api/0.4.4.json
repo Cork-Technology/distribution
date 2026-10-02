@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-api",
+  "version": "0.4.4",
+  "source": {
+    "repo": null,
+    "tag": null,
+    "commit": null
+  },
+  "package": null,
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "releaseEvidence": "TODO: Replace this requested API release stub with the component owner's published tag, exact commit, Release link and tag-derived OpenAPI snapshot plus digest. No source pin or certified schema is asserted yet.",
+  "services": {
+    "baseUrl": "https://api-phoenix.cork.tech",
+    "docs": "https://api-phoenix.cork.tech/docs",
+    "chains": [
+      42161,
+      8453
+    ]
+  },
+  "notices": [
+    "Requested fixed-rate RFQ API target; this stub is not a completed or verified component release record.",
+    "Do not merge a Distribution that references this stub. Preserve the previous API record until this replacement is fully verified."
+  ],
+  "knownIssues": [
+    "Source/release provenance and vendored schema are pending."
+  ],
+  "contracts": null,
+  "supersededBy": null
+}
