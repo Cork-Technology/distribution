@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "distribution": "phoenix/v0.4-rc.2",
+  "distribution": "phoenix/v0.4.1-rc.1",
   "stage": "partner-preview",
   "support": "Draft candidate only: component release records and an explicit integration waiver are present, but final acceptance and independent review remain unresolved. Not a published integration baseline or production-support commitment.",
   "promotedFrom": null,
@@ -188,7 +188,8 @@
     "The exact tagged API OpenAPI snapshot retains an internal policy reference in the GET /meta/v1/ description. Its publication is explicitly accepted for this candidate only under D11; the snapshot remains byte-identical. Upstream removal is required in the next API release. Private-source treatment and other acceptance gates remain unresolved."
   ],
   "scopeNotes": [
-    "TODO: Confirm final Distribution identity after the full covered-surface comparison and deployment-disposability assessment; phoenix/v0.4-rc.2 is a proposed candidate name only.",
+    "The distribution owner selected phoenix/v0.4.1-rc.1 as the final candidate name on 2026-10-02. This naming decision does not approve compatibility, deployment disposability or any other acceptance gate.",
+    "TODO: Complete the full covered-surface compatibility comparison and deployment-disposability assessment. Reconcile the owner-selected three-part name with the currently published two-part Distribution naming rule before merge.",
     "TODO: Complete component-release conformance, independent review, private-source treatment and recurring-waiver follow-up ownership/date before merge. The integration waiver itself is approved; the suite has not passed.",
     "Only CLI and API pins are proposed to change. Contract pins, chains, addresses and stable pointers stay unchanged."
   ]
