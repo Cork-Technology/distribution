@@ -22,12 +22,12 @@
     "docs": "https://api-phoenix.cork.tech/docs",
     "liveSpec": "/docs/json",
     "indexingStatus": "/indexing/v1/status",
-    "meta": "GET /meta/v1 reports component, version, status and commit. The x-cork-component header reports the component version. Distribution membership is resolved by this repository, not self-reported by the service.",
+    "meta": "The /meta/v1 read endpoint reports component, version, status and commit. The x-cork-component header reports the component version. Distribution membership is resolved by this repository, not self-reported by the service.",
     "chains": [
       42161,
       8453
     ],
-    "freshness": "The indexer can trail the chain head; the chain wins on any disagreement. RFQ state is venue-only by construction (no on-chain events). Registry v2 reads the chain directly (no database) and answers 503 on a chain whose adapter, market creator, pool manager, shares factory and registry do not bind to one deployment.",
+    "freshness": "The indexer can trail the chain head; the chain wins on any disagreement. Request-for-quote (RFQ) state is venue-only by construction (no on-chain events). Registry v2 reads the chain directly (no database) and answers 503 on a chain whose adapter, market creator, pool manager, shares factory and registry do not bind to one deployment.",
     "verifyModel": "availability",
     "verifyModelNote": "This service has exactly one live deployment, updated in place; non-breaking releases keep flowing after the cut. The verify asserts availability: the served version must be >= the pinned version, every covered route family below must remain served at its pinned major, and the live OpenAPI document must show no breaking drift against this vendored snapshot on the covered paths.",
     "routeMajors": {
@@ -44,7 +44,7 @@
   "notices": [
     "Stage is partner-preview and review level remains unreviewed; no production support commitment is asserted.",
     "The source repository and Release are private. Public interface evidence is the vendored OpenAPI snapshot and live /docs reference; this is not publicly resolvable source provenance.",
-    "RFQ requests and answer options accept fixed_rate. Requests may offer up to three unique alternatives. Fixed-rate inline templates require oracle_params.rate_override as a canonical positive uint256 decimal string in absolute WAD units; each answer option carries its own proposed rate.",
+    "RFQ requests and answer options accept fixed_rate. Requests may offer up to three unique alternatives. Fixed-rate inline templates require oracle_params.rate_override as a canonical positive uint256 decimal string in absolute 18-decimal fixed-point units (1e18 = 1.0); each answer option carries its own proposed rate.",
     "Readers can now encounter fixed_rate and three-mode requests. Exhaustive two-mode consumers must update or explicitly handle unsupported alternatives; CLI/MCP support is available in cork-cli v0.6.1-rc.3. Existing modes retain their previous template behavior.",
     "No new deprecations, automated underwriting pricing/filling, contract deployment changes or RFQ v2 authentication are included.",
     "The tagged changelog retains an unreleased heading; the published GitHub Release records publication of that exact source."
