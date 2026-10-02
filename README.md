@@ -32,6 +32,19 @@ Two kinds of file:
 **`stable/<line>`** holds one pointer per Distribution line, naming the newest production
 Distribution on that line. No pointer file exists until a production Distribution does.
 
+### Distribution names and CLI generations
+
+A Distribution name identifies a component set; a CLI generation label selects deployed
+contracts. They need not be identical. The proposed `phoenix/v0.4.1-rc.1` reuses the
+`phoenix/v0.4-rc.1` deployment generation on Base and Arbitrum. With its pinned CLI, omit
+`--generation` to use the primary set, or pass `--generation phoenix/v0.4-rc.1`; passing
+the new Distribution name returns `generation_unknown`. The CLI component record states
+the mapping. No generation alias or live configuration change is made by this cut.
+
+This candidate covers the published CLI binaries and their MCP stdio server (`ch mcp`),
+not hosted MCP/CVM deployments or separate SDK/OCI channels. Existing positions and
+deployment identities are preserved; the reused deployment set is not disposable.
+
 ## Frozen vs living fields
 
 Frozen fields — source tag, addresses, codehashes, ABIs, schema pointers, the pinned set —
@@ -103,6 +116,10 @@ Frozen fields enter this repository through a pull request, and a cut is approve
 distribution owner approves that pull request with verification green. The review record and
 the signed commits are the audit trail. No manifest carries a signature field: nothing in
 this repository is taken on assertion, and that includes approvals.
+
+Green CI establishes mechanical verification, not human approval. Completed checks and
+owner-accepted deviations may remove draft sentinels while independent provenance and
+component-owner reviews remain explicit pre-merge requirements on the pull request.
 
 ## Plain-language disclaimer
 

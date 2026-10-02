@@ -51,7 +51,7 @@
   ],
   "knownIssues": [
     "Registry v2 deployment blocks in the service's vendored manifest (Base 51145041, Arbitrum 503851934) are the first-log blocks of the registries; this repository records readback blocks only, so they are not cross-verified here.",
-    "Independent release conformance and private-source disclosure treatment remain pending for the proposed Distribution. Its full-set integration is explicitly waived, not passed."
+    "Candidate-specific acceptance of the reviewed release-process and historical-evidence gaps is recorded in phoenix/v0.4.1-rc.1 deviations D14 and D15. Independent review remains required; no implementation-image attestation or passing full-set integration is claimed."
   ],
   "contracts": null,
   "supersededBy": null,
@@ -61,6 +61,6 @@
   "releaseEvidence": {
     "url": "https://github.com/Cork-Technology/cork-indexing-api/releases/tag/v0.4.4",
     "prerelease": true,
-    "note": "Published Release and signed annotated tag verified with authenticated repository access. Source and Release are private; the vendored schema is the publicly available interface evidence. Private-source treatment remains a Distribution review gate."
+    "note": "Published Release and signed annotated tag verified with authenticated repository access. Source and Release remain private under the existing hosted-service model; the vendored schema is the publicly available interface evidence. No publicly inspectable implementation provenance is claimed."
   }
 }

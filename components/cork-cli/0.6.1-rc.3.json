@@ -13,7 +13,7 @@
   "reviewLevel": "unreviewed",
   "badges": [],
   "config": {
-    "note": "Tagged fallback address snapshot for the 0.6 line. The primary generation remains phoenix/v0.4-rc.1 on Arbitrum One and Base; this component update does not redeploy contracts. Runtime configuration updates are a separate channel and are not frozen by the snapshot digest.",
+    "note": "Tagged fallback address snapshot for the 0.6 line. Distribution phoenix/v0.4.1-rc.1 reuses the primary deployment generation phoenix/v0.4-rc.1 on Arbitrum One and Base: omit --generation or use --generation phoenix/v0.4-rc.1. The Distribution name itself is not a recognized CLI generation label. No contracts are redeployed. Runtime configuration updates are a separate channel and are not frozen by the snapshot digest.",
     "snapshot": "cork-defaults.v2.json at tag v0.6.1-rc.3",
     "snapshotSha256": "579e0cd559b125a40856192f335f3da29cdb606ee0f034d3c5ea867ed7fac43b"
   },
@@ -28,10 +28,16 @@
     "Fixed-rate order preparation carries rateOverride and no recipe payload. Recipe resolution, verification, cover inspection and warnings distinguish recipe refusal from unavailable chain reads. API admission alone does not establish fillability.",
     "The change from the prior Distribution CLI pin 0.6.0 includes all intervening releases: configuration-channel changes, rollover filling and clone deployment, smart-account envelope decoding, ForSelf verification, approval reporting, RFQ preflights and fixed-rate cover handling. Review the full tagged changelog, not only the fixed-rate addition.",
     "The public release is a pre-release. Source tag verification and asset presence are not a claim that the new Distribution set passed integration or independent provenance review.",
+    "The rfq-open modes schema adds maxItems 3 and rejects duplicates before relay. The preceding API already rejected duplicate or overlength mode lists, so no previously successful end-to-end request is lost. For those invalid inputs, overlength changes from exit 3 venue_rejected to exit 2 invalid_input; duplicates retain exit 3 but change to invalid_order_terms. Consumers matching errors must account for this boundary change.",
     "Automated underwriting and premium selection are not enabled by this CLI/MCP release."
   ],
   "knownIssues": [
-    "Full-set integration for the proposed Distribution is explicitly waived, not passed; independent provenance review and other acceptance gates remain pending."
+    "Full-set integration for the proposed Distribution is explicitly waived, not passed; independent provenance review and other acceptance gates remain pending.",
+    "Candidate-specific acceptance of the reviewed publication, documentation, channel and evidence gaps is recorded in phoenix/v0.4.1-rc.1 deviations D12, D13 and D15. This does not fix the findings or promote this component beyond unreviewed.",
+    "The Alpine musl binaries require libstdc++ and libgcc; stock alpine:3.20 does not supply them. Tagged installation guidance omits this prerequisite and documentation captures remain labeled 0.6.1-rc.1.",
+    "The separately published OCI tag points to a later source revision and is not certified by this binary pin; the release body’s lightly-reviewed wording is not a supported review-level claim.",
+    "Hosted MCP/CVM deployments are excluded; mcp.cork.tech was observed serving 0.6.0, not this binary release. Fixed-rate support in this record covers the pinned binaries and their MCP stdio server.",
+    "Preparation can warn rather than refuse an RFQ/recipe-mode mismatch. API admission also permits the uint256 maximum rate, whose recipe resolution overflows. Check the prepared mode, warnings and simulation; admission or unsigned preparation alone is not proof of fillability."
   ],
   "contracts": null,
   "supersededBy": null
