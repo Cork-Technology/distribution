@@ -51,7 +51,7 @@
   ],
   "knownIssues": [
     "Registry v2 deployment blocks in the service's vendored manifest (Base 51145041, Arbitrum 503851934) are the first-log blocks of the registries; this repository records readback blocks only, so they are not cross-verified here.",
-    "Candidate-specific acceptance of the reviewed release-process and historical-evidence gaps is recorded in phoenix/v0.4.1-rc.1 deviations D14 and D15. Independent review remains required; no implementation-image attestation or passing full-set integration is claimed."
+    "Positive uint256 rate admission includes the maximum value; FixedRateRecipe.resolve cannot derive its rate+1 window at that boundary. Answers may be counter-proposals outside the requested envelope; venue acceptance does not certify mode/recipe coherence or fillability. CLI diagnostics and requester-side checks are tracked at https://github.com/Cork-Technology/cork-cli/issues/5 and https://github.com/Cork-Technology/cork-cli/issues/6. Independent review remains required; no implementation-image attestation or passing full-set integration is claimed."
   ],
   "contracts": null,
   "supersededBy": null,

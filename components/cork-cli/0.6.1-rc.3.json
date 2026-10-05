@@ -13,7 +13,7 @@
   "reviewLevel": "unreviewed",
   "badges": [],
   "config": {
-    "note": "Tagged fallback address snapshot for the 0.6 line. Distribution phoenix/v0.4.1-rc.1 reuses the primary deployment generation phoenix/v0.4-rc.1 on Arbitrum One and Base: omit --generation or use --generation phoenix/v0.4-rc.1. The Distribution name itself is not a recognized CLI generation label. No contracts are redeployed. Runtime configuration updates are a separate channel and are not frozen by the snapshot digest.",
+    "note": "Tagged fallback address snapshot for the 0.6 line. The primary deployment generation is phoenix/v0.4-rc.1 on Arbitrum One and Base: omit --generation or use that exact key. Distribution-to-generation mappings belong in the Distribution manifest. Runtime configuration updates are a separate channel and are not frozen by the snapshot digest.",
     "snapshot": "cork-defaults.v2.json at tag v0.6.1-rc.3",
     "snapshotSha256": "579e0cd559b125a40856192f335f3da29cdb606ee0f034d3c5ea867ed7fac43b"
   },
@@ -32,12 +32,11 @@
     "Automated underwriting and premium selection are not enabled by this CLI/MCP release."
   ],
   "knownIssues": [
-    "Full-set integration for the proposed Distribution is explicitly waived, not passed; independent provenance review and other acceptance gates remain pending.",
-    "Candidate-specific acceptance of the reviewed publication, documentation, channel and evidence gaps is recorded in phoenix/v0.4.1-rc.1 deviations D12, D13 and D15. This does not fix the findings or promote this component beyond unreviewed.",
     "The Alpine musl binaries require libstdc++ and libgcc; stock alpine:3.20 does not supply them. Tagged installation guidance omits this prerequisite and documentation captures remain labeled 0.6.1-rc.1.",
     "The separately published OCI tag points to a later source revision and is not certified by this binary pin; the release body’s lightly-reviewed wording is not a supported review-level claim.",
     "Hosted MCP/CVM deployments are excluded; mcp.cork.tech was observed serving 0.6.0, not this binary release. Fixed-rate support in this record covers the pinned binaries and their MCP stdio server.",
-    "Preparation can warn rather than refuse an RFQ/recipe-mode mismatch. API admission also permits the uint256 maximum rate, whose recipe resolution overflows. Check the prepared mode, warnings and simulation; admission or unsigned preparation alone is not proof of fillability."
+    "FixedRateRecipe.resolve overflows at the uint256 maximum; answer-rfq refuses with recipe_refused. A pool can still be created with a manually supplied valid constraint, so the diagnostic claiming no pool can be created is inaccurate. Owner: Heri (@heri16); follow-up: https://github.com/Cork-Technology/cork-cli/issues/5.",
+    "answer-rfq can warn and build a non-fixed recipe for a fixed-only RFQ. rfq-answer submission can relay a fixed_rate-labelled NAV template without warnings; requester fill does not compare the resulting cover with requested modes. Inspect data.jit.recipe and resulting pool/cST identity, not an absent prepared-mode field. Owner: Heri (@heri16); follow-up: https://github.com/Cork-Technology/cork-cli/issues/6. Counter-proposals are permitted; unsigned preparation alone is not proof of matching cover or fillability."
   ],
   "contracts": null,
   "supersededBy": null

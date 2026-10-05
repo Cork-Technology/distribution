@@ -35,15 +35,13 @@ Distribution on that line. No pointer file exists until a production Distributio
 ### Distribution names and CLI generations
 
 A Distribution name identifies a component set; a CLI generation label selects deployed
-contracts. They need not be identical. The proposed `phoenix/v0.4.1-rc.1` reuses the
-`phoenix/v0.4-rc.1` deployment generation on Base and Arbitrum. With its pinned CLI, omit
-`--generation` to use the primary set, or pass `--generation phoenix/v0.4-rc.1`; passing
-the new Distribution name returns `generation_unknown`. The CLI component record states
-the mapping. No generation alias or live configuration change is made by this cut.
+contracts. They need not be identical. Consult the Distribution manifest for its generation
+mapping and the CLI component record for recognized configuration keys. Selecting a
+generation does not migrate positions, approvals, signatures or orders.
 
-This candidate covers the published CLI binaries and their MCP stdio server (`ch mcp`),
-not hosted MCP/CVM deployments or separate SDK/OCI channels. Existing positions and
-deployment identities are preserved; the reused deployment set is not disposable.
+Coverage is explicit in each Distribution manifest. A CLI binary pin can cover its Model
+Context Protocol (MCP) stdio server without certifying hosted deployments, software
+development kits or container images.
 
 ## Frozen vs living fields
 
