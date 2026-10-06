@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "component": "cork-api",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "source": {
     "repo": "https://github.com/Cork-Technology/cork-indexing-api",
-    "tag": "v0.4.4",
-    "commit": "c762071fbe8b7ae0e31abed1aaf288f36e4f7bc9",
+    "tag": "v0.4.5",
+    "commit": "4fb7eb3e3df296e086439b65f7a46e8490dd6347",
     "visibility": "private"
   },
   "package": null,
   "schema": {
-    "openapi": "./schema/openapi-0.4.4.json",
-    "sha256": "14b19566e82c0a70487e3e23a83fc36789afb24e48f92e1fd9a8d4bac23294eb",
-    "note": "Exact bytes of openapi.json at signed tag v0.4.4. All 45 paths from v0.4.3 remain; fixed_rate request and answer modes and up to three request alternatives are added. This snapshot supplies interface evidence, not full-set integration acceptance."
+    "openapi": "./schema/openapi-0.4.5.json",
+    "sha256": "82fee778cbc186bae0ef2c95da3cce8a63f957d1ec1765ad9c1264c51cf888e1",
+    "note": "Exact tagged openapi.json bytes: 49 paths, all 45 previous paths retained, four RFQ v2 paths added. Covered v1 schemas unchanged; rollover additions outside coverage. Interface evidence is not whole-set acceptance."
   },
   "stage": "partner-preview",
   "reviewLevel": "unreviewed",
@@ -46,8 +46,9 @@
     "The source repository and Release are private. Public interface evidence is the vendored OpenAPI snapshot and live /docs reference; this is not publicly resolvable source provenance.",
     "RFQ requests and answer options accept fixed_rate. Requests may offer up to three unique alternatives. Fixed-rate inline templates require oracle_params.rate_override as a canonical positive uint256 decimal string in absolute 18-decimal fixed-point units (1e18 = 1.0); each answer option carries its own proposed rate.",
     "Readers can now encounter fixed_rate and three-mode requests. Exhaustive two-mode consumers must update or explicitly handle unsupported alternatives; CLI/MCP support is available in cork-cli v0.6.1-rc.3. Existing modes retain their previous template behavior.",
-    "No new deprecations, automated underwriting pricing/filling, contract deployment changes or RFQ v2 authentication are included.",
-    "The tagged changelog retains an unreleased heading; the published GitHub Release records publication of that exact source."
+    "The tagged changelog retains an unreleased heading; the published GitHub Release records publication of that exact source.",
+    "cork-api 0.4.5 retains all 45 existing paths and adds four RFQ v2 paths (49 total). Covered RFQ v1 schemas are unchanged from 0.4.4; v1 now advertises deprecation without a pinned retirement date. V2 adds signed or scoped API-key authentication, answer/order proofs, redacted reads, idempotency and cross-version 409 conflicts. CLI 0.6.1-rc.3 remains a v1 client: v2 answer/counter attempts fail with exit 4/venue_conflict. Rollover quoteRef/rfqId additions remain outside the covered surface. Fixed-rate support and its documented admission/fillability limitations remain. Independent non-author compatibility review is required before merge; private hosted-service publication is not public implementation provenance.",
+    "The source merge is GitHub/web-flow-signed; the annotated release tag is engineer-signed. Exact-version independent review remains missing."
   ],
   "knownIssues": [
     "Registry v2 deployment blocks in the service's vendored manifest (Base 51145041, Arbitrum 503851934) are the first-log blocks of the registries; this repository records readback blocks only, so they are not cross-verified here.",
@@ -59,7 +60,7 @@
     "https://api-phoenix.cork.tech/docs"
   ],
   "releaseEvidence": {
-    "url": "https://github.com/Cork-Technology/cork-indexing-api/releases/tag/v0.4.4",
+    "url": "https://github.com/Cork-Technology/cork-indexing-api/releases/tag/v0.4.5",
     "prerelease": true,
     "note": "Published Release and signed annotated tag verified with authenticated repository access. Source and Release remain private under the existing hosted-service model; the vendored schema is the publicly available interface evidence. No publicly inspectable implementation provenance is claimed."
   }

@@ -43,20 +43,14 @@ Coverage is explicit in each Distribution manifest. A CLI binary pin can cover i
 Context Protocol (MCP) stdio server without certifying hosted deployments, software
 development kits or container images.
 
-### Candidate naming for the proposed v0.4 cut
+### Candidate names and permanent addresses
 
-The proposed `phoenix/v0.4-rc.2` retains the identical non-disposable deployment
-address set from `phoenix/v0.4-rc.1`; only its CLI and API pins change. Its
-integration suite is waived, not passed, and `promotedFrom` remains `null`.
-Neither permanent addresses nor a waiver establish a tested-together plain name.
-
-The proposed naming clarification freezes addresses independently of the name:
-later candidates preserve that address set, fresh addresses require the next
-Distribution number, and a plain name requires a passing suite across the frozen
-pinned set on every listed chain. A stage change does not rename the Distribution.
-The clarification is not yet adopted; the manifest retains its current-policy
-naming exception until adoption. Compatibility and independent review remain
-separate gates.
+Non-disposable deployments freeze the address set, not the name. Later candidates
+on that frozen set may update off-chain pins; fresh addresses require the next
+Distribution number. A candidate suffix drops only when the frozen pinned set
+passes the integration suite on every listed chain. A waiver is not a pass.
+`promotedFrom` remains `null` on candidates and is written when the name goes
+plain. Stage changes do not rename a Distribution.
 
 ## Frozen vs living fields
 
