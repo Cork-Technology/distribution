@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-cli",
+  "version": "0.7.0-rc.1",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-cli",
+    "tag": "v0.7.0-rc.1",
+    "commit": "28bb9724d947ddb0e20a184e3ca34a0c06d09f82"
+  },
+  "package": "Declared coverage: command-line interface (CLI) binaries and Model Context Protocol (MCP) stdio through ch mcp. GitHub Release publication and binary/checksum/attestation verification remain pending; source-tag evidence is not released-binary evidence. Software development kit (SDK), Open Container Initiative (OCI), hosted MCP and confidential virtual machine (CVM) channels are excluded.",
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "config": {
+    "note": "Tagged fallback snapshot for the 0.7 line. Runtime config/0.7 at d46bae739324349fb824f79659921422bdff2046 was read byte-identical to this tag. On Base and Arbitrum the primary generation remains phoenix/v0.4-rc.1; its nested market-registry adapter is 0x960Cd94B31121806b1b0Ff02230D189Ad0310616 with the replacement runtime allowlist. The Distribution name is not a generation alias. Mutable runtime configuration is a separate channel, not frozen by this digest.",
+    "snapshot": "cork-defaults.v2.json at tag v0.7.0-rc.1",
+    "snapshotSha256": "26d2173f99ee6f2d82d0045e4f7cf22ebde85451b643efb714d8bb00add5d08a"
+  },
+  "docs": [
+    "https://github.com/Cork-Technology/cork-cli/tree/v0.7.0-rc.1",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.7.0-rc.1/CHANGELOG.md",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.7.0-rc.1/docs/cli.md#12-migrate-from-06-to-07"
+  ],
+  "notices": [
+    "RFQ (request-for-quote) reads and writes use v2 only. Writes require auth; rfq-open requires kind; free top-level signature is refused. Quoted answers carry full signed orders. Version 1 RFQs do not appear in version 2 reads. These are covered input/output breaks, not a compatible extension.",
+    "Tool names and the exit-code map retain their prior shape. Consumers must migrate required inputs, quoted-answer references and RFQ read expectations using the tagged migration guide.",
+    "Tagged nested PermitParams uses (address,uint256,uint256,bytes signature), aligned with Market Registry 0.6.0 and its replacement adapter on both chains. Old-format permit bytes cannot be reused at the replacement adapter. Existing old-adapter orders are not migrated, cancelled or re-signed.",
+    "Fixed-rate RFQs and positive canonical uint256 decimal-string rates remain supported. API admission, unsigned order preparation and recipe selection do not establish requester acceptance or end-to-end fillability.",
+    "Signature proof mismatch records conflict and relayed=false before relay; missing-key refusal is local. Exit 3 or 4 alone does not prove nothing was sent: upstream errors and venue conflicts share those codes. RFQ relay is off-chain, not on-chain transaction broadcast.",
+    "Engineer-signed annotated tag verified at 28bb9724d947ddb0e20a184e3ca34a0c06d09f82. Main CI run 37788427477 and release-toolchain run 37788427558 passed at that same source commit. Release run 37800647228 observed version/build/determinism, four platform smokes and config publication passing. None is independent provenance review or whole-set integration."
+  ],
+  "knownIssues": [
+    "GitHub Release object and assets were unavailable at the evidence refresh. Prerelease flag, actual release channels, binary checksums/attestations, release-body claims and released-binary version/behavior must be verified before merge. Do not carry the prior CLI release exceptions forward without exact-version review.",
+    "Exact-version non-author compatibility/description review, old-order handling, removal-notice and usage decisions, independent provenance and exact-set integration acceptance remain open. No stronger review level or production support is claimed.",
+    "Hosted MCP/CVM, SDK and OCI channels are not certified by this source/binary-scope record; a component tag does not upgrade a hosted deployment."
+  ],
+  "contracts": null,
+  "supersededBy": null,
+  "releaseEvidence": {
+    "url": "https://github.com/Cork-Technology/cork-cli/releases/tag/v0.7.0-rc.1",
+    "prerelease": null,
+    "note": "PENDING: tag exists and is verified, but GitHub Release publication has not completed at this refresh. Null prerelease records an unobserved Release flag, not an accepted exception. Verify actual assets/channels/provenance and released-binary readback before merge. User authorizes review-PR preparation without waiting, not bypassing release or acceptance gates."
+  }
+}

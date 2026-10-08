@@ -46,11 +46,27 @@ development kits or container images.
 ### Candidate names and permanent addresses
 
 Non-disposable deployments freeze the address set, not the name. Later candidates
-on that frozen set may update off-chain pins; fresh addresses require the next
-Distribution number. A candidate suffix drops only when the frozen pinned set
-passes the integration suite on every listed chain. A waiver is not a pass.
-`promotedFrom` remains `null` on candidates and is written when the name goes
-plain. Stage changes do not rename a Distribution.
+on that frozen set may update off-chain pins. Fresh addresses or covered breaking
+changes require the next Distribution number; below 1.0, covered breaks advance
+the minor line even when the deployments stay fixed. A candidate suffix drops
+only when the frozen pinned set passes integration on every listed chain. A
+waiver is not a pass. `promotedFrom` remains `null` on candidates and is written
+when the name goes plain. Stage changes do not rename a Distribution.
+
+### Current review candidate
+
+[phoenix/v0.5-rc.1](distributions/phoenix/v0.5-rc.1.json) pins CLI 0.7.0-rc.1,
+API 0.4.6 and Market Registry 0.6.0. The 0.5 line reflects covered RFQ
+(request-for-quote) v2 input/output breaks. Follow the
+[tagged CLI migration guide](https://github.com/Cork-Technology/cork-cli/blob/v0.7.0-rc.1/docs/cli.md#12-migrate-from-06-to-07)
+for authenticated writes, required RFQ kind and full signed quoted-answer orders.
+The CLI generation stays `phoenix/v0.4-rc.1` on Base and Arbitrum; the Distribution
+name is not a generation alias. Existing orders are not automatically migrated.
+
+The tag and configuration are verified, but CLI Release/assets and exact-version
+independent reviews remain pending. Integration is neither passed nor waived.
+This is review preparation, not a published integration baseline. Read the
+manifest deviations and component records for evidence and remaining gates.
 
 ## Frozen vs living fields
 

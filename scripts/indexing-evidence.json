@@ -6,7 +6,7 @@
   },
   "workerSource": {
     "commit": "61914d70f994275b9ae8da9a370104ed74b816ba",
-    "note": "Opaque worker build identifier matched to live worker_commit 61914d7 on 2026-10-06; not a Distribution component pin or a public source citation. Registered full ABIs were re-derived: 3 LOP, 2 Registry, 4 Factory and 11 events per settler exactly match, including indexed/anonymous flags and nested tuples. Relative to d0baed0 only CI and integration tests changed; 150 compiled worker files are byte-identical. The live 85-row decoder declaration matches this build. This proves event-layout correspondence only, not accounting correctness, image provenance or whole-set integration."
+    "note": "Opaque worker build identifier matched to live worker_commit 61914d7 on 2026-10-06; not a Distribution component pin or a public source citation. Registered application binary interface (ABI) event layouts were re-derived: 3 Limit Order Protocol (LOP), 2 Registry, 4 Factory and 11 events per settler exactly match, including indexed/anonymous flags and nested tuples. Relative to d0baed0 only CI and integration tests changed; 150 compiled worker files are byte-identical. The live 85-row decoder declaration matches this build. This proves event-layout correspondence only, not accounting correctness, image provenance or whole-set integration."
   },
   "types": {
     "LOP": {
@@ -1048,7 +1048,7 @@
         "creationTx": "0x2bf2e1f8de48e3c05b7a656caec68a40f4055280c1b012cde92571f4be8d40aa"
       }
     },
-    "note": "Event subset independently matched against Sourcify exact-match AggregationRouterV6 ABI on both chains, /server/v2/contract/{chain}/{address}?fields=abi,sources,compilation,deployment",
+    "note": "Event subset independently matched against the Sourcify exact-match AggregationRouterV6 application binary interface (ABI) on both chains, /server/v2/contract/{chain}/{address}?fields=abi,sources,compilation,deployment",
     "events": [
       {
         "anonymous": false,
