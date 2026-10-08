@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-api",
+  "version": "0.4.6",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-indexing-api",
+    "tag": "v0.4.6",
+    "commit": "c10ae6bbe10aefebda8041c51d2064e70b8dec3b",
+    "visibility": "private"
+  },
+  "package": null,
+  "schema": {
+    "openapi": "./schema/openapi-0.4.6.json",
+    "sha256": "5005f88c8410ae33a7831f3a7be2f43884efe164740802c6f7d3554f2ecb3ecf",
+    "note": "Exact tagged openapi.json bytes: 49 paths, unchanged from 0.4.5 apart from info.version. RFQ v2 additions from 0.4.5 and existing coverage limits remain; interface evidence is not whole-set acceptance."
+  },
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "services": {
+    "baseUrl": "https://api-phoenix.cork.tech",
+    "docs": "https://api-phoenix.cork.tech/docs",
+    "liveSpec": "/docs/json",
+    "indexingStatus": "/indexing/v1/status",
+    "meta": "The /meta/v1 read endpoint reports component, version, status and commit. The x-cork-component header reports the component version. Distribution membership is resolved by this repository, not self-reported by the service.",
+    "chains": [
+      42161,
+      8453
+    ],
+    "freshness": "The indexer can trail the chain head; the chain wins on any disagreement. Request-for-quote (RFQ) state is venue-only by construction (no on-chain events). Registry v2 reads the chain directly (no database) and answers 503 on a chain whose adapter, market creator, pool manager, shares factory and registry do not bind to one deployment.",
+    "verifyModel": "availability",
+    "verifyModelNote": "This service has exactly one live deployment, updated in place; non-breaking releases keep flowing after the cut. The verify asserts availability: the served version must be >= the pinned version, every covered route family below must remain served at its pinned major, and the live OpenAPI document must show no breaking drift against this vendored snapshot on the covered paths.",
+    "routeMajors": {
+      "_note": "Covered route majors retained from the previous API pin. Registry v1 remains served but is outside this covered list; rollover indexing/routes remain outside the covered API surface.",
+      "meta": 1,
+      "rfqs": 1,
+      "limit-orders": 1,
+      "pools": 1,
+      "flows": 1,
+      "registry": 2,
+      "indexing": 1
+    }
+  },
+  "notices": [
+    "Stage is partner-preview and review level remains unreviewed; no production support commitment is asserted.",
+    "The source repository and Release are private. Public interface evidence is the vendored OpenAPI snapshot and live /docs reference; this is not publicly resolvable source provenance.",
+    "RFQ requests and answer options accept fixed_rate. Requests may offer up to three unique alternatives. Fixed-rate inline templates require oracle_params.rate_override as a canonical positive uint256 decimal string in absolute 18-decimal fixed-point units (1e18 = 1.0); each answer option carries its own proposed rate.",
+    "Readers can now encounter fixed_rate and three-mode requests. Exhaustive two-mode consumers must update or explicitly handle unsupported alternatives; CLI/MCP support is available in cork-cli v0.6.1-rc.3. Existing modes retain their previous template behavior.",
+    "cork-api 0.4.6 inherits the 0.4.5 interface, which retains all 45 existing paths and adds four RFQ v2 paths (49 total). Covered RFQ v1 schemas are unchanged from 0.4.4; v1 now advertises deprecation without a pinned retirement date. V2 adds signed or scoped API-key authentication, answer/order proofs, redacted reads, idempotency and cross-version 409 conflicts. CLI 0.6.1-rc.3 remains a v1 client: v2 answer/counter attempts fail with exit 4/venue_conflict. Rollover quoteRef/rfqId additions remain outside the covered surface. Fixed-rate support and its documented admission/fillability limitations remain. Independent non-author compatibility review is required before merge; private hosted-service publication is not public implementation provenance.",
+    "The source merge is GitHub/web-flow-signed; the annotated release tag is engineer-signed. Exact-version independent review remains missing.",
+    "Registry v2 dependency reads now use the replacement CorkLimitOrderAdapter on Base and Arbitrum, aligned with the Market Registry 0.6.0 component deployment. Registry v1 is unchanged. Existing orders are not migrated or re-signed. CLI 0.6.1-rc.3 still targets the previous adapter and permit format; API publication does not upgrade the CLI or establish whole-set compatibility.",
+    "The API 0.4.6 source commit and OpenAPI hash differ from the previously reviewed candidate. Exact-version compatibility, documentation-reference exception and component-owner approvals require renewal; no earlier approval is inherited."
+  ],
+  "knownIssues": [
+    "Registry v2 deployment blocks in the service's vendored manifest (Base 51145041, Arbitrum 503851934) are the first-log blocks of the registries; this repository records readback blocks only, so they are not cross-verified here.",
+    "Positive uint256 rate admission includes the maximum value; FixedRateRecipe.resolve cannot derive its rate+1 window at that boundary. Answers may be counter-proposals outside the requested envelope; venue acceptance does not certify mode/recipe coherence or fillability. CLI diagnostics and requester-side checks are tracked at https://github.com/Cork-Technology/cork-cli/issues/5 and https://github.com/Cork-Technology/cork-cli/issues/6. Independent review remains required; no implementation-image attestation or passing full-set integration is claimed.",
+    "API 0.4.6 recorded build and OpenAPI checks pass, with 225 registry tests passing across 30 files and actual HTTP metadata/OpenAPI smoke. Full suite attempted: 330 tests passed, 244 skipped, 15 files failed during PostgreSQL/Testcontainers startup; teardown close() errors followed failed setup. Full-suite PASS and independent review are not established. Distribution D21 proposes a verification-coverage deviation; acceptance is pending, not granted."
+  ],
+  "contracts": null,
+  "supersededBy": null,
+  "docs": [
+    "https://api-phoenix.cork.tech/docs"
+  ],
+  "releaseEvidence": {
+    "url": "https://github.com/Cork-Technology/cork-indexing-api/releases/tag/v0.4.6",
+    "prerelease": true,
+    "note": "Private prerelease and engineer-signed annotated tag verified with authenticated repository access at c10ae6bbe10aefebda8041c51d2064e70b8dec3b. Live metadata and OpenAPI match this tagged version. Source and Release remain private under the hosted-service model; the vendored schema is interface evidence, not publicly inspectable implementation provenance. Review level remains unreviewed; full-suite limitations are disclosed."
+  }
+}
