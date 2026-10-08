@@ -3,10 +3,11 @@
   "component": "cork-api",
   "version": "0.4.6",
   "source": {
-    "repo": "https://github.com/Cork-Technology/cork-indexing-api",
+    "repo": null,
     "tag": "v0.4.6",
-    "commit": "c10ae6bbe10aefebda8041c51d2064e70b8dec3b",
-    "visibility": "private"
+    "commit": null,
+    "visibility": "private",
+    "note": "Non-public implementation provenance is retained by the release owner. Public evidence is the versioned hosted interface and frozen OpenAPI snapshot; no public source-verification claim is made."
   },
   "package": null,
   "schema": {
@@ -47,14 +48,14 @@
     "RFQ requests and answer options accept fixed_rate. Requests may offer up to three unique alternatives. Fixed-rate inline templates require oracle_params.rate_override as a canonical positive uint256 decimal string in absolute 18-decimal fixed-point units (1e18 = 1.0); each answer option carries its own proposed rate.",
     "Readers can now encounter fixed_rate and three-mode requests. Exhaustive two-mode consumers must update or explicitly handle unsupported alternatives; CLI/MCP support is available in cork-cli v0.7.0-rc.2. Existing modes retain their previous template behavior.",
     "cork-api 0.4.6 inherits the 0.4.5 interface, which retains all 45 existing paths and adds four RFQ v2 paths (49 total). Covered RFQ v1 schemas are unchanged from 0.4.4; v1 now advertises deprecation without a pinned retirement date. V2 adds signed or scoped API-key authentication, answer/order proofs, redacted reads, idempotency and cross-version 409 conflicts. CLI 0.7.0-rc.2 is v2-only with required auth, RFQ kind and full signed quoted-answer orders. Historical 0.6.1-rc.3 remains a v1 client; v2 answer/counter attempts fail with exit 4/venue_conflict. Rollover quoteRef/rfqId additions remain outside the covered surface. Fixed-rate support and its documented admission/fillability limitations remain. Independent non-author compatibility review is required before merge; private hosted-service publication is not public implementation provenance.",
-    "The source merge is GitHub/web-flow-signed; the annotated release tag is engineer-signed and verified. Distribution owner Filip accepted this source-commit signing limitation as nonblocking for API 0.4.6 in this candidate on 2026-10-08 (manifest D14). Exact-version independent review remains separate and pending; reviewLevel remains unreviewed. No signing compliance or stronger review claim is fabricated.",
+    "The source merge is GitHub/web-flow-signed; the annotated release tag is engineer-signed and verified. The distribution owner accepted the source-commit signing limitation for API 0.4.6 on 2026-10-08; see manifest D14. Exact-version independent review remains required; no stronger signing-compliance or review claim is made.",
     "Registry v2 dependency reads now use the replacement CorkLimitOrderAdapter on Base and Arbitrum, aligned with the Market Registry 0.6.0 component deployment. Registry v1 is unchanged. Existing orders are not migrated or re-signed. The tagged CLI 0.7.0-rc.2 configuration now targets the same replacement adapter and nested bytes-signature permit format. Historical CLI 0.6.1-rc.3 still targets the previous adapter; API publication does not upgrade deployed clients or establish whole-set compatibility.",
-    "Exact-version API compatibility and component-owner reviews remain pending; prior approvals are not inherited. D11 documentation is explicitly accepted/nonblocking by Filip on 2026-10-08 for API 0.4.6/c10ae6b and OpenAPI schema digest 5005f88c8410ae33a7831f3a7be2f43884efe164740802c6f7d3554f2ecb3ecf. It covers only (versioning policy R4) in the /meta/v1/ metadata read description; upstream removal is tracked at https://github.com/Cork-Technology/cork-indexing-api/issues/120. Frozen schema bytes are preserved. D14 signing remains separately accepted; compatibility, review, release evidence and integration are not waived."
+    "Exact-version API compatibility and component-owner reviews remain required. The distribution owner accepted the narrow metadata-description wording limitation on 2026-10-08 for API 0.4.6 and OpenAPI schema digest 5005f88c8410ae33a7831f3a7be2f43884efe164740802c6f7d3554f2ecb3ecf; see manifest D11. Preserve frozen schema bytes and remove the wording upstream in the next API release. Signing and current-verification waivers are separately scoped in D14 and D15; they do not replace compatibility, independent provenance or review."
   ],
   "knownIssues": [
     "Registry v2 deployment blocks in the service's vendored manifest (Base 51145041, Arbitrum 503851934) are the first-log blocks of the registries; this repository records readback blocks only, so they are not cross-verified here.",
     "Positive uint256 rate admission includes the maximum value; FixedRateRecipe.resolve cannot derive its rate+1 window at that boundary. Answers may be counter-proposals outside the requested envelope; venue acceptance does not certify mode/recipe coherence or fillability. CLI diagnostics and requester-side checks are tracked at https://github.com/Cork-Technology/cork-cli/issues/5 and https://github.com/Cork-Technology/cork-cli/issues/6. Independent review remains required; no implementation-image attestation or passing full-set integration is claimed.",
-    "API 0.4.6 recorded build/OpenAPI checks and 225 registry tests pass, with actual Hypertext Transfer Protocol (HTTP)/tagged-schema smoke. The historical local full-suite attempt had 330 passes, 244 skips and 15 startup-failing files. API CI run 37779609604 passes at d193ec97c03deb3e6000c7ba880eec1ad8dbeb2c: 599 tests passed, 2 skipped; 58 test files passed, 1 skipped. Check and native HTTP jobs also pass. Evidence: https://github.com/Cork-Technology/cork-indexing-api/actions/runs/37779609604 . This revision changes product code, tests and OpenAPI relative to tagged API 0.4.6 at c10ae6bbe10aefebda8041c51d2064e70b8dec3b; these results are nearest CI evidence, not an exact-tag test result. The operator explicitly directs that the local PostgreSQL/Testcontainers startup failure must not block this preparation or merge solely because of local setup. That historical local failure is nonblocking; no exact-tag full-suite PASS is fabricated. Independent review and exact-set integration remain distinct gates."
+    "Exact-version API evidence includes build/OpenAPI checks, 225 registry tests and actual hosted-metadata/tagged-schema readbacks. A workstation full-suite attempt failed at database/container startup; the distribution owner accepted this local-environment limitation as nonblocking on 2026-10-08. Separate continuous-integration (CI) evidence reports 599 tests passed and 2 skipped at a newer, product-changing revision, not the exact API 0.4.6 tag. No exact-tag full-suite PASS or whole-set integration claim is made."
   ],
   "contracts": null,
   "supersededBy": null,
@@ -62,8 +63,8 @@
     "https://api-phoenix.cork.tech/docs"
   ],
   "releaseEvidence": {
-    "url": "https://github.com/Cork-Technology/cork-indexing-api/releases/tag/v0.4.6",
+    "url": null,
     "prerelease": true,
-    "note": "Private prerelease and engineer-signed annotated tag verified with authenticated repository access at c10ae6bbe10aefebda8041c51d2064e70b8dec3b. Live metadata and OpenAPI match this tagged version. Source and Release remain private under the hosted-service model; the vendored schema is interface evidence, not publicly inspectable implementation provenance. Review level remains unreviewed; local-environment and CI-revision evidence scopes are disclosed."
+    "note": "Release owner verified the non-public release and its prerelease flag. Public interface evidence is the frozen schema and hosted documentation; implementation-source verification is not publicly reproducible."
   }
 }

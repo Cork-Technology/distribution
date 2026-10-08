@@ -12,10 +12,10 @@
  *    covered route family in services.routeMajors must still be served at
  *    its pinned major, and the live OpenAPI document must show no breaking
  *    drift against the vendored snapshot on the covered paths (a removed
- *    path/method, or a newly-required parameter or body field). A hosted
- *    service with one
- *    live deployment keeps shipping non-breaking releases after the cut by
- *    rule (R10), so equality with the served version is never asserted;
+ *    path/method, or a newly-required parameter or body field). A hosted service
+ *    with one live deployment keeps shipping non-breaking releases after the
+ *    cut under the availability model, so equality with the served version
+ *    is never asserted;
  *  - pure-artifact components against their public tag: it must resolve to
  *    the pinned commit.
  *
@@ -33,6 +33,7 @@
  * Usage: npm run verify
  * RPC overrides via env: RPC_42161, RPC_8453 (defaults are public endpoints).
  */
+import { createHash } from "node:crypto";
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -491,7 +492,9 @@ async function verifyIndexing(
     }
   }
   const pub = status.decoders?.published_at;
-  results.push(["INFO", "indexing/decoders", `spec published_at ${pub ?? "?"}${pub ? ` (${Math.round((Date.now() / 1000 - pub) / 60)}m ago)` : ""}, worker_commit ${status.decoders?.worker_commit ?? "?"}`]);
+  const workerBuild = status.decoders?.worker_commit;
+  const workerBuildDigest = typeof workerBuild === "string" ? createHash("sha256").update(workerBuild).digest("hex") : "?";
+  results.push(["INFO", "indexing/decoders", `spec published_at ${pub ?? "?"}${pub ? ` (${Math.round((Date.now() / 1000 - pub) / 60)}m ago)` : ""}, worker_build_sha256 ${workerBuildDigest}`]);
   return results;
 }
 

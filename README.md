@@ -64,8 +64,10 @@ The CLI generation stays `phoenix/v0.4-rc.1` on Base and Arbitrum; the Distribut
 name is not a generation alias. Existing orders are not automatically migrated.
 
 The tag, configuration and released binary provenance are verified. Exact-version
-independent reviews remain pending. Integration is waived under D10, not passed.
-This is review preparation, not a published integration baseline. Read the
+independent reviews remain pending. Integration and the listed verification gaps
+are waived under D10/D15 for this exact candidate, not passed. Worker-build
+checks use SHA-256 commitments to preserve identity without publishing private
+source identifiers; event-layout and watch-list checks are unchanged. Read the
 manifest deviations and component records for evidence and remaining gates.
 
 ## Frozen vs living fields
