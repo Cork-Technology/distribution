@@ -64,7 +64,7 @@ The CLI generation stays `phoenix/v0.4-rc.1` on Base and Arbitrum; the Distribut
 name is not a generation alias. Existing orders are not automatically migrated.
 
 The tag and configuration are verified, but CLI Release/assets and exact-version
-independent reviews remain pending. Integration is neither passed nor waived.
+independent reviews remain pending. Integration is waived under D10, not passed.
 This is review preparation, not a published integration baseline. Read the
 manifest deviations and component records for evidence and remaining gates.
 

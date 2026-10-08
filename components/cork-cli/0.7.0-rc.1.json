@@ -32,7 +32,7 @@
   ],
   "knownIssues": [
     "GitHub Release object and assets were unavailable at the evidence refresh. Prerelease flag, actual release channels, binary checksums/attestations, release-body claims and released-binary version/behavior must be verified before merge. Do not carry the prior CLI release exceptions forward without exact-version review.",
-    "Exact-version non-author compatibility/description review, old-order handling, removal-notice and usage decisions, independent provenance and exact-set integration acceptance remain open. No stronger review level or production support is claimed.",
+    "Exact-version non-author compatibility/description review, old-order handling, removal-notice and usage decisions and independent provenance remain open. Whole-set integration is explicitly waived under D10 by Filip on 2026-10-08 for phoenix/v0.5-rc.1 with these exact pins, not passed; future pins require re-evaluation. No stronger review level or production support is claimed.",
     "Hosted MCP/CVM, SDK and OCI channels are not certified by this source/binary-scope record; a component tag does not upgrade a hosted deployment."
   ],
   "contracts": null,
