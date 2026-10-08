@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-cli",
+  "version": "0.7.0-rc.2",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-cli",
+    "tag": "v0.7.0-rc.2",
+    "commit": "eedbdf67e143018409f0e6ddf86d6d0c1c962aa2"
+  },
+  "package": "Declared coverage: command-line interface (CLI) binaries and Model Context Protocol (MCP) stdio through ch mcp. All seven published binary checksums and source-bound GitHub attestations verified. Actual Darwin arm64 version/behavior and MCP stdio smokes passed; four platform smokes passed in the release workflow. Software development kit (SDK), Open Container Initiative (OCI), hosted MCP and confidential virtual machine (CVM) channels are excluded from Distribution certification even though this component Release also publishes SDK packages and an image.",
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "config": {
+    "note": "Tagged fallback snapshot for the 0.7 line. Runtime config/0.7 at d46bae739324349fb824f79659921422bdff2046 was freshly read byte-identical to this tag and the prior rc.1 snapshot. On Base and Arbitrum the primary generation remains phoenix/v0.4-rc.1; its nested market-registry adapter is 0x960Cd94B31121806b1b0Ff02230D189Ad0310616 with the replacement runtime allowlist. The Distribution name is not a generation alias. Mutable runtime configuration is a separate channel, not frozen by this digest.",
+    "snapshot": "cork-defaults.v2.json at tag v0.7.0-rc.2",
+    "snapshotSha256": "26d2173f99ee6f2d82d0045e4f7cf22ebde85451b643efb714d8bb00add5d08a"
+  },
+  "docs": [
+    "https://github.com/Cork-Technology/cork-cli/tree/v0.7.0-rc.2",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.7.0-rc.2/CHANGELOG.md",
+    "https://github.com/Cork-Technology/cork-cli/blob/v0.7.0-rc.2/docs/cli.md#12-migrate-from-06-to-07"
+  ],
+  "notices": [
+    "RFQ (request-for-quote) reads and writes use v2 only. Writes require auth; rfq-open requires kind; free top-level signature is refused. Quoted answers carry full signed orders. Version 1 RFQs do not appear in version 2 reads. These are covered input/output breaks, not a compatible extension.",
+    "Tool names and the exit-code map retain their prior shape. Consumers must migrate required inputs, quoted-answer references and RFQ read expectations using the tagged migration guide.",
+    "Tagged nested PermitParams uses (address,uint256,uint256,bytes signature), aligned with Market Registry 0.6.0 and its replacement adapter on both chains. Old-format permit bytes cannot be reused at the replacement adapter. Existing old-adapter orders are not migrated, cancelled or re-signed.",
+    "Fixed-rate RFQs and positive canonical uint256 decimal-string rates remain supported. API admission, unsigned order preparation and recipe selection do not establish requester acceptance or end-to-end fillability.",
+    "Signature proof mismatch records conflict and relayed=false before relay; missing-key refusal is local. Exit 3 or 4 alone does not prove nothing was sent: upstream errors and venue conflicts share those codes. RFQ relay is off-chain, not on-chain transaction broadcast.",
+    "Engineer Secure Shell (SSH)-signed source eedbdf67e143018409f0e6ddf86d6d0c1c962aa2 and annotated tag 659966430dae1a2fb0767dc4cdd061e1ad246a7b are GitHub-verified. Exact-source main CI 37806999550 and release-toolchain 37806999538 passed; release 37819932505 passed version/build/determinism, four platform smokes, configuration check and immutable publication. rc.1-to-rc.2 changes are release/port tooling, mutation scaffolding, docs and package metadata; no runtime source or configuration bytes changed. These checks are not independent review or whole-set integration.",
+    "Released Darwin arm64 smoke exercised unsigned fixed-rate RFQ typed data, overlength-mode schema refusal (exit 2, error on standard error), missing-key refusal (exit 3), and invalid-proof refusal (exit 4, relayed=false), with zero requests to an isolated loopback venue. MCP stdio initialize, nine-tool discovery and unsigned fixed-rate preparation passed. No signed venue write or on-chain transaction occurred."
+  ],
+  "knownIssues": [
+    "Covered Release mechanics are verified: prerelease flag, all seven binary checksums/attestations, exact native version and representative behavior. Independent provenance audit and exact-version non-author compatibility/description review remain required before merge. The signed tag and changelog disclose the release owner's retained author-only review and deferred notice/usage posture; those component-release dispositions do not establish Distribution review approval or retire existing integrations.",
+    "Exact-version non-author compatibility/description review, old-order handling, removal-notice and usage decisions and independent provenance remain open. D10 waiver is explicitly rebound by Filip's rc.2 adoption decision to this exact phoenix/v0.5-rc.1 set after source/configuration inspection, not passed; October 15 runner target and recurrence count 4 are retained. Current D15 checks/inventory are not waived. No stronger review level or production support is claimed.",
+    "Hosted MCP/CVM, SDK and OCI channels are not certified by this source/binary-scope record; a component tag does not upgrade a hosted deployment."
+  ],
+  "contracts": null,
+  "supersededBy": null,
+  "releaseEvidence": {
+    "url": "https://github.com/Cork-Technology/cork-cli/releases/tag/v0.7.0-rc.2",
+    "prerelease": true,
+    "note": "Published immutable Release and source-bound binary attestations verified; seven binary checksums match checksums.txt and GitHub asset digests. Actual native CLI/MCP smokes passed. Exact-source CI and four release-platform smokes passed. Source/tag signatures verified. SDK packages and image remain outside Distribution certification. Independent provenance and human reviews remain pending.",
+    "binaries": [
+      {
+        "name": "ch-darwin-arm64",
+        "sha256": "3afd1f65334b74c0ea7c9708a1169a3d68124ce58e51c4f841be65f7c8c266a9"
+      },
+      {
+        "name": "ch-darwin-x64",
+        "sha256": "449175cfc6a1d4de6ab2c700bf296cdbed162b6be07fb744d4003d3665befb74"
+      },
+      {
+        "name": "ch-linux-arm64",
+        "sha256": "7bf4a91fb9cb1e6877c702055d92786c5b4928b8a455991c567fb1ed0d787bda"
+      },
+      {
+        "name": "ch-linux-arm64-musl",
+        "sha256": "c08e32e057c7c565fa333ad7fdc977de22b608b14fc797b6649e782040415853"
+      },
+      {
+        "name": "ch-linux-x64",
+        "sha256": "d0134e84e24395a95f4404bcc44eb93377b12222eb75563d528a6a858b0fea32"
+      },
+      {
+        "name": "ch-linux-x64-musl",
+        "sha256": "19dd5399243843b18941c5f69517d2cdc365500b0ad57fe3adeebd078f638caf"
+      },
+      {
+        "name": "ch-windows-x64.exe",
+        "sha256": "d1a20e266ba4ffe33d48baaecf8ba63c3ce99cfa9c3685298729641c057a17e7"
+      }
+    ]
+  }
+}
