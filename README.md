@@ -32,6 +32,50 @@ Two kinds of file:
 **`stable/<line>`** holds one pointer per Distribution line, naming the newest production
 Distribution on that line. No pointer file exists until a production Distribution does.
 
+### Distribution names and CLI generations
+
+A Distribution name identifies a component set; a CLI generation label selects deployed
+contracts. They need not be identical. Consult the Distribution manifest for its generation
+mapping and the CLI component record for recognized configuration keys. Selecting a
+generation does not migrate positions, approvals, signatures or orders.
+
+Coverage is explicit in each Distribution manifest. A CLI binary pin can cover its Model
+Context Protocol (MCP) stdio server without certifying hosted deployments, software
+development kits or container images.
+
+### Candidate names and permanent addresses
+
+Non-disposable deployments freeze the address set, not the name. Later candidates
+on that frozen set may update off-chain pins. Fresh addresses or covered breaking
+changes require the next Distribution number; below 1.0, covered breaks advance
+the minor line even when the deployments stay fixed. A candidate suffix drops
+only when the frozen pinned set passes integration on every listed chain. A
+waiver is not a pass. `promotedFrom` remains `null` on candidates and is written
+when the name goes plain. Stage changes do not rename a Distribution.
+
+### Current review candidate
+
+[phoenix/v0.5-rc.1](distributions/phoenix/v0.5-rc.1.json) pins CLI 0.7.0,
+API 0.4.6 and Market Registry 0.6.0. The 0.5 line reflects covered RFQ
+(request-for-quote) v2 input/output breaks. Follow the
+[tagged CLI migration guide](https://github.com/Cork-Technology/cork-cli/blob/v0.7.0/docs/cli.md#12-migrate-from-06-to-07)
+for authenticated writes, required RFQ kind and full signed quoted-answer orders.
+Live CLI `config/0.7` selects active `phoenix/v0.5` on Base and Arbitrum, mapped
+to this Distribution. Explicit `phoenix/v0.4-rc.1` is read-only with the original
+adapter. The tagged fallback still selects its older label with the replacement
+adapter; failed remote fetches can therefore resolve differently. See the CLI
+component record for the separate source commits and configuration digests.
+Existing orders are not automatically migrated. CLI 0.7.0 is a version-only update
+from the preceding CLI candidate: runtime code and tagged fallback bytes are
+unchanged. The later live configuration update does not promote the Distribution.
+
+The tag, configuration and released binary provenance are verified. Exact-version
+independent reviews remain pending. Integration and the listed verification gaps
+are waived under D10/D15 for this exact candidate, not passed. Worker-build
+checks use SHA-256 commitments to preserve identity without publishing private
+source identifiers; event-layout and watch-list checks are unchanged. Read the
+manifest deviations and component records for evidence and remaining gates.
+
 ## Frozen vs living fields
 
 Frozen fields — source tag, addresses, codehashes, ABIs, schema pointers, the pinned set —
@@ -76,6 +120,12 @@ The worker commit is an opaque build identifier, not a public source citation; i
 implementation cannot be independently inspected from that identifier. Missing mappings
 or required evidence fail. A changed worker cannot pass live layout verification without
 new reviewed layout evidence; the API does not pin the worker or publish layouts.
+Refreshing that evidence requires re-deriving the subscribed event ABIs from the exact
+reported worker build and checking indexed flags, anonymous flags and nested tuple
+components against the pinned contracts. Changing the worker identifier alone is not
+evidence. A layout review does not certify handler accounting, database behavior or
+cross-component integration.
+
 Historical coverage gaps remain failures.
 The watch-list’s
 version labels are compared as WARN (a label is a flag, not proof), and the indexer's own
@@ -97,6 +147,10 @@ Frozen fields enter this repository through a pull request, and a cut is approve
 distribution owner approves that pull request with verification green. The review record and
 the signed commits are the audit trail. No manifest carries a signature field: nothing in
 this repository is taken on assertion, and that includes approvals.
+
+Green CI establishes mechanical verification, not human approval. Completed checks and
+owner-accepted deviations may remove draft sentinels while independent provenance and
+component-owner reviews remain explicit pre-merge requirements on the pull request.
 
 ## Plain-language disclaimer
 

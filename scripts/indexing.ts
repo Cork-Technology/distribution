@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import sha3 from "js-sha3";
@@ -64,7 +65,9 @@ export function verifyAdditionalIndexing(
     const decoder = status.decoders ? object(status.decoders) : null;
     const declared = decoder ? array(decoder.contract_types).map(object) : [];
     const commit = decoder?.worker_commit;
-    const supportedCommit = typeof commit === "string" && /^[0-9a-f]{7,40}$/.test(commit) && text(worker.commit).startsWith(commit);
+    const buildId = typeof commit === "string" && /^[0-9a-f]{7,40}$/.test(commit) ? commit : null;
+    const commitDigest = buildId === null ? null : createHash("sha256").update(buildId).digest("hex");
+    const supportedCommit = buildId !== null && object(worker.buildIdSha256ByLength)[buildId.length] === commitDigest;
     // Generated tokens/clones and external oracle chains are not pinned-address
     // requirements. The six Phoenix types retain their historical-generation checks.
     const excluded: Record<string, true> = { CHAINLINK_ORACLE: true, CORK_CPT: true, CORK_CST: true, ROLLOVER_CONTRACT: true };
@@ -105,7 +108,7 @@ export function verifyAdditionalIndexing(
       }
       results.push(["PASS", label.replace("indexing/decode", "indexing/events"), `${expected.length} required event names/signatures/topics match the live declaration`]);
       if (!supportedCommit) {
-        results.push(["FAIL", label, `live layout evidence unavailable: reviewed source ${text(worker.commit)}, reported worker ${String(commit)}; declared events match, but the API does not publish indexed layouts; re-review worker source (compatibility unknown)`]);
+        results.push(["FAIL", label, "live layout evidence unavailable: reported build does not match a reviewed build-identifier commitment; declared events match, but indexed layouts require fresh worker review (compatibility unknown)"]);
         return;
       }
       for (const e of expected) {
@@ -119,7 +122,7 @@ export function verifyAdditionalIndexing(
         if (!candidates.length) failures.push(`${e.name}: missing required ABI event${partialOnly ? " in shared PartialSettler" : ""}`);
         else if (!candidates.some(a => JSON.stringify(a) === JSON.stringify(e))) failures.push(`${e.name}: incompatible indexed/anonymous/tuple layout`);
       }
-      results.push(failures.length ? ["FAIL", label, failures.join("; ")] : ["PASS", label, `${expected.length} required events: signatures and indexed/anonymous/tuple layouts compatible with worker ${String(commit)}${type === "ROLLOVER_EXACT_SETTLER" ? "; three Partial-only shared handlers checked against PartialSettler" : ""}`]);
+      results.push(failures.length ? ["FAIL", label, failures.join("; ")] : ["PASS", label, `${expected.length} required events: signatures and indexed/anonymous/tuple layouts compatible with worker digest ${commitDigest}${type === "ROLLOVER_EXACT_SETTLER" ? "; three Partial-only shared handlers checked against PartialSettler" : ""}`]);
     };
 
     for (const mapping of ADDITIONAL_INDEXED_CONTRACTS) {

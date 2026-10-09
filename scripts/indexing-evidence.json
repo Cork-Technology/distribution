@@ -1,12 +1,47 @@
 {
   "apiSource": {
-    "repo": "Cork-Technology/cork-indexing-api",
-    "commit": "b1c01894dc9763a7a589ef2fe2bee4517ad98eba",
-    "path": "src/modules/indexing/v1/schemas/get-status.schema.ts"
+    "schema": "https://api-phoenix.cork.tech/docs/json",
+    "path": "/indexing/v1/status",
+    "note": "Public hosted status interface; implementation provenance is non-public."
   },
   "workerSource": {
-    "commit": "73feac66b7b1859bd998dd6abfb506a091c57591",
-    "note": "Opaque worker build identifier matched to live worker_commit 73feac6 on 2026-09-24; not a Distribution component pin or a public source citation. The recorded event layouts apply only to this worker build; public consumers cannot independently inspect its implementation from this identifier."
+    "buildIdSha256ByLength": {
+      "7": "267100c3e828468268237a9de7f95e894f6386a1646d6e1070ce1fc6ed5fb9f1",
+      "8": "3fc690937bb2656cd3e9c4ba2e41f00ef00e5a04933452efb8d5129c52afcb8a",
+      "9": "0f5cc4aa17b81a3a20f493495eaa8aa037d1fb3ff5a731838d7ec3f8edbf9062",
+      "10": "30a1f9d48f36c225e009adb4fe86e8e3defef189e51e63f417a0f00e5bfe4c1d",
+      "11": "be11676b7cdc2e4778902d244edf6438fc7fe928f52d4e800ef7de00e1e71c1c",
+      "12": "01718cfa9efad860c7f298389bbd10df7b7d33e62bc436772ccc8ce4a55cb1f6",
+      "13": "9ca5bbf2acc7638fdf33b6521233e17cdc06d10a3185956f63012af9bbc31534",
+      "14": "091781376101ab839edee2b2fd770b9ac60a2b9624311288f333cf98eae229a0",
+      "15": "121358b5da3720accef58551eee3bb2c557f864effb700524798b7029ddd1dc6",
+      "16": "ed837906916534563770823e8586ee8d83a331dc2145642db0997fc2b240f7bf",
+      "17": "1e6b4255a0e8ce891b43573ff2a36e1424ed3f29f918c2f49fb31fe7d6413f8b",
+      "18": "5780403dd7a761273af902705986dae750085d551540310ceea00cbfc06b2183",
+      "19": "1795b0a9be5a55c00b795da3c09a5df6ed94c61687959dac5ea6acec888c4832",
+      "20": "aba6ca203c6ff1b793ba81d43b2c9b1d70bcf8faef7d0f1a17e806b34fad2ead",
+      "21": "d35952ec826f1e53c4478ab71e18ffc9aee5f8f7676fe22a2f99b0267bc50241",
+      "22": "711535b84ae45fd3bdb992c411f8d449fa3c2a15f860b9093a0bebc0367585ab",
+      "23": "8c4618e65757d028c189c2ac741b1c1fdfe74b48d5a1157bb69a63f747db7347",
+      "24": "4fce49fa1f7b83f3171f52c60623687a6e6ace4761cc217a5f71454aff114671",
+      "25": "1ebdcb5df131feac40cd3b7752010ac297c61954d33373b0be3144a3a669e52d",
+      "26": "19ae6d95af15b2fc822529f7b94bc42be185d08f1297517e56e426b69d3d78b8",
+      "27": "1f042f9500ae0e7b693a445b3af2217b43eabbd315b264962b678a315333a799",
+      "28": "9afdda27c639cc7b2e34d69f40dc9da8f0db8888fbbff1a582960d0bd0e168db",
+      "29": "e962a1d1b11c1084964f6443073f82f44a5c363e70d7c371f777bf98e26c73b1",
+      "30": "3b981169f48dfadc07a873628abb103d00c72d3f3a3dc2074b3a329cb664857b",
+      "31": "a589bc2be479099afbf22cf091574535aecb2a32385f9a63f1860e4d105ee92b",
+      "32": "fcae53ff089e04688bd9862945d3cc92f6da06ec404fa6a7867e1948442d5a02",
+      "33": "17f8b3bdbbf2b9f619da64fb8dcef662b509e63441b13642aece56c9a144e773",
+      "34": "d565bba1ab043ef3cb07e0a344ba3812a5178040afe066b9a6501e5db7177675",
+      "35": "ca058ac37d3ac202bb24f1937ece1a61ae23c6855f4d6fa88c4d54c123a18d54",
+      "36": "9bf7e466876e5b3ac421b24368636ac2981a09be9f8c5bc4d9138a1e0db85c40",
+      "37": "085140b69ace45661d683ca84cc38095f210ab356242c466d360687e75c8037c",
+      "38": "ba4c31746c688d45a58643ed2b0f1d5ff0ad034ad00ddaee2bc9303334d58893",
+      "39": "bb55af2ba20c2e7b2d758845974bcb3e6c15bba02395ce9743a2e4120895d678",
+      "40": "9de2678ae9f845fc0fae44eb242455858b3f0a983a2c5ec3625a179f1fc21c20"
+    },
+    "note": "Digests use Secure Hash Algorithm (SHA) 256 on Unicode Transformation Format (UTF) 8 encoded live worker build identifiers at every supported length, 7 through 40 characters. Registered application binary interface (ABI) event layouts were re-derived: 3 Limit Order Protocol (LOP), 2 Registry, 4 Factory and 11 events per settler match, including indexed/anonymous flags and nested tuples. The 85-row decoder declaration matches this build. This proves event-layout correspondence only, not accounting correctness, image provenance or whole-set integration."
   },
   "types": {
     "LOP": {
@@ -1048,7 +1083,7 @@
         "creationTx": "0x2bf2e1f8de48e3c05b7a656caec68a40f4055280c1b012cde92571f4be8d40aa"
       }
     },
-    "note": "Event subset independently matched against Sourcify exact-match AggregationRouterV6 ABI on both chains, /server/v2/contract/{chain}/{address}?fields=abi,sources,compilation,deployment",
+    "note": "Event subset independently matched against the Sourcify exact-match AggregationRouterV6 application binary interface (ABI) on both chains, /server/v2/contract/{chain}/{address}?fields=abi,sources,compilation,deployment",
     "events": [
       {
         "anonymous": false,

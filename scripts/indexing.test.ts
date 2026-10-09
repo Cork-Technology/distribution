@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
@@ -11,7 +12,7 @@ type AbiInput = { type: string; indexed?: boolean; components?: AbiInput[] };
 type AbiEvent = { type: string; name: string; anonymous: boolean; inputs: AbiInput[] };
 type Deployment = { address: string; codeHash: string; implementation: string | null };
 type Component = { component: string; version: string; contracts: Record<string, { abi: string; deployments: Record<string, Deployment[] | null> }> };
-type Evidence = { apiSource: object; workerSource: { commit: string }; types: Record<string, { events: AbiEvent[] }> };
+type Evidence = { apiSource: object; workerSource: { buildIdSha256ByLength: Record<string, string> }; types: Record<string, { events: AbiEvent[] }> };
 type Watch = { chain_id: number; address: string; contract_type: string; contracts_version: string | null; last_block_confirmed: number };
 type Status = { watching: Watch[]; chains: unknown[]; decoders: { worker_commit: string; contract_types: { contract_type: string; events: { name: string; signature: string; topic0: string }[] }[] } | null };
 
@@ -37,6 +38,9 @@ function verify(change: (status: Status, dir: string) => void = () => {}) {
     symlinkSync(join(root, "node_modules"), join(dir, "node_modules"), "dir");
     writeFileSync(join(dir, "package.json"), '{"type":"module"}');
     const evidence = json<Evidence>("scripts/indexing-evidence.json");
+    const fixtureBuildId = "a".repeat(40);
+    evidence.workerSource.buildIdSha256ByLength = Object.fromEntries(Array.from({ length: 34 }, (_, i) => [i + 7, createHash("sha256").update(fixtureBuildId.slice(0, i + 7)).digest("hex")]));
+    writeFileSync(join(dir, "scripts/indexing-evidence.json"), JSON.stringify(evidence));
     const watching: Watch[] = [];
     for (const [type, component, version, contract] of mappings) {
       const source = json<Component>(`components/${component}/${version}.json`);
@@ -63,7 +67,7 @@ function verify(change: (status: Status, dir: string) => void = () => {}) {
     writeFileSync(join(dir, "distributions", "phoenix", "v1.json"), JSON.stringify({ distribution: "fixture", chains: [8453, 42161], components: {}, externalDependencies: dist.externalDependencies }));
     mkdirSync(join(dir, "components", "cork-api"), { recursive: true });
     writeFileSync(join(dir, "components", "cork-api", "0.4.3.json"), JSON.stringify({ component: "cork-api", version: "0.4.3", source: evidence.apiSource, services: { baseUrl: "https://fixture.invalid", indexingStatus: "/indexing/v1/status", chains: [8453, 42161] } }));
-    const status: Status = { watching, chains: [], decoders: { worker_commit: evidence.workerSource.commit, contract_types: Object.entries(evidence.types).map(([type, spec]) => ({ contract_type: type, events: spec.events.map(ev => ({ name: ev.name, signature: signature(ev), topic0: "0x" + sha3.keccak_256(signature(ev)) })) })) } };
+    const status: Status = { watching, chains: [], decoders: { worker_commit: fixtureBuildId, contract_types: Object.entries(evidence.types).map(([type, spec]) => ({ contract_type: type, events: spec.events.map(ev => ({ name: ev.name, signature: signature(ev), topic0: "0x" + sha3.keccak_256(signature(ev)) })) })) } };
     change(status, dir);
     writeFileSync(join(dir, "status.json"), JSON.stringify(status));
     writeFileSync(join(dir, "offline.mjs"), `import { readFileSync } from "node:fs";
@@ -131,6 +135,13 @@ test("unreviewed worker preserves event checks but cannot assert live layouts", 
   assert.match(r.output, /PASS.*events LOP/);
   assert.match(r.output, /FAIL.*decode LOP.*layout evidence unavailable/);
   assert.doesNotMatch(r.output, /PASS.*decode|incompatible/);
+});
+
+test("a matching short prefix cannot authorize a different full worker build", () => {
+  const r = verify(s => { s.decoders!.worker_commit = "a".repeat(39) + "b"; });
+  assert.equal(r.code, 1, r.output);
+  assert.match(r.output, /FAIL.*decode LOP.*layout evidence unavailable/);
+  assert.doesNotMatch(r.output, /PASS.*decode/);
 });
 
 test("worker drift does not hide a missing required event", () => {
