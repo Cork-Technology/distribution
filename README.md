@@ -60,10 +60,14 @@ API 0.4.6 and Market Registry 0.6.0. The 0.5 line reflects covered RFQ
 (request-for-quote) v2 input/output breaks. Follow the
 [tagged CLI migration guide](https://github.com/Cork-Technology/cork-cli/blob/v0.7.0/docs/cli.md#12-migrate-from-06-to-07)
 for authenticated writes, required RFQ kind and full signed quoted-answer orders.
-The CLI generation stays `phoenix/v0.4-rc.1` on Base and Arbitrum; the Distribution
-name is not a generation alias. Existing orders are not automatically migrated.
-CLI 0.7.0 is a version-only update from the preceding CLI candidate: runtime
-code and configuration bytes are unchanged; the Distribution stays a candidate.
+Live CLI `config/0.7` selects active `phoenix/v0.5` on Base and Arbitrum, mapped
+to this Distribution. Explicit `phoenix/v0.4-rc.1` is read-only with the original
+adapter. The tagged fallback still selects its older label with the replacement
+adapter; failed remote fetches can therefore resolve differently. See the CLI
+component record for the separate source commits and configuration digests.
+Existing orders are not automatically migrated. CLI 0.7.0 is a version-only update
+from the preceding CLI candidate: runtime code and tagged fallback bytes are
+unchanged. The later live configuration update does not promote the Distribution.
 
 The tag, configuration and released binary provenance are verified. Exact-version
 independent reviews remain pending. Integration and the listed verification gaps
