@@ -55,13 +55,15 @@ when the name goes plain. Stage changes do not rename a Distribution.
 
 ### Current review candidate
 
-[phoenix/v0.5-rc.1](distributions/phoenix/v0.5-rc.1.json) pins CLI 0.7.0-rc.2,
+[phoenix/v0.5-rc.1](distributions/phoenix/v0.5-rc.1.json) pins CLI 0.7.0,
 API 0.4.6 and Market Registry 0.6.0. The 0.5 line reflects covered RFQ
 (request-for-quote) v2 input/output breaks. Follow the
-[tagged CLI migration guide](https://github.com/Cork-Technology/cork-cli/blob/v0.7.0-rc.2/docs/cli.md#12-migrate-from-06-to-07)
+[tagged CLI migration guide](https://github.com/Cork-Technology/cork-cli/blob/v0.7.0/docs/cli.md#12-migrate-from-06-to-07)
 for authenticated writes, required RFQ kind and full signed quoted-answer orders.
 The CLI generation stays `phoenix/v0.4-rc.1` on Base and Arbitrum; the Distribution
 name is not a generation alias. Existing orders are not automatically migrated.
+CLI 0.7.0 is a version-only update from the preceding CLI candidate: runtime
+code and configuration bytes are unchanged; the Distribution stays a candidate.
 
 The tag, configuration and released binary provenance are verified. Exact-version
 independent reviews remain pending. Integration and the listed verification gaps
