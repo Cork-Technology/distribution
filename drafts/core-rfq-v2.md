@@ -33,6 +33,32 @@ prerequisite to cutting core. Retain the underlying RFQ authentication, native
 order, fill/settlement, indexing, rollover and contract-binding checks even when a
 previous run used a CLI as its driver.
 
+## Verified contract carry-forward — 2026-10-15
+
+Compared with `phoenix/v0.5-rc.1`, the four contract pins and all 80 canonical
+contract address entries are identical across Base and Arbitrum. External dependency
+addresses and the component records, including ABI references, recorded runtime
+codehashes, proxy implementation bindings and signing domains, are unchanged.
+
+| Component | Retained release | Canonical address entries across both chains |
+|---|---|---|
+| Phoenix | [1.4.0-rc.1](../components/phoenix/1.4.0-rc.1.json) | 28 |
+| Market Registry | [0.6.0](../components/market-registry/0.6.0.json) | 22 |
+| Rollover | [0.2.0](../components/rollover/0.2.0.json) | 28 |
+| Periphery | [0.2.0-rc.1](../components/cork-periphery/0.2.0-rc.1.json) | 2 |
+
+Each public release tag still resolves to the source commit in its component
+record. No newer contract release was published at this check. The canonical
+order adapter remains `0x960Cd94B31121806b1b0Ff02230D189Ad0310616`; its replacement
+of the earlier adapter occurred in the preceding Distribution, not this draft.
+This comparison does not establish unchanged live chain state: no fresh compile,
+remote procedure call (RPC) read or independent audit was performed.
+
+The latest API release remains `0.4.6`, which retains RFQv1. There is no released
+RFQv2-only API to fill the pending bindings. Keep those sentinels, the unresolved
+Distribution identity and the non-passing, non-waived integration status until
+actual promotion and release evidence exist. Do not copy an earlier waiver.
+
 ## Breaking API support
 
 Retire the full RFQv1 surface: reads, writes, answers, counterproposals,
