@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "distribution": "MOCK(distribution-owner): next core Distribution identity after breaking-surface review",
+  "stage": "partner-preview",
+  "support": "Preparation draft only; not a published Distribution, supported integration pin, release or deployment instruction. API promotion and exact released artifact evidence are pending. No inherited waiver or successful integration run is claimed.",
+  "promotedFrom": null,
+  "components": {
+    "phoenix": "1.4.0-rc.1",
+    "market-registry": "0.6.0",
+    "rollover": "0.2.0",
+    "cork-periphery": "0.2.0-rc.1",
+    "cork-api": "0.0.0-untagged.rfq-v2"
+  },
+  "chains": [
+    42161,
+    8453
+  ],
+  "deployments": {
+    "8453": {
+      "canonical": {
+        "role": "canonical",
+        "phoenix": {
+          "PoolLibrary": "0xCC9337E7EED182e1343d6EC062273552be240E6A",
+          "TimelockUpgrade": "0x0739b6Da7AF605E082701d0990CEF7C78Ba98842",
+          "TimelockControllerAdmin": "0x2D2E62318e763571000B503c84Dc46895049C325",
+          "TimelockOperational": "0x9fb663359947C55A9E3d7905dDB15708e309b8d4",
+          "ConstraintRateAdapterImplementation": "0xB4B5E2aE6d9F7D40911e8A2f60Be2D81a14a2962",
+          "ConstraintRateAdapterProxy": "0x2f9d816191B390A429174902E4A276A019cBf554",
+          "WhitelistManagerImplementation": "0xa5F0E3EB934Bd92aE3c9185FED29ffF78972386C",
+          "WhitelistManagerProxy": "0x8aF6659d864cB632bcadF0744Fb8B5eE78fBEA51",
+          "DefaultCorkController": "0x66025095Ab3a7E60BA9C2b15e203822d5d3647b5",
+          "CorkPoolManagerImplementation": "0x819a556cfbb7f5bbeb470E87874F4d71830e9501",
+          "CorkPoolManagerProxy": "0xcC17224A8710fa23BdA40c2CB563b85CeDDb0C2D",
+          "SharesFactory": "0xFaB92464AF516DC17020Fd39886BB2f8346BAe1e",
+          "PoolShareImplementation": "0x060307Da28cE39d4C5951edA7a40F5733DA82C6F",
+          "CorkAdapter": "0x71eB628c3A40FB3896613804847840426f9284A7"
+        },
+        "market-registry": {
+          "AtomicDeployer": "0x24DEae9D392265F3bb5E494F9BcdF870781Ab2dA",
+          "WrapperRateConsumerFactory": "0x942F2da75E6941D726EaB197E10735B7B6a3C867",
+          "FixedRateOracleFactory": "0x8e7331da266458C87E3870fe01969f4b421b306B",
+          "MarketRegistry": "0xe1f569f152bDB6eBB2d49cFd9d4aB98ECEe955c5",
+          "CorkMarketCreator": "0x1A074F17647504D1c50B436074a74d051D502dEa",
+          "CorkLimitOrderAdapter": "0x960Cd94B31121806b1b0Ff02230D189Ad0310616",
+          "AggregatorV2V3AdapterFactory": "0xFE9a3bEc21f095EeeC1B62F76A5c241a2C5517A2",
+          "LiquidityPriceRecipe": "0x679Cbd016587c423f342e5Ba31e58356228c964d",
+          "LiquidityNavRecipe": "0xed6A6b0448B89F35889Aaf6Df1bdEF27f83787e3",
+          "FixedRateRecipe": "0xEC26bb7d911aFe374721Ecd963543f7e52468C49",
+          "ApySpreadImpairmentRecipe": "0xd5e8F76AafA20aA9A8983A35B71Ad3A793070Ed9"
+        },
+        "rollover": {
+          "RolloverBootstrapDeployer": "0xA99fFea11298A1324eEb55EEC31B05D99085d9bA",
+          "RolloverDeploymentBootstrap": "0x56A7DD76df24764e1D4f611FAa58dC2187F649ea",
+          "LibFillerPayloadExternal": "0x6AD815279F2d2e631CFd1558E1DD70cfC82b1b88",
+          "CorkRolloverContract": "0x232387a35CE5C3f3d956348193541aB8d7553A9e",
+          "ExactSettler": "0x0F2Ce7a5b817865ebFf50c58439B9A27E38f452E",
+          "PartialSettler": "0x5E19Be0743fE521d8BF85b5A558356675499bE9e",
+          "TimelockController": "0x81954908bA5EB09caa9B39b3dD732fdDcbB32Dd7",
+          "CorkRolloverContractFactory": "0x99A5C47CbF062D4E6665afAF32aE6496F9f93F65",
+          "ApproveModule": "0xfcE570587B98D1FD8776eE864EF7CeA69A870885",
+          "OwnerTokenPullModule": "0x9C86e0f05b7Cc99dab3D9C32AA8264aF7DC32990",
+          "ScopedTransferModule": "0x5b7cd7f72DAA99ac6DDED4F42674FF47ebEd7cdc",
+          "ScopedSplitModule": "0xF593a08bAa52c55ABde386C563AF9b50848DDe13",
+          "PostRolloverDstCptTransferModule": "0x84e69211601882091D1a36a5cCdbC1EebB82908F",
+          "BaseFiller": "0x3D16AD60a2fbD352Cc1108c4144F4093ab2E1224"
+        },
+        "cork-periphery": {
+          "CorkForSelfAdapter": "0x3864902695DC930Df406ef5dEB74c4DC249e23f1"
+        },
+        "cork-api": "MOCK(api-release-owner): verified promoted RFQv2-only service endpoint"
+      }
+    },
+    "42161": {
+      "canonical": {
+        "role": "canonical",
+        "phoenix": {
+          "PoolLibrary": "0xCC9337E7EED182e1343d6EC062273552be240E6A",
+          "TimelockUpgrade": "0x0739b6Da7AF605E082701d0990CEF7C78Ba98842",
+          "TimelockControllerAdmin": "0x2D2E62318e763571000B503c84Dc46895049C325",
+          "TimelockOperational": "0x9fb663359947C55A9E3d7905dDB15708e309b8d4",
+          "ConstraintRateAdapterImplementation": "0xB4B5E2aE6d9F7D40911e8A2f60Be2D81a14a2962",
+          "ConstraintRateAdapterProxy": "0x2f9d816191B390A429174902E4A276A019cBf554",
+          "WhitelistManagerImplementation": "0xa5F0E3EB934Bd92aE3c9185FED29ffF78972386C",
+          "WhitelistManagerProxy": "0x8aF6659d864cB632bcadF0744Fb8B5eE78fBEA51",
+          "DefaultCorkController": "0x66025095Ab3a7E60BA9C2b15e203822d5d3647b5",
+          "CorkPoolManagerImplementation": "0x819a556cfbb7f5bbeb470E87874F4d71830e9501",
+          "CorkPoolManagerProxy": "0xcC17224A8710fa23BdA40c2CB563b85CeDDb0C2D",
+          "SharesFactory": "0xFaB92464AF516DC17020Fd39886BB2f8346BAe1e",
+          "PoolShareImplementation": "0x060307Da28cE39d4C5951edA7a40F5733DA82C6F",
+          "CorkAdapter": "0x71eB628c3A40FB3896613804847840426f9284A7"
+        },
+        "market-registry": {
+          "AtomicDeployer": "0x24DEae9D392265F3bb5E494F9BcdF870781Ab2dA",
+          "WrapperRateConsumerFactory": "0x942F2da75E6941D726EaB197E10735B7B6a3C867",
+          "FixedRateOracleFactory": "0x8e7331da266458C87E3870fe01969f4b421b306B",
+          "MarketRegistry": "0xe1f569f152bDB6eBB2d49cFd9d4aB98ECEe955c5",
+          "CorkMarketCreator": "0x1A074F17647504D1c50B436074a74d051D502dEa",
+          "CorkLimitOrderAdapter": "0x960Cd94B31121806b1b0Ff02230D189Ad0310616",
+          "AggregatorV2V3AdapterFactory": "0xFE9a3bEc21f095EeeC1B62F76A5c241a2C5517A2",
+          "LiquidityPriceRecipe": "0x679Cbd016587c423f342e5Ba31e58356228c964d",
+          "LiquidityNavRecipe": "0xed6A6b0448B89F35889Aaf6Df1bdEF27f83787e3",
+          "FixedRateRecipe": "0xEC26bb7d911aFe374721Ecd963543f7e52468C49",
+          "ApySpreadImpairmentRecipe": "0xd5e8F76AafA20aA9A8983A35B71Ad3A793070Ed9"
+        },
+        "rollover": {
+          "RolloverBootstrapDeployer": "0xA99fFea11298A1324eEb55EEC31B05D99085d9bA",
+          "RolloverDeploymentBootstrap": "0x56A7DD76df24764e1D4f611FAa58dC2187F649ea",
+          "LibFillerPayloadExternal": "0x6AD815279F2d2e631CFd1558E1DD70cfC82b1b88",
+          "CorkRolloverContract": "0x232387a35CE5C3f3d956348193541aB8d7553A9e",
+          "ExactSettler": "0x0F2Ce7a5b817865ebFf50c58439B9A27E38f452E",
+          "PartialSettler": "0x5E19Be0743fE521d8BF85b5A558356675499bE9e",
+          "TimelockController": "0x81954908bA5EB09caa9B39b3dD732fdDcbB32Dd7",
+          "CorkRolloverContractFactory": "0x99A5C47CbF062D4E6665afAF32aE6496F9f93F65",
+          "ApproveModule": "0xfcE570587B98D1FD8776eE864EF7CeA69A870885",
+          "OwnerTokenPullModule": "0x9C86e0f05b7Cc99dab3D9C32AA8264aF7DC32990",
+          "ScopedTransferModule": "0x5b7cd7f72DAA99ac6DDED4F42674FF47ebEd7cdc",
+          "ScopedSplitModule": "0xF593a08bAa52c55ABde386C563AF9b50848DDe13",
+          "PostRolloverDstCptTransferModule": "0x84e69211601882091D1a36a5cCdbC1EebB82908F",
+          "BaseFiller": "0x3D16AD60a2fbD352Cc1108c4144F4093ab2E1224"
+        },
+        "cork-periphery": {
+          "CorkForSelfAdapter": "0x3864902695DC930Df406ef5dEB74c4DC249e23f1"
+        },
+        "cork-api": "MOCK(api-release-owner): verified promoted RFQv2-only service endpoint"
+      }
+    }
+  },
+  "surfaces": {
+    "contracts": "Unchanged from phoenix/v0.5-rc.1: retain all four contract component pins and their exact chain/address maps. No redeployment, governance action, signing-domain change, migration or cancellation of signed orders is proposed. Carried evidence is historical, not newly verified.",
+    "cli-mcp": "Outside the next core Distribution component and certification boundary. CLI and MCP are independently released external clients, not core install requirements, artifact channels, component pins or release jobs. Compatibility tests may use an exact external client as test tooling only; its independent release does not gate the core cut. Historical Distribution client promises and records are unchanged.",
+    "apis": "Breaking: retire the entire RFQv1 route family, including both URL orderings, all reads and writes, negotiation and retry operations. RFQv2 is the sole supported RFQ route major. This does not remove unrelated v1 routes. Retain stored legacy RFQ rows, locally retained archives and linked financial citations without a replacement public history API. API 0.4.6 still serves RFQv1 and is not this draft API. Preserve cumulative order accounting, shutdown ownership, additive effective expiry, and authenticated rollover role/citation behavior in the eventual promotion.",
+    "manifests": "Next core boundary is contracts, API and required infrastructure. Existing schemaVersion 1 and sentinel detection remain unchanged. The draft API version and Distribution name are explicitly unresolved; no concrete version is allocated. CLI/MCP do not occur in the new component or deployment maps. Existing Distribution manifests, component records, vendored evidence and stable pointers are preserved."
+  },
+  "integrationSuite": {
+    "passed": false,
+    "waived": false,
+    "decision": "MOCK(integration-owner): exact promoted core set evidence on both listed chains; no prior candidate waiver applies",
+    "chains": [
+      42161,
+      8453
+    ]
+  },
+  "deviations": [],
+  "externalDependencies": {
+    "_note": "Runtime dependency getters were read at finalized Base block 52199784 (2026-10-05T08:28:35Z) via https://mainnet.base.org and Arbitrum block 511869024 (2026-10-05T08:28:02Z) via https://arb1.arbitrum.io/rpc. CorkAdapter.BUNDLER3() and CorkAdapter.PERMIT2() match the recorded addresses on both chains. CorkLimitOrderAdapter.LIMIT_ORDER_PROTOCOL() at 0x960Cd94B31121806b1b0Ff02230D189Ad0310616 was read at finalized Base block 52296747 (2026-10-07T14:34:55Z) and Arbitrum block 512589788 (2026-10-07T14:35:02Z) via the same endpoints and matches the recorded address on both chains. These are external contracts, not Cork component releases or security attestations.",
+    "1inch-limit-order-protocol": {
+      "8453": "0x111111125421cA6dc452d289314280a0f8842A65",
+      "42161": "0x111111125421cA6dc452d289314280a0f8842A65"
+    },
+    "bundler3": {
+      "8453": "0x6BFd8137e702540E7A42B74178A4a49Ba43920C4",
+      "42161": "0x1FA4431bC113D308beE1d46B0e98Cb805FB48C13"
+    },
+    "permit2": {
+      "8453": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+      "42161": "0x000000000022D473030F116dDEE9F6B43aC78BA3"
+    }
+  },
+  "docs": {
+    "preparationChecklist": "../../drafts/core-rfq-v2.md"
+  },
+  "security": {
+    "contact": "security@cork.tech",
+    "reviewLevel": "unreviewed",
+    "audits": []
+  },
+  "knownIssues": [
+    "API promotion, released version/tag/commit, immutable artifact identity/digest, exact OpenAPI bytes and contract compatibility evidence are pending. No development branch or unmerged change is a shipping dependency.",
+    "Core infrastructure watch-list, decoder-layout, build identity and database/deploy compatibility evidence must bind to the eventual API/core set. Existing evidence is retained but is not a new worker pin or rollout proof.",
+    "External dashboard, collector, installed CLI/MCP and other consumers require actual RFQv2 compatibility evidence and release/support disposition; no universal client migration is claimed.",
+    "Core-boundary policy alignment, removal notice/usage evidence, independent review and cut approval remain open. No former waiver is accepted for this draft."
+  ],
+  "scopeNotes": [
+    "Contract pins, chain/address maps and external dependency addresses are carried unchanged from phoenix/v0.5-rc.1. Existing positions and independent signed financial orders are not retired by RFQ HTTP removal.",
+    "Infrastructure is required core runtime scope, not an optional external client. Bind its actual build, decoder/watch-list and deployment evidence before cut acceptance; do not invent a public source pin.",
+    "No API service endpoint is asserted as serving this draft. The historical API record and schema remain unchanged. Replace each explicit sentinel only from actual promotion and released evidence.",
+    "No CLI/MCP binaries, packages, SDKs, hosted deployments, containers or installation commands are shipped or certified by this draft. External client smoke drivers, if used, need separately recorded exact tooling identities."
+  ]
+}
