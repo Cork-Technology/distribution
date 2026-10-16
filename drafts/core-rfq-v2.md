@@ -1,11 +1,11 @@
-# Next core Distribution: RFQv2 only
+# Core candidate phoenix/v0.6-rc.1: RFQv2 only
 
-**Preparation draft — not a release, supported integration pin or deployment plan.**
-No Distribution number is assigned here. The
-[draft record](../distributions/phoenix/draft-core-rfq-v2.json) now pins
+**Preparation candidate — not a release, supported integration pin or deployment plan.**
+The distribution owner directed identity assignment and an integration waiver on
+2026-10-16. The [candidate record](../distributions/phoenix/v0.6-rc.1.json) pins
 [API 0.5.0](../components/cork-api/0.5.0.json) and its exact released schema.
-Distribution identity and integration decisions remain unresolved and block
-successful release verification. A green test suite is not a green cut.
+The 0.6 line declares the covered RFQv1 removal relative to phoenix/v0.5-rc.1.
+Integration is waived, not passed; a green verifier is not final cut approval.
 
 ## Component and compatibility boundary
 
@@ -60,8 +60,8 @@ live schema structurally equals the frozen 45-path snapshot. The source merge
 is GitHub/web-flow-signed; exact-version independent review is not established.
 The public component deliberately omits private source identifiers and Release
 URLs. No implementation-image attestation or whole-core acceptance is claimed.
-The unresolved Distribution identity and non-passing, non-waived integration
-status remain; no earlier waiver is copied.
+The identity is now phoenix/v0.6-rc.1. The owner newly approved integration
+waiver D1 for this exact set; no earlier waiver is copied and no PASS is claimed.
 
 ## Breaking API support
 
@@ -108,12 +108,30 @@ access, deployment, publication or changing another repository.
   exported evidence. Update the new Distribution's API pin and deployment URLs
   from observed bindings. Preserve the existing API `0.4.6` record and schema.
   Remove the untagged preparation record only as part of this completed cutover.
-- [ ] Obtain owner selection of a Distribution name that declares the covered
-  breaking change. Replace the draft identity and filename together; regenerate
-  or verify the per-surface report. Never overwrite a historical Distribution.
-- [ ] Remove every unresolved sentinel only when its cited evidence exists.
-  Re-run verification on the exact changed bytes; do not remove blockers merely
-  to obtain green CI. No previous candidate's waiver carries into this set.
+- [x] Assign phoenix/v0.6-rc.1 under the owner direction of 2026-10-16. The
+  covered RFQv1 removal advances the pre-1.0 minor line; the candidate suffix
+  remains. Rename the draft file with the identity; historical records stay intact.
+- [x] Resolve the two sentinels through the assigned identity and newly approved
+  exact-set integration waiver D1. Retain passed=false and waived=true; record
+  per-component nearest evidence, recurrence, owner and structural exit.
+
+## Integration waiver D1 — owner-approved 2026-10-16
+
+Applies only to partner-preview, unreviewed phoenix/v0.6-rc.1 with the five core
+pins and Base/Arbitrum deployment maps in the candidate record. The owner accepts
+the missing whole-set integration run for this bounded candidate. Component smokes
+and registry checks are nearest evidence, not an end-to-end pass.
+
+This is recurrence 5 after count 4 on phoenix/v0.5-rc.1. The structural exit is a
+repository-contained exact-pin runner with reproducible passing RFQ-to-order,
+fill/settlement and relevant indexing/rollover results on both chains. Owner:
+integration-runner maintainer; coordinator: distribution owner. The existing
+2026-10-15 target is overdue and is not extended by this decision.
+
+No notice, policy-alignment, consumer/history, independent-review, rollout/recovery
+or final-approval waiver is granted. Before cut completion, affected component
+Release bodies must link the candidate deviations. This draft update does not
+edit those Releases, publish a Distribution, move stable pointers or authorize a merge.
 
 ## Core cut gates still open
 
@@ -125,7 +143,7 @@ access, deployment, publication or changing another repository.
 | Core verification | Contract runtime/implementation identities, external dependencies, indexer coverage and event-layout safety; all existing checks remain |
 | API and state compatibility | Real RFQv2 signed/key operations, redaction, replay/conflicts, retained citations and legacy rows, unchanged unrelated routes and supported old/new state combinations |
 | Consumers | Actual selected dashboard, collector and installed client contracts; unavailable/error responses must not become empty history or successful migration |
-| Integration | Whole-core RFQ-to-order/fill/settlement and relevant indexing/rollover proof on Base and Arbitrum; no successful run or waiver is asserted |
+| Integration | Exact-set run is explicitly waived by D1, not passed; keep the candidate suffix and record runner follow-up and per-component nearest evidence |
 | Release and recovery | Exact-source artifacts, production-equivalent rollout/interruption/recovery, required signatures and explicit release authority |
 | Independent review | Independent provenance and component-owner review of exact versions; author inspection is not independent approval |
 | Final acceptance | Full public-byte review, owner approval, release discovery pointers and separately authorized post-publication readbacks |
@@ -138,14 +156,20 @@ checks historical client records because their frozen promises remain valid; tha
 is not a requirement for the new core set to ship a client. Contract, API and
 infrastructure checks are unchanged. No production schema or validator is relaxed.
 
-Verification on 2026-10-16 after CI evidence corrections: all 36 offline tests
+Previous verification on 2026-10-16 after CI evidence corrections: all 36 offline tests
 passed. The unchanged real verifier reported 354 PASS, zero FAIL, 10 INFO and
 7 SKIP. The historical API 0.4.3/0.4.6 live assertions are skipped explicitly
 through their living supersededBy fields; frozen fields and schemas are unchanged.
 The current worker was resolved to exact source and its real registry executed:
 all 85 published decoder rows and the retained event layouts match, including
 indexed/anonymous flags and nested tuples. Only build commitments changed.
-The verifier still exits 1 because one draft record has unresolved Distribution
-identity and integration decision. No integration result or waiver is invented;
-the CI workflow and verifier are unchanged. Source-layout proof is not an
+That prior-head verifier exited 1 for the two unresolved identity/decision fields.
+The owner has now resolved them through identity assignment and an explicit waiver;
+the CI workflow and verifier remain unchanged. Source-layout proof is not an
 independent provenance audit, handler-accounting review or rollout acceptance.
+
+After the identity and owner-approved waiver update, npm test passes all 36 tests.
+The unchanged real npm run verify exits 0: 354 PASS, zero FAIL, 10 INFO and
+6 SKIP (historical APIs). No unresolved draft record remains. These results
+verify registry consistency and observed surfaces, not the waived whole-set run
+or the separately open cut-acceptance gates above.
