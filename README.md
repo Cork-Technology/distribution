@@ -62,17 +62,17 @@ artifact, installation or release requirements. Historical records below keep
 their original client pins and promises.
 
 The [draft set](distributions/phoenix/draft-core-rfq-v2.json) retains the existing
-four contract pins and deployment maps. Its API promotion, release version,
-source/artifact identity, schema digest and served endpoint are explicitly
-pending. API 0.4.6 still supports RFQv1; it is neither relabelled nor a fallback.
-Legacy RFQ rows and financial citations remain stored without a replacement
-public history API. Unrelated v1 route families are not removed.
+four contract pins and deployment maps. It now pins [API 0.5.0](components/cork-api/0.5.0.json),
+its exact tagged schema and the observed production endpoint. RFQv2 is the only
+RFQ major; unrelated v1 route families remain. Legacy rows and financial citations
+remain stored without a replacement public history API. Historical API 0.4.6
+records still promise RFQv1; the shared service no longer satisfies that promise.
 
 This preparation assigns no Distribution number, inherits no waiver and claims
-no completed integration or rollout. Existing sentinel checks must block release
-acceptance until actual promotion and released evidence replace the pending
-bindings. The checklist records policy alignment, notices, consumer compatibility
-and exact-core verification still required before a cut.
+no completed integration or rollout. Existing sentinel checks still block release
+acceptance on the unresolved Distribution identity and integration decision.
+The checklist records policy alignment, notices, consumer compatibility,
+infrastructure review and exact-core verification still required before a cut.
 
 ### Current review candidate
 

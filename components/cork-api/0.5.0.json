@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-api",
+  "version": "0.5.0",
+  "source": {
+    "repo": null,
+    "tag": "v0.5.0",
+    "commit": null,
+    "visibility": "private",
+    "note": "Non-public implementation provenance is retained by the release owner. Public evidence is the versioned hosted interface and frozen OpenAPI snapshot; no publicly resolvable implementation-source claim is made."
+  },
+  "package": null,
+  "schema": {
+    "openapi": "./schema/openapi-0.5.0.json",
+    "sha256": "eae6031803694b56596702530a24b5f661af638530a36d501fe629ac67c6ae74",
+    "note": "Exact tagged openapi.json bytes: 45 paths and 47 operations. Compared with 0.4.6, four RFQv1 paths and five operations are removed; no paths or operations are added. Unrelated v1 route families and RFQv2 remain."
+  },
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "services": {
+    "baseUrl": "https://api-phoenix.cork.tech",
+    "docs": "https://api-phoenix.cork.tech/docs",
+    "liveSpec": "/docs/json",
+    "indexingStatus": "/indexing/v1/status",
+    "chains": [
+      42161,
+      8453
+    ],
+    "verifyModel": "availability",
+    "verifyModelNote": "The service updates in place. Verify a served version at or above the pin, every covered route major, and no breaking live-schema drift against the frozen snapshot. Exact source/deployment readbacks are point-in-time evidence, not a promise of exact future version equality.",
+    "routeMajors": {
+      "_note": "RFQv2 is the only RFQ (request-for-quote) major. Registry v1 remains served but outside this covered list; rollover routes remain outside the covered API surface.",
+      "meta": 1,
+      "rfqs": 2,
+      "limit-orders": 1,
+      "pools": 1,
+      "flows": 1,
+      "registry": 2,
+      "indexing": 1
+    }
+  },
+  "contracts": null,
+  "supersededBy": null,
+  "releaseEvidence": {
+    "url": null,
+    "prerelease": true,
+    "artifact": {
+      "kind": "hosted-interface",
+      "sha256": "eae6031803694b56596702530a24b5f661af638530a36d501fe629ac67c6ae74"
+    },
+    "note": "Release owner verified the non-public immutable tag, engineer Secure Shell (SSH) signature, private prerelease and successful exact-source deployment on 2026-10-16. Public interface evidence is the frozen schema and live documentation. No software development kit (SDK), binary, package-registry or container-image artifact/digest/attestation is certified; the interface digest is not an implementation-image digest."
+  },
+  "notices": [
+    "Breaking RFQv1 retirement: canonical and version-first reads/writes return 404 without redirects. RFQv2 remains; unrelated v1 APIs are not retired. Legacy database rows, signed payloads and financial citations are retained without a replacement public history endpoint. Hypertext Transfer Protocol (HTTP) retirement does not cancel independent signed orders.",
+    "API 0.4.6 historically promised RFQv1. Its record and schema are not relabelled; the shared live service no longer satisfies that covered RFQv1 promise. Release publication does not erase historical availability failures or establish completed notices.",
+    "No database migration, row rewrite, contract change or signing-domain change is included. Existing role-less rollover signatures retain their payload hashes; the optional explicit role is signed when supplied. Deploy API support before role-bearing writers.",
+    "CLI (command-line interface) and MCP (Model Context Protocol) 0.7.0 readers can consume linked orders, but builders and requester-only rollover write checks need a separate update for the explicit cST flow. External client release/installation is not a core component requirement; actual compatibility remains a cut obligation.",
+    "The source merge is GitHub/web-flow-signed, not engineer-SSH-signed. The annotated tag is engineer-signed and GitHub-verified. Independent exact-version review is not established; no prior signing, review, notice or integration waiver is inherited.",
+    "The previous internal-policy metadata description is removed from this new schema; frozen historical schemas remain unchanged."
+  ],
+  "knownIssues": [
+    "Required RFQv1 direct notices, posted/effective dates, usage assessment and consumer/history acceptance are not established by this component release. Whole-core integration, consumer adoption, production-equivalent database roles and interrupted-rollout/recovery proof remain open.",
+    "Exact-tree continuous integration passed build/schema checks, 630 tests with 2 skipped, and compiled native-order/RFQ HTTP smoke checks. Actual local version/schema and disposable-Postgres RFQ cutover smoke passed. Broader local runs encountered Podman socket/hooks; extra standalone orderbook/expiry checks did not complete and are not claimed green.",
+    "Native discovery availability and execution-confidence labels do not establish finality or execution permission. Stored rollover status retains legacy semantics; effectiveStatus adds a projection and an intersecting filter. No whole-set accounting, settlement or economic acceptance is inferred from local fixtures.",
+    "The observed worker build differs from the existing indexing-evidence commitments. A fresh exact-worker decoder/layout review is required; this release does not replace infrastructure evidence or certify a worker rollout."
+  ]
+}

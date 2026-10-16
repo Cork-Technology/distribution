@@ -1,11 +1,11 @@
 # Next core Distribution: RFQv2 only
 
 **Preparation draft — not a release, supported integration pin or deployment plan.**
-No Distribution number or actual API component version is assigned here. The
-[draft record](../distributions/phoenix/draft-core-rfq-v2.json) and
-[untagged API record](../components/cork-api/0.0.0-untagged.rfq-v2.json) use the
-registry's existing unresolved sentinels. They must block a successful release
-verification. A green test suite is not a green cut.
+No Distribution number is assigned here. The
+[draft record](../distributions/phoenix/draft-core-rfq-v2.json) now pins
+[API 0.5.0](../components/cork-api/0.5.0.json) and its exact released schema.
+Distribution identity and integration decisions remain unresolved and block
+successful release verification. A green test suite is not a green cut.
 
 ## Component and compatibility boundary
 
@@ -15,7 +15,7 @@ verification. A green test suite is not a green cut.
 | Market Registry | Retain `0.6.0` and existing chain/address maps |
 | Rollover | Retain `0.2.0` and existing chain/address maps |
 | Periphery | Retain `0.2.0-rc.1` and existing chain/address maps |
-| API | Explicitly pending actual promotion and breaking component release |
+| API | Released 0.5.0; exact tagged schema and observed production endpoint bound |
 | Required indexing infrastructure | Preserve existing decoder evidence; bind the actual build, watch-list, database and deploy compatibility before acceptance |
 
 CLI and MCP become independently released **external clients**, not Distribution
@@ -54,10 +54,14 @@ of the earlier adapter occurred in the preceding Distribution, not this draft.
 This comparison does not establish unchanged live chain state: no fresh compile,
 remote procedure call (RPC) read or independent audit was performed.
 
-The latest API release remains `0.4.6`, which retains RFQv1. There is no released
-RFQv2-only API to fill the pending bindings. Keep those sentinels, the unresolved
-Distribution identity and the non-passing, non-waived integration status until
-actual promotion and release evidence exist. Do not copy an earlier waiver.
+API 0.5.0 was released on 2026-10-16 as a private prerelease with an
+engineer-signed, GitHub-verified annotated tag. Production reports 0.5.0; its
+live schema structurally equals the frozen 45-path snapshot. The source merge
+is GitHub/web-flow-signed; exact-version independent review is not established.
+The public component deliberately omits private source identifiers and Release
+URLs. No implementation-image attestation or whole-core acceptance is claimed.
+The unresolved Distribution identity and non-passing, non-waived integration
+status remain; no earlier waiver is copied.
 
 ## Breaking API support
 
@@ -69,37 +73,38 @@ financial citations stay intact; no replacement public history endpoint, row
 rewrite, data migration or complete archive export is required by this change.
 HTTP retirement does not cancel independent signed orders or migrate signatures.
 
-API `0.4.6` still promises RFQ major 1 and must not be relabelled RFQv2-only.
-A development branch, an unmerged proposal or its smoke results are not proof of
-promotion, present deployment or release artifact identity. No fallback to the
-old API makes this draft deployable.
+API 0.4.6 historically promised RFQ major 1 and is not relabelled. The
+shared service now serves RFQv2 only and no longer satisfies that old covered
+RFQv1 promise. Historical records and schemas are preserved, not silently
+superseded to suppress failures. Retirement notices and consumer/history
+acceptance remain open; publishing a new version does not close those gates.
 
 ## Replace pending API bindings only after actual promotion
 
 Each unchecked item blocks the cut. No command here authorizes promotion, live
 access, deployment, publication or changing another repository.
 
-- [ ] Obtain the actual completed development-to-main promotion identity. Bind
+- [x] Obtain the actual completed development-to-main promotion identity. Bind
   the exact merged source/tree and release-owner evidence; never follow a moving
   branch automatically. Check preservation of cumulative order accounting and
   discovery, shutdown ownership, additive effective expiry and authenticated
   rollover role/quote citations. Resolve any production-only delta explicitly.
-- [ ] Obtain the component owner's final breaking version and real immutable tag,
+- [x] Obtain the component owner's final breaking version and real immutable tag,
   Release record, declared artifact channels, signature and review evidence. Do
   not derive a version from this sentinel or use the old version with new semantics.
-- [ ] Export OpenAPI from that exact released source. Verify byte identity and
+- [x] Export OpenAPI from that exact released source. Verify byte identity and
   self-declared version; vendor under the real version and compute its digest.
   Verify removal of every RFQv1 operation, RFQv2 coverage and preservation of
   unrelated documented operations. Run the per-family breaking schema diff.
-- [ ] Record the real promoted artifact/image identity and digest, build-to-source
-  provenance and covered/excluded channels in the actual release evidence. Do
-  not insert dummy hashes, predicted artifacts or private source identifiers.
+- [x] Record the covered interface artifact and digest, private provenance
+  boundary, signature, review level and covered/excluded channels. Hosted
+  interface only: no implementation image or image attestation is certified.
 - [ ] Obtain separately authorized deployment readbacks: exact served identity,
   component/version metadata, RFQv2-only route map, structural live schema
   compatibility, core contract bindings and infrastructure build/watch-list/event
   layouts on both listed chains. Verify production-equivalent database roles,
   actual deploy command, interruption and tested recovery without deleting rows.
-- [ ] Replace the API draft record with a new real component file and newly
+- [x] Replace the API draft record with a new real component file and newly
   exported evidence. Update the new Distribution's API pin and deployment URLs
   from observed bindings. Preserve the existing API `0.4.6` record and schema.
   Remove the untagged preparation record only as part of this completed cutover.
@@ -133,9 +138,12 @@ checks historical client records because their frozen promises remain valid; tha
 is not a requirement for the new core set to ship a client. Contract, API and
 infrastructure checks are unchanged. No production schema or validator is relaxed.
 
-The draft intentionally makes `npm run verify` non-successful through existing
-recursive sentinel detection. That command also performs live reads and must not
-be run without the appropriate access authorization. Offline tests and an
-isolated, network-denied execution of the actual verifier can demonstrate the
-pending-API rejection; they cannot establish live release acceptance. Publication
-of a draft PR is not permission to merge this blocked preparation record.
+Verification on 2026-10-16: all 36 offline tests passed. An API-only network
+smoke ran the actual verifier with chain/source requests denied: the new API
+pin, all seven covered route majors and all 26 covered schema paths passed.
+RFQv1 aliases returned 404; RFQv2 returned 200. The complete command remained
+non-successful: Distribution identity/integration are unresolved, older RFQv1
+promises fail against the shared service, and the observed worker is not in
+the reviewed layout commitments. Denied chain/source checks prove nothing
+about those remote systems. No full live verification PASS or cut acceptance
+is claimed. Historical records and infrastructure evidence were not rewritten.

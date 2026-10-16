@@ -2,14 +2,14 @@
   "schemaVersion": 1,
   "distribution": "MOCK(distribution-owner): next core Distribution identity after breaking-surface review",
   "stage": "partner-preview",
-  "support": "Preparation draft only; not a published Distribution, supported integration pin, release or deployment instruction. API promotion and exact released artifact evidence are pending. No inherited waiver or successful integration run is claimed.",
+  "support": "Preparation draft only; not a published Distribution or supported integration pin. API 0.5.0 is released and served; whole-core integration, policy alignment, notices, infrastructure evidence and final identity remain unresolved. No inherited waiver is claimed.",
   "promotedFrom": null,
   "components": {
     "phoenix": "1.4.0-rc.1",
     "market-registry": "0.6.0",
     "rollover": "0.2.0",
     "cork-periphery": "0.2.0-rc.1",
-    "cork-api": "0.0.0-untagged.rfq-v2"
+    "cork-api": "0.5.0"
   },
   "chains": [
     42161,
@@ -67,7 +67,7 @@
         "cork-periphery": {
           "CorkForSelfAdapter": "0x3864902695DC930Df406ef5dEB74c4DC249e23f1"
         },
-        "cork-api": "MOCK(api-release-owner): verified promoted RFQv2-only service endpoint"
+        "cork-api": "https://api-phoenix.cork.tech"
       }
     },
     "42161": {
@@ -121,21 +121,21 @@
         "cork-periphery": {
           "CorkForSelfAdapter": "0x3864902695DC930Df406ef5dEB74c4DC249e23f1"
         },
-        "cork-api": "MOCK(api-release-owner): verified promoted RFQv2-only service endpoint"
+        "cork-api": "https://api-phoenix.cork.tech"
       }
     }
   },
   "surfaces": {
     "contracts": "Compared with phoenix/v0.5-rc.1: Phoenix 1.4.0-rc.1, Market Registry 0.6.0, Rollover 0.2.0 and Periphery 0.2.0-rc.1 retain the same released source identities and all 80 canonical contract address entries across Base and Arbitrum. Public tag resolutions and published release lists were checked on 2026-10-15; no newer contract release was found. Component application binary interface (ABI) references, recorded runtime codehashes, proxy implementation bindings and signing domains are unchanged. In particular, the canonical CorkLimitOrderAdapter remains 0x960Cd94B31121806b1b0Ff02230D189Ad0310616; its replacement of the earlier adapter belongs to the preceding Distribution, not this draft. No redeployment, governance action, signing-domain change, migration or cancellation of signed orders is proposed. Historical chain evidence is carried, not a fresh on-chain verification.",
     "cli-mcp": "Outside the next core Distribution component and certification boundary. CLI and MCP are independently released external clients, not core install requirements, artifact channels, component pins or release jobs. Compatibility tests may use an exact external client as test tooling only; its independent release does not gate the core cut. Historical Distribution client promises and records are unchanged.",
-    "apis": "Breaking: retire the entire request-for-quote (RFQ) v1 route family, including both URL orderings, all reads and writes, negotiation and retry operations. RFQv2 is the sole supported RFQ route major. This does not remove unrelated v1 routes. Retain stored legacy RFQ rows, locally retained archives and linked financial citations without a replacement public history API. API 0.4.6 still serves RFQv1 and is not this draft API. Preserve cumulative order accounting, shutdown ownership, additive effective expiry, and authenticated rollover role/citation behavior in the eventual promotion.",
-    "manifests": "Next core boundary is contracts, API and required infrastructure. Existing schemaVersion 1 and sentinel detection remain unchanged. The draft API version and Distribution name are explicitly unresolved; no concrete version is allocated. CLI/MCP do not occur in the new component or deployment maps. Existing Distribution manifests, component records, vendored evidence and stable pointers are preserved."
+    "apis": "Breaking: API 0.5.0 removes all RFQv1 reads/writes in both URL orderings; RFQv2 is the only RFQ major. Unrelated v1 route families remain. Legacy rows, retained archives and signed-order citations are not rewritten; no replacement public history endpoint is provided. The released schema has 45 paths and 47 operations. Native cumulative accounting, discovery/management and confidence, additive rollover effectiveStatus, shutdown ownership and authenticated role/citation changes are recorded in the new component. Independent consumer/state acceptance remains open.",
+    "manifests": "Next core boundary is contracts, API and required infrastructure. API 0.5.0, its exact tagged schema and observed shared endpoint are bound; the Distribution name remains unresolved. CLI/MCP are external clients, not new core pins. Existing published records, schemas and stable pointers are unchanged; no prior waiver is inherited."
   },
   "integrationSuite": {
     "passed": false,
     "waived": false,
     "decision": "MOCK(integration-owner): exact promoted core set evidence on both listed chains; no prior candidate waiver applies",
-    "nearestEvidence": "Contract release identities checked on 2026-10-15 against the public tags: Phoenix v1.4.0-rc.1 resolves to 0276a097d8a6a0e28183aedf43669ad468172c7a; Market Registry 0.6.0 to 630d0e0512be517264b2527e6e06291a2758a35b; Rollover v0.2.0 to fa2476965230d117b8b51045427687bf2369b4b3; Periphery v0.2.0-rc.1 to 258a5e51b950f55cfbb12375bd56ace054dd280f. Each matches its existing component record and remains the newest published release in its repository at this check. The records retain their historical ABI, runtime-codehash and proxy-binding evidence; no fresh compilation, remote procedure call (RPC) read or independent audit was performed for this draft. All 80 canonical contract address entries and external dependency addresses match phoenix/v0.5-rc.1. No promoted RFQv2-only API release, exact released schema, artifact or deployment evidence is available for this set; API 0.4.6 is not a substitute. Whole-core integration, actual consumer compatibility and final target declarations remain pending. No prior waiver is inherited.",
+    "nearestEvidence": "Contract carry-forward checks dated 2026-10-15 are recorded in surfaces.contracts and the preparation checklist; no fresh compile, chain read or independent audit was performed for this update. On 2026-10-16 the release owner verified API 0.5.0 tag/signature/private prerelease, exact-source production deployment, version/header and structural live-schema equality. Exact-tree CI reports 630 tests passed and 2 skipped, with native-order/RFQ HTTP smoke checks. Those fixtures do not establish whole-core integration on Base and Arbitrum, external-client adoption, production-role recovery or notice/history acceptance.",
     "chains": [
       42161,
       8453
@@ -166,7 +166,7 @@
     "audits": []
   },
   "knownIssues": [
-    "API promotion, released version/tag/commit, immutable artifact identity/digest, exact OpenAPI bytes and contract compatibility evidence are pending. No development branch or unmerged change is a shipping dependency.",
+    "API 0.5.0 is released and its frozen interface and hosted identity are verified; independent provenance/review, whole-core contract compatibility and consumer/state acceptance remain pending. No implementation image or image digest is certified.",
     "Core infrastructure watch-list, decoder-layout, build identity and database/deploy compatibility evidence must bind to the eventual API/core set. Existing evidence is retained but is not a new worker pin or rollout proof.",
     "External dashboard, collector, installed CLI/MCP and other consumers require actual RFQv2 compatibility evidence and release/support disposition; no universal client migration is claimed.",
     "Core-boundary policy alignment, removal notice/usage evidence, independent review and cut approval remain open. No former waiver is accepted for this draft."
@@ -174,7 +174,7 @@
   "scopeNotes": [
     "Contract pins, chain/address maps and external dependency addresses are carried unchanged from phoenix/v0.5-rc.1. RFQ endpoint retirement does not migrate existing positions or cancel independent signed financial orders.",
     "Infrastructure is required core runtime scope, not an optional external client. Bind its actual build, decoder/watch-list and deployment evidence before cut acceptance; do not invent a public source pin.",
-    "No API service endpoint is asserted as serving this draft. The historical API record and schema remain unchanged. Replace each explicit sentinel only from actual promotion and released evidence.",
+    "API endpoint readbacks on 2026-10-16 report 0.5.0 and the live schema structurally equals the frozen 45-path snapshot. These point-in-time observations do not certify whole-core integration. Historical API records and schemas remain unchanged.",
     "No CLI/MCP binaries, packages, SDKs, hosted deployments, containers or installation commands are shipped or certified by this draft. External client smoke drivers, if used, need separately recorded exact tooling identities."
   ]
 }
