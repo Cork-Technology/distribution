@@ -73,11 +73,11 @@ financial citations stay intact; no replacement public history endpoint, row
 rewrite, data migration or complete archive export is required by this change.
 HTTP retirement does not cancel independent signed orders or migrate signatures.
 
-API 0.4.6 historically promised RFQ major 1 and is not relabelled. The
-shared service now serves RFQv2 only and no longer satisfies that old covered
-RFQv1 promise. Historical records and schemas are preserved, not silently
-superseded to suppress failures. Retirement notices and consumer/history
-acceptance remain open; publishing a new version does not close those gates.
+API 0.4.3 and 0.4.6 historically promised RFQ major 1 and are not relabelled.
+Their living supersededBy fields now point to 0.5.0, so the verifier treats them
+as historical service records while retaining immutable checks and schemas.
+The shared service serves RFQv2 only. Retirement notices and consumer/history
+acceptance remain open; supersession does not satisfy those obligations.
 
 ## Replace pending API bindings only after actual promotion
 
@@ -138,12 +138,14 @@ checks historical client records because their frozen promises remain valid; tha
 is not a requirement for the new core set to ship a client. Contract, API and
 infrastructure checks are unchanged. No production schema or validator is relaxed.
 
-Verification on 2026-10-16: all 36 offline tests passed. An API-only network
-smoke ran the actual verifier with chain/source requests denied: the new API
-pin, all seven covered route majors and all 26 covered schema paths passed.
-RFQv1 aliases returned 404; RFQv2 returned 200. The complete command remained
-non-successful: Distribution identity/integration are unresolved, older RFQv1
-promises fail against the shared service, and the observed worker is not in
-the reviewed layout commitments. Denied chain/source checks prove nothing
-about those remote systems. No full live verification PASS or cut acceptance
-is claimed. Historical records and infrastructure evidence were not rewritten.
+Verification on 2026-10-16 after CI evidence corrections: all 36 offline tests
+passed. The unchanged real verifier reported 354 PASS, zero FAIL, 10 INFO and
+7 SKIP. The historical API 0.4.3/0.4.6 live assertions are skipped explicitly
+through their living supersededBy fields; frozen fields and schemas are unchanged.
+The current worker was resolved to exact source and its real registry executed:
+all 85 published decoder rows and the retained event layouts match, including
+indexed/anonymous flags and nested tuples. Only build commitments changed.
+The verifier still exits 1 because one draft record has unresolved Distribution
+identity and integration decision. No integration result or waiver is invented;
+the CI workflow and verifier are unchanged. Source-layout proof is not an
+independent provenance audit, handler-accounting review or rollout acceptance.

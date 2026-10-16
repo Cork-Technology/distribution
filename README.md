@@ -65,14 +65,15 @@ The [draft set](distributions/phoenix/draft-core-rfq-v2.json) retains the existi
 four contract pins and deployment maps. It now pins [API 0.5.0](components/cork-api/0.5.0.json),
 its exact tagged schema and the observed production endpoint. RFQv2 is the only
 RFQ major; unrelated v1 route families remain. Legacy rows and financial citations
-remain stored without a replacement public history API. Historical API 0.4.6
-records still promise RFQv1; the shared service no longer satisfies that promise.
+remain stored without a replacement public history API. API 0.4.3 and 0.4.6
+are explicitly superseded by 0.5.0; their frozen RFQv1 schemas remain historical.
+Supersession does not establish completed retirement notices or history acceptance.
 
 This preparation assigns no Distribution number, inherits no waiver and claims
 no completed integration or rollout. Existing sentinel checks still block release
 acceptance on the unresolved Distribution identity and integration decision.
 The checklist records policy alignment, notices, consumer compatibility,
-infrastructure review and exact-core verification still required before a cut.
+independent review and exact-core verification still required before a cut.
 
 ### Current review candidate
 
