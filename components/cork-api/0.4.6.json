@@ -58,7 +58,7 @@
     "Exact-version API evidence includes build/OpenAPI checks, 225 registry tests and actual hosted-metadata/tagged-schema readbacks. A workstation full-suite attempt failed at database/container startup; the distribution owner accepted this local-environment limitation as nonblocking on 2026-10-08. Separate continuous-integration (CI) evidence reports 599 tests passed and 2 skipped at a newer, product-changing revision, not the exact API 0.4.6 tag. No exact-tag full-suite PASS or whole-set integration claim is made."
   ],
   "contracts": null,
-  "supersededBy": null,
+  "supersededBy": "0.5.0",
   "docs": [
     "https://api-phoenix.cork.tech/docs"
   ],

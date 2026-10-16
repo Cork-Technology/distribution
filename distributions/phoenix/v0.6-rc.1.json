@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "distribution": "phoenix/v0.6-rc.1",
+  "stage": "partner-preview",
+  "support": "Preparation candidate only; not a published Distribution or supported integration pin. API 0.5.0 is released and served. The distribution owner explicitly waived whole-core integration for this exact partner-preview candidate on 2026-10-16; it has not passed. Policy alignment, notices, infrastructure rollout evidence, independent review and final cut approval remain open. No other waiver is inherited.",
+  "promotedFrom": null,
+  "components": {
+    "phoenix": "1.4.0-rc.1",
+    "market-registry": "0.6.0",
+    "rollover": "0.2.0",
+    "cork-periphery": "0.2.0-rc.1",
+    "cork-api": "0.5.0"
+  },
+  "chains": [
+    42161,
+    8453
+  ],
+  "deployments": {
+    "8453": {
+      "canonical": {
+        "role": "canonical",
+        "phoenix": {
+          "PoolLibrary": "0xCC9337E7EED182e1343d6EC062273552be240E6A",
+          "TimelockUpgrade": "0x0739b6Da7AF605E082701d0990CEF7C78Ba98842",
+          "TimelockControllerAdmin": "0x2D2E62318e763571000B503c84Dc46895049C325",
+          "TimelockOperational": "0x9fb663359947C55A9E3d7905dDB15708e309b8d4",
+          "ConstraintRateAdapterImplementation": "0xB4B5E2aE6d9F7D40911e8A2f60Be2D81a14a2962",
+          "ConstraintRateAdapterProxy": "0x2f9d816191B390A429174902E4A276A019cBf554",
+          "WhitelistManagerImplementation": "0xa5F0E3EB934Bd92aE3c9185FED29ffF78972386C",
+          "WhitelistManagerProxy": "0x8aF6659d864cB632bcadF0744Fb8B5eE78fBEA51",
+          "DefaultCorkController": "0x66025095Ab3a7E60BA9C2b15e203822d5d3647b5",
+          "CorkPoolManagerImplementation": "0x819a556cfbb7f5bbeb470E87874F4d71830e9501",
+          "CorkPoolManagerProxy": "0xcC17224A8710fa23BdA40c2CB563b85CeDDb0C2D",
+          "SharesFactory": "0xFaB92464AF516DC17020Fd39886BB2f8346BAe1e",
+          "PoolShareImplementation": "0x060307Da28cE39d4C5951edA7a40F5733DA82C6F",
+          "CorkAdapter": "0x71eB628c3A40FB3896613804847840426f9284A7"
+        },
+        "market-registry": {
+          "AtomicDeployer": "0x24DEae9D392265F3bb5E494F9BcdF870781Ab2dA",
+          "WrapperRateConsumerFactory": "0x942F2da75E6941D726EaB197E10735B7B6a3C867",
+          "FixedRateOracleFactory": "0x8e7331da266458C87E3870fe01969f4b421b306B",
+          "MarketRegistry": "0xe1f569f152bDB6eBB2d49cFd9d4aB98ECEe955c5",
+          "CorkMarketCreator": "0x1A074F17647504D1c50B436074a74d051D502dEa",
+          "CorkLimitOrderAdapter": "0x960Cd94B31121806b1b0Ff02230D189Ad0310616",
+          "AggregatorV2V3AdapterFactory": "0xFE9a3bEc21f095EeeC1B62F76A5c241a2C5517A2",
+          "LiquidityPriceRecipe": "0x679Cbd016587c423f342e5Ba31e58356228c964d",
+          "LiquidityNavRecipe": "0xed6A6b0448B89F35889Aaf6Df1bdEF27f83787e3",
+          "FixedRateRecipe": "0xEC26bb7d911aFe374721Ecd963543f7e52468C49",
+          "ApySpreadImpairmentRecipe": "0xd5e8F76AafA20aA9A8983A35B71Ad3A793070Ed9"
+        },
+        "rollover": {
+          "RolloverBootstrapDeployer": "0xA99fFea11298A1324eEb55EEC31B05D99085d9bA",
+          "RolloverDeploymentBootstrap": "0x56A7DD76df24764e1D4f611FAa58dC2187F649ea",
+          "LibFillerPayloadExternal": "0x6AD815279F2d2e631CFd1558E1DD70cfC82b1b88",
+          "CorkRolloverContract": "0x232387a35CE5C3f3d956348193541aB8d7553A9e",
+          "ExactSettler": "0x0F2Ce7a5b817865ebFf50c58439B9A27E38f452E",
+          "PartialSettler": "0x5E19Be0743fE521d8BF85b5A558356675499bE9e",
+          "TimelockController": "0x81954908bA5EB09caa9B39b3dD732fdDcbB32Dd7",
+          "CorkRolloverContractFactory": "0x99A5C47CbF062D4E6665afAF32aE6496F9f93F65",
+          "ApproveModule": "0xfcE570587B98D1FD8776eE864EF7CeA69A870885",
+          "OwnerTokenPullModule": "0x9C86e0f05b7Cc99dab3D9C32AA8264aF7DC32990",
+          "ScopedTransferModule": "0x5b7cd7f72DAA99ac6DDED4F42674FF47ebEd7cdc",
+          "ScopedSplitModule": "0xF593a08bAa52c55ABde386C563AF9b50848DDe13",
+          "PostRolloverDstCptTransferModule": "0x84e69211601882091D1a36a5cCdbC1EebB82908F",
+          "BaseFiller": "0x3D16AD60a2fbD352Cc1108c4144F4093ab2E1224"
+        },
+        "cork-periphery": {
+          "CorkForSelfAdapter": "0x3864902695DC930Df406ef5dEB74c4DC249e23f1"
+        },
+        "cork-api": "https://api-phoenix.cork.tech"
+      }
+    },
+    "42161": {
+      "canonical": {
+        "role": "canonical",
+        "phoenix": {
+          "PoolLibrary": "0xCC9337E7EED182e1343d6EC062273552be240E6A",
+          "TimelockUpgrade": "0x0739b6Da7AF605E082701d0990CEF7C78Ba98842",
+          "TimelockControllerAdmin": "0x2D2E62318e763571000B503c84Dc46895049C325",
+          "TimelockOperational": "0x9fb663359947C55A9E3d7905dDB15708e309b8d4",
+          "ConstraintRateAdapterImplementation": "0xB4B5E2aE6d9F7D40911e8A2f60Be2D81a14a2962",
+          "ConstraintRateAdapterProxy": "0x2f9d816191B390A429174902E4A276A019cBf554",
+          "WhitelistManagerImplementation": "0xa5F0E3EB934Bd92aE3c9185FED29ffF78972386C",
+          "WhitelistManagerProxy": "0x8aF6659d864cB632bcadF0744Fb8B5eE78fBEA51",
+          "DefaultCorkController": "0x66025095Ab3a7E60BA9C2b15e203822d5d3647b5",
+          "CorkPoolManagerImplementation": "0x819a556cfbb7f5bbeb470E87874F4d71830e9501",
+          "CorkPoolManagerProxy": "0xcC17224A8710fa23BdA40c2CB563b85CeDDb0C2D",
+          "SharesFactory": "0xFaB92464AF516DC17020Fd39886BB2f8346BAe1e",
+          "PoolShareImplementation": "0x060307Da28cE39d4C5951edA7a40F5733DA82C6F",
+          "CorkAdapter": "0x71eB628c3A40FB3896613804847840426f9284A7"
+        },
+        "market-registry": {
+          "AtomicDeployer": "0x24DEae9D392265F3bb5E494F9BcdF870781Ab2dA",
+          "WrapperRateConsumerFactory": "0x942F2da75E6941D726EaB197E10735B7B6a3C867",
+          "FixedRateOracleFactory": "0x8e7331da266458C87E3870fe01969f4b421b306B",
+          "MarketRegistry": "0xe1f569f152bDB6eBB2d49cFd9d4aB98ECEe955c5",
+          "CorkMarketCreator": "0x1A074F17647504D1c50B436074a74d051D502dEa",
+          "CorkLimitOrderAdapter": "0x960Cd94B31121806b1b0Ff02230D189Ad0310616",
+          "AggregatorV2V3AdapterFactory": "0xFE9a3bEc21f095EeeC1B62F76A5c241a2C5517A2",
+          "LiquidityPriceRecipe": "0x679Cbd016587c423f342e5Ba31e58356228c964d",
+          "LiquidityNavRecipe": "0xed6A6b0448B89F35889Aaf6Df1bdEF27f83787e3",
+          "FixedRateRecipe": "0xEC26bb7d911aFe374721Ecd963543f7e52468C49",
+          "ApySpreadImpairmentRecipe": "0xd5e8F76AafA20aA9A8983A35B71Ad3A793070Ed9"
+        },
+        "rollover": {
+          "RolloverBootstrapDeployer": "0xA99fFea11298A1324eEb55EEC31B05D99085d9bA",
+          "RolloverDeploymentBootstrap": "0x56A7DD76df24764e1D4f611FAa58dC2187F649ea",
+          "LibFillerPayloadExternal": "0x6AD815279F2d2e631CFd1558E1DD70cfC82b1b88",
+          "CorkRolloverContract": "0x232387a35CE5C3f3d956348193541aB8d7553A9e",
+          "ExactSettler": "0x0F2Ce7a5b817865ebFf50c58439B9A27E38f452E",
+          "PartialSettler": "0x5E19Be0743fE521d8BF85b5A558356675499bE9e",
+          "TimelockController": "0x81954908bA5EB09caa9B39b3dD732fdDcbB32Dd7",
+          "CorkRolloverContractFactory": "0x99A5C47CbF062D4E6665afAF32aE6496F9f93F65",
+          "ApproveModule": "0xfcE570587B98D1FD8776eE864EF7CeA69A870885",
+          "OwnerTokenPullModule": "0x9C86e0f05b7Cc99dab3D9C32AA8264aF7DC32990",
+          "ScopedTransferModule": "0x5b7cd7f72DAA99ac6DDED4F42674FF47ebEd7cdc",
+          "ScopedSplitModule": "0xF593a08bAa52c55ABde386C563AF9b50848DDe13",
+          "PostRolloverDstCptTransferModule": "0x84e69211601882091D1a36a5cCdbC1EebB82908F",
+          "BaseFiller": "0x3D16AD60a2fbD352Cc1108c4144F4093ab2E1224"
+        },
+        "cork-periphery": {
+          "CorkForSelfAdapter": "0x3864902695DC930Df406ef5dEB74c4DC249e23f1"
+        },
+        "cork-api": "https://api-phoenix.cork.tech"
+      }
+    }
+  },
+  "surfaces": {
+    "contracts": "Compared with phoenix/v0.5-rc.1: Phoenix 1.4.0-rc.1, Market Registry 0.6.0, Rollover 0.2.0 and Periphery 0.2.0-rc.1 retain the same released source identities and all 80 canonical contract address entries across Base and Arbitrum. Public tag resolutions and published release lists were checked on 2026-10-15; no newer contract release was found. Component application binary interface (ABI) references, recorded runtime codehashes, proxy implementation bindings and signing domains are unchanged. In particular, the canonical CorkLimitOrderAdapter remains 0x960Cd94B31121806b1b0Ff02230D189Ad0310616; its replacement of the earlier adapter belongs to the preceding Distribution, not this draft. No redeployment, governance action, signing-domain change, migration or cancellation of signed orders is proposed. Historical chain evidence is carried, not a fresh on-chain verification.",
+    "cli-mcp": "Outside the next core Distribution component and certification boundary. CLI and MCP are independently released external clients, not core install requirements, artifact channels, component pins or release jobs. Compatibility tests may use an exact external client as test tooling only; its independent release does not gate the core cut. Historical Distribution client promises and records are unchanged.",
+    "apis": "Breaking: API 0.5.0 removes all RFQv1 reads/writes in both URL orderings; RFQv2 is the only RFQ major. Unrelated v1 route families remain. Legacy rows, retained archives and signed-order citations are not rewritten; no replacement public history endpoint is provided. The released schema has 45 paths and 47 operations. Native cumulative accounting, discovery/management and confidence, additive rollover effectiveStatus, shutdown ownership and authenticated role/citation changes are recorded in the new component. Independent consumer/state acceptance remains open.",
+    "manifests": "Core boundary is contracts, API and required infrastructure. phoenix/v0.6-rc.1 advances the pre-1.0 minor line for the covered RFQv1 API removal relative to phoenix/v0.5-rc.1. API 0.5.0, its exact tagged schema and observed shared endpoint are bound. CLI/MCP are external clients, not new core pins. Historical records, schemas and stable pointers are unchanged. Only the newly approved integration waiver applies; no prior candidate waiver is inherited."
+  },
+  "integrationSuite": {
+    "passed": false,
+    "waived": true,
+    "decision": "Integration waiver explicitly approved by the distribution owner on 2026-10-16 for partner-preview, unreviewed phoenix/v0.6-rc.1 only: Phoenix 1.4.0-rc.1, Market Registry 0.6.0, Rollover 0.2.0, Periphery 0.2.0-rc.1 and API 0.5.0, with the recorded deployment maps on Base (8453) and Arbitrum (42161). passed=false, waived=true; no whole-set run or PASS is claimed. Rationale: the owner accepts the disclosed absence of exact-set integration evidence for this bounded candidate; component checks are nearest evidence only. Recurrence count: 5, following count 4 on phoenix/v0.5-rc.1. Structural exit condition: a repository-contained exact-pin runner with reproducible passing RFQ-to-order/fill/settlement and relevant indexing/rollover results on both chains. Owner: integration-runner maintainer; coordinator: distribution owner; existing target 2026-10-15 remains overdue and is not extended by this approval. Retain the candidate suffix and unreviewed stage. This waiver does not accept notices, consumer/history compatibility, policy alignment, independent review, rollout/recovery or final cut approval. See D1 and nearestEvidence.",
+    "nearestEvidence": "Per-component evidence, carried rather than rerun by this waiver: Phoenix 1.4.0-rc.1, Rollover 0.2.0 and Periphery 0.2.0-rc.1 retain their recorded tagged source and deployment evidence. Market Registry 0.6.0 retains the recorded public-tag compile comparison for the replacement CorkLimitOrderAdapter with metadata excluded and historical evidence for its unchanged contracts; this is not a fresh whole-tag deployment comparison. All four contract pins and 80 canonical addresses match phoenix/v0.5-rc.1. API 0.5.0 has release-owner tag/signature/private prerelease verification, exact-source production deployment, version/header and structural live-schema equality; exact-tree CI reports 630 tests passed and 2 skipped, with native-order/RFQ HTTP smokes. Required infrastructure has source-derived correspondence for all 85 published decoder rows and retained full event layouts; this is not an independent image, database or recovery attestation. None of these component checks establishes whole-core integration on both chains, external-client adoption, production-role recovery or notice/history acceptance.",
+    "chains": [
+      42161,
+      8453
+    ]
+  },
+  "deviations": [
+    "D1 — Cross-component integration (R5, distribution-cut B8): WAIVER ACCEPTED NONBLOCKING by the distribution owner on 2026-10-16 for partner-preview, unreviewed phoenix/v0.6-rc.1 only. Exact pins and chain/deployment maps are in this record; per-component nearest evidence and its limitations are in integrationSuite.nearestEvidence. Rationale: explicitly accept the missing whole-set run for this bounded candidate, not certify component smokes as integration. passed=false, waived=true. Recurrence count: 5, after count 4 on phoenix/v0.5-rc.1. Structural exit condition: a repository-contained runnable exact-pin suite with reproducible passing RFQ-to-order/fill/settlement and relevant indexing/rollover evidence on Base and Arbitrum. Owner: integration-runner maintainer; coordinator: distribution owner; existing target 2026-10-15 is overdue, not extended. Keep the candidate suffix and unreviewed stage. Notices, policy alignment, consumer/history acceptance, independent provenance/review, rollout/recovery and final cut approval are not waived. Link this deviation from affected component Release bodies before cut completion; no Release body is edited by this draft update."
+  ],
+  "externalDependencies": {
+    "_note": "Runtime dependency getters were read at finalized Base block 52199784 (2026-10-05T08:28:35Z) via https://mainnet.base.org and Arbitrum block 511869024 (2026-10-05T08:28:02Z) via https://arb1.arbitrum.io/rpc. The CorkAdapter bundler and Permit2 getters match the recorded addresses on both chains. The CorkLimitOrderAdapter limit-order-protocol getter at 0x960Cd94B31121806b1b0Ff02230D189Ad0310616 was read at finalized Base block 52296747 (2026-10-07T14:34:55Z) and Arbitrum block 512589788 (2026-10-07T14:35:02Z) via the same endpoints and matches the recorded address on both chains. These are external contracts, not Cork component releases or security attestations.",
+    "1inch-limit-order-protocol": {
+      "8453": "0x111111125421cA6dc452d289314280a0f8842A65",
+      "42161": "0x111111125421cA6dc452d289314280a0f8842A65"
+    },
+    "bundler3": {
+      "8453": "0x6BFd8137e702540E7A42B74178A4a49Ba43920C4",
+      "42161": "0x1FA4431bC113D308beE1d46B0e98Cb805FB48C13"
+    },
+    "permit2": {
+      "8453": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+      "42161": "0x000000000022D473030F116dDEE9F6B43aC78BA3"
+    }
+  },
+  "docs": {
+    "preparationChecklist": "../../drafts/core-rfq-v2.md"
+  },
+  "security": {
+    "contact": "security@cork.tech",
+    "reviewLevel": "unreviewed",
+    "audits": []
+  },
+  "knownIssues": [
+    "API 0.5.0 is released and its frozen interface and hosted identity are verified; independent provenance/review, whole-core contract compatibility and consumer/state acceptance remain pending. No implementation image or image digest is certified.",
+    "Core infrastructure watch-list, decoder-layout, build identity and database/deploy compatibility evidence must bind to the eventual API/core set. Existing evidence is retained but is not a new worker pin or rollout proof.",
+    "External dashboard, collector, installed CLI/MCP and other consumers require actual RFQv2 compatibility evidence and release/support disposition; no universal client migration is claimed.",
+    "Core-boundary policy alignment, removal notice/usage evidence, independent review and cut approval remain open. Only integration is newly waived in D1; no former waiver is inherited."
+  ],
+  "scopeNotes": [
+    "Contract pins, chain/address maps and external dependency addresses are carried unchanged from phoenix/v0.5-rc.1. RFQ endpoint retirement does not migrate existing positions or cancel independent signed financial orders.",
+    "Infrastructure is required core runtime scope, not an optional external client. Bind its actual build, decoder/watch-list and deployment evidence before cut acceptance; do not invent a public source pin.",
+    "API endpoint readbacks on 2026-10-16 report 0.5.0 and the live schema structurally equals the frozen 45-path snapshot. These point-in-time observations do not certify whole-core integration. Historical API records and schemas remain unchanged.",
+    "No CLI/MCP binaries, packages, SDKs, hosted deployments, containers or installation commands are shipped or certified by this draft. External client smoke drivers, if used, need separately recorded exact tooling identities."
+  ]
+}
