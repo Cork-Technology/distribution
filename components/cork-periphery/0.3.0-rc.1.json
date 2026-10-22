@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "component": "cork-periphery",
+  "version": "0.3.0-rc.1",
+  "source": {
+    "repo": "https://github.com/Cork-Technology/cork-periphery",
+    "tag": "v0.3.0-rc.1",
+    "commit": "3636ca04593cebfee11f3573ed8c69442209e5d9"
+  },
+  "package": null,
+  "schema": null,
+  "stage": "partner-preview",
+  "reviewLevel": "unreviewed",
+  "badges": [],
+  "notices": [
+    "Published prerelease: https://github.com/Cork-Technology/cork-periphery/releases/tag/v0.3.0-rc.1. Public source commit and annotated tag are engineer-signed and GitHub-verified. The release covers source/source archives, not deployment certification; this record separately verifies the combined CorkForSelfAdapter deployment. The two narrow source adapters are not claimed as deployed or required by this Distribution.",
+    "The application binary interface (ABI) is derived from a fresh exact-public-tag build using Foundry 1.7.1, Solidity 0.8.30, optimizer runs 200, Cancun Ethereum Virtual Machine (EVM), bytecodeHash=none and appendCBOR=false. All existing function entries are identical to 0.2.0-rc.1; five functions are added, including rolloverForSelf and rolloverForSelfWithMarket. Constructor inputs expand from three addresses to six.",
+    "Whole-runtime equality against the public build was verified at finalized Base block 52946479 (0xbcbf234369a8f0ee09e4a19d6e5deb6cda8b8318e2a986b9af77347a2ab21e93) and Arbitrum block 517262423 (0x40c4aa4a83c5f39fcdaa6fe5bca66f8317ebf97e7b6ff7cc424996f4549c4de6). All 58 source-resolved immutable slots were substituted with the six verified getter values; zero bytes were masked and no metadata was stripped. Both mined factory creation inputs equal the public creation bytecode plus the six constructor addresses after the salt.",
+    "Live creation receipts are successful and canonical: Base transaction 0x624ba5e3b790c19d722cb685f73ecc92f84bc84b1aa253b6c43dca7e83b728f4 at block 52942340; Arbitrum transaction 0xac08cf66c5443f9121338a951d051b6c482e6e74ffabf5d94b2395a03aad6bf2 at block 517230925.",
+    "The six immutable getters bind to the Phoenix pool-manager and whitelist-manager proxies, the external limit-order protocol, Rollover ExactSettler and PartialSettler, and Market Registry CorkMarketCreator already pinned by the Distribution. This is a direct, immutable adapter with no proxy or governance handoff.",
+    "Exact-public-commit hosted CI passed all three jobs: https://github.com/Cork-Technology/cork-periphery/actions/runs/39790003072. The release reports local genuine rollover protocol tests and both rollover smoke paths; those tests are not bundled or executed by public CI, and were not rerun for this record.",
+    "Active records deployed runtime only, not consumer activation, holder authorization or production support. The earlier adapter remains deployed; no old approvals, positions or signed orders are migrated or cancelled."
+  ],
+  "knownIssues": [
+    "CorkForSelfAdapter has no version() getter. Null records that absence; release identity is the public tag and verified runtime, not an inferred onchain version.",
+    "Source/constructor/receipt correspondence is not holder-authorized rollover or market-creation/fill execution, whole-set integration, recovery acceptance or independent security review. Review level remains unreviewed.",
+    "The component Release discloses incomplete non-author review, public-portable genuine protocol verification and full deployer-address deny-list checks. The release owner targets resolution by 2026-10-29 and before another release candidate or stable release. Source-release acceptance is not an inherited Distribution waiver.",
+    "Existing callers must explicitly select the new adapter and arrange applicable whitelist, token and signed-order permissions; deployment does not activate consumers or retire the prior adapter."
+  ],
+  "contracts": {
+    "CorkForSelfAdapter": {
+      "version": null,
+      "abi": "./abi/CorkForSelfAdapter-0.3.0-rc.1.json",
+      "deployments": {
+        "8453": [
+          {
+            "address": "0xe64F5deCEC381cd8C705f20B41BB24213b8a3507",
+            "implementation": null,
+            "codeHash": "0xcbf9de674d5b48ed770071573ebc6111f2cb137ff9372dbe0ed964c3583376ef",
+            "deployedCommit": "3636ca04593cebfee11f3573ed8c69442209e5d9",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ],
+        "42161": [
+          {
+            "address": "0xe64F5deCEC381cd8C705f20B41BB24213b8a3507",
+            "implementation": null,
+            "codeHash": "0xcbf9de674d5b48ed770071573ebc6111f2cb137ff9372dbe0ed964c3583376ef",
+            "deployedCommit": "3636ca04593cebfee11f3573ed8c69442209e5d9",
+            "chainFork": "cancun",
+            "status": "active"
+          }
+        ]
+      }
+    }
+  },
+  "supersededBy": null
+}

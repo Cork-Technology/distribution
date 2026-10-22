@@ -53,7 +53,26 @@ only when the frozen pinned set passes integration on every listed chain. A
 waiver is not a pass. `promotedFrom` remains `null` on candidates and is written
 when the name goes plain. Stage changes do not rename a Distribution.
 
-### Next core candidate — phoenix/v0.6-rc.1
+### Periphery update candidate — phoenix/v0.7-rc.1
+
+[phoenix/v0.7-rc.1](distributions/phoenix/v0.7-rc.1.json) pins
+[Periphery 0.3.0-rc.1](components/cork-periphery/0.3.0-rc.1.json) and its new
+combined adapter at `0xe64F5deCEC381cd8C705f20B41BB24213b8a3507` on Base and
+Arbitrum. It adds caller-bound rollover and destination-market creation paths;
+existing function entries remain unchanged, while the constructor expands from
+three addresses to six. The public-tag build matches both full deployed runtimes
+and mined creation inputs. All other component pins and 78 contract addresses
+are retained from phoenix/v0.6-rc.1.
+
+The previous adapter stays deployed; this candidate does not migrate approvals,
+positions or orders or activate consumers. It remains partner-preview and
+unreviewed. Whole-set integration has not passed and is not waived; the prior
+candidate's waiver does not apply to the new pin and addresses. Its unresolved
+integration decision deliberately blocks successful cut verification.
+The live indexing worker also differs from the reviewed layout commitment;
+decode safety requires fresh source-layout review, not a digest-only refresh.
+
+### Previous core candidate — phoenix/v0.6-rc.1
 
 The [next core draft](drafts/core-rfq-v2.md) proposes RFQv2-only API support and
 a core Distribution of contracts, API and required indexing infrastructure.
