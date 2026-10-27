@@ -69,8 +69,9 @@ positions or orders or activate consumers. It remains partner-preview and
 unreviewed. Whole-set integration has not passed and is not waived; the prior
 candidate's waiver does not apply to the new pin and addresses. Its unresolved
 integration decision deliberately blocks successful cut verification.
-The live indexing worker also differs from the reviewed layout commitment;
-decode safety requires fresh source-layout review, not a digest-only refresh.
+The deployed worker's 2026-10-27 registry/layout review is recorded in
+`scripts/indexing-evidence.json`; its bounded correspondence does not establish
+handler-accounting, running-image provenance or whole-set integration.
 
 **API release update pending:** on 2026-10-27 the hosted API metadata and
 component header reported `0.6.0`, but its immutable tag and Release were absent.
@@ -94,6 +95,32 @@ outside core artifact certification; no consumer default is changed here.
 
 Release/tag checks on 2026-10-27 found no newer Phoenix, Market Registry,
 Rollover or Periphery version than this candidate's four contract pins.
+
+#### Required indexing runtime — 2026-10-27 rollout
+
+Indexing infrastructure was already part of core runtime scope; this candidate
+does not invent a new worker component version or change the contract/API pins.
+The production rollout moved the worker to Node 24.22.1 with pinned trust roots,
+the `/usr/local/bin/node` executable path, PostHog tracking and bounded fatal-error
+handling. The migration guard reported matching code/database heads, captured
+chains were restarted, and hosted status showed healthy Base/Arbitrum progress.
+The candidate's `scopeNotes` records these point-in-time rollout observations.
+
+Identity between the tested image and deployed runtime has not been independently
+established. Database/native-client TLS, in-flight processing/accounting and
+interruption/rollback acceptance remain separate gates.
+The deployment installed production telemetry settings; effective kill switches
+and actual exported-data filtering remain unverified. API tracking evidence does
+not cover worker tracking, and a deploy annotation is not privacy acceptance.
+
+Decoder identity/layout evidence is recorded separately in
+[`scripts/indexing-evidence.json`](scripts/indexing-evidence.json).
+The exact reported worker's registry and row builder were executed without a
+database: all 85 declarations across 15 types match the fresh hosted declaration,
+and all 31 required full event layouts match retained and pinned ABI evidence.
+Only the reviewed build commitments change; handler accounting is outside this
+proof. The earlier candidate CI result predates the rollout; only a post-rollout
+verification run describes the resulting deployed set.
 
 ### Previous core candidate — phoenix/v0.6-rc.1
 
