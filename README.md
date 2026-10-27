@@ -72,6 +72,29 @@ integration decision deliberately blocks successful cut verification.
 The live indexing worker also differs from the reviewed layout commitment;
 decode safety requires fresh source-layout review, not a digest-only refresh.
 
+**API release update pending:** on 2026-10-27 the hosted API metadata and
+component header reported `0.6.0`, but its immutable tag and Release were absent.
+The candidate therefore retains the frozen [API 0.5.0](components/cork-api/0.5.0.json)
+pin and schema, **not a claim that its authentication promise still holds**.
+The live schema retains 45 paths, but wallet-signed RFQv2 writes now bind proofs
+to the venue origin. The actual production origin and any temporary legacy-proof
+deadline remain unverified; matching schema shapes do not prove compatibility.
+The candidate's `knownIssues` records the release, signed-writer migration,
+notice/history, recovery and PostHog disclosure/privacy evidence still required.
+No API 0.6.0 component record or schema is committed before the tag exists.
+
+[CLI/MCP 0.8.0-rc.2](https://github.com/Cork-Technology/cork-cli/releases/tag/v0.8.0-rc.2)
+contains venue-salted RFQ signing source, but its bundled defaults and
+[observed config/0.8 snapshot](https://github.com/Cork-Technology/cork-cli/blob/936b3ac1c82cb90f333ed36b297891253a920d69/cork-defaults.v2.json)
+still select phoenix/v0.5-rc.1 and the earlier adapter. Its released ForSelf
+encoders do not expose the new rollover actions. Publication is not adoption:
+configuration, action support and actual consumer interoperability remain separate
+gates. Factory SDK released compatibility is unverified. These clients remain
+outside core artifact certification; no consumer default is changed here.
+
+Release/tag checks on 2026-10-27 found no newer Phoenix, Market Registry,
+Rollover or Periphery version than this candidate's four contract pins.
+
 ### Previous core candidate — phoenix/v0.6-rc.1
 
 The [next core draft](drafts/core-rfq-v2.md) proposes RFQv2-only API support and
