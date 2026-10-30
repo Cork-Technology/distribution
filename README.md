@@ -74,7 +74,8 @@ The deployed worker's 2026-10-27 registry/layout review is recorded in
 handler-accounting, running-image provenance or whole-set integration.
 
 **API release update pending:** on 2026-10-27 the hosted API metadata and
-component header reported `0.6.0`, but its immutable tag and Release were absent.
+component header reported `0.6.0`; as checked on 2026-10-30, its tag and Release
+still do not exist.
 The candidate therefore retains the frozen [API 0.5.0](components/cork-api/0.5.0.json)
 pin and schema, **not a claim that its authentication promise still holds**.
 The live schema retains 45 paths, but wallet-signed RFQv2 writes now bind proofs
@@ -84,17 +85,43 @@ The candidate's `knownIssues` records the release, signed-writer migration,
 notice/history, recovery and PostHog disclosure/privacy evidence still required.
 No API 0.6.0 component record or schema is committed before the tag exists.
 
-[CLI/MCP 0.8.0-rc.2](https://github.com/Cork-Technology/cork-cli/releases/tag/v0.8.0-rc.2)
-contains venue-salted RFQ signing source, but its bundled defaults and
-[observed config/0.8 snapshot](https://github.com/Cork-Technology/cork-cli/blob/936b3ac1c82cb90f333ed36b297891253a920d69/cork-defaults.v2.json)
-still select phoenix/v0.5-rc.1 and the earlier adapter. Its released ForSelf
-encoders do not expose the new rollover actions. Publication is not adoption:
-configuration, action support and actual consumer interoperability remain separate
-gates. Factory SDK released compatibility is unverified. These clients remain
-outside core artifact certification; no consumer default is changed here.
+CLI, MCP and SDKs are independently released external consumers, not pinned
+components or certified artifacts of this candidate. Their independent release,
+installation, hosted-deployment and artifact-acceptance workflows are not
+Distribution merge gates; their release exceptions are not imported here.
+Compatibility with covered API and contract surfaces remains in scope, including
+existing signed proofs, selected generations, supported actions, notices and
+support dispositions. A client used to exercise an integration scenario is
+identified in that scenario's evidence; that does not certify or activate it.
+This candidate changes no consumer defaults or authorizations.
 
-Release/tag checks on 2026-10-27 found no newer Phoenix, Market Registry,
+Release/tag checks on 2026-10-30 found no newer Phoenix, Market Registry,
 Rollover or Periphery version than this candidate's four contract pins.
+
+#### Review and merge decisions
+
+This candidate is available for review, **not ready to merge on a general
+approval alone**. Before merge:
+
+- Resolve the API release/pin and covered signing-compatibility mismatch above.
+  An exact-tag component record and schema are required for any new API pin;
+  neither a source version stamp nor matching schema shapes replaces them.
+- Replace the `integrationSuite.decision` placeholder with passing exact-set
+  evidence on both chains or a newly, explicitly accepted waiver. A waiver must
+  name the exact set, nearest evidence, rationale, recurrence, structural exit
+  condition, follow-up owner and date. Keep `passed=false`, `waived=false` until
+  the corresponding evidence or owner decision exists; do not remove the
+  placeholder merely to make CI green.
+- Obtain independent provenance review and moved-component owner sign-off,
+  dispose of applicable release limitations and findings, and obtain final cut
+  approval. Periphery's source Release follow-ups were due 2026-10-29; its
+  [published record](https://github.com/Cork-Technology/cork-periphery/releases/tag/v0.3.0-rc.1)
+  has no resolution addendum as checked on 2026-10-30. Client-release exceptions
+  do not resolve them.
+- Resolve every remaining `knownIssues` gate with evidence or an explicitly
+  accepted, scoped deviation, including API notices/history and consumer
+  compatibility, API/worker telemetry privacy, and indexing rollout identity,
+  database/native-client TLS, accounting and interruption/recovery.
 
 #### Required indexing runtime — 2026-10-27 rollout
 
