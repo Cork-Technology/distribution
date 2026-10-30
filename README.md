@@ -53,7 +53,103 @@ only when the frozen pinned set passes integration on every listed chain. A
 waiver is not a pass. `promotedFrom` remains `null` on candidates and is written
 when the name goes plain. Stage changes do not rename a Distribution.
 
-### Next core candidate — phoenix/v0.6-rc.1
+### Periphery update candidate — phoenix/v0.7-rc.1
+
+[phoenix/v0.7-rc.1](distributions/phoenix/v0.7-rc.1.json) pins
+[Periphery 0.3.0-rc.1](components/cork-periphery/0.3.0-rc.1.json) and its new
+combined adapter at `0xe64F5deCEC381cd8C705f20B41BB24213b8a3507` on Base and
+Arbitrum. It adds caller-bound rollover and destination-market creation paths;
+existing function entries remain unchanged, while the constructor expands from
+three addresses to six. The public-tag build matches both full deployed runtimes
+and mined creation inputs. All other component pins and 78 contract addresses
+are retained from phoenix/v0.6-rc.1.
+
+The previous adapter stays deployed; this candidate does not migrate approvals,
+positions or orders or activate consumers. It remains partner-preview and
+unreviewed. Whole-set integration has not passed and is not waived; the prior
+candidate's waiver does not apply to the new pin and addresses. Its unresolved
+integration decision deliberately blocks successful cut verification.
+The deployed worker's 2026-10-27 registry/layout review is recorded in
+`scripts/indexing-evidence.json`; its bounded correspondence does not establish
+handler-accounting, running-image provenance or whole-set integration.
+
+**API release update pending:** on 2026-10-27 the hosted API metadata and
+component header reported `0.6.0`; as checked on 2026-10-30, its tag and Release
+still do not exist.
+The candidate therefore retains the frozen [API 0.5.0](components/cork-api/0.5.0.json)
+pin and schema, **not a claim that its authentication promise still holds**.
+The live schema retains 45 paths, but wallet-signed RFQv2 writes now bind proofs
+to the venue origin. The actual production origin and any temporary legacy-proof
+deadline remain unverified; matching schema shapes do not prove compatibility.
+The candidate's `knownIssues` records the release, signed-writer migration,
+notice/history, recovery and PostHog disclosure/privacy evidence still required.
+No API 0.6.0 component record or schema is committed before the tag exists.
+
+CLI, MCP and SDKs are independently released external consumers, not pinned
+components or certified artifacts of this candidate. Their independent release,
+installation, hosted-deployment and artifact-acceptance workflows are not
+Distribution merge gates; their release exceptions are not imported here.
+Compatibility with covered API and contract surfaces remains in scope, including
+existing signed proofs, selected generations, supported actions, notices and
+support dispositions. A client used to exercise an integration scenario is
+identified in that scenario's evidence; that does not certify or activate it.
+This candidate changes no consumer defaults or authorizations.
+
+Release/tag checks on 2026-10-30 found no newer Phoenix, Market Registry,
+Rollover or Periphery version than this candidate's four contract pins.
+
+#### Review and merge decisions
+
+This candidate is available for review, **not ready to merge on a general
+approval alone**. Before merge:
+
+- Resolve the API release/pin and covered signing-compatibility mismatch above.
+  An exact-tag component record and schema are required for any new API pin;
+  neither a source version stamp nor matching schema shapes replaces them.
+- Replace the `integrationSuite.decision` placeholder with passing exact-set
+  evidence on both chains or a newly, explicitly accepted waiver. A waiver must
+  name the exact set, nearest evidence, rationale, recurrence, structural exit
+  condition, follow-up owner and date. Keep `passed=false`, `waived=false` until
+  the corresponding evidence or owner decision exists; do not remove the
+  placeholder merely to make CI green.
+- Obtain independent provenance review and moved-component owner sign-off,
+  dispose of applicable release limitations and findings, and obtain final cut
+  approval. Periphery's source Release follow-ups were due 2026-10-29; its
+  [published record](https://github.com/Cork-Technology/cork-periphery/releases/tag/v0.3.0-rc.1)
+  has no resolution addendum as checked on 2026-10-30. Client-release exceptions
+  do not resolve them.
+- Resolve every remaining `knownIssues` gate with evidence or an explicitly
+  accepted, scoped deviation, including API notices/history and consumer
+  compatibility, API/worker telemetry privacy, and indexing rollout identity,
+  database/native-client TLS, accounting and interruption/recovery.
+
+#### Required indexing runtime — 2026-10-27 rollout
+
+Indexing infrastructure was already part of core runtime scope; this candidate
+does not invent a new worker component version or change the contract/API pins.
+The production rollout moved the worker to Node 24.22.1 with pinned trust roots,
+the `/usr/local/bin/node` executable path, PostHog tracking and bounded fatal-error
+handling. The migration guard reported matching code/database heads, captured
+chains were restarted, and hosted status showed healthy Base/Arbitrum progress.
+The candidate's `scopeNotes` records these point-in-time rollout observations.
+
+Identity between the tested image and deployed runtime has not been independently
+established. Database/native-client TLS, in-flight processing/accounting and
+interruption/rollback acceptance remain separate gates.
+The deployment installed production telemetry settings; effective kill switches
+and actual exported-data filtering remain unverified. API tracking evidence does
+not cover worker tracking, and a deploy annotation is not privacy acceptance.
+
+Decoder identity/layout evidence is recorded separately in
+[`scripts/indexing-evidence.json`](scripts/indexing-evidence.json).
+The exact reported worker's registry and row builder were executed without a
+database: all 85 declarations across 15 types match the fresh hosted declaration,
+and all 31 required full event layouts match retained and pinned ABI evidence.
+Only the reviewed build commitments change; handler accounting is outside this
+proof. The earlier candidate CI result predates the rollout; only a post-rollout
+verification run describes the resulting deployed set.
+
+### Previous core candidate — phoenix/v0.6-rc.1
 
 The [next core draft](drafts/core-rfq-v2.md) proposes RFQv2-only API support and
 a core Distribution of contracts, API and required indexing infrastructure.
